@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Poppins:wght@600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&family=Poppins:wght@600;700&display=swap');
 
 :root {
   /* Core Colors - Modern Dark Intelligence Theme */
@@ -104,57 +104,38 @@
 }
 
 /* Modern Glassmorphism Card */
-@layer components {
-  .glass-card {
-    position: relative;
-    overflow: hidden;
-    background: rgba(255, 255, 255, 0.05);
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
-  }
+.glass-card {
+  @apply relative overflow-hidden;
+  background: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+}
 
-  .glass-card::before {
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
-    content: '';
-    top: -0.25rem;
-    left: -0.25rem;
-    right: -0.25rem;
-    bottom: -0.25rem;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
-    border-radius: inherit;
-    z-index: -1;
-  }
+.glass-card::before {
+  @apply absolute opacity-0 pointer-events-none;
+  content: '';
+  top: -0.25rem;
+  left: -0.25rem;
+  right: -0.25rem;
+  bottom: -0.25rem;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  border-radius: inherit;
+  z-index: -1;
+}
 
-  /* Enhanced Glass Effect with Glow */
-  .glass-glow {
-    position: relative;
-    overflow: hidden;
-    transition: all 300ms;
-    background: rgba(255, 255, 255, 0.05);
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
-  }
+/* Enhanced Glass Effect with Glow */
+.glass-glow {
+  @apply glass-card transition-all duration-300;
+  position: relative;
+}
 
-  .glass-glow::after {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 300ms;
-    content: '';
-    background: radial-gradient(circle at top left, rgba(94, 114, 228, 0.1), transparent);
-    border-radius: inherit;
-  }
-
-  .glass-glow:hover::after {
-    opacity: 1;
-  }
+.glass-glow::after {
+  @apply absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none;
+  content: '';
+  background: radial-gradient(circle at top left, rgba(94, 114, 228, 0.1), transparent);
+  border-radius: inherit;
 }
 
 /* Typography Utilities */
