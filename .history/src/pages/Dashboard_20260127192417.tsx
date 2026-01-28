@@ -16,7 +16,7 @@ const Dashboard: React.FC = () => {
                 </button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* Metric Card 1 */}
                 <Card className="border-l-4 border-l-accent-red">
                     <h3 className="text-muted text-xs uppercase tracking-wider font-mono mb-2">Active Threats</h3>

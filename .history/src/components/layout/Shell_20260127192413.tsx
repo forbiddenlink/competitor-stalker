@@ -151,7 +151,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                 </header>
 
                 {/* Viewport */}
-                <div className="flex-1 overflow-auto px-8 py-8 relative">
+                <div className="flex-1 overflow-auto p-6 relative">
                     {/* Subtle Grid Background */}
                     <div className="absolute inset-0 opacity-5 pointer-events-none grid-background" />
                     <div className="relative z-10 max-w-7xl mx-auto w-full">

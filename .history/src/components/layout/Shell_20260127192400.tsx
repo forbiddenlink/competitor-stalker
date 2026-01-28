@@ -58,7 +58,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
         `}
             >
                 {/* Sidebar Header */}
-                <div className="px-6 py-8 border-b border-border-bright/30 flex items-center justify-between backdrop-blur-sm">
+                <div className="p-6 border-b border-border-bright/30 flex items-center justify-between backdrop-blur-sm">
                     <div className="flex items-center gap-3">
                         <div className="p-2 rounded-lg bg-gradient-to-br from-accent-red/30 to-accent-amber/20 border border-accent-red/50">
                             <Radar className="text-accent-red animate-pulse" size={24} />
@@ -81,8 +81,8 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                 </div>
 
                 {/* Sidebar Metadata */}
-                <div className="px-6 py-4 bg-white/[0.02] border-b border-border-dim/30">
-                    <div className="text-xs text-text-muted font-mono space-y-2 tracking-wide">
+                <div className="px-4 py-3 bg-white/[0.02] border-b border-border-dim/30">
+                    <div className="text-xs text-text-muted font-mono space-y-1 tracking-wide">
                         <div className="flex justify-between">
                             <span>STATUS:</span>
                             <span className="text-accent-green">ACTIVE</span>
@@ -95,14 +95,14 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                 </div>
 
                 {/* Navigation */}
-                <nav className="flex-1 py-6 px-2 overflow-y-auto space-y-1">
-                    <div className="text-xs uppercase tracking-widest text-text-muted font-mono px-4 py-3 mb-3">Analysis</div>
+                <nav className="flex-1 py-4 px-2 overflow-y-auto space-y-1">
+                    <div className="text-xs uppercase tracking-widest text-text-muted font-mono px-4 py-2 mb-2">Analysis</div>
                     <SidebarItem icon={LayoutDashboard} label="Overview" to="/" />
                     <SidebarItem icon={Users} label="Targets" to="/dossier" />
                     <SidebarItem icon={MapIcon} label="Positioning" to="/positioning" />
                     <SidebarItem icon={Table2} label="Matrix" to="/matrix" />
                     
-                    <div className="text-xs uppercase tracking-widest text-text-muted font-mono px-4 py-3 mt-6 mb-3">Intelligence</div>
+                    <div className="text-xs uppercase tracking-widest text-text-muted font-mono px-4 py-2 mt-4 mb-2">Intelligence</div>
                     <SidebarItem icon={DollarSign} label="Pricing" to="/pricing" />
                     <SidebarItem icon={Search} label="Social" to="/social" />
                     <SidebarItem icon={ShieldAlert} label="Weaknesses" to="/weaknesses" />
@@ -110,7 +110,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                 </nav>
 
                 {/* User Profile */}
-                <div className="p-6 border-t border-border-dim/30 bg-white/[0.02]">
+                <div className="p-4 border-t border-border-dim/30 bg-white/[0.02]">
                     <div className="flex items-center gap-3 group cursor-pointer hover:bg-white/5 rounded-lg p-2 transition-colors duration-200">
                         <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-accent-cyan/30 to-accent-blue/20 border border-accent-cyan/50 flex items-center justify-center flex-shrink-0">
                             <span className="text-xs font-sans font-bold text-accent-cyan">OP</span>
@@ -151,7 +151,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                 </header>
 
                 {/* Viewport */}
-                <div className="flex-1 overflow-auto px-8 py-8 relative">
+                <div className="flex-1 overflow-auto p-6 relative">
                     {/* Subtle Grid Background */}
                     <div className="absolute inset-0 opacity-5 pointer-events-none grid-background" />
                     <div className="relative z-10 max-w-7xl mx-auto w-full">
