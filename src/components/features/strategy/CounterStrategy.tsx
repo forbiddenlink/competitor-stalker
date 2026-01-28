@@ -92,10 +92,13 @@ export const CounterStrategy: React.FC = () => {
                             className="h-8 text-xs bg-bg-primary"
                         />
                     </div>
+                    <label htmlFor="target-select" className="sr-only">Select Target Competitor</label>
                     <select
+                        id="target-select"
                         className="h-8 bg-bg-primary border border-border-dim rounded px-2 text-xs text-text-primary focus:border-accent-cyan outline-none"
                         value={newStrategy.targetId}
                         onChange={(e) => setNewStrategy({ ...newStrategy, targetId: e.target.value })}
+                        aria-label="Select target competitor"
                     >
                         <option value="">Select Target</option>
                         {competitors.map(c => (
@@ -140,6 +143,8 @@ export const CounterStrategy: React.FC = () => {
                                         <button
                                             onClick={() => deleteStrategy(strategy)}
                                             className="text-text-muted hover:text-accent-red"
+                                            aria-label="Delete strategy"
+                                            title="Delete strategy"
                                         >
                                             <Trash2 size={14} />
                                         </button>

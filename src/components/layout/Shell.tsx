@@ -23,18 +23,22 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ icon: Icon, label, to }) => (
     <NavLink
         to={to}
         className={({ isActive }) => `
-      w-full flex items-center space-x-3 px-4 py-3 
-      transition-all duration-200 border-l-4
+      relative w-full flex items-center space-x-3 px-4 py-3 mx-2
+      rounded-lg transition-all duration-300 group
       ${isActive
-                ? 'border-accent-cyan bg-white/5 text-cyan'
-                : 'border-transparent text-muted hover:text-primary hover:bg-white/5'
+                ? 'bg-gradient-to-r from-accent-cyan/20 to-accent-blue/10 text-accent-cyan border-l-2 border-accent-cyan shadow-glow-cyan'
+                : 'text-text-secondary hover:text-text-primary hover:bg-white/5 border-l-2 border-transparent'
             }
     `}
     >
         {({ isActive }) => (
             <>
-                <Icon size={20} className={isActive ? 'drop-shadow-[0_0_5px_rgba(0,204,255,0.5)]' : ''} />
-                <span className="font-mono text-sm tracking-wider uppercase">{label}</span>
+                <Icon 
+                    size={20} 
+                    className={`flex-shrink-0 transition-all duration-300 ${isActive ? 'drop-shadow-glow-cyan' : 'group-hover:drop-shadow-glow'}`} 
+                />
+                <span className="font-sans text-sm font-medium tracking-wide">{label}</span>
+                {isActive && <div className="absolute right-2 w-2 h-2 rounded-full bg-accent-cyan animate-pulse" />}
             </>
         )}
     </NavLink>
@@ -48,45 +52,70 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
             {/* Sidebar */}
             <aside
                 className={`
-          flex flex-col bg-bg-secondary border-r border-border-dim w-64
+          flex flex-col bg-gradient-to-b from-bg-secondary to-bg-tertiary border-r border-border-dim w-64
           transition-all duration-300 ease-in-out relative
           ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full w-0 opacity-0'}
         `}
             >
-                <div className="p-6 border-b border-border-dim flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                        <Radar className="text-accent-red animate-pulse" />
-                        <span className="font-mono font-bold text-xl tracking-widest text-accent-red drop-shadow-[0_0_8px_rgba(255,51,51,0.6)]">
-                            STALKER
-                        </span>
+                {/* Sidebar Header */}
+                <div className="p-6 border-b border-border-bright/30 flex items-center justify-between backdrop-blur-sm">
+                    <div className="flex items-center gap-3">
+                        <div className="p-2 rounded-lg bg-gradient-to-br from-accent-red/30 to-accent-amber/20 border border-accent-red/50">
+                            <Radar className="text-accent-red animate-pulse" size={24} />
+                        </div>
+                        <div>
+                            <span className="font-display font-bold text-lg tracking-tight text-text-primary">
+                                STALKER
+                            </span>
+                            <p className="text-xs text-text-muted font-mono">Intelligence Platform</p>
+                        </div>
                     </div>
-                    <button onClick={() => setIsSidebarOpen(false)} className="text-muted hover:text-accent-red transition-colors">
-                        <X size={20} />
+                    <button 
+                        onClick={() => setIsSidebarOpen(false)} 
+                        className="p-1.5 text-text-muted hover:text-accent-red hover:bg-white/5 rounded-lg transition-all duration-200 lg:hidden"
+                    >
+                        <X size={18} />
                     </button>
                 </div>
-                <div className="px-6 py-2 text-xs text-muted font-mono border-b border-border-dim/50 bg-black/40">
-                    v2.0.4.RC // CLASSIFIED
+
+                {/* Sidebar Metadata */}
+                <div className="px-4 py-3 bg-white/[0.02] border-b border-border-dim/30">
+                    <div className="text-xs text-text-muted font-mono space-y-1 tracking-wide">
+                        <div className="flex justify-between">
+                            <span>STATUS:</span>
+                            <span className="text-accent-green">ACTIVE</span>
+                        </div>
+                        <div className="flex justify-between">
+                            <span>CLEARANCE:</span>
+                            <span className="text-accent-cyan">LEVEL 5</span>
+                        </div>
+                    </div>
                 </div>
 
-                <nav className="flex-1 py-4 overflow-y-auto">
+                {/* Navigation */}
+                <nav className="flex-1 py-4 px-2 overflow-y-auto space-y-1">
+                    <div className="text-xs uppercase tracking-widest text-text-muted font-mono px-4 py-2 mb-2">Analysis</div>
                     <SidebarItem icon={LayoutDashboard} label="Overview" to="/" />
                     <SidebarItem icon={Users} label="Targets" to="/dossier" />
                     <SidebarItem icon={MapIcon} label="Positioning" to="/positioning" />
                     <SidebarItem icon={Table2} label="Matrix" to="/matrix" />
+                    
+                    <div className="text-xs uppercase tracking-widest text-text-muted font-mono px-4 py-2 mt-4 mb-2">Intelligence</div>
                     <SidebarItem icon={DollarSign} label="Pricing" to="/pricing" />
                     <SidebarItem icon={Search} label="Social" to="/social" />
                     <SidebarItem icon={ShieldAlert} label="Weaknesses" to="/weaknesses" />
                     <SidebarItem icon={ShieldAlert} label="Alerts" to="/alerts" />
                 </nav>
 
-                <div className="p-4 border-t border-border-dim bg-black/20">
-                    <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-full bg-accent-cyan/20 border border-accent-cyan/50 flex items-center justify-center">
-                            <span className="text-xs font-mono text-accent-cyan">OP</span>
+                {/* User Profile */}
+                <div className="p-4 border-t border-border-dim/30 bg-white/[0.02]">
+                    <div className="flex items-center gap-3 group cursor-pointer hover:bg-white/5 rounded-lg p-2 transition-colors duration-200">
+                        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-accent-cyan/30 to-accent-blue/20 border border-accent-cyan/50 flex items-center justify-center flex-shrink-0">
+                            <span className="text-xs font-sans font-bold text-accent-cyan">OP</span>
                         </div>
-                        <div className="overflow-hidden">
-                            <div className="text-sm font-bold truncate">Operator</div>
-                            <div className="text-xs text-muted truncate">Level 5 Clearance</div>
+                        <div className="overflow-hidden min-w-0">
+                            <div className="text-sm font-sans font-medium truncate">Operator</div>
+                            <div className="text-xs text-text-muted truncate">Active Session</div>
                         </div>
                     </div>
                 </div>
@@ -95,16 +124,20 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
             {/* Main Content */}
             <main className="flex-1 flex flex-col min-w-0 bg-bg-primary relative">
                 {/* Header */}
-                <header className="h-16 border-b border-border-dim flex items-center justify-between px-6 bg-bg-tertiary/50 backdrop-blur-sm">
+                <header className="h-16 border-b border-border-bright/20 flex items-center justify-between px-6 bg-gradient-to-r from-bg-secondary/80 to-bg-tertiary/50 backdrop-blur-lg glass-card">
                     <button
                         onClick={() => setIsSidebarOpen(true)}
-                        className={`p-2 hover:bg-white/5 rounded text-muted hover:text-primary transition-colors ${isSidebarOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+                        className={`p-2 hover:bg-accent-cyan/10 rounded-lg text-text-muted hover:text-accent-cyan transition-all duration-200 ${isSidebarOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
                     >
                         <Menu size={20} />
                     </button>
 
                     <div className="flex-1 text-center">
-                        <span className="inline-block font-mono text-xs text-accent-amber/70 border border-accent-amber/30 px-2 py-1 rounded animate-typewriter overflow-hidden whitespace-nowrap">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-accent-amber/20 bg-accent-amber/5 backdrop-blur-sm">
+                            <span className="w-2 h-2 bg-accent-amber rounded-full animate-pulse" />
+                            <span className="font-mono text-xs text-accent-amber/80 tracking-wide">INTELLIGENCE ACTIVE</span>
+                        </div>
+                    </div>
                             ⚠️ SYSTEM MONITORING ACTIVE
                         </span>
                     </div>

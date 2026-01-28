@@ -43,20 +43,23 @@ export const PricingCard: React.FC<PricingCardProps> = ({ plan, isEditable = fal
                     value={editedPlan.price}
                     onChange={(e) => setEditedPlan({ ...editedPlan, price: e.target.value })}
                     placeholder="e.g. $0/mo"
+                    aria-label="Plan price"
                 />
                 <div className="flex-1">
-                    <label className="block text-sm font-medium text-gray-400 mb-1">Description</label>
+                    <label htmlFor="description-input" className="block text-sm font-medium text-gray-400 mb-1">Description</label>
                     <textarea
+                        id="description-input"
                         className="w-full bg-black/50 border border-neon-blue/30 rounded p-2 text-white focus:border-neon-blue focus:outline-none resize-none h-24"
                         value={editedPlan.description}
                         onChange={(e) => setEditedPlan({ ...editedPlan, description: e.target.value })}
+                        aria-label="Plan description"
                     />
                 </div>
                 <div className="flex gap-2 justify-end mt-2">
-                    <Button variant="outline" size="sm" onClick={handleCancel}>
+                    <Button variant="outline" size="sm" onClick={handleCancel} aria-label="Cancel editing">
                         <X className="w-4 h-4 mr-1" /> Cancel
                     </Button>
-                    <Button variant="primary" size="sm" onClick={handleSave}>
+                    <Button variant="primary" size="sm" onClick={handleSave} aria-label="Save pricing plan">
                         <Save className="w-4 h-4 mr-1" /> Save
                     </Button>
                 </div>
@@ -71,6 +74,8 @@ export const PricingCard: React.FC<PricingCardProps> = ({ plan, isEditable = fal
                     <button
                         onClick={() => setIsEditing(true)}
                         className="p-1 hover:text-neon-blue text-gray-400 transition-colors"
+                        aria-label="Edit pricing plan"
+                        title="Edit pricing plan"
                     >
                         <Edit2 className="w-4 h-4" />
                     </button>
@@ -78,6 +83,8 @@ export const PricingCard: React.FC<PricingCardProps> = ({ plan, isEditable = fal
                         <button
                             onClick={onDelete}
                             className="p-1 hover:text-red-500 text-gray-400 transition-colors"
+                            aria-label="Delete pricing plan"
+                            title="Delete pricing plan"
                         >
                             <Trash2 className="w-4 h-4" />
                         </button>

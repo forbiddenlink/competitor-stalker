@@ -65,7 +65,7 @@ Preview the production build locally.
 
 ## Project Structure
 
-```
+```bash
 src/
 ├── pages/              # Route pages
 ├── components/

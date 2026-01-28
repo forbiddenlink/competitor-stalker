@@ -2,7 +2,7 @@
 import React from 'react';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
+    variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
     size?: 'sm' | 'md' | 'lg';
 }
 
@@ -13,19 +13,20 @@ export const Button: React.FC<ButtonProps> = ({
     className = '',
     ...props
 }) => {
-    const baseStyles = "inline-flex items-center justify-center font-mono uppercase tracking-wider transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed";
+    const baseStyles = "inline-flex items-center justify-center font-sans font-medium tracking-wide transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-bg-primary";
 
     const variants = {
-        primary: "bg-accent-cyan text-bg-primary hover:bg-accent-cyan/80 shadow-[0_0_10px_rgba(0,204,255,0.3)]",
-        secondary: "bg-accent-pink text-bg-primary hover:bg-accent-pink/80 shadow-[0_0_10px_rgba(255,51,153,0.3)]",
-        outline: "border border-accent-cyan text-accent-cyan hover:bg-accent-cyan/10",
-        ghost: "text-text-muted hover:text-text-primary hover:bg-white/5"
+        primary: "bg-gradient-to-r from-accent-cyan to-accent-blue text-bg-primary hover:shadow-glow active:scale-95",
+        secondary: "bg-gradient-to-r from-accent-blue to-accent-purple text-text-primary hover:shadow-glow active:scale-95",
+        outline: "border-2 border-accent-cyan text-accent-cyan hover:bg-accent-cyan/10 hover:shadow-glow-cyan",
+        ghost: "text-text-secondary hover:text-text-primary hover:bg-white/5 active:scale-95",
+        danger: "bg-gradient-to-r from-accent-red to-accent-amber text-text-primary hover:shadow-glow-red active:scale-95",
     };
 
     const sizes = {
-        sm: "px-3 py-1 text-xs",
-        md: "px-4 py-2 text-sm",
-        lg: "px-6 py-3 text-base"
+        sm: "px-3 py-1.5 text-xs rounded-md",
+        md: "px-4 py-2 text-sm rounded-lg",
+        lg: "px-6 py-3 text-base rounded-lg"
     };
 
     return (

@@ -6,7 +6,6 @@ import type { Competitor } from '../../../types';
 
 export const DossierGrid: React.FC = () => {
     const { competitors, addCompetitor } = useCompetitors();
-    // const [isAdding, setIsAdding] = useState(false);
 
     // Quick mock add for prototype functionality
     const handleQuickAdd = () => {
