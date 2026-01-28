@@ -71,9 +71,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                         </div>
                     </div>
                     <button 
-                        onClick={() => setIsSidebarOpen(false)}
-                        aria-label="Close sidebar"
-                        title="Close sidebar"
+                        onClick={() => setIsSidebarOpen(false)} 
                         className="p-1.5 text-text-muted hover:text-accent-red hover:bg-white/5 rounded-lg transition-all duration-200 lg:hidden"
                     >
                         <X size={18} />
@@ -129,8 +127,6 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                 <header className="h-16 border-b border-border-bright/20 flex items-center justify-between px-6 bg-gradient-to-r from-bg-secondary/80 to-bg-tertiary/50 backdrop-blur-lg glass-card">
                     <button
                         onClick={() => setIsSidebarOpen(true)}
-                        aria-label="Open sidebar"
-                        title="Open sidebar"
                         className={`p-2 hover:bg-accent-cyan/10 rounded-lg text-text-muted hover:text-accent-cyan transition-all duration-200 ${isSidebarOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
                     >
                         <Menu size={20} />
@@ -144,7 +140,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                     </div>
 
                     <div className="flex items-center gap-4">
-                        <div className="stamp top-secret text-xs transform rotate-0 border-2 px-2 py-1 animate-pulse-slow">
+                        <div className="stamp top-secret text-xs transform rotate-0 border-2 px-2 py-1 animate-pulse" style={{ animationDuration: '3s' }}>
                             TOP SECRET
                         </div>
                     </div>
@@ -153,8 +149,13 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                 {/* Viewport */}
                 <div className="flex-1 overflow-auto p-6 relative">
                     {/* Subtle Grid Background */}
-                    <div className="absolute inset-0 opacity-5 pointer-events-none grid-background" />
-                    <div className="relative z-10 max-w-7xl mx-auto w-full">
+                    <div className="absolute inset-0 opacity-5 pointer-events-none"
+                        style={{
+                            backgroundImage: 'linear-gradient(var(--border-dim) 1px, transparent 1px), linear-gradient(90deg, var(--border-dim) 1px, transparent 1px)',
+                            backgroundSize: '40px 40px'
+                        }}
+                    />
+                    <div className="relative z-10 max-w-7xl w-full" style={{ margin: '0 auto' }}>
                         {children}
                     </div>
                 </div>
