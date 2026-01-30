@@ -23,7 +23,7 @@ import {
 } from '../utils/export';
 
 const SettingsPage: React.FC = () => {
-    const { competitors, userProfile, resetToSeedData, clearAllData } = useCompetitors();
+    const { competitors, userProfile, resetToSeedData, clearAllData, importData } = useCompetitors();
     const toast = useToast();
     const fileInputRef = useRef<HTMLInputElement>(null);
     const [showClearConfirm, setShowClearConfirm] = useState(false);
@@ -56,8 +56,9 @@ const SettingsPage: React.FC = () => {
                 return;
             }
 
-            // For now, we'll show what would be imported
-            toast.info(`Found ${data.competitors.length} competitors in import file. Import functionality coming soon!`);
+            // Import the data
+            importData(data.competitors, data.userProfile);
+            toast.success(`Imported ${data.competitors.length} competitors successfully!`);
         } catch {
             toast.error('Failed to read file');
         }

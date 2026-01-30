@@ -13,6 +13,7 @@ interface CompetitorContextType {
     updateUserProfile: (updates: Partial<BusinessProfile>) => void;
     resetToSeedData: () => void;
     clearAllData: () => void;
+    importData: (competitors: Competitor[], userProfile: BusinessProfile) => void;
     // Snapshot functionality
     snapshots: Snapshot[];
     getSnapshots: (competitorId: string) => Snapshot[];
@@ -98,6 +99,11 @@ export const CompetitorProvider: React.FC<{ children: ReactNode }> = ({ children
         setUserProfile(DEFAULT_PROFILE);
     };
 
+    const importData = (importedCompetitors: Competitor[], importedProfile: BusinessProfile) => {
+        setCompetitors(importedCompetitors);
+        setUserProfile(importedProfile);
+    };
+
     /**
      * Add a milestone snapshot for a competitor with a user-provided label
      */
@@ -117,6 +123,7 @@ export const CompetitorProvider: React.FC<{ children: ReactNode }> = ({ children
             updateUserProfile,
             resetToSeedData,
             clearAllData,
+            importData,
             // Snapshot functionality
             snapshots,
             getSnapshots,
