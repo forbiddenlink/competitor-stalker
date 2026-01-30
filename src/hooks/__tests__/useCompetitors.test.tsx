@@ -201,4 +201,141 @@ describe('useCompetitors', () => {
         expect(result.current.competitors).toHaveLength(0);
         expect(result.current.userProfile.name).toBe('');
     });
+
+    describe('importData', () => {
+        it('imports competitors and user profile', () => {
+            preventAutoSeed();
+            const { result } = renderHook(() => useCompetitors(), { wrapper });
+
+            const importedCompetitors = [
+                createTestCompetitor({ name: 'Imported 1' }),
+                createTestCompetitor({ name: 'Imported 2' }),
+            ];
+            const importedProfile = {
+                name: 'Imported Company',
+                positionX: 80,
+                positionY: 20,
+                features: {},
+                pricingModels: [],
+            };
+
+            act(() => {
+                result.current.importData(importedCompetitors, importedProfile);
+            });
+
+            expect(result.current.competitors).toHaveLength(2);
+            expect(result.current.competitors[0].name).toBe('Imported 1');
+            expect(result.current.competitors[1].name).toBe('Imported 2');
+            expect(result.current.userProfile.name).toBe('Imported Company');
+            expect(result.current.userProfile.positionX).toBe(80);
+        });
+
+        it('replaces existing data on import', () => {
+            preventAutoSeed();
+            const { result } = renderHook(() => useCompetitors(), { wrapper });
+
+            // Add existing data
+            act(() => {
+                result.current.addCompetitor(createTestCompetitor({ name: 'Existing' }));
+            });
+            expect(result.current.competitors).toHaveLength(1);
+
+            // Import new data
+            const importedCompetitors = [createTestCompetitor({ name: 'Imported' })];
+            const importedProfile = {
+                name: 'New Profile',
+                positionX: 50,
+                positionY: 50,
+                features: {},
+                pricingModels: [],
+            };
+
+            act(() => {
+                result.current.importData(importedCompetitors, importedProfile);
+            });
+
+            expect(result.current.competitors).toHaveLength(1);
+            expect(result.current.competitors[0].name).toBe('Imported');
+        });
+    });
+
+    describe('snapshot functionality', () => {
+        it('creates auto-snapshot when updating competitor', () => {
+            preventAutoSeed();
+            const { result } = renderHook(() => useCompetitors(), { wrapper });
+            const competitor = createTestCompetitor({ name: 'Test Corp' });
+
+            act(() => {
+                result.current.addCompetitor(competitor);
+            });
+
+            // Update competitor to trigger auto-snapshot
+            act(() => {
+                result.current.updateCompetitor(competitor.id, { threatLevel: 'High' });
+            });
+
+            const snapshots = result.current.getSnapshots(competitor.id);
+            expect(snapshots.length).toBeGreaterThanOrEqual(1);
+            expect(snapshots[0].type).toBe('auto');
+            expect(snapshots[0].data.name).toBe('Test Corp');
+        });
+
+        it('adds milestone snapshot', () => {
+            preventAutoSeed();
+            const { result } = renderHook(() => useCompetitors(), { wrapper });
+            const competitor = createTestCompetitor({ name: 'Test Corp' });
+
+            act(() => {
+                result.current.addCompetitor(competitor);
+            });
+
+            act(() => {
+                result.current.addMilestone(competitor.id, 'Q1 Update');
+            });
+
+            const snapshots = result.current.getSnapshots(competitor.id);
+            const milestone = snapshots.find(s => s.type === 'milestone');
+            expect(milestone).toBeDefined();
+            expect(milestone?.label).toBe('Q1 Update');
+        });
+
+        it('returns null when adding milestone for non-existent competitor', () => {
+            preventAutoSeed();
+            const { result } = renderHook(() => useCompetitors(), { wrapper });
+
+            let milestoneResult: ReturnType<typeof result.current.addMilestone>;
+            act(() => {
+                milestoneResult = result.current.addMilestone('non-existent-id', 'Test');
+            });
+
+            expect(milestoneResult!).toBeNull();
+        });
+
+        it('deletes snapshot', () => {
+            preventAutoSeed();
+            const { result } = renderHook(() => useCompetitors(), { wrapper });
+            const competitor = createTestCompetitor({ name: 'Test Corp' });
+
+            act(() => {
+                result.current.addCompetitor(competitor);
+            });
+
+            // Create a milestone
+            let snapshot: ReturnType<typeof result.current.addMilestone>;
+            act(() => {
+                snapshot = result.current.addMilestone(competitor.id, 'To Delete');
+            });
+
+            expect(result.current.getSnapshots(competitor.id).find(s => s.id === snapshot!?.id)).toBeDefined();
+
+            // Delete it
+            act(() => {
+                if (snapshot) {
+                    result.current.deleteSnapshot(snapshot.id);
+                }
+            });
+
+            expect(result.current.getSnapshots(competitor.id).find(s => s.id === snapshot!?.id)).toBeUndefined();
+        });
+    });
 });

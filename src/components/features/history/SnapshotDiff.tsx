@@ -67,25 +67,93 @@ const formatValue = (value: unknown): string => {
 };
 
 /**
+ * Get status for array field comparison
+ */
+const getArrayDiffStatus = (oldLen: number, newLen: number, hasContentChanged: boolean): DiffStatus => {
+    const lengthStatus = getDiffStatus(oldLen, newLen);
+    return lengthStatus === 'unchanged' && hasContentChanged ? 'changed' : lengthStatus;
+};
+
+/**
+ * Compare array fields and create diff item
+ */
+const diffArrayField = (
+    field: string,
+    label: string,
+    oldArr: unknown[],
+    newArr: unknown[],
+    formatFn: (arr: unknown[]) => string
+): DiffItem | null => {
+    if (JSON.stringify(oldArr) === JSON.stringify(newArr)) return null;
+    return {
+        field,
+        label,
+        oldValue: formatFn(oldArr),
+        newValue: formatFn(newArr),
+        status: getArrayDiffStatus(oldArr.length, newArr.length, true),
+    };
+};
+
+/**
+ * Basic fields configuration for diff comparison
+ */
+const BASIC_FIELDS: Array<{ key: keyof Competitor; label: string }> = [
+    { key: 'name', label: 'Name' },
+    { key: 'website', label: 'Website' },
+    { key: 'oneLiner', label: 'Description' },
+    { key: 'threatLevel', label: 'Threat Level' },
+    { key: 'size', label: 'Company Size' },
+    { key: 'estimatedRevenue', label: 'Est. Revenue' },
+    { key: 'targetAudience', label: 'Target Audience' },
+    { key: 'founded', label: 'Founded' },
+    { key: 'location', label: 'Location' },
+];
+
+/**
+ * SWOT fields configuration
+ */
+const SWOT_FIELDS: Array<{ key: 'strengths' | 'opportunities' | 'threats'; label: string }> = [
+    { key: 'strengths', label: 'Strengths' },
+    { key: 'opportunities', label: 'Opportunities' },
+    { key: 'threats', label: 'Threats' },
+];
+
+/**
+ * Calculate feature diff summary
+ */
+const calculateFeatureDiff = (oldFeatures: Record<string, unknown>, newFeatures: Record<string, unknown>): DiffItem | null => {
+    if (JSON.stringify(oldFeatures) === JSON.stringify(newFeatures)) return null;
+
+    const oldEntries = Object.entries(oldFeatures || {});
+    const newEntries = Object.entries(newFeatures || {});
+
+    const added = newEntries.filter(([k]) => !(k in (oldFeatures || {}))).length;
+    const removed = oldEntries.filter(([k]) => !(k in (newFeatures || {}))).length;
+    const changed = newEntries.filter(([k, v]) => k in (oldFeatures || {}) && oldFeatures[k] !== v).length;
+
+    const summary = [
+        added > 0 ? `+${added} added` : '',
+        removed > 0 ? `-${removed} removed` : '',
+        changed > 0 ? `${changed} changed` : '',
+    ].filter(Boolean).join(', ');
+
+    return {
+        field: 'features',
+        label: 'Features',
+        oldValue: `${oldEntries.length} features`,
+        newValue: `${newEntries.length} features (${summary})`,
+        status: 'changed',
+    };
+};
+
+/**
  * Calculate all diffs between two competitor snapshots
  */
 const calculateDiffs = (old: Competitor, newC: Competitor): DiffItem[] => {
     const diffs: DiffItem[] = [];
 
     // Basic fields
-    const basicFields: Array<{ key: keyof Competitor; label: string }> = [
-        { key: 'name', label: 'Name' },
-        { key: 'website', label: 'Website' },
-        { key: 'oneLiner', label: 'Description' },
-        { key: 'threatLevel', label: 'Threat Level' },
-        { key: 'size', label: 'Company Size' },
-        { key: 'estimatedRevenue', label: 'Est. Revenue' },
-        { key: 'targetAudience', label: 'Target Audience' },
-        { key: 'founded', label: 'Founded' },
-        { key: 'location', label: 'Location' },
-    ];
-
-    basicFields.forEach(({ key, label }) => {
+    BASIC_FIELDS.forEach(({ key, label }) => {
         const status = getDiffStatus(old[key], newC[key]);
         if (status !== 'unchanged') {
             diffs.push({
@@ -109,109 +177,72 @@ const calculateDiffs = (old: Competitor, newC: Competitor): DiffItem[] => {
         });
     }
 
-    // Features
-    const oldFeatures = Object.entries(old.features || {});
-    const newFeatures = Object.entries(newC.features || {});
-
-    if (JSON.stringify(old.features) !== JSON.stringify(newC.features)) {
-        const added = newFeatures.filter(([k]) => !old.features?.[k]).length;
-        const removed = oldFeatures.filter(([k]) => !newC.features?.[k]).length;
-        const changed = newFeatures.filter(([k, v]) => old.features?.[k] && old.features[k] !== v).length;
-
-        const summary: string[] = [];
-        if (added > 0) summary.push(`+${added} added`);
-        if (removed > 0) summary.push(`-${removed} removed`);
-        if (changed > 0) summary.push(`${changed} changed`);
-
-        diffs.push({
-            field: 'features',
-            label: 'Features',
-            oldValue: `${oldFeatures.length} features`,
-            newValue: `${newFeatures.length} features (${summary.join(', ')})`,
-            status: 'changed',
-        });
-    }
+    // Features (special handling for summary)
+    const featureDiff = calculateFeatureDiff(old.features, newC.features);
+    if (featureDiff) diffs.push(featureDiff);
 
     // Pricing
-    const oldPricing = old.pricingModels || [];
-    const newPricing = newC.pricingModels || [];
-    if (JSON.stringify(oldPricing) !== JSON.stringify(newPricing)) {
-        diffs.push({
-            field: 'pricingModels',
-            label: 'Pricing Plans',
-            oldValue: oldPricing.length > 0 ? oldPricing.map(p => `${p.name}: ${p.price}`).join(', ') : '(none)',
-            newValue: newPricing.length > 0 ? newPricing.map(p => `${p.name}: ${p.price}`).join(', ') : '(none)',
-            status: getDiffStatus(oldPricing.length, newPricing.length) === 'unchanged' ? 'changed' : getDiffStatus(oldPricing.length, newPricing.length),
-        });
-    }
+    const pricingDiff = diffArrayField(
+        'pricingModels',
+        'Pricing Plans',
+        old.pricingModels || [],
+        newC.pricingModels || [],
+        (arr) => arr.length > 0
+            ? (arr as Array<{ name: string; price: string }>).map(p => `${p.name}: ${p.price}`).join(', ')
+            : '(none)'
+    );
+    if (pricingDiff) diffs.push(pricingDiff);
 
     // Weaknesses
-    const oldWeaknesses = old.weaknesses || [];
-    const newWeaknesses = newC.weaknesses || [];
-    if (JSON.stringify(oldWeaknesses) !== JSON.stringify(newWeaknesses)) {
-        diffs.push({
-            field: 'weaknesses',
-            label: 'Weaknesses',
-            oldValue: `${oldWeaknesses.length} identified`,
-            newValue: `${newWeaknesses.length} identified`,
-            status: getDiffStatus(oldWeaknesses.length, newWeaknesses.length) === 'unchanged' ? 'changed' : getDiffStatus(oldWeaknesses.length, newWeaknesses.length),
-        });
-    }
+    const weaknessDiff = diffArrayField(
+        'weaknesses',
+        'Weaknesses',
+        old.weaknesses || [],
+        newC.weaknesses || [],
+        (arr) => `${arr.length} identified`
+    );
+    if (weaknessDiff) diffs.push(weaknessDiff);
 
     // Strategies
-    const oldStrategies = old.strategies || [];
-    const newStrategies = newC.strategies || [];
-    if (JSON.stringify(oldStrategies) !== JSON.stringify(newStrategies)) {
-        diffs.push({
-            field: 'strategies',
-            label: 'Counter-Strategies',
-            oldValue: `${oldStrategies.length} strategies`,
-            newValue: `${newStrategies.length} strategies`,
-            status: getDiffStatus(oldStrategies.length, newStrategies.length) === 'unchanged' ? 'changed' : getDiffStatus(oldStrategies.length, newStrategies.length),
-        });
-    }
+    const strategyDiff = diffArrayField(
+        'strategies',
+        'Counter-Strategies',
+        old.strategies || [],
+        newC.strategies || [],
+        (arr) => `${arr.length} strategies`
+    );
+    if (strategyDiff) diffs.push(strategyDiff);
 
     // SWOT fields
-    const swotFields: Array<{ key: 'strengths' | 'opportunities' | 'threats'; label: string }> = [
-        { key: 'strengths', label: 'Strengths' },
-        { key: 'opportunities', label: 'Opportunities' },
-        { key: 'threats', label: 'Threats' },
-    ];
-
-    swotFields.forEach(({ key, label }) => {
-        const oldVal = old[key] || [];
-        const newVal = newC[key] || [];
-        if (JSON.stringify(oldVal) !== JSON.stringify(newVal)) {
-            diffs.push({
-                field: key,
-                label,
-                oldValue: `${oldVal.length} items`,
-                newValue: `${newVal.length} items`,
-                status: getDiffStatus(oldVal.length, newVal.length) === 'unchanged' ? 'changed' : getDiffStatus(oldVal.length, newVal.length),
-            });
-        }
+    SWOT_FIELDS.forEach(({ key, label }) => {
+        const swotDiff = diffArrayField(key, label, old[key] || [], newC[key] || [], (arr) => `${arr.length} items`);
+        if (swotDiff) diffs.push(swotDiff);
     });
 
     // Social handles
     if (JSON.stringify(old.socialHandles) !== JSON.stringify(newC.socialHandles)) {
-        const oldHandles = Object.entries(old.socialHandles || {}).filter(([, v]) => v).map(([k]) => k);
-        const newHandles = Object.entries(newC.socialHandles || {}).filter(([, v]) => v).map(([k]) => k);
+        const formatHandles = (handles: Record<string, string> | undefined) => {
+            const entries = Object.entries(handles || {}).filter(([, v]) => v).map(([k]) => k);
+            return entries.length > 0 ? entries.join(', ') : '(none)';
+        };
         diffs.push({
             field: 'socialHandles',
             label: 'Social Handles',
-            oldValue: oldHandles.length > 0 ? oldHandles.join(', ') : '(none)',
-            newValue: newHandles.length > 0 ? newHandles.join(', ') : '(none)',
+            oldValue: formatHandles(old.socialHandles),
+            newValue: formatHandles(newC.socialHandles),
             status: 'changed',
         });
     }
 
     // Notes
     if (old.notes !== newC.notes) {
+        const formatNotes = (notes: string | undefined) =>
+            notes ? `${notes.substring(0, 50)}${notes.length > 50 ? '...' : ''}` : '(empty)';
         diffs.push({
             field: 'notes',
             label: 'Notes',
-            oldValue: old.notes ? `${old.notes.substring(0, 50)}${old.notes.length > 50 ? '...' : ''}` : '(empty)',
-            newValue: newC.notes ? `${newC.notes.substring(0, 50)}${newC.notes.length > 50 ? '...' : ''}` : '(empty)',
+            oldValue: formatNotes(old.notes),
+            newValue: formatNotes(newC.notes),
             status: getDiffStatus(old.notes, newC.notes),
         });
     }

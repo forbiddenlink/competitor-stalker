@@ -18,15 +18,15 @@ export const WeaknessSpotter: React.FC = () => {
     if (!context) return <div>Error: Context unavailable</div>;
     const { competitors, updateCompetitor } = context;
 
-    // Default to first competitor if none selected
-    if (!selectedCompetitorId && competitors.length > 0) {
-        setSelectedCompetitorId(competitors[0].id);
-    }
+    // Derive effective selected ID: use state if valid, otherwise fall back to first competitor
+    const effectiveSelectedId = (selectedCompetitorId && competitors.some(c => c.id === selectedCompetitorId))
+        ? selectedCompetitorId
+        : competitors[0]?.id ?? '';
 
     const handleAddWeakness = () => {
-        if (!selectedCompetitorId || !newWeakness.text) return;
+        if (!effectiveSelectedId || !newWeakness.text) return;
 
-        const competitor = competitors.find(c => c.id === selectedCompetitorId);
+        const competitor = competitors.find(c => c.id === effectiveSelectedId);
         if (!competitor) return;
 
         const weakness: Weakness = {
@@ -37,7 +37,7 @@ export const WeaknessSpotter: React.FC = () => {
             date: new Date().toLocaleDateString()
         };
 
-        updateCompetitor(selectedCompetitorId, {
+        updateCompetitor(effectiveSelectedId, {
             weaknesses: [...(competitor.weaknesses || []), weakness]
         });
 
@@ -82,7 +82,7 @@ export const WeaknessSpotter: React.FC = () => {
                             onClick={() => setSelectedCompetitorId(comp.id)}
                             className={`
                                 p-4 border text-left transition-all duration-200 group
-                                ${selectedCompetitorId === comp.id
+                                ${effectiveSelectedId === comp.id
                                     ? 'border-accent-red bg-accent-red/10 text-white shadow-[0_0_10px_rgba(255,51,51,0.2)]'
                                     : 'border-border-dim bg-bg-secondary hover:border-accent-red/50 text-text-muted hover:text-white'
                                 }
@@ -107,7 +107,7 @@ export const WeaknessSpotter: React.FC = () => {
                         <ShieldAlert size={200} />
                     </div>
 
-                    {selectedCompetitorId ? (
+                    {effectiveSelectedId ? (
                         <>
                             {/* Add Form */}
                             <div className="p-6 border-b border-border-dim bg-bg-secondary/30 backdrop-blur-md z-10">
@@ -149,7 +149,7 @@ export const WeaknessSpotter: React.FC = () => {
                             {/* List */}
                             <div className="flex-1 overflow-y-auto p-6 space-y-4 relative z-0">
                                 {(() => {
-                                    const comp = competitors.find(c => c.id === selectedCompetitorId);
+                                    const comp = competitors.find(c => c.id === effectiveSelectedId);
                                     if (!comp || !comp.weaknesses || comp.weaknesses.length === 0) {
                                         return (
                                             <div className="h-full flex flex-col items-center justify-center text-text-muted opacity-50">
@@ -170,7 +170,7 @@ export const WeaknessSpotter: React.FC = () => {
                                                 <p className="text-text-primary mt-1 font-medium">{w.text}</p>
                                             </div>
                                             <button
-                                                onClick={() => handleDeleteWeakness(selectedCompetitorId, w.id)}
+                                                onClick={() => handleDeleteWeakness(effectiveSelectedId, w.id)}
                                                 className="text-text-muted hover:text-accent-red transition-colors p-2"
                                             >
                                                 <X size={18} />
