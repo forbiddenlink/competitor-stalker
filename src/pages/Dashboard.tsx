@@ -149,6 +149,7 @@ const Dashboard: React.FC = () => {
                     variant="secondary"
                     size="sm"
                     leftIcon={<RefreshCw size={14} />}
+                    onClick={() => window.location.reload()}
                 >
                     Refresh Data
                 </Button>

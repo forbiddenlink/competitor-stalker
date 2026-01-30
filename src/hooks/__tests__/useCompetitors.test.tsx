@@ -19,6 +19,18 @@ const wrapper = ({ children }: { children: React.ReactNode }) => (
     <CompetitorProvider>{children}</CompetitorProvider>
 );
 
+// Helper to set up localStorage with a user profile name to prevent auto-seeding
+const preventAutoSeed = () => {
+    localStorage.setItem('stalker_profile', JSON.stringify({
+        name: 'Test Company',
+        positionX: 50,
+        positionY: 50,
+        features: {},
+        pricingModels: [],
+    }));
+    localStorage.setItem('stalker_competitors', JSON.stringify([]));
+};
+
 describe('useCompetitors', () => {
     beforeEach(() => {
         localStorage.clear();
@@ -35,16 +47,25 @@ describe('useCompetitors', () => {
         consoleSpy.mockRestore();
     });
 
-    it('returns empty competitors array initially', () => {
+    it('auto-seeds data when localStorage is empty', () => {
+        const { result } = renderHook(() => useCompetitors(), { wrapper });
+        // When localStorage is empty, it auto-seeds with sample data
+        expect(result.current.competitors.length).toBeGreaterThan(0);
+        expect(result.current.userProfile.name).toBe('Railway');
+    });
+
+    it('returns empty competitors array when seeding is prevented', () => {
+        preventAutoSeed();
         const { result } = renderHook(() => useCompetitors(), { wrapper });
         expect(result.current.competitors).toEqual([]);
     });
 
-    it('returns default user profile', () => {
+    it('returns stored user profile when seeding is prevented', () => {
+        preventAutoSeed();
         const { result } = renderHook(() => useCompetitors(), { wrapper });
 
         expect(result.current.userProfile).toEqual({
-            name: '',
+            name: 'Test Company',
             positionX: 50,
             positionY: 50,
             features: {},
@@ -53,6 +74,7 @@ describe('useCompetitors', () => {
     });
 
     it('adds a competitor', () => {
+        preventAutoSeed();
         const { result } = renderHook(() => useCompetitors(), { wrapper });
         const newCompetitor = createTestCompetitor({ name: 'New Corp' });
 
@@ -65,6 +87,7 @@ describe('useCompetitors', () => {
     });
 
     it('updates a competitor', () => {
+        preventAutoSeed();
         const { result } = renderHook(() => useCompetitors(), { wrapper });
         const competitor = createTestCompetitor({ name: 'Original Name' });
 
@@ -80,6 +103,7 @@ describe('useCompetitors', () => {
     });
 
     it('removes a competitor', () => {
+        preventAutoSeed();
         const { result } = renderHook(() => useCompetitors(), { wrapper });
         const competitor = createTestCompetitor();
 
@@ -97,6 +121,7 @@ describe('useCompetitors', () => {
     });
 
     it('updates user profile', () => {
+        preventAutoSeed();
         const { result } = renderHook(() => useCompetitors(), { wrapper });
 
         act(() => {
@@ -109,6 +134,7 @@ describe('useCompetitors', () => {
     });
 
     it('handles multiple competitors', () => {
+        preventAutoSeed();
         const { result } = renderHook(() => useCompetitors(), { wrapper });
 
         act(() => {
@@ -125,6 +151,7 @@ describe('useCompetitors', () => {
     });
 
     it('only updates the targeted competitor', () => {
+        preventAutoSeed();
         const { result } = renderHook(() => useCompetitors(), { wrapper });
         const comp1 = createTestCompetitor({ name: 'Comp 1' });
         const comp2 = createTestCompetitor({ name: 'Comp 2' });
@@ -145,5 +172,33 @@ describe('useCompetitors', () => {
 
         expect(updated1?.threatLevel).toBe('High');
         expect(updated2?.threatLevel).toBe('Medium'); // unchanged
+    });
+
+    it('resets to seed data', () => {
+        preventAutoSeed();
+        const { result } = renderHook(() => useCompetitors(), { wrapper });
+
+        expect(result.current.competitors).toHaveLength(0);
+
+        act(() => {
+            result.current.resetToSeedData();
+        });
+
+        expect(result.current.competitors.length).toBeGreaterThan(0);
+        expect(result.current.userProfile.name).toBe('Railway');
+    });
+
+    it('clears all data', () => {
+        const { result } = renderHook(() => useCompetitors(), { wrapper });
+
+        // Should have seed data initially
+        expect(result.current.competitors.length).toBeGreaterThan(0);
+
+        act(() => {
+            result.current.clearAllData();
+        });
+
+        expect(result.current.competitors).toHaveLength(0);
+        expect(result.current.userProfile.name).toBe('');
     });
 });
