@@ -1,8 +1,9 @@
-import React from 'react';
-import { ExternalLink, Search, Building2, DollarSign, Pencil } from 'lucide-react';
+import React, { useState } from 'react';
+import { ExternalLink, Search, Building2, DollarSign, Pencil, History } from 'lucide-react';
 import { Card } from '../../common/Card';
 import { ThreatBadge } from '../../common/Badge';
 import { Button } from '../../common/Button';
+import { HistoryDrawer } from '../history';
 import type { Competitor } from '../../../types';
 
 interface DossierCardProps {
@@ -11,6 +12,8 @@ interface DossierCardProps {
 }
 
 export const DossierCard: React.FC<DossierCardProps> = ({ competitor, onEdit }) => {
+    const [isHistoryOpen, setIsHistoryOpen] = useState(false);
+
     const handleSearch = (e: React.MouseEvent) => {
         e.stopPropagation();
         window.open(`https://www.google.com/search?q=${encodeURIComponent(competitor.name + ' news')}`, '_blank');
@@ -129,12 +132,30 @@ export const DossierCard: React.FC<DossierCardProps> = ({ competitor, onEdit }) 
                     size="sm"
                     onClick={(e) => {
                         e.stopPropagation();
+                        setIsHistoryOpen(true);
+                    }}
+                    title="View history"
+                >
+                    <History size={14} />
+                </Button>
+                <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={(e) => {
+                        e.stopPropagation();
                         onEdit?.();
                     }}
                 >
                     <Pencil size={14} />
                 </Button>
             </div>
+
+            {/* History Drawer */}
+            <HistoryDrawer
+                competitor={competitor}
+                isOpen={isHistoryOpen}
+                onClose={() => setIsHistoryOpen(false)}
+            />
         </Card>
     );
 };

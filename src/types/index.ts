@@ -14,7 +14,6 @@ export interface Competitor {
     keyPeople?: string[];
     threatLevel: ThreatLevel;
 
-
     // Positioning (0-100)
     positionX?: number; // Marketing/Brand Strength (or Price)
     positionY?: number; // Product Quality/Features
@@ -40,6 +39,26 @@ export interface Competitor {
 
     // Notes
     notes: string;
+
+    // SWOT Analysis
+    strengths?: string[];
+    opportunities?: string[];
+    threats?: string[];
+
+    // Evidence & Sources
+    sources?: Source[];
+
+    // Tracking
+    lastReviewed?: string;
+    createdAt?: string;
+    updatedAt?: string;
+}
+
+export interface Source {
+    id: string;
+    url: string;
+    label: string;
+    addedAt: string;
 }
 
 export type FeatureStatus = 'Have' | 'DontHave' | 'Better' | 'Worse';
@@ -90,4 +109,14 @@ export interface BusinessProfile {
 export interface AppState {
     competitors: Competitor[];
     userProfile: BusinessProfile;
+}
+
+// Historical Tracking
+export interface Snapshot {
+    id: string;
+    competitorId: string;
+    timestamp: string;        // ISO date
+    type: 'auto' | 'milestone';
+    label?: string;           // For milestones: "Q1 pricing change"
+    data: Competitor;         // Full competitor state at that moment
 }
