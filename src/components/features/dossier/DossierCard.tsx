@@ -1,103 +1,140 @@
 import React from 'react';
-import { Search, Globe, ShieldAlert, Target } from 'lucide-react';
+import { ExternalLink, Search, Building2, DollarSign, Pencil } from 'lucide-react';
+import { Card } from '../../common/Card';
+import { ThreatBadge } from '../../common/Badge';
+import { Button } from '../../common/Button';
 import type { Competitor } from '../../../types';
 
 interface DossierCardProps {
     competitor: Competitor;
+    onEdit?: () => void;
 }
 
-export const DossierCard: React.FC<DossierCardProps> = ({ competitor }) => {
-    const threatColor = {
-        Low: 'border-accent-green text-accent-green',
-        Medium: 'border-accent-amber text-accent-amber',
-        High: 'border-accent-red text-accent-red'
-    }[competitor.threatLevel];
+export const DossierCard: React.FC<DossierCardProps> = ({ competitor, onEdit }) => {
+    const handleSearch = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        window.open(`https://www.google.com/search?q=${encodeURIComponent(competitor.name + ' news')}`, '_blank');
+    };
 
-    const threatBg = {
-        Low: 'bg-accent-green/10',
-        Medium: 'bg-accent-amber/10',
-        High: 'bg-accent-red/10'
-    }[competitor.threatLevel];
-
-    const handleSearch = (query: string) => {
-        window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
+    const getHostname = (url: string): string => {
+        try {
+            return new URL(url).hostname;
+        } catch {
+            return 'Invalid URL';
+        }
     };
 
     return (
-        <div className={`
-      relative bg-bg-secondary border-t-4 p-6 transition-all duration-300 hover:translate-y-[-2px] hover:shadow-lg
-      ${threatColor} border-t-current border-x border-b border-white/5
-    `}>
-            {/* Top Secret Stamp */}
-            <div className="absolute top-4 right-4 opacity-50">
-                <div className={`stamp text-[0.6rem] px-2 py-0.5 border-2 ${threatColor} rotate-[-12deg]`}>
-                    CONFIDENTIAL
+        <Card
+            variant="surface"
+            interactive
+            className="group cursor-pointer"
+            padding="none"
+            onClick={onEdit}
+        >
+            {/* Header */}
+            <div className="p-5 pb-4">
+                <div className="flex items-start justify-between gap-3">
+                    <div className="flex items-start gap-3.5 min-w-0">
+                        {/* Avatar */}
+                        <div className={`
+                            flex-shrink-0 w-11 h-11 rounded-lg flex items-center justify-center
+                            text-base font-semibold
+                            ${competitor.threatLevel === 'High' ? 'bg-[var(--accent-danger-muted)] text-[var(--accent-danger)]' :
+                              competitor.threatLevel === 'Medium' ? 'bg-[var(--accent-warning-muted)] text-[var(--accent-warning)]' :
+                              'bg-[var(--accent-success-muted)] text-[var(--accent-success)]'}
+                        `}>
+                            {competitor.logo ? (
+                                <img
+                                    src={competitor.logo}
+                                    alt={competitor.name}
+                                    className="w-full h-full object-cover rounded-lg"
+                                />
+                            ) : (
+                                competitor.name?.[0] || '?'
+                            )}
+                        </div>
+
+                        {/* Name & Website */}
+                        <div className="min-w-0">
+                            <h3 className="text-base font-semibold text-[var(--text-primary)] truncate group-hover:text-[var(--accent-brand-soft)] transition-colors">
+                                {competitor.name || 'Unknown'}
+                            </h3>
+                            {competitor.website && (
+                                <a
+                                    href={competitor.website}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center gap-1.5 text-xs text-[var(--text-muted)] hover:text-[var(--accent-brand)] transition-colors mt-0.5"
+                                    onClick={(e) => e.stopPropagation()}
+                                >
+                                    <ExternalLink size={10} />
+                                    {getHostname(competitor.website)}
+                                </a>
+                            )}
+                        </div>
+                    </div>
+
+                    {/* Threat Level */}
+                    <ThreatBadge level={competitor.threatLevel} size="sm" />
                 </div>
             </div>
 
-            {/* Header */}
-            <div className="flex items-start gap-4 mb-6">
-                <div className={`w-12 h-12 rounded flex items-center justify-center text-xl font-bold ${threatBg} ${threatColor}`}>
-                    {competitor.logo ? <img src={competitor.logo} alt={competitor.name} className="w-full h-full object-cover rounded" /> : (competitor.name?.[0] || '?')}
-                </div>
-                <div>
-                    <h3 className="text-xl font-mono font-bold text-text-primary">{competitor.name || 'Unknown Target'}</h3>
-                    <div className="flex items-center gap-2 text-xs text-text-muted mt-1">
-                        <Globe size={12} />
-                        {competitor.website ? (
-                            <a href={competitor.website} target="_blank" rel="noopener noreferrer" className="hover:text-accent-cyan transition-colors">
-                                {(() => {
-                                    try {
-                                        return new URL(competitor.website).hostname;
-                                    } catch {
-                                        return 'Invalid URL';
-                                    }
-                                })()}
-                            </a>
-                        ) : (
-                            <span>No Intel</span>
-                        )}
+            {/* Stats */}
+            <div className="px-5 pb-4">
+                <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-1">
+                        <div className="flex items-center gap-1.5 text-[var(--text-muted)]">
+                            <Building2 size={12} />
+                            <span className="text-[10px] uppercase tracking-wide font-medium">Size</span>
+                        </div>
+                        <p className="text-sm font-medium font-mono text-[var(--text-secondary)]">
+                            {competitor.size || 'Unknown'}
+                        </p>
+                    </div>
+                    <div className="space-y-1">
+                        <div className="flex items-center gap-1.5 text-[var(--text-muted)]">
+                            <DollarSign size={12} />
+                            <span className="text-[10px] uppercase tracking-wide font-medium">Revenue</span>
+                        </div>
+                        <p className="text-sm font-medium font-mono text-[var(--text-secondary)]">
+                            {competitor.estimatedRevenue || 'Unknown'}
+                        </p>
                     </div>
                 </div>
             </div>
 
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 gap-4 mb-6 text-sm">
-                <div>
-                    <div className="text-xs text-text-muted uppercase tracking-wider mb-1">Company Size</div>
-                    <div className="font-mono text-text-primary">{competitor.size || 'Unknown'}</div>
-                </div>
-                <div>
-                    <div className="text-xs text-text-muted uppercase tracking-wider mb-1">Revenue</div>
-                    <div className="font-mono text-text-primary">{competitor.estimatedRevenue || 'Unknown'}</div>
-                </div>
-            </div>
-
             {/* One Liner */}
-            <div className="mb-6 p-3 bg-black/30 border-l-2 border-border-dim italic text-text-secondary text-sm">
-                "{competitor.oneLiner}"
-            </div>
+            {competitor.oneLiner && (
+                <div className="mx-5 mb-4 p-3 rounded-lg bg-[var(--bg-secondary)] border-l-2 border-[var(--border-muted)]">
+                    <p className="text-xs text-[var(--text-muted)] italic leading-relaxed line-clamp-2">
+                        "{competitor.oneLiner}"
+                    </p>
+                </div>
+            )}
 
             {/* Actions */}
-            <div className="grid grid-cols-2 gap-2 mt-auto">
-                <button
-                    onClick={() => handleSearch(`${competitor.name} news`)}
-                    className="flex items-center justify-center gap-2 px-3 py-2 text-xs uppercase tracking-wider border border-border-dim hover:border-accent-cyan hover:text-accent-cyan transition-colors bg-white/5"
+            <div className="px-5 pb-5 pt-2 flex gap-2">
+                <Button
+                    variant="ghost"
+                    size="sm"
+                    className="flex-1"
+                    leftIcon={<Search size={14} />}
+                    onClick={handleSearch}
                 >
-                    <Search size={14} />
-                    <span>Intel</span>
-                </button>
-                <button
-                    onClick={() => handleSearch(`${competitor.name} reviews`)}
-                    className="flex items-center justify-center gap-2 px-3 py-2 text-xs uppercase tracking-wider border border-border-dim hover:border-accent-red hover:text-accent-red transition-colors bg-white/5"
+                    Research
+                </Button>
+                <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        onEdit?.();
+                    }}
                 >
-                    <ShieldAlert size={14} />
-                    <span>Dirt</span>
-                </button>
+                    <Pencil size={14} />
+                </Button>
             </div>
-
-            {/* Decorative Crosshairs */}
-            <Target className="absolute bottom-2 right-2 text-white/5" size={40} strokeWidth={1} />
-        </div>
+        </Card>
     );
 };

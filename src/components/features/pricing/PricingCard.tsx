@@ -1,10 +1,9 @@
-
 import React, { useState } from 'react';
 import type { PricingPlan } from '../../../types';
 import { Card } from '../../common/Card';
-import { Input } from '../../common/Input';
+import { Input, Textarea } from '../../common/Input';
 import { Button } from '../../common/Button';
-import { Trash2, Edit2, Save, X } from 'lucide-react';
+import { Trash2, Edit2, Save, X, DollarSign } from 'lucide-react';
 
 interface PricingCardProps {
     plan: PricingPlan;
@@ -13,7 +12,12 @@ interface PricingCardProps {
     onDelete?: () => void;
 }
 
-export const PricingCard: React.FC<PricingCardProps> = ({ plan, isEditable = false, onSave, onDelete }) => {
+export const PricingCard: React.FC<PricingCardProps> = ({
+    plan,
+    isEditable = false,
+    onSave,
+    onDelete
+}) => {
     const [isEditing, setIsEditing] = useState(false);
     const [editedPlan, setEditedPlan] = useState<PricingPlan>(plan);
 
@@ -31,70 +35,98 @@ export const PricingCard: React.FC<PricingCardProps> = ({ plan, isEditable = fal
 
     if (isEditing) {
         return (
-            <Card className="h-full flex flex-col gap-3 p-4 border-neon-blue/50">
-                <Input
-                    label="Plan Name"
-                    value={editedPlan.name}
-                    onChange={(e) => setEditedPlan({ ...editedPlan, name: e.target.value })}
-                    placeholder="e.g. Free Tier"
-                />
-                <Input
-                    label="Price"
-                    value={editedPlan.price}
-                    onChange={(e) => setEditedPlan({ ...editedPlan, price: e.target.value })}
-                    placeholder="e.g. $0/mo"
-                    aria-label="Plan price"
-                />
-                <div className="flex-1">
-                    <label htmlFor="description-input" className="block text-sm font-medium text-gray-400 mb-1">Description</label>
-                    <textarea
-                        id="description-input"
-                        className="w-full bg-black/50 border border-neon-blue/30 rounded p-2 text-white focus:border-neon-blue focus:outline-none resize-none h-24"
+            <Card variant="surface" className="h-full" padding="lg">
+                <div className="space-y-4">
+                    <Input
+                        label="Plan Name"
+                        value={editedPlan.name}
+                        onChange={(e) => setEditedPlan({ ...editedPlan, name: e.target.value })}
+                        placeholder="e.g. Pro Tier"
+                    />
+                    <Input
+                        label="Price"
+                        value={editedPlan.price}
+                        onChange={(e) => setEditedPlan({ ...editedPlan, price: e.target.value })}
+                        placeholder="e.g. $49/mo"
+                        leftElement={<DollarSign size={14} />}
+                    />
+                    <Textarea
+                        label="Description"
                         value={editedPlan.description}
                         onChange={(e) => setEditedPlan({ ...editedPlan, description: e.target.value })}
-                        aria-label="Plan description"
+                        placeholder="Describe what's included..."
+                        rows={4}
                     />
-                </div>
-                <div className="flex gap-2 justify-end mt-2">
-                    <Button variant="outline" size="sm" onClick={handleCancel} aria-label="Cancel editing">
-                        <X className="w-4 h-4 mr-1" /> Cancel
-                    </Button>
-                    <Button variant="primary" size="sm" onClick={handleSave} aria-label="Save pricing plan">
-                        <Save className="w-4 h-4 mr-1" /> Save
-                    </Button>
+                    <div className="flex gap-2 justify-end pt-2">
+                        <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={handleCancel}
+                            leftIcon={<X size={14} />}
+                        >
+                            Cancel
+                        </Button>
+                        <Button
+                            size="sm"
+                            onClick={handleSave}
+                            leftIcon={<Save size={14} />}
+                        >
+                            Save
+                        </Button>
+                    </div>
                 </div>
             </Card>
         );
     }
 
     return (
-        <Card className="h-full flex flex-col p-4 relative group hover:border-neon-blue transition-colors">
-            {isEditable && (
-                <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button
-                        onClick={() => setIsEditing(true)}
-                        className="p-1 hover:text-neon-blue text-gray-400 transition-colors"
-                        aria-label="Edit pricing plan"
-                        title="Edit pricing plan"
-                    >
-                        <Edit2 className="w-4 h-4" />
-                    </button>
-                    {onDelete && (
-                        <button
-                            onClick={onDelete}
-                            className="p-1 hover:text-red-500 text-gray-400 transition-colors"
-                            aria-label="Delete pricing plan"
-                            title="Delete pricing plan"
-                        >
-                            <Trash2 className="w-4 h-4" />
-                        </button>
+        <Card variant="default" className="h-full group" padding="none">
+            <div className="p-5 h-full flex flex-col">
+                {/* Header with actions */}
+                <div className="flex items-start justify-between gap-3 mb-4">
+                    <div className="min-w-0">
+                        <h3 className="text-base font-semibold text-[var(--text-primary)] truncate">
+                            {plan.name}
+                        </h3>
+                        <div className="flex items-baseline gap-1 mt-1">
+                            <span className="text-2xl font-semibold font-mono text-[var(--accent-brand)]">
+                                {plan.price}
+                            </span>
+                            {plan.price !== 'Custom' && !plan.price.includes('Contact') && (
+                                <span className="text-xs text-[var(--text-muted)]">/month</span>
+                            )}
+                        </div>
+                    </div>
+
+                    {isEditable && (
+                        <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <button
+                                type="button"
+                                onClick={() => setIsEditing(true)}
+                                className="p-1.5 rounded-md text-[var(--text-muted)] hover:text-[var(--accent-brand)] hover:bg-[var(--bg-hover)] transition-colors"
+                                aria-label="Edit pricing plan"
+                            >
+                                <Edit2 size={14} />
+                            </button>
+                            {onDelete && (
+                                <button
+                                    type="button"
+                                    onClick={onDelete}
+                                    className="p-1.5 rounded-md text-[var(--text-muted)] hover:text-[var(--accent-danger)] hover:bg-[var(--accent-danger-muted)] transition-colors"
+                                    aria-label="Delete pricing plan"
+                                >
+                                    <Trash2 size={14} />
+                                </button>
+                            )}
+                        </div>
                     )}
                 </div>
-            )}
 
-            <h3 className="text-xl font-bold text-white mb-1">{plan.name}</h3>
-            <div className="text-2xl font-mono text-neon-pink mb-4">{plan.price}</div>
-            <p className="text-gray-400 text-sm whitespace-pre-wrap flex-1">{plan.description}</p>
+                {/* Description */}
+                <p className="text-sm text-[var(--text-muted)] leading-relaxed flex-1 whitespace-pre-wrap">
+                    {plan.description}
+                </p>
+            </div>
         </Card>
     );
 };

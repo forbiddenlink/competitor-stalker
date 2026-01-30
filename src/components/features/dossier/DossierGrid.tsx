@@ -1,65 +1,108 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { DossierCard } from './DossierCard';
+import { CompetitorForm } from './CompetitorForm';
 import { useCompetitors } from '../../../hooks/useCompetitors';
-import { Plus } from 'lucide-react';
+import { Button } from '../../common/Button';
+import { Plus, Users } from 'lucide-react';
 import type { Competitor } from '../../../types';
 
 export const DossierGrid: React.FC = () => {
-    const { competitors, addCompetitor } = useCompetitors();
+    const { competitors, addCompetitor, updateCompetitor, removeCompetitor } = useCompetitors();
+    const [showForm, setShowForm] = useState(false);
+    const [editingCompetitor, setEditingCompetitor] = useState<Competitor | undefined>(undefined);
 
-    // Quick mock add for prototype functionality
-    const handleQuickAdd = () => {
-        const mockCompetitor: Competitor = {
-            id: crypto.randomUUID(),
-            name: `Rival Corp ${competitors.length + 1}`,
-            website: 'https://example.com',
-            threatLevel: 'Medium',
-            oneLiner: 'Disrupting the industry with AI-driven widgets.',
-            features: {},
-            pricingModels: [],
-            notes: '',
-            size: '50-100',
-            estimatedRevenue: '$5M - $10M'
-        };
-        addCompetitor(mockCompetitor);
+    const handleAdd = () => {
+        setEditingCompetitor(undefined);
+        setShowForm(true);
+    };
+
+    const handleEdit = (competitor: Competitor) => {
+        setEditingCompetitor(competitor);
+        setShowForm(true);
+    };
+
+    const handleSave = (competitor: Competitor) => {
+        if (editingCompetitor) {
+            updateCompetitor(competitor.id, competitor);
+        } else {
+            addCompetitor(competitor);
+        }
+        setShowForm(false);
+        setEditingCompetitor(undefined);
+    };
+
+    const handleDelete = (id: string) => {
+        removeCompetitor(id);
+        setShowForm(false);
+        setEditingCompetitor(undefined);
+    };
+
+    const handleCancel = () => {
+        setShowForm(false);
+        setEditingCompetitor(undefined);
     };
 
     return (
-        <div className="space-y-6">
-            <div className="flex justify-between items-center border-b border-border-dim pb-4">
+        <div className="space-y-6 animate-fade-in">
+            {/* Page Header */}
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
                 <div>
-                    <h2 className="text-2xl font-mono text-text-primary">Target Dossiers</h2>
-                    <p className="text-sm text-text-muted mt-1">Active surveillance targets</p>
+                    <h1 className="text-2xl font-semibold tracking-tight">
+                        Competitors
+                    </h1>
+                    <p className="text-sm text-[var(--text-muted)] mt-1">
+                        {competitors.length} {competitors.length === 1 ? 'target' : 'targets'} under surveillance
+                    </p>
                 </div>
-                <button
-                    onClick={handleQuickAdd}
-                    className="flex items-center gap-2 px-4 py-2 bg-accent-cyan/10 border border-accent-cyan text-accent-cyan hover:bg-accent-cyan/20 transition-all uppercase tracking-wider text-sm font-bold skew-x-[-10deg]"
+                <Button
+                    onClick={handleAdd}
+                    leftIcon={<Plus size={16} />}
                 >
-                    <Plus size={16} className="skew-x-[10deg]" />
-                    <span className="skew-x-[10deg]">Add Target</span>
-                </button>
+                    Add Target
+                </Button>
             </div>
 
+            {/* Content */}
             {competitors.length === 0 ? (
-                <div className="flex flex-col items-center justify-center py-20 border-2 border-dashed border-border-dim rounded bg-white/5">
-                    <div className="text-4xl mb-4 opacity-50">🕵️</div>
-                    <h3 className="text-xl font-mono mb-2">No Targets Identified</h3>
-                    <p className="text-text-muted text-sm max-w-md text-center mb-6">
-                        The database is empty. Add a competitor to begin surveillance operations.
+                <div className="empty-state">
+                    <div className="w-14 h-14 rounded-2xl bg-[var(--bg-surface)] flex items-center justify-center mb-4">
+                        <Users size={24} className="text-[var(--text-muted)]" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-[var(--text-primary)] mb-2">
+                        No Targets Identified
+                    </h3>
+                    <p className="text-sm text-[var(--text-muted)] max-w-sm mb-6">
+                        Add a competitor to begin surveillance operations and track their market movements.
                     </p>
-                    <button
-                        onClick={handleQuickAdd}
-                        className="px-6 py-2 bg-text-primary text-bg-primary font-bold hover:bg-white transition-colors uppercase tracking-widest text-sm"
-                    >
-                        Initialize First Target
-                    </button>
+                    <Button onClick={handleAdd} leftIcon={<Plus size={16} />}>
+                        Add First Target
+                    </Button>
                 </div>
             ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {competitors.map(comp => (
-                        <DossierCard key={comp.id} competitor={comp} />
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+                    {competitors.map((comp, index) => (
+                        <div
+                            key={comp.id}
+                            className="animate-fade-in"
+                            style={{ animationDelay: `${index * 0.05}s` }}
+                        >
+                            <DossierCard
+                                competitor={comp}
+                                onEdit={() => handleEdit(comp)}
+                            />
+                        </div>
                     ))}
                 </div>
+            )}
+
+            {/* Form Modal */}
+            {showForm && (
+                <CompetitorForm
+                    competitor={editingCompetitor}
+                    onSave={handleSave}
+                    onCancel={handleCancel}
+                    onDelete={editingCompetitor ? handleDelete : undefined}
+                />
             )}
         </div>
     );

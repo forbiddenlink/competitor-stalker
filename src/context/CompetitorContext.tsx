@@ -1,4 +1,4 @@
-import React, { createContext, type ReactNode, useEffect } from 'react';
+import React, { createContext, type ReactNode, useEffect, useRef } from 'react';
 import type { Competitor, BusinessProfile, FeatureStatus } from '../types';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
@@ -11,13 +11,14 @@ interface CompetitorContextType {
     updateUserProfile: (updates: Partial<BusinessProfile>) => void;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const CompetitorContext = createContext<CompetitorContextType | undefined>(undefined);
 
 const DEFAULT_PROFILE: BusinessProfile = {
-    name: 'My Startup',
+    name: '',
     positionX: 50,
     positionY: 50,
-    features: { 'AI Analytics': 'Have', 'Real-time Sync': 'Have' },
+    features: {},
     pricingModels: [],
 };
 
@@ -25,16 +26,19 @@ export const CompetitorProvider: React.FC<{ children: ReactNode }> = ({ children
     const [competitors, setCompetitors] = useLocalStorage<Competitor[]>('stalker_competitors', []);
     const [userProfile, setUserProfile] = useLocalStorage<BusinessProfile>('stalker_profile', DEFAULT_PROFILE);
 
-    // Migration: Fix legacy array features
+    // Migration: Fix legacy array features (runs once on mount)
+    const hasMigrated = useRef(false);
     useEffect(() => {
+        if (hasMigrated.current) return;
         if (Array.isArray(userProfile.features)) {
+            hasMigrated.current = true;
             const newFeatures: Record<string, FeatureStatus> = {};
-            (userProfile.features as any[]).forEach((f: string) => {
+            (userProfile.features as unknown as string[]).forEach((f: string) => {
                 newFeatures[f] = 'Have';
             });
             setUserProfile({ ...userProfile, features: newFeatures });
         }
-    }, []);
+    }, [userProfile, setUserProfile]);
 
     const addCompetitor = (competitor: Competitor) => {
         setCompetitors([...competitors, competitor]);

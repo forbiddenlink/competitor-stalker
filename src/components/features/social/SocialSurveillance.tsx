@@ -15,12 +15,6 @@ interface FeedItem {
     sentiment: 'neutral' | 'negative' | 'positive';
 }
 
-const MOCK_FEED: FeedItem[] = [
-    { id: '1', source: 'twitter', author: '@tech_insider', content: 'Rumors swirling about a new pricing tier from Rival Corp...', timestamp: '2m ago', sentiment: 'neutral' },
-    { id: '2', source: 'linkedin', author: 'John Doe (VP Eng)', content: 'Excited to announce our Series B funding! We are hiring aggressive sales teams.', timestamp: '15m ago', sentiment: 'negative' },
-    { id: '3', source: 'news', author: 'TechCrunch', content: 'Market shifting towards AI-driven analytics. Who will win?', timestamp: '1h ago', sentiment: 'neutral' },
-    { id: '4', source: 'twitter', author: '@angry_user', content: 'Why is Feature X so buggy? Switching to competitor...', timestamp: '2h ago', sentiment: 'positive' },
-];
 
 export const SocialSurveillance: React.FC = () => {
     const context = useContext(CompetitorContext);
@@ -37,11 +31,11 @@ export const SocialSurveillance: React.FC = () => {
         c.socialHandles?.linkedin?.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    // Simulate "scanning" effect
+    // Handle search completion - in production this would fetch real data from APIs
     useEffect(() => {
         if (isScanning) {
             const timer = setTimeout(() => {
-                setFeed(MOCK_FEED);
+                // No mock data - in production, this would query social APIs
                 setIsScanning(false);
             }, 1500);
             return () => clearTimeout(timer);
@@ -137,6 +131,7 @@ export const SocialSurveillance: React.FC = () => {
                             <div className="h-full flex flex-col items-center justify-center text-accent-cyan/30">
                                 <Wifi size={64} className="mb-4 opacity-50" />
                                 <p>AWAITING INPUT SEQUENCE...</p>
+                                <p className="text-xs mt-2 text-text-muted">Configure social API integrations to enable live signal monitoring</p>
                             </div>
                         )}
 

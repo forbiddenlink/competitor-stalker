@@ -18,48 +18,37 @@ export const PositioningMap: React.FC = () => {
         }
     };
 
-    const handleMouseMove = (e: React.MouseEvent | MouseEvent) => {
-        if (!draggingId && !isDraggingUser) return;
-        if (!containerRef.current) return;
-
-        const rect = containerRef.current.getBoundingClientRect();
-        const x = Math.min(100, Math.max(0, ((e.clientX - rect.left) / rect.width) * 100));
-        const y = Math.min(100, Math.max(0, ((e.clientY - rect.top) / rect.height) * 100));
-
-        // Invert Y because in cartesian charts bottom is 0, but in CSS top is 0.
-        // Actually for simplicity let's keep Top-Left as 0,0 for internal storage, but visualize axes properly.
-        // Let's standard: 0,0 is Top-Left in CSS.
-        // So Y=0 is High (if Quality is Y-axis and Top is High).
-        // Let's define axes:
-        // X: Price (Left=Low, Right=High)
-        // Y: Quality (Top=High, Bottom=Low) -> This is natural CSS (0=Top=High Quality).
-
-        if (isDraggingUser) {
-            updateUserProfile({ positionX: x, positionY: y });
-        } else if (draggingId) {
-            updateCompetitor(draggingId, { positionX: x, positionY: y });
-        }
-    };
-
-    const handleMouseUp = () => {
-        setDraggingId(null);
-        setIsDraggingUser(false);
-    };
-
     // Global event listeners for dragging outside container
     useEffect(() => {
+        const onMouseMove = (e: MouseEvent) => {
+            if (!draggingId && !isDraggingUser) return;
+            if (!containerRef.current) return;
+
+            const rect = containerRef.current.getBoundingClientRect();
+            const x = Math.min(100, Math.max(0, ((e.clientX - rect.left) / rect.width) * 100));
+            const y = Math.min(100, Math.max(0, ((e.clientY - rect.top) / rect.height) * 100));
+
+            if (isDraggingUser) {
+                updateUserProfile({ positionX: x, positionY: y });
+            } else if (draggingId) {
+                updateCompetitor(draggingId, { positionX: x, positionY: y });
+            }
+        };
+
+        const onMouseUp = () => {
+            setDraggingId(null);
+            setIsDraggingUser(false);
+        };
+
         if (draggingId || isDraggingUser) {
-            window.addEventListener('mousemove', handleMouseMove as any);
-            window.addEventListener('mouseup', handleMouseUp);
-        } else {
-            window.removeEventListener('mousemove', handleMouseMove as any);
-            window.removeEventListener('mouseup', handleMouseUp);
+            window.addEventListener('mousemove', onMouseMove);
+            window.addEventListener('mouseup', onMouseUp);
         }
         return () => {
-            window.removeEventListener('mousemove', handleMouseMove as any);
-            window.removeEventListener('mouseup', handleMouseUp);
+            window.removeEventListener('mousemove', onMouseMove);
+            window.removeEventListener('mouseup', onMouseUp);
         };
-    }, [draggingId, isDraggingUser]);
+    }, [draggingId, isDraggingUser, updateCompetitor, updateUserProfile]);
 
     return (
         <div className="flex flex-col h-full">
