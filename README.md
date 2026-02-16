@@ -67,6 +67,7 @@ You can reset to this sample data or clear all data from **Settings**.
 - **Icons**: Lucide React
 - **Testing**: Vitest + React Testing Library
 - **Storage**: Browser localStorage (no backend required)
+- **Monitoring**: Vercel Analytics + Vercel Speed Insights (production only)
 
 ## Getting Started
 
@@ -121,6 +122,14 @@ Runs the test suite with Vitest. Use `npm test -- --coverage` for coverage repor
 npm run lint
 ```
 
+### Bundle Budgets
+
+```bash
+npm run check:bundles
+```
+
+Enforces max bundle sizes for entry JS/CSS and runtime JS chunks.
+
 ## Project Structure
 
 ```
@@ -167,6 +176,7 @@ Potential features for future development:
 ## Development Notes
 
 - Components are code-split with React.lazy for optimal loading
+- Vite manual chunking splits `react-core`, `router`, `icons`, and generic `vendor` bundles
 - Design system uses CSS custom properties for consistent theming
 - All forms include inline validation
 - Toast notifications provide action feedback
@@ -174,6 +184,7 @@ Potential features for future development:
 - Mobile-responsive layout with collapsible sidebar
 - Vercel rewrites map clean routes (for example `/dossier`) to prerendered HTML files
 - Vercel headers include CSP, frame protection, content-type hardening, and strict referrer policy
+- GitHub Actions CI runs lint, tests, production build, and bundle budget checks on every push/PR
 
 ## License
 

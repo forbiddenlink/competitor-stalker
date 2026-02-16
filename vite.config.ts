@@ -20,6 +20,18 @@ const previewSecurityHeaders = {
     "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https:; connect-src 'self' https:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
 }
 
+const createManualChunks = (id: string) => {
+  if (!id.includes('node_modules')) {
+    return undefined
+  }
+
+  if (id.includes('lucide-react')) {
+    return 'icons'
+  }
+
+  return 'vendor'
+}
+
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
@@ -31,6 +43,11 @@ export default defineConfig({
     terserOptions: {
       format: {
         comments: false,
+      },
+    },
+    rollupOptions: {
+      output: {
+        manualChunks: createManualChunks,
       },
     },
   },

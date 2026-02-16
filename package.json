@@ -7,6 +7,7 @@
     "seo:assets": "node scripts/generate-seo-assets.mjs",
     "prebuild": "npm run seo:assets",
     "postbuild": "node scripts/prerender-route-html.mjs",
+    "check:bundles": "node scripts/check-bundle-budgets.mjs",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
@@ -17,6 +18,8 @@
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.18",
+    "@vercel/analytics": "^1.6.1",
+    "@vercel/speed-insights": "^1.3.1",
     "lucide-react": "^0.562.0",
     "postcss": "^8.5.6",
     "react": "^19.2.0",
