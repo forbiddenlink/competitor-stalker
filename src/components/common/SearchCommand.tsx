@@ -34,6 +34,9 @@ const SearchCommandContent: React.FC<Omit<SearchCommandProps, 'isOpen'>> = ({ on
         { id: 'matrix', label: 'Feature Matrix', action: () => navigate('/matrix') },
         { id: 'swot', label: 'SWOT Analysis', action: () => navigate('/swot') },
         { id: 'settings', label: 'Settings & Export', action: () => navigate('/settings') },
+        { id: 'about', label: 'About', action: () => navigate('/about') },
+        { id: 'contact', label: 'Contact', action: () => navigate('/contact') },
+        { id: 'privacy', label: 'Privacy Policy', action: () => navigate('/privacy-policy') },
     ];
 
     const filteredActions = query.trim()

@@ -32,7 +32,7 @@ export const Button: React.FC<ButtonProps> = ({
 
     const variants: Record<ButtonVariant, string> = {
         primary: `
-            bg-[var(--accent-brand)] text-white
+            bg-[var(--accent-brand)] text-[var(--text-primary)]
             hover:bg-[var(--accent-brand-soft)]
             focus-visible:ring-[var(--accent-brand)]
             shadow-sm hover:shadow-md
@@ -55,13 +55,13 @@ export const Button: React.FC<ButtonProps> = ({
             focus-visible:ring-[var(--border-muted)]
         `,
         danger: `
-            bg-[var(--accent-danger)] text-white
+            bg-[var(--accent-danger)] text-[var(--text-primary)]
             hover:bg-[var(--accent-danger-soft)]
             focus-visible:ring-[var(--accent-danger)]
             shadow-sm hover:shadow-md
         `,
         success: `
-            bg-[var(--accent-success)] text-white
+            bg-[var(--accent-success)] text-[var(--text-primary)]
             hover:bg-[var(--accent-success-soft)]
             focus-visible:ring-[var(--accent-success)]
             shadow-sm hover:shadow-md

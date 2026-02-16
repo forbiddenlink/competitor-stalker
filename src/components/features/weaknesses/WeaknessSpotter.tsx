@@ -83,8 +83,8 @@ export const WeaknessSpotter: React.FC = () => {
                             className={`
                                 p-4 border text-left transition-all duration-200 group
                                 ${effectiveSelectedId === comp.id
-                                    ? 'border-accent-red bg-accent-red/10 text-white shadow-[0_0_10px_rgba(255,51,51,0.2)]'
-                                    : 'border-border-dim bg-bg-secondary hover:border-accent-red/50 text-text-muted hover:text-white'
+                                    ? 'border-accent-red bg-accent-red/10 text-[var(--text-primary)] shadow-[0_0_10px_rgba(255,51,51,0.2)]'
+                                    : 'border-border-dim bg-bg-secondary hover:border-accent-red/50 text-text-muted hover:text-[var(--text-primary)]'
                                 }
                             `}
                         >

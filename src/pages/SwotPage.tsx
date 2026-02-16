@@ -238,7 +238,7 @@ const SwotPage: React.FC = () => {
                             className={`
                                 px-3 py-1.5 text-sm rounded-lg transition-colors
                                 ${filter === level
-                                    ? 'bg-[var(--accent-brand)] text-white'
+                                    ? 'bg-[var(--accent-brand)] text-[var(--text-primary)]'
                                     : 'bg-[var(--bg-secondary)] text-[var(--text-muted)] hover:text-[var(--text-primary)]'}
                             `}
                         >

@@ -2,6 +2,8 @@
 
 A competitive intelligence dashboard for tracking and analyzing competitor strategies, pricing, positioning, and market presence. Built with React, TypeScript, and Tailwind CSS.
 
+Production: `https://competitor-stalker.vercel.app`
+
 ## Features
 
 ### Core Intelligence
@@ -22,6 +24,7 @@ A competitive intelligence dashboard for tracking and analyzing competitor strat
 - **Import/Export** - Backup and restore data as JSON or export to CSV
 - **Auto-seeding** - Pre-loaded sample data for developer tools market (Railway vs competitors)
 - **Toast Notifications** - Feedback on actions throughout the app
+- **Public Pages** - About, Contact, and Privacy Policy routes with prerendered SEO metadata
 
 ## Sample Data
 
@@ -89,6 +92,21 @@ npm run build
 
 Builds for production with TypeScript checking and optimization.
 
+### SEO + Route Prerendering
+
+`robots.txt` and sitemap files are generated from `SITE_URL` during build, and route-level HTML
+is prerendered with canonical/OpenGraph/Twitter metadata:
+
+```bash
+SITE_URL=https://your-domain.com npm run build
+```
+
+If `SITE_URL` is not provided, it defaults to `https://competitor-stalker.vercel.app`.
+
+This supports crawlable route metadata for:
+`/`, `/dossier`, `/positioning`, `/matrix`, `/pricing`, `/social`, `/weaknesses`,
+`/alerts`, `/strategy`, `/swot`, `/settings`, `/about`, `/contact`, `/privacy-policy`.
+
 ### Test
 
 ```bash
@@ -139,13 +157,12 @@ All data is stored in browser localStorage:
 
 Potential features for future development:
 
-- [ ] Historical tracking (changes over time)
-- [ ] API integrations for real-time data
-- [ ] Competitor news feed aggregation
-- [ ] Team collaboration features
-- [ ] Backend persistence option
-- [ ] Comparison report generation (PDF/markdown)
-- [ ] Custom positioning axes
+- [ ] External data connectors (news, changelog feeds, pricing scrapers)
+- [ ] Scheduled monitoring and alert digests
+- [ ] Team collaboration and shared workspaces
+- [ ] Backend persistence and auth
+- [ ] Report generation (PDF/markdown) and executive summaries
+- [ ] Advanced analytics (trendlines, scoring weights, anomaly detection)
 
 ## Development Notes
 
@@ -155,6 +172,8 @@ Potential features for future development:
 - Toast notifications provide action feedback
 - Empty states guide users to next actions
 - Mobile-responsive layout with collapsible sidebar
+- Vercel rewrites map clean routes (for example `/dossier`) to prerendered HTML files
+- Vercel headers include CSP, frame protection, content-type hardening, and strict referrer policy
 
 ## License
 

@@ -321,21 +321,23 @@ describe('useCompetitors', () => {
             });
 
             // Create a milestone
-            let snapshot: ReturnType<typeof result.current.addMilestone>;
+            let snapshotId: string | null = null;
             act(() => {
-                snapshot = result.current.addMilestone(competitor.id, 'To Delete');
+                const snapshot = result.current.addMilestone(competitor.id, 'To Delete');
+                snapshotId = snapshot?.id ?? null;
             });
 
-            expect(result.current.getSnapshots(competitor.id).find(s => s.id === snapshot!?.id)).toBeDefined();
+            expect(snapshotId).toBeTruthy();
+            expect(result.current.getSnapshots(competitor.id).find(s => s.id === snapshotId)).toBeDefined();
 
             // Delete it
             act(() => {
-                if (snapshot) {
-                    result.current.deleteSnapshot(snapshot.id);
+                if (snapshotId) {
+                    result.current.deleteSnapshot(snapshotId);
                 }
             });
 
-            expect(result.current.getSnapshots(competitor.id).find(s => s.id === snapshot!?.id)).toBeUndefined();
+            expect(result.current.getSnapshots(competitor.id).find(s => s.id === snapshotId)).toBeUndefined();
         });
     });
 });

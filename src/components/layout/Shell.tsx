@@ -18,7 +18,7 @@ import {
     Settings,
     SquareStack,
 } from 'lucide-react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { SearchCommand } from '../common/SearchCommand';
 
 interface NavItemProps {
@@ -51,7 +51,7 @@ const NavItem: React.FC<NavItemProps> = ({ icon: Icon, label, to, badge, onClick
                 />
                 <span className="text-sm font-medium">{label}</span>
                 {badge !== undefined && badge > 0 && (
-                    <span className="ml-auto flex h-5 min-w-5 items-center justify-center rounded-full bg-[var(--accent-danger)] px-1.5 text-[10px] font-semibold text-white">
+                    <span className="ml-auto flex h-5 min-w-5 items-center justify-center rounded-full bg-[var(--accent-danger)] px-1.5 text-[10px] font-semibold text-[var(--text-primary)]">
                         {badge > 99 ? '99+' : badge}
                     </span>
                 )}
@@ -144,7 +144,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                 {/* Logo */}
                 <div className="flex items-center gap-3 px-4 h-16 border-b border-[var(--border-subtle)]">
                     <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-br from-[var(--accent-brand)] to-[var(--accent-info)] shadow-lg">
-                        <Crosshair className="text-white" size={18} strokeWidth={2.5} />
+                        <Crosshair className="text-[var(--text-primary)]" size={18} strokeWidth={2.5} />
                     </div>
                     <div className="flex flex-col">
                         <span className="text-base font-semibold tracking-tight">Stalker</span>
@@ -167,7 +167,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                 </div>
 
                 {/* Navigation */}
-                <nav className="flex-1 overflow-y-auto px-3 py-4">
+                <nav className="flex-1 overflow-y-auto px-3 py-4" aria-label="Primary">
                     <NavGroup label="Overview">
                         <NavItem icon={LayoutDashboard} label="Dashboard" to="/" onClick={closeSidebarOnMobile} />
                         <NavItem icon={Bell} label="Alerts" to="/alerts" onClick={closeSidebarOnMobile} />
@@ -208,7 +208,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
             </aside>
 
             {/* Main Content Area */}
-            <main className="flex-1 flex flex-col min-w-0 relative lg:ml-0">
+            <div className="flex-1 flex flex-col min-w-0 relative lg:ml-0">
                 {/* Header */}
                 <header className="h-16 flex items-center justify-between px-6 border-b border-[var(--border-subtle)] bg-[var(--bg-primary)]/80 backdrop-blur-lg">
                     <div className="flex items-center gap-4">
@@ -254,7 +254,16 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                         {children}
                     </div>
                 </div>
-            </main>
+
+                <footer className="px-6 py-4 border-t border-[var(--border-subtle)] bg-[var(--bg-primary)]">
+                    <div className="max-w-7xl mx-auto flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-[var(--text-muted)]">
+                        <span>Competitor Stalker</span>
+                        <Link className="hover:text-[var(--text-secondary)]" to="/about">About</Link>
+                        <Link className="hover:text-[var(--text-secondary)]" to="/contact">Contact</Link>
+                        <Link className="hover:text-[var(--text-secondary)]" to="/privacy-policy">Privacy Policy</Link>
+                    </div>
+                </footer>
+            </div>
 
             {/* Search Command Palette */}
             <SearchCommand isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />

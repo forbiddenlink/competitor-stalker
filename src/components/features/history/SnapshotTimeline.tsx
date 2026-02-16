@@ -166,7 +166,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
                                 flex-shrink-0 w-5 h-5 rounded border flex items-center justify-center
                                 transition-colors
                                 ${isSelected
-                                    ? 'bg-[var(--accent-brand)] border-[var(--accent-brand)] text-white'
+                                    ? 'bg-[var(--accent-brand)] border-[var(--accent-brand)] text-[var(--text-primary)]'
                                     : 'border-[var(--border-muted)] hover:border-[var(--border-emphasis)]'}
                             `}
                         >

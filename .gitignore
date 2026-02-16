@@ -26,3 +26,20 @@ dist-ssr
 
 #Ignore vscode AI rules
 .github/instructions/codacy.instructions.md
+.vercel
+
+# Local tooling/workbench artifacts
+.claude/
+.playwright-mcp/
+.qlty/
+.codacy/
+thoughts/
+
+# Audit/cache artifacts
+.squirrel/
+squirrel.toml
+
+# Generated SEO/public artifacts
+public/robots.txt
+public/sitemap*.xml
+public/*-sitemap.xml

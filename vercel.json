@@ -1,0 +1,32 @@
+{
+  "rewrites": [
+    { "source": "/dossier", "destination": "/dossier.html" },
+    { "source": "/positioning", "destination": "/positioning.html" },
+    { "source": "/matrix", "destination": "/matrix.html" },
+    { "source": "/pricing", "destination": "/pricing.html" },
+    { "source": "/social", "destination": "/social.html" },
+    { "source": "/weaknesses", "destination": "/weaknesses.html" },
+    { "source": "/alerts", "destination": "/alerts.html" },
+    { "source": "/strategy", "destination": "/strategy.html" },
+    { "source": "/swot", "destination": "/swot.html" },
+    { "source": "/settings", "destination": "/settings.html" },
+    { "source": "/about", "destination": "/about.html" },
+    { "source": "/contact", "destination": "/contact.html" },
+    { "source": "/privacy-policy", "destination": "/privacy-policy.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Frame-Options", "value": "DENY" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), geolocation=(), microphone=()" },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: https:; connect-src 'self' https:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+        }
+      ]
+    }
+  ]
+}

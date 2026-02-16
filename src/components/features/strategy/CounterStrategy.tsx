@@ -77,7 +77,7 @@ export const CounterStrategy: React.FC = () => {
         <div className="h-full flex flex-col gap-6 p-6">
             <div className="flex items-center justify-between">
                 <div>
-                    <h2 className="text-2xl font-mono text-white tracking-widest uppercase flex items-center gap-2">
+                    <h2 className="text-2xl font-mono text-[var(--text-primary)] tracking-widest uppercase flex items-center gap-2">
                         <Crosshair className="text-accent-red animate-spin-slow" /> War Room
                     </h2>
                     <p className="text-sm text-text-muted">Plan and execute counter-offensives against high-value targets.</p>
@@ -153,7 +153,7 @@ export const CounterStrategy: React.FC = () => {
                                     <div className="text-[10px] uppercase tracking-wider text-text-muted mb-1 flex justify-between">
                                         <span>Target: {strategy.competitorName}</span>
                                     </div>
-                                    <h4 className="font-bold text-sm text-white mb-3">{strategy.title}</h4>
+                                    <h4 className="font-bold text-sm text-[var(--text-primary)] mb-3">{strategy.title}</h4>
 
                                     <div className="flex justify-between items-center mt-2">
                                         {status === 'Planned' && (

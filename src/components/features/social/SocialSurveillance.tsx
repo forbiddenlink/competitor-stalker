@@ -153,7 +153,7 @@ export const SocialSurveillance: React.FC = () => {
                                     </span>
                                     <span>{item.timestamp}</span>
                                 </div>
-                                <div className="text-text-primary group-hover:text-white transition-colors">
+                                <div className="text-text-primary group-hover:text-[var(--text-primary)] transition-colors">
                                     {item.content}
                                 </div>
                             </div>
