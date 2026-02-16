@@ -4,6 +4,11 @@ import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/react'
 
 import App from './App.tsx'
+import { initWebVitals } from './monitoring/webVitals'
+
+if (import.meta.env.PROD) {
+  initWebVitals()
+}
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

@@ -130,6 +130,25 @@ npm run check:bundles
 
 Enforces max bundle sizes for entry JS/CSS and runtime JS chunks.
 
+### Real User Performance Monitoring
+
+Production captures Web Vitals two ways:
+- `@vercel/speed-insights` for built-in Vercel performance dashboards
+- `web-vitals` + `@vercel/analytics` custom `web_vital` events for metric-level analysis
+
+Current target thresholds (p75-aligned):
+- `INP`: good <= `200ms`, needs improvement <= `500ms`
+- `LCP`: good <= `2500ms`, needs improvement <= `4000ms`
+- `CLS`: good <= `0.1`, needs improvement <= `0.25`
+- `FCP`: good <= `1800ms`, needs improvement <= `3000ms`
+- `TTFB`: good <= `800ms`, needs improvement <= `1800ms`
+
+Optional sampling configuration:
+
+```bash
+VITE_WEB_VITALS_SAMPLE_RATE=0.25 npm run build
+```
+
 ## Project Structure
 
 ```
