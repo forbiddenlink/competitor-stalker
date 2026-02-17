@@ -85,7 +85,7 @@ const SearchCommandContent: React.FC<Omit<SearchCommandProps, 'isOpen'>> = ({ on
             />
 
             {/* Modal */}
-            <div className="relative w-full max-w-lg bg-[var(--bg-elevated)] border border-[var(--border-muted)] rounded-xl shadow-2xl overflow-hidden animate-scale-in">
+            <div className="relative w-full max-w-lg bg-[var(--bg-elevated)] border border-[var(--border-muted)] rounded-[var(--radius-modal)] shadow-2xl overflow-hidden animate-scale-in">
                 {/* Search Input */}
                 <div className="flex items-center gap-3 px-4 py-3 border-b border-[var(--border-default)]">
                     <Search className="w-5 h-5 text-[var(--text-muted)]" />
@@ -101,7 +101,7 @@ const SearchCommandContent: React.FC<Omit<SearchCommandProps, 'isOpen'>> = ({ on
                         placeholder="Search competitors, pages..."
                         className="flex-1 bg-transparent border-none outline-none text-[var(--text-primary)] placeholder:text-[var(--text-subtle)]"
                     />
-                    <kbd className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 text-xs text-[var(--text-muted)] bg-[var(--bg-surface)] border border-[var(--border-default)] rounded">
+                    <kbd className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 text-xs text-[var(--text-muted)] bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-[var(--radius-control)]">
                         ESC
                     </kbd>
                     <button
@@ -123,7 +123,7 @@ const SearchCommandContent: React.FC<Omit<SearchCommandProps, 'isOpen'>> = ({ on
                                     key={competitor.id}
                                     onClick={() => { navigate('/dossier'); onClose(); }}
                                     className={`
-                                        w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left
+                                        w-full flex items-center gap-3 px-3 py-2 rounded-[var(--radius-control)] text-left
                                         transition-colors
                                         ${selectedIndex === index
                                             ? 'bg-[var(--accent-brand-muted)] text-[var(--text-primary)]'
@@ -131,7 +131,7 @@ const SearchCommandContent: React.FC<Omit<SearchCommandProps, 'isOpen'>> = ({ on
                                         }
                                     `}
                                 >
-                                    <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-default)]">
+                                    <div className="flex items-center justify-center w-8 h-8 rounded-[var(--radius-control)] bg-[var(--bg-surface)] border border-[var(--border-default)]">
                                         <Users className="w-4 h-4" />
                                     </div>
                                     <div className="flex-1 min-w-0">
@@ -166,7 +166,7 @@ const SearchCommandContent: React.FC<Omit<SearchCommandProps, 'isOpen'>> = ({ on
                                             onClose();
                                         }}
                                         className={`
-                                            w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left
+                                            w-full flex items-center gap-3 px-3 py-2 rounded-[var(--radius-control)] text-left
                                             transition-colors
                                             ${selectedIndex === resultIndex
                                                 ? 'bg-[var(--accent-brand-muted)] text-[var(--text-primary)]'
@@ -194,11 +194,11 @@ const SearchCommandContent: React.FC<Omit<SearchCommandProps, 'isOpen'>> = ({ on
                 <div className="flex items-center justify-between px-4 py-2 border-t border-[var(--border-subtle)] bg-[var(--bg-secondary)]">
                     <div className="flex items-center gap-3 text-xs text-[var(--text-muted)]">
                         <span className="flex items-center gap-1">
-                            <kbd className="px-1.5 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-default)] rounded text-[10px]">↑↓</kbd>
+                            <kbd className="px-1.5 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-[var(--radius-control)] text-[10px]">↑↓</kbd>
                             Navigate
                         </span>
                         <span className="flex items-center gap-1">
-                            <kbd className="px-1.5 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-default)] rounded text-[10px]">↵</kbd>
+                            <kbd className="px-1.5 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-[var(--radius-control)] text-[10px]">↵</kbd>
                             Select
                         </span>
                     </div>

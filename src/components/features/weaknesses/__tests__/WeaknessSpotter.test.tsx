@@ -100,7 +100,7 @@ describe('WeaknessSpotter', () => {
             });
 
             const firstCompetitorButton = screen.getByRole('button', { name: /Competitor One/i });
-            expect(firstCompetitorButton).toHaveClass('border-accent-red');
+            expect(firstCompetitorButton).toHaveClass('border-[var(--accent-danger)]');
 
             // Should have minimal re-renders (just initial render in strict mode = 2)
             expect(renderCount).toBeLessThanOrEqual(2);
@@ -133,7 +133,7 @@ describe('WeaknessSpotter', () => {
             // Wait for initial auto-selection (first competitor)
             await waitFor(() => {
                 const firstButton = screen.getByRole('button', { name: /Competitor One/i });
-                expect(firstButton).toHaveClass('border-accent-red');
+                expect(firstButton).toHaveClass('border-[var(--accent-danger)]');
             });
 
             // Manually select Competitor Two
@@ -142,7 +142,7 @@ describe('WeaknessSpotter', () => {
 
             // Verify Competitor Two is now selected
             await waitFor(() => {
-                expect(competitorTwoButton).toHaveClass('border-accent-red');
+                expect(competitorTwoButton).toHaveClass('border-[var(--accent-danger)]');
             });
 
             // Add a new competitor at the beginning
@@ -170,7 +170,7 @@ describe('WeaknessSpotter', () => {
             // Explicit selection should be maintained (Competitor Two)
             await waitFor(() => {
                 const competitorTwoBtn = screen.getByRole('button', { name: /Competitor Two/i });
-                expect(competitorTwoBtn).toHaveClass('border-accent-red');
+                expect(competitorTwoBtn).toHaveClass('border-[var(--accent-danger)]');
             });
         });
     });
@@ -189,8 +189,8 @@ describe('WeaknessSpotter', () => {
 
         it('shows vulnerability count for each competitor', () => {
             renderWithContext();
-            expect(screen.getByText('1 Vulnerabilities')).toBeInTheDocument();
-            expect(screen.getByText('0 Vulnerabilities')).toBeInTheDocument();
+            expect(screen.getByText('1 vulnerabilities')).toBeInTheDocument();
+            expect(screen.getByText('0 vulnerabilities')).toBeInTheDocument();
         });
     });
 

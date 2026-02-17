@@ -36,7 +36,7 @@ export const ToastContainer: React.FC = () => {
                     <div
                         key={toast.id}
                         className={`
-                            flex items-start gap-3 p-4 rounded-lg border-l-4
+                            flex items-start gap-3 p-4 rounded-[var(--radius-card)] border-l-4
                             bg-[var(--bg-elevated)] border border-[var(--border-default)]
                             ${colorMap[toast.type]}
                             animate-slide-in-right shadow-lg

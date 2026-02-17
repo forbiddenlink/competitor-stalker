@@ -21,7 +21,7 @@ export const Card: React.FC<CardProps> = ({
     as: Component = 'div',
     onClick,
 }) => {
-    const baseStyles = 'relative rounded-lg overflow-hidden';
+    const baseStyles = 'relative rounded-[var(--radius-card)] overflow-hidden';
 
     const variants: Record<CardVariant, string> = {
         default: `
@@ -48,19 +48,17 @@ export const Card: React.FC<CardProps> = ({
 
     const paddings: Record<typeof padding, string> = {
         none: '',
-        sm: 'p-4',
-        md: 'p-5',
-        lg: 'p-6',
+        sm: 'p-3',
+        md: 'p-4',
+        lg: 'p-5',
     };
 
     const interactiveStyles = interactive
         ? `
             cursor-pointer
-            transition-all duration-150 ease-out
+            transition-all duration-fast ease-out
             hover:border-[var(--border-emphasis)]
             hover:shadow-md
-            hover:-translate-y-0.5
-            active:translate-y-0
         `
         : '';
 

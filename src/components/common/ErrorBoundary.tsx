@@ -43,7 +43,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
 
             return (
                 <div className="flex flex-col items-center justify-center min-h-[400px] p-8 text-center">
-                    <div className="w-16 h-16 rounded-2xl bg-[var(--accent-danger-muted)] flex items-center justify-center mb-6">
+                    <div className="w-16 h-16 rounded-[var(--radius-card)] bg-[var(--accent-danger-muted)] flex items-center justify-center mb-6">
                         <AlertTriangle size={32} className="text-[var(--accent-danger)]" />
                     </div>
                     <h2 className="text-xl font-semibold text-[var(--text-primary)] mb-2">
@@ -57,7 +57,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
                             <summary className="text-xs text-[var(--text-muted)] cursor-pointer hover:text-[var(--text-secondary)]">
                                 Error details (development only)
                             </summary>
-                            <pre className="mt-2 p-3 bg-[var(--bg-secondary)] border border-[var(--border-default)] rounded-lg text-xs text-[var(--accent-danger)] overflow-auto">
+                            <pre className="mt-2 p-3 bg-[var(--bg-secondary)] border border-[var(--border-default)] rounded-[var(--radius-control)] text-xs text-[var(--accent-danger)] overflow-auto">
                                 {this.state.error.message}
                                 {'\n\n'}
                                 {this.state.error.stack}

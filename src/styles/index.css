@@ -94,9 +94,21 @@
   --radius-xl: 16px;
   --radius-2xl: 20px;
   --radius-full: 9999px;
+  --radius-control: 10px;
+  --radius-card: 12px;
+  --radius-modal: 14px;
+
+  /* Section Rhythm */
+  --space-section-mobile: 2rem;
+  --space-section-tablet: 3rem;
+  --space-section-desktop: 4rem;
+
+  /* Motion Durations */
+  --duration-fast: 140ms;
+  --duration-press: 90ms;
 
   /* Transitions */
-  --transition-fast: 100ms ease;
+  --transition-fast: var(--duration-fast) ease-out;
   --transition-base: 150ms ease;
   --transition-slow: 250ms ease;
   --transition-slower: 350ms ease;
@@ -403,6 +415,37 @@
 
   .metric-card-accent-left {
     border-left-width: 3px;
+  }
+
+  .page-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+
+  .page-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+
+  .panel {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-card);
+  }
+
+  .row-dense {
+    min-height: 56px;
+    padding: 12px 16px;
+  }
+
+  .kpi-value {
+    font-family: var(--font-mono);
+    font-size: 30px;
+    line-height: 34px;
+    letter-spacing: -0.02em;
   }
 
   /* Table Styles */

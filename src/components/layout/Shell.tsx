@@ -34,7 +34,7 @@ const NavItem: React.FC<NavItemProps> = ({ icon: Icon, label, to, badge, onClick
         to={to}
         onClick={onClick}
         className={({ isActive }) => `
-            group relative flex items-center gap-3 px-3 py-2.5 rounded-lg
+            group relative flex items-center gap-3 h-10 px-3 rounded-[var(--radius-control)]
             transition-all duration-150 ease-out
             ${isActive
                 ? 'bg-[var(--bg-surface)] text-[var(--text-primary)]'
@@ -137,7 +137,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                     fixed lg:relative inset-y-0 left-0 z-50
                     flex flex-col bg-[var(--bg-primary)] border-r border-[var(--border-default)]
                     transition-transform duration-300 ease-out
-                    w-60
+                    w-[248px]
                     ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
                 `}
             >
@@ -250,7 +250,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                     {/* Subtle gradient overlay */}
                     <div className="fixed inset-0 pointer-events-none bg-gradient-radial opacity-50" />
 
-                    <div className="relative z-10 max-w-7xl mx-auto w-full px-4 sm:px-6 py-6 sm:py-8">
+                    <div className="relative z-10 max-w-[1200px] mx-auto w-full px-5 lg:px-8 py-8 lg:py-10">
                         {children}
                     </div>
                 </div>

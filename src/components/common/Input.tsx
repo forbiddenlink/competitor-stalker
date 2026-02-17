@@ -26,7 +26,7 @@ export const Input: React.FC<InputProps> = ({
 
     const sizes: Record<InputSize, string> = {
         sm: 'h-8 text-xs px-3',
-        md: 'h-9 text-sm px-3',
+        md: 'h-10 text-sm px-3',
         lg: 'h-11 text-base px-4',
     };
 
@@ -34,10 +34,10 @@ export const Input: React.FC<InputProps> = ({
         w-full
         bg-[var(--bg-secondary)]
         border border-[var(--border-default)]
-        rounded-lg
+        rounded-[var(--radius-control)]
         text-[var(--text-primary)]
         placeholder:text-[var(--text-subtle)]
-        transition-all duration-150 ease-out
+        transition-all duration-fast ease-out
         hover:border-[var(--border-muted)]
         focus:outline-none focus:border-[var(--accent-brand)] focus:ring-2 focus:ring-[var(--accent-brand)]/20
         disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:border-[var(--border-default)]
@@ -109,10 +109,10 @@ export const Textarea: React.FC<TextareaProps> = ({
         w-full
         bg-[var(--bg-secondary)]
         border border-[var(--border-default)]
-        rounded-lg
+        rounded-[var(--radius-control)]
         text-[var(--text-primary)]
         placeholder:text-[var(--text-subtle)]
-        transition-all duration-150 ease-out
+        transition-all duration-fast ease-out
         hover:border-[var(--border-muted)]
         focus:outline-none focus:border-[var(--accent-brand)] focus:ring-2 focus:ring-[var(--accent-brand)]/20
         disabled:opacity-50 disabled:cursor-not-allowed

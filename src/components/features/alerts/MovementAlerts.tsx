@@ -91,9 +91,9 @@ export const MovementAlerts: React.FC = () => {
             </div>
 
             {/* Main Content */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                 {/* Alert List */}
-                <Card variant="surface" padding="none" className="lg:col-span-1">
+                <Card variant="surface" padding="none" className="lg:col-span-4">
                     {/* Filter Tabs */}
                     <div className="px-4 py-3 border-b border-[var(--border-subtle)] flex gap-2 overflow-x-auto">
                         {(['All', 'Pricing', 'Feature', 'Marketing'] as AlertFilter[]).map(f => (
@@ -130,7 +130,7 @@ export const MovementAlerts: React.FC = () => {
                                         type="button"
                                         onClick={() => handleAlertClick(alert)}
                                         className={`
-                                            w-full p-4 text-left transition-colors relative group
+                                            w-full min-h-[84px] px-4 py-3 text-left transition-colors relative group
                                             ${selectedAlert?.id === alert.id
                                                 ? 'bg-[var(--accent-brand-muted)]'
                                                 : 'hover:bg-[var(--bg-hover)]'
@@ -176,7 +176,7 @@ export const MovementAlerts: React.FC = () => {
                 </Card>
 
                 {/* Alert Detail */}
-                <Card variant="default" padding="none" className="lg:col-span-2">
+                <Card variant="default" padding="none" className="lg:col-span-8">
                     {selectedAlert ? (
                         <div className="p-6 h-full">
                             {/* Header */}

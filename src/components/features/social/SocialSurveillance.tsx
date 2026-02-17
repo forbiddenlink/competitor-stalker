@@ -1,4 +1,3 @@
-
 import React, { useState, useContext, useEffect } from 'react';
 import { CompetitorContext } from '../../../context/CompetitorContext';
 import { Card } from '../../common/Card';
@@ -15,27 +14,24 @@ interface FeedItem {
     sentiment: 'neutral' | 'negative' | 'positive';
 }
 
-
 export const SocialSurveillance: React.FC = () => {
     const context = useContext(CompetitorContext);
     const [searchTerm, setSearchTerm] = useState('');
     const [isScanning, setIsScanning] = useState(false);
     const [feed, setFeed] = useState<FeedItem[]>([]);
 
-    // Handle missing context gracefully
-    const { competitors, updateCompetitor } = context || { competitors: [], updateCompetitor: () => { } };
+    const { competitors, updateCompetitor } = context || { competitors: [], updateCompetitor: () => {} };
 
-    const filteredCompetitors = competitors.filter(c =>
-        c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        c.socialHandles?.twitter?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        c.socialHandles?.linkedin?.toLowerCase().includes(searchTerm.toLowerCase())
+    const filteredCompetitors = competitors.filter(
+        (c) =>
+            c.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            c.socialHandles?.twitter?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            c.socialHandles?.linkedin?.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    // Handle search completion - in production this would fetch real data from APIs
     useEffect(() => {
         if (isScanning) {
             const timer = setTimeout(() => {
-                // No mock data - in production, this would query social APIs
                 setIsScanning(false);
             }, 1500);
             return () => clearTimeout(timer);
@@ -45,73 +41,83 @@ export const SocialSurveillance: React.FC = () => {
     const handleSearch = (e: React.FormEvent) => {
         e.preventDefault();
         setIsScanning(true);
-        setFeed([]); // Clear feed to simulate new search
+        setFeed([]);
     };
 
     const updateHandle = (id: string, platform: 'twitter' | 'linkedin' | 'instagram', value: string) => {
-        const competitor = competitors.find(c => c.id === id);
+        const competitor = competitors.find((c) => c.id === id);
         if (!competitor) return;
 
         const currentHandles = competitor.socialHandles || {};
         updateCompetitor(id, {
             socialHandles: {
                 ...currentHandles,
-                [platform]: value
-            }
+                [platform]: value,
+            },
         });
     };
 
     return (
         <div className="h-full flex flex-col gap-6 p-6">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-4 flex-wrap">
                 <div>
-                    <h2 className="text-2xl font-mono text-accent-cyan tracking-widest uppercase flex items-center gap-2">
-                        <Wifi className="animate-pulse" /> Signal Intercept
+                    <h2 className="text-2xl font-semibold tracking-tight text-[var(--text-primary)] flex items-center gap-2">
+                        <Wifi className="text-[var(--accent-info)]" /> Social Monitor
                     </h2>
-                    <p className="text-sm text-text-muted">Monitor competitor chatter and social signals.</p>
+                    <p className="text-sm text-[var(--text-muted)]">Monitor competitor chatter and social signals.</p>
                 </div>
 
-                <form onSubmit={handleSearch} className="flex gap-2 w-96">
+                <form onSubmit={handleSearch} className="flex gap-2 w-full max-w-md">
                     <Input
-                        placeholder="Enter keywords (e.g. 'pricing', 'launch')..."
+                        placeholder="Enter keywords (e.g. pricing, launch)..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="bg-black/50 font-mono"
+                        className="font-mono"
                     />
                     <Button type="submit" disabled={isScanning}>
-                        {isScanning ? 'SCANNING...' : <Search size={18} />}
+                        {isScanning ? 'Scanning...' : <Search size={18} />}
                     </Button>
                 </form>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 flex-1 min-h-0 bg-transparent">
-                {/* Competitor Handles Column */}
-                <Card className="col-span-1 flex flex-col gap-4 overflow-y-auto bg-black/40">
-                    <h3 className="font-mono text-accent-pink border-b border-border-dim pb-2">Target Links</h3>
+                <Card className="col-span-1 flex flex-col gap-4 overflow-y-auto bg-[var(--bg-primary)]/60" variant="surface">
+                    <h3 className="font-semibold text-[var(--text-secondary)] border-b border-[var(--border-default)] pb-2">Target Links</h3>
 
-                    {filteredCompetitors.length === 0 && <p className="text-text-muted text-sm italic">No targets found.</p>}
+                    {filteredCompetitors.length === 0 && <p className="text-[var(--text-muted)] text-sm italic">No targets found.</p>}
 
-                    {filteredCompetitors.map(comp => (
-                        <div key={comp.id} className="p-3 border border-border-dim rounded bg-bg-secondary/50 hover:bg-bg-secondary transition-colors">
+                    {filteredCompetitors.map((comp) => (
+                        <div
+                            key={comp.id}
+                            className="p-3 border border-[var(--border-default)] rounded-[var(--radius-card)] bg-[var(--bg-secondary)]/70 hover:bg-[var(--bg-secondary)] transition-colors"
+                        >
                             <div className="flex items-center gap-2 mb-3">
-                                <div className={`w-2 h-2 rounded-full ${comp.threatLevel === 'High' ? 'bg-accent-red' : comp.threatLevel === 'Medium' ? 'bg-accent-amber' : 'bg-accent-green'}`} />
-                                <span className="font-bold text-sm tracking-wide">{comp.name}</span>
+                                <div
+                                    className={`w-2 h-2 rounded-full ${
+                                        comp.threatLevel === 'High'
+                                            ? 'bg-[var(--accent-danger)]'
+                                            : comp.threatLevel === 'Medium'
+                                                ? 'bg-[var(--accent-warning)]'
+                                                : 'bg-[var(--accent-success)]'
+                                    }`}
+                                />
+                                <span className="font-semibold text-sm tracking-wide text-[var(--text-primary)]">{comp.name}</span>
                             </div>
 
                             <div className="space-y-2">
                                 <div className="flex items-center gap-2">
-                                    <Twitter size={14} className="text-cyan-400" />
+                                    <Twitter size={14} className="text-[var(--accent-info)]" />
                                     <input
-                                        className="bg-black/30 border border-border-dim rounded px-2 py-1 text-xs text-text-primary w-full focus:border-accent-cyan outline-none font-mono"
+                                        className="bg-[var(--bg-primary)] border border-[var(--border-default)] rounded-[var(--radius-control)] px-2 py-1 text-xs text-[var(--text-primary)] w-full focus:border-[var(--accent-info)] outline-none font-mono"
                                         placeholder="@handle"
                                         value={comp.socialHandles?.twitter || ''}
                                         onChange={(e) => updateHandle(comp.id, 'twitter', e.target.value)}
                                     />
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <Linkedin size={14} className="text-blue-500" />
+                                    <Linkedin size={14} className="text-[var(--accent-brand)]" />
                                     <input
-                                        className="bg-black/30 border border-border-dim rounded px-2 py-1 text-xs text-text-primary w-full focus:border-accent-cyan outline-none font-mono"
+                                        className="bg-[var(--bg-primary)] border border-[var(--border-default)] rounded-[var(--radius-control)] px-2 py-1 text-xs text-[var(--text-primary)] w-full focus:border-[var(--accent-info)] outline-none font-mono"
                                         placeholder="/in/company"
                                         value={comp.socialHandles?.linkedin || ''}
                                         onChange={(e) => updateHandle(comp.id, 'linkedin', e.target.value)}
@@ -122,40 +128,45 @@ export const SocialSurveillance: React.FC = () => {
                     ))}
                 </Card>
 
-                {/* Feed Column */}
-                <Card className="col-span-1 lg:col-span-2 flex flex-col relative overflow-hidden bg-black/80 font-mono text-sm leading-relaxed border-accent-cyan/30">
-                    <div className="absolute top-0 left-0 right-0 h-1 bg-accent-cyan/50 animate-scanline" />
+                <Card
+                    className="col-span-1 lg:col-span-2 flex flex-col relative overflow-hidden bg-[var(--bg-primary)]/80 font-mono text-sm leading-relaxed border-[var(--accent-info)]/30"
+                    variant="surface"
+                >
+                    <div className="h-1 bg-[var(--accent-info)]/40" />
 
                     <div className="flex-1 overflow-y-auto p-4 space-y-4">
                         {!isScanning && feed.length === 0 && (
-                            <div className="h-full flex flex-col items-center justify-center text-accent-cyan/30">
+                            <div className="h-full flex flex-col items-center justify-center text-[var(--accent-info)]/50">
                                 <Wifi size={64} className="mb-4 opacity-50" />
-                                <p>AWAITING INPUT SEQUENCE...</p>
-                                <p className="text-xs mt-2 text-text-muted">Configure social API integrations to enable live signal monitoring</p>
+                                <p>Awaiting input sequence...</p>
+                                <p className="text-xs mt-2 text-[var(--text-muted)]">
+                                    Configure social API integrations to enable live signal monitoring
+                                </p>
                             </div>
                         )}
 
                         {isScanning && (
                             <div className="space-y-1">
-                                <div className="text-accent-green">{'>'} INITIALIZING SEARCH PROTOCOLS...</div>
-                                <div className="text-accent-green">{'>'} CONNECTING TO NODE 64.23.1...</div>
-                                <div className="text-accent-green animate-pulse">{'>'} INTERCEPTING PACKETS...</div>
+                                <div className="text-[var(--accent-success)]">{'>'} Initializing search protocols...</div>
+                                <div className="text-[var(--accent-success)]">{'>'} Connecting to node 64.23.1...</div>
+                                <div className="text-[var(--accent-success)] animate-pulse">{'>'} Intercepting packets...</div>
                             </div>
                         )}
 
-                        {feed.map(item => (
-                            <div key={item.id} className="border-l-2 border-border-dim pl-3 py-1 hover:bg-white/5 transition-colors group">
-                                <div className="flex items-center justify-between text-xs text-text-muted mb-1">
+                        {feed.map((item) => (
+                            <div
+                                key={item.id}
+                                className="border-l-2 border-[var(--border-default)] pl-3 py-1 hover:bg-[var(--bg-hover)] transition-colors group"
+                            >
+                                <div className="flex items-center justify-between text-xs text-[var(--text-muted)] mb-1">
                                     <span className="flex items-center gap-1">
                                         {item.source === 'twitter' && <Twitter size={12} />}
                                         {item.source === 'linkedin' && <Linkedin size={12} />}
-                                        <span className="text-accent-cyan">{item.author}</span>
+                                        <span className="text-[var(--accent-info)]">{item.author}</span>
                                     </span>
                                     <span>{item.timestamp}</span>
                                 </div>
-                                <div className="text-text-primary group-hover:text-[var(--text-primary)] transition-colors">
-                                    {item.content}
-                                </div>
+                                <div className="text-[var(--text-primary)] transition-colors">{item.content}</div>
                             </div>
                         ))}
                     </div>

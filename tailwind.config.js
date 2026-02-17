@@ -54,6 +54,8 @@ export default {
             },
             fontSize: {
                 '2xs': ['0.625rem', { lineHeight: '0.875rem' }],
+                metric: ['1.875rem', { lineHeight: '2.125rem' }],
+                caption: ['0.75rem', { lineHeight: '1rem' }],
             },
             boxShadow: {
                 'xs': 'var(--shadow-xs)',
@@ -67,6 +69,9 @@ export default {
                 'glow-danger': 'var(--shadow-glow-danger)',
             },
             borderRadius: {
+                control: 'var(--radius-control)',
+                card: 'var(--radius-card)',
+                modal: 'var(--radius-modal)',
                 'sm': 'var(--radius-sm)',
                 'md': 'var(--radius-md)',
                 'lg': 'var(--radius-lg)',
@@ -78,7 +83,8 @@ export default {
                 '22': '5.5rem',
             },
             transitionDuration: {
-                'fast': '100ms',
+                'press': '90ms',
+                'fast': '140ms',
                 'base': '150ms',
                 'slow': '250ms',
                 'slower': '350ms',
