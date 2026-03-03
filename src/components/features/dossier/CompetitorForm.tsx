@@ -74,6 +74,7 @@ export const CompetitorForm: React.FC<CompetitorFormProps> = ({
                         type="button"
                         onClick={onCancel}
                         className="p-2 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-hover)] transition-colors"
+                        aria-label="Close"
                     >
                         <X size={18} />
                     </button>

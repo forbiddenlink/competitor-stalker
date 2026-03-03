@@ -134,7 +134,7 @@ export const DossierCard: React.FC<DossierCardProps> = ({ competitor, onEdit }) 
                         e.stopPropagation();
                         setIsHistoryOpen(true);
                     }}
-                    title="View history"
+                    aria-label={`View history for ${competitor.name}`}
                 >
                     <History size={14} />
                 </Button>
@@ -145,6 +145,7 @@ export const DossierCard: React.FC<DossierCardProps> = ({ competitor, onEdit }) 
                         e.stopPropagation();
                         onEdit?.();
                     }}
+                    aria-label={`Edit ${competitor.name}`}
                 >
                     <Pencil size={14} />
                 </Button>

@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react';
-import { CompetitorContext } from '../../../context/CompetitorContext';
+import React, { useState } from 'react';
+import { useCompetitors } from '../../../hooks/useCompetitors';
 import { Card } from '../../common/Card';
 import { Input } from '../../common/Input';
 import { Button } from '../../common/Button';
@@ -7,15 +7,12 @@ import { Plus, X, ShieldAlert } from 'lucide-react';
 import type { Weakness } from '../../../types';
 
 export const WeaknessSpotter: React.FC = () => {
-    const context = useContext(CompetitorContext);
+    const { competitors, updateCompetitor } = useCompetitors();
     const [selectedCompetitorId, setSelectedCompetitorId] = useState<string>('');
     const [newWeakness, setNewWeakness] = useState<Partial<Weakness>>({
         severity: 'Medium',
         source: 'G2 Crowd',
     });
-
-    if (!context) return <div>Error: Context unavailable</div>;
-    const { competitors, updateCompetitor } = context;
 
     const effectiveSelectedId =
         selectedCompetitorId && competitors.some((c) => c.id === selectedCompetitorId)
@@ -33,7 +30,7 @@ export const WeaknessSpotter: React.FC = () => {
             text: newWeakness.text,
             source: newWeakness.source || 'Unknown',
             severity: newWeakness.severity as 'Low' | 'Medium' | 'Critical',
-            date: new Date().toLocaleDateString(),
+            date: new Date().toISOString().split('T')[0],
         };
 
         updateCompetitor(effectiveSelectedId, {
@@ -93,7 +90,7 @@ export const WeaknessSpotter: React.FC = () => {
                         >
                             <div className="font-semibold tracking-wide uppercase">{comp.name}</div>
                             <div className="text-xs mt-1 flex justify-between opacity-70">
-                                <span>{(comp.weaknesses || []).length} vulnerabilities</span>
+                                <span>{(comp.weaknesses || []).length} {(comp.weaknesses || []).length === 1 ? 'vulnerability' : 'vulnerabilities'}</span>
                             </div>
                         </button>
                     ))}

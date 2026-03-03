@@ -189,15 +189,16 @@ describe('WeaknessSpotter', () => {
 
         it('shows vulnerability count for each competitor', () => {
             renderWithContext();
-            expect(screen.getByText('1 vulnerabilities')).toBeInTheDocument();
+            expect(screen.getByText('1 vulnerability')).toBeInTheDocument();
             expect(screen.getByText('0 vulnerabilities')).toBeInTheDocument();
         });
     });
 
     describe('context unavailable', () => {
-        it('shows error message when context is unavailable', () => {
-            render(<WeaknessSpotter />);
-            expect(screen.getByText('Error: Context unavailable')).toBeInTheDocument();
+        it('throws when rendered outside provider', () => {
+            expect(() => render(<WeaknessSpotter />)).toThrow(
+                'useCompetitors must be used within a CompetitorProvider'
+            );
         });
     });
 });

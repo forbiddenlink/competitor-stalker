@@ -36,13 +36,14 @@ export function isNotEmpty(value: string): boolean {
 export function isUniqueName(
     name: string,
     existingNames: string[],
-    currentId?: string
+    excludeName?: string
 ): boolean {
     const normalizedName = name.toLowerCase().trim();
+    const normalizedExclude = excludeName?.toLowerCase().trim();
     return !existingNames.some(
         (existing) =>
             existing.toLowerCase().trim() === normalizedName &&
-            existing !== currentId
+            existing.toLowerCase().trim() !== normalizedExclude
     );
 }
 

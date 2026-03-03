@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { CompetitorContext } from '../context/CompetitorContext';
+import React from 'react';
+import { useCompetitors } from '../hooks/useCompetitors';
 import { Badge } from '../components/common/Badge';
 import { Button } from '../components/common/Button';
 import {
@@ -116,8 +116,7 @@ const threatStyleMap = {
 } as const;
 
 const Dashboard: React.FC = () => {
-    const context = useContext(CompetitorContext);
-    const { competitors = [], userProfile } = context || { competitors: [], userProfile: null };
+    const { competitors, userProfile } = useCompetitors();
 
     const highThreats = competitors.filter((c) => c.threatLevel === 'High').length;
     const mediumThreats = competitors.filter((c) => c.threatLevel === 'Medium').length;

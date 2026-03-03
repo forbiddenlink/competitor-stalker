@@ -1,5 +1,5 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { CompetitorContext } from '../../../context/CompetitorContext';
+import React, { useState, useEffect } from 'react';
+import { useCompetitors } from '../../../hooks/useCompetitors';
 import { Card } from '../../common/Card';
 import { Input } from '../../common/Input';
 import { Button } from '../../common/Button';
@@ -15,12 +15,10 @@ interface FeedItem {
 }
 
 export const SocialSurveillance: React.FC = () => {
-    const context = useContext(CompetitorContext);
+    const { competitors, updateCompetitor } = useCompetitors();
     const [searchTerm, setSearchTerm] = useState('');
     const [isScanning, setIsScanning] = useState(false);
     const [feed, setFeed] = useState<FeedItem[]>([]);
-
-    const { competitors, updateCompetitor } = context || { competitors: [], updateCompetitor: () => {} };
 
     const filteredCompetitors = competitors.filter(
         (c) =>
@@ -106,19 +104,21 @@ export const SocialSurveillance: React.FC = () => {
 
                             <div className="space-y-2">
                                 <div className="flex items-center gap-2">
-                                    <Twitter size={14} className="text-[var(--accent-info)]" />
+                                    <Twitter size={14} className="text-[var(--accent-info)]" aria-hidden="true" />
                                     <input
                                         className="bg-[var(--bg-primary)] border border-[var(--border-default)] rounded-[var(--radius-control)] px-2 py-1 text-xs text-[var(--text-primary)] w-full focus:border-[var(--accent-info)] outline-none font-mono"
                                         placeholder="@handle"
+                                        aria-label={`Twitter handle for ${comp.name}`}
                                         value={comp.socialHandles?.twitter || ''}
                                         onChange={(e) => updateHandle(comp.id, 'twitter', e.target.value)}
                                     />
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <Linkedin size={14} className="text-[var(--accent-brand)]" />
+                                    <Linkedin size={14} className="text-[var(--accent-brand)]" aria-hidden="true" />
                                     <input
                                         className="bg-[var(--bg-primary)] border border-[var(--border-default)] rounded-[var(--radius-control)] px-2 py-1 text-xs text-[var(--text-primary)] w-full focus:border-[var(--accent-info)] outline-none font-mono"
                                         placeholder="/in/company"
+                                        aria-label={`LinkedIn handle for ${comp.name}`}
                                         value={comp.socialHandles?.linkedin || ''}
                                         onChange={(e) => updateHandle(comp.id, 'linkedin', e.target.value)}
                                     />

@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { CompetitorContext } from '../../../context/CompetitorContext';
+import React from 'react';
+import { useCompetitors } from '../../../hooks/useCompetitors';
 import { PricingCard } from './PricingCard';
 import { Button } from '../../common/Button';
 import { Badge } from '../../common/Badge';
@@ -7,11 +7,7 @@ import { Plus, DollarSign } from 'lucide-react';
 import type { PricingPlan } from '../../../types';
 
 export const PricingIntel: React.FC = () => {
-    const context = useContext(CompetitorContext);
-
-    if (!context) return null;
-
-    const { userProfile, competitors, updateUserProfile, updateCompetitor } = context;
+    const { userProfile, competitors, updateUserProfile, updateCompetitor } = useCompetitors();
 
     const handleAddUserPlan = () => {
         const newPlan: PricingPlan = {

@@ -50,6 +50,7 @@ const SwotCard: React.FC<SwotCardProps> = ({
                         <button
                             onClick={() => onRemove(index)}
                             className="opacity-0 group-hover:opacity-100 p-1 text-[var(--text-muted)] hover:text-[var(--accent-danger)] transition-all"
+                            aria-label={`Remove ${title.toLowerCase()} item`}
                         >
                             <X className="w-3 h-3" />
                         </button>

@@ -173,8 +173,7 @@ describe('CompetitorForm', () => {
                 />
             );
 
-            // Find the X button by its position (first button in header)
-            const closeButton = screen.getByRole('button', { name: '' });
+            const closeButton = screen.getByRole('button', { name: /close/i });
             await user.click(closeButton);
             expect(mockOnCancel).toHaveBeenCalled();
         });

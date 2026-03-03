@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react';
-import { CompetitorContext } from '../../../context/CompetitorContext';
+import React, { useState } from 'react';
+import { useCompetitors } from '../../../hooks/useCompetitors';
 import { Card } from '../../common/Card';
 import { Input } from '../../common/Input';
 import { Button } from '../../common/Button';
@@ -7,10 +7,8 @@ import { Crosshair, Plus, ArrowRight, CheckCircle, Clock, Trash2, Zap } from 'lu
 import type { Strategy } from '../../../types';
 
 export const CounterStrategy: React.FC = () => {
-    const context = useContext(CompetitorContext);
+    const { competitors, updateCompetitor } = useCompetitors();
     const [newStrategy, setNewStrategy] = useState({ title: '', targetId: '' });
-
-    const { competitors, updateCompetitor } = context || { competitors: [], updateCompetitor: () => {} };
 
     const getStrategiesByStatus = (status: Strategy['status']) => {
         return competitors.flatMap((comp) =>
@@ -71,8 +69,6 @@ export const CounterStrategy: React.FC = () => {
                 return 'border-[var(--accent-success)]';
         }
     };
-
-    if (!context) return <div>Error: Context unavailable</div>;
 
     return (
         <div className="h-full flex flex-col gap-6 p-6">
