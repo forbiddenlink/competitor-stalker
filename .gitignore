@@ -47,3 +47,4 @@ public/*-sitemap.xml
 dist/
 build/
 out/
+.env*
