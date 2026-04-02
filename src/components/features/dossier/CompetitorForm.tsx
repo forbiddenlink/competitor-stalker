@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { X } from 'lucide-react';
+import { X, Scan, Loader2, AlertCircle, CheckCircle } from 'lucide-react';
 import { Button } from '../../common/Button';
 import { Input } from '../../common/Input';
+import { useScraper, type CompetitorPageData } from '../../../hooks/useScraper';
 import type { Competitor, ThreatLevel } from '../../../types';
 
 interface CompetitorFormProps {
@@ -10,6 +11,136 @@ interface CompetitorFormProps {
     onCancel: () => void;
     onDelete?: (id: string) => void;
 }
+
+/**
+ * Displays extracted intel from a scraped competitor page
+ */
+const ScrapedIntelSection: React.FC<{ data: CompetitorPageData }> = ({ data }) => {
+    const [expanded, setExpanded] = useState(false);
+
+    const hasPricing = data.pricing && data.pricing.length > 0;
+    const hasFeatures = data.features && data.features.length > 0;
+    const hasTechStack = data.techStack && data.techStack.length > 0;
+    const hasSocial = Object.values(data.socialLinks).some(Boolean);
+    const hasContent = hasPricing || hasFeatures || hasTechStack || hasSocial;
+
+    if (!hasContent) return null;
+
+    return (
+        <div className="rounded-lg border border-[var(--border-default)] bg-[var(--bg-secondary)] overflow-hidden">
+            <button
+                type="button"
+                onClick={() => setExpanded(!expanded)}
+                className="w-full px-4 py-3 flex items-center justify-between text-sm font-medium text-[var(--text-primary)] hover:bg-[var(--bg-hover)] transition-colors"
+            >
+                <span>Extracted Intel</span>
+                <span className="text-[var(--text-muted)] text-xs">
+                    {expanded ? 'Hide' : 'Show'}
+                </span>
+            </button>
+
+            {expanded && (
+                <div className="px-4 pb-4 space-y-4 border-t border-[var(--border-subtle)]">
+                    {/* Pricing */}
+                    {hasPricing && (
+                        <div className="pt-3">
+                            <h4 className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wide mb-2">
+                                Pricing Found
+                            </h4>
+                            <p className="text-sm text-[var(--text-secondary)] line-clamp-3">
+                                {data.pricing}
+                            </p>
+                        </div>
+                    )}
+
+                    {/* Features */}
+                    {hasFeatures && (
+                        <div>
+                            <h4 className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wide mb-2">
+                                Features ({data.features.length})
+                            </h4>
+                            <ul className="text-sm text-[var(--text-secondary)] space-y-1 max-h-32 overflow-y-auto">
+                                {data.features.slice(0, 10).map((feature, i) => (
+                                    <li key={i} className="truncate">• {feature}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+
+                    {/* Tech Stack */}
+                    {hasTechStack && (
+                        <div>
+                            <h4 className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wide mb-2">
+                                Tech Stack
+                            </h4>
+                            <div className="flex flex-wrap gap-1.5">
+                                {data.techStack.map((tech, i) => (
+                                    <span
+                                        key={i}
+                                        className="px-2 py-0.5 text-xs rounded-full bg-[var(--bg-primary)] text-[var(--text-secondary)] border border-[var(--border-subtle)]"
+                                    >
+                                        {tech}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+
+                    {/* Social Links */}
+                    {hasSocial && (
+                        <div>
+                            <h4 className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wide mb-2">
+                                Social Links
+                            </h4>
+                            <div className="flex flex-wrap gap-2 text-xs">
+                                {data.socialLinks.twitter && (
+                                    <a
+                                        href={data.socialLinks.twitter}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-[var(--accent-brand)] hover:underline"
+                                    >
+                                        Twitter/X
+                                    </a>
+                                )}
+                                {data.socialLinks.linkedin && (
+                                    <a
+                                        href={data.socialLinks.linkedin}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-[var(--accent-brand)] hover:underline"
+                                    >
+                                        LinkedIn
+                                    </a>
+                                )}
+                                {data.socialLinks.github && (
+                                    <a
+                                        href={data.socialLinks.github}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-[var(--accent-brand)] hover:underline"
+                                    >
+                                        GitHub
+                                    </a>
+                                )}
+                                {data.socialLinks.youtube && (
+                                    <a
+                                        href={data.socialLinks.youtube}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-[var(--accent-brand)] hover:underline"
+                                    >
+                                        YouTube
+                                    </a>
+                                )}
+                            </div>
+                        </div>
+                    )}
+                </div>
+            )}
+        </div>
+    );
+};
 
 export const CompetitorForm: React.FC<CompetitorFormProps> = ({
     competitor,
@@ -27,6 +158,27 @@ export const CompetitorForm: React.FC<CompetitorFormProps> = ({
         estimatedRevenue: competitor?.estimatedRevenue || '',
         notes: competitor?.notes || '',
     });
+    const [scrapedData, setScrapedData] = useState<CompetitorPageData | null>(null);
+    const { scrape, loading: scraping, error: scrapeError } = useScraper();
+
+    const handleScrape = async () => {
+        if (!form.website) return;
+        const data = await scrape(form.website);
+        if (data) {
+            setScrapedData(data);
+            // Auto-fill empty fields with scraped data
+            setForm(prev => ({
+                ...prev,
+                name: prev.name || data.openGraph?.siteName || data.title?.split(' - ')[0]?.split(' | ')[0] || '',
+                oneLiner: prev.oneLiner || data.description || '',
+                socialHandles: {
+                    ...prev.socialHandles,
+                    twitter: prev.socialHandles?.twitter || data.socialLinks.twitter?.match(/twitter\.com\/([^/?]+)/)?.[1] || data.socialLinks.twitter?.match(/x\.com\/([^/?]+)/)?.[1] || '',
+                    linkedin: prev.socialHandles?.linkedin || data.socialLinks.linkedin || '',
+                },
+            }));
+        }
+    };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -98,11 +250,35 @@ export const CompetitorForm: React.FC<CompetitorFormProps> = ({
                         <label className="block text-xs font-medium text-[var(--text-muted)] mb-1.5">
                             Website
                         </label>
-                        <Input
-                            value={form.website || ''}
-                            onChange={(e) => updateField('website', e.target.value)}
-                            placeholder="https://example.com"
-                        />
+                        <div className="flex gap-2">
+                            <Input
+                                value={form.website || ''}
+                                onChange={(e) => updateField('website', e.target.value)}
+                                placeholder="https://example.com"
+                                className="flex-1"
+                            />
+                            <Button
+                                type="button"
+                                variant="secondary"
+                                onClick={handleScrape}
+                                disabled={!form.website || scraping}
+                                leftIcon={scraping ? <Loader2 size={14} className="animate-spin" /> : <Scan size={14} />}
+                            >
+                                {scraping ? 'Scanning...' : 'Scan'}
+                            </Button>
+                        </div>
+                        {scrapeError && (
+                            <div className="flex items-center gap-1.5 mt-2 text-xs text-[var(--accent-danger)]">
+                                <AlertCircle size={12} />
+                                {scrapeError}
+                            </div>
+                        )}
+                        {scrapedData && !scrapeError && (
+                            <div className="flex items-center gap-1.5 mt-2 text-xs text-[var(--accent-success)]">
+                                <CheckCircle size={12} />
+                                Data extracted successfully
+                            </div>
+                        )}
                     </div>
 
                     <div>
@@ -166,6 +342,11 @@ export const CompetitorForm: React.FC<CompetitorFormProps> = ({
                             className="w-full px-3 py-2 rounded-lg text-sm bg-[var(--bg-secondary)] border border-[var(--border-default)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-brand)] resize-none"
                         />
                     </div>
+
+                    {/* Scraped Intel */}
+                    {scrapedData && (
+                        <ScrapedIntelSection data={scrapedData} />
+                    )}
 
                     {/* Actions */}
                     <div className="flex items-center justify-between pt-4 border-t border-[var(--border-subtle)]">

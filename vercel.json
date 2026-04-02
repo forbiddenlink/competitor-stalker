@@ -1,4 +1,10 @@
 {
+  "crons": [
+    {
+      "path": "/api/cron/scrape",
+      "schedule": "0 6 * * *"
+    }
+  ],
   "rewrites": [
     { "source": "/dossier", "destination": "/dossier.html" },
     { "source": "/positioning", "destination": "/positioning.html" },
