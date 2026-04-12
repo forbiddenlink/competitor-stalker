@@ -67,9 +67,22 @@
     "terser": "^5.46.0",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.57.0",
-    "vite": "^7.2.4",
+    "vite": "^7.3.2",
     "vitest": "^4.0.18"
   },
   "description": "Competitive intelligence dashboard for tracking competitor strategies, pricing, and market presence",
-  "license": "MIT"
+  "license": "MIT",
+  "pnpm": {
+    "overrides": {
+      "rollup": ">=4.59.0",
+      "cookie": ">=0.7.0",
+      "undici": ">=6.24.0",
+      "systeminformation": ">=5.31.0",
+      "minimatch": ">=10.2.3",
+      "path-to-regexp": ">=6.3.0",
+      "ajv": ">=8.18.0",
+      "smol-toml": ">=1.6.1",
+      "vite": ">=7.3.2"
+    }
+  }
 }
