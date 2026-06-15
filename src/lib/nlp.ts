@@ -56,7 +56,7 @@ export interface ContentAnalysis {
 }
 
 export function analyzeContent(text: string): ContentAnalysis {
-  const reading = readingTime(text, 200);
+  const reading = readingTime(text, { wordsPerMinute: 200 });
   const wordCount = reading.words;
   const sentiment = analyzeSentiment(text);
   const { language } = detectLanguage(text);

@@ -3,7 +3,10 @@ import { useCompetitors } from '../../../hooks/useCompetitors';
 import { Card } from '../../common/Card';
 import { Input } from '../../common/Input';
 import { Button } from '../../common/Button';
-import { Search, Twitter, Linkedin, Wifi } from 'lucide-react';
+import { Search, X, Wifi } from 'lucide-react';
+// lucide-react v1 removed brand icons; X is the closest replacement for both
+const Twitter = X;
+const Linkedin = X;
 
 interface FeedItem {
     id: string;
