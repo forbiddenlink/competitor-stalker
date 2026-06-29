@@ -13,7 +13,7 @@ jobs:
       SITE_URL: https://competitor-stalker.vercel.app
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - uses: pnpm/action-setup@v6
         with:
