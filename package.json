@@ -75,7 +75,7 @@
   "pnpm": {
     "overrides": {
       "rollup": ">=4.59.0",
-      "cookie": ">=0.7.0",
+      "cookie": "^1.0.2",
       "undici": ">=6.24.0",
       "systeminformation": ">=5.31.0",
       "minimatch": ">=10.2.3",
