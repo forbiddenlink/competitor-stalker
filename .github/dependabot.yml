@@ -18,6 +18,9 @@ updates:
       major-updates:
         patterns: ["*"]
         update-types: ["major"]
+    ignore:
+      - dependency-name: "cookie"
+        update-types: ["version-update:semver-major"]
     labels: ["dependencies"]
     commit-message:
       prefix: "chore(deps):"
