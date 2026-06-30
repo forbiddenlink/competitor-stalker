@@ -34,6 +34,7 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T)
     };
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect -- SSR hydration: readValue() guards window access; calling setState here is intentional to sync with localStorage after mount
         setStoredValue(readValue());
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
