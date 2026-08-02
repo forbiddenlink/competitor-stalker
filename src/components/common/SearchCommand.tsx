@@ -13,6 +13,7 @@ const SearchCommandContent: React.FC<Omit<SearchCommandProps, 'isOpen'>> = ({ on
     const [query, setQuery] = useState('');
     const [selectedIndex, setSelectedIndex] = useState(0);
     const inputRef = useRef<HTMLInputElement>(null);
+    const modalRef = useRef<HTMLDivElement>(null);
     const navigate = useNavigate();
     const { competitors } = useCompetitors();
 
@@ -76,8 +77,34 @@ const SearchCommandContent: React.FC<Omit<SearchCommandProps, 'isOpen'>> = ({ on
         }
     }, [selectedIndex, filteredCompetitors.length, filteredActions, totalResults, onClose, navigate]);
 
+    // Keep focus inside the palette (Tab trap) and close on Escape regardless of
+    // which element currently has focus.
+    const handleContainerKeyDown = (e: React.KeyboardEvent) => {
+        if (e.key === 'Escape') {
+            onClose();
+            return;
+        }
+        if (e.key !== 'Tab') return;
+        const focusables = modalRef.current?.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled]), input, [tabindex]:not([tabindex="-1"])'
+        );
+        if (!focusables || focusables.length === 0) return;
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+        }
+    };
+
     return (
-        <div className="fixed inset-0 z-[var(--z-modal)] flex items-start justify-center pt-[15vh]">
+        <div
+            className="fixed inset-0 z-[var(--z-modal)] flex items-start justify-center pt-[15vh]"
+            onKeyDown={handleContainerKeyDown}
+        >
             {/* Backdrop */}
             <div
                 className="absolute inset-0 bg-black/60 backdrop-blur-sm"
@@ -85,7 +112,13 @@ const SearchCommandContent: React.FC<Omit<SearchCommandProps, 'isOpen'>> = ({ on
             />
 
             {/* Modal */}
-            <div className="relative w-full max-w-lg bg-[var(--bg-elevated)] border border-[var(--border-muted)] rounded-[var(--radius-modal)] shadow-2xl overflow-hidden animate-scale-in">
+            <div
+                ref={modalRef}
+                role="dialog"
+                aria-modal="true"
+                aria-label="Command palette"
+                className="relative w-full max-w-lg bg-[var(--bg-elevated)] border border-[var(--border-muted)] rounded-[var(--radius-modal)] shadow-2xl overflow-hidden animate-scale-in"
+            >
                 {/* Search Input */}
                 <div className="flex items-center gap-3 px-4 py-3 border-b border-[var(--border-default)]">
                     <Search className="w-5 h-5 text-[var(--text-muted)]" />
@@ -99,6 +132,7 @@ const SearchCommandContent: React.FC<Omit<SearchCommandProps, 'isOpen'>> = ({ on
                         }}
                         onKeyDown={handleKeyDown}
                         placeholder="Search competitors, pages..."
+                        aria-label="Search competitors and pages"
                         className="flex-1 bg-transparent border-none outline-none text-[var(--text-primary)] placeholder:text-[var(--text-subtle)]"
                     />
                     <kbd className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 text-xs text-[var(--text-muted)] bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-[var(--radius-control)]">

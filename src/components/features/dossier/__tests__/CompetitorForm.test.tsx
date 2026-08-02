@@ -131,7 +131,7 @@ describe('CompetitorForm', () => {
             expect(screen.getByRole('button', { name: /delete/i })).toBeInTheDocument();
         });
 
-        it('calls onDelete when delete is clicked', async () => {
+        it('requires a confirm step before calling onDelete', async () => {
             const user = userEvent.setup();
 
             render(
@@ -143,7 +143,12 @@ describe('CompetitorForm', () => {
                 />
             );
 
+            // First click reveals the confirm step, does NOT delete yet.
             await user.click(screen.getByRole('button', { name: /delete/i }));
+            expect(mockOnDelete).not.toHaveBeenCalled();
+
+            // Second click on Confirm performs the delete.
+            await user.click(screen.getByRole('button', { name: /^confirm$/i }));
             expect(mockOnDelete).toHaveBeenCalledWith('test-id-123');
         });
     });

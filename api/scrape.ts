@@ -1,3 +1,5 @@
+import { lookup } from 'node:dns/promises'
+import { isIP } from 'node:net'
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 import * as cheerio from 'cheerio'
 
@@ -221,6 +223,39 @@ function extractOpenGraph($: cheerio.CheerioAPI): Record<string, string | undefi
     }
 }
 
+/**
+ * Return a reason string if the IP falls in a private, loopback, link-local,
+ * or otherwise reserved range that must never be reachable from the scraper;
+ * null means the address is a routable public IP. Blocks SSRF to internal
+ * services and cloud metadata endpoints (e.g. 169.254.169.254).
+ */
+function blockedIpReason(ip: string): string | null {
+    // Unwrap IPv4-mapped IPv6 (e.g. ::ffff:169.254.169.254)
+    const mapped = ip.match(/^::ffff:(\d+\.\d+\.\d+\.\d+)$/i)
+    if (mapped) ip = mapped[1]
+
+    if (isIP(ip) === 4) {
+        const [a, b] = ip.split('.').map(Number)
+        if (a === 0) return 'unspecified'
+        if (a === 10) return 'private'
+        if (a === 127) return 'loopback'
+        if (a === 169 && b === 254) return 'link-local' // incl. cloud metadata
+        if (a === 172 && b >= 16 && b <= 31) return 'private'
+        if (a === 192 && b === 168) return 'private'
+        if (a === 100 && b >= 64 && b <= 127) return 'cgnat'
+        if (a >= 224) return 'reserved' // multicast + future-use
+        return null
+    }
+
+    const v6 = ip.toLowerCase()
+    if (v6 === '::' || v6 === '::0') return 'unspecified'
+    if (v6 === '::1') return 'loopback'
+    if (v6.startsWith('fe80')) return 'link-local'
+    if (v6.startsWith('fc') || v6.startsWith('fd')) return 'unique-local' // fc00::/7
+    if (v6.startsWith('ff')) return 'multicast'
+    return null
+}
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
     // Only allow POST requests
     if (req.method !== 'POST') {
@@ -234,10 +269,39 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     // Validate URL
+    let parsed: URL
     try {
-        new URL(url)
+        parsed = new URL(url)
     } catch {
         return res.status(400).json({ error: 'Invalid URL' })
+    }
+
+    // SSRF guard: only public http(s) hosts. Reject non-web schemes and any
+    // host that resolves to a private/loopback/link-local/reserved address.
+    if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') {
+        return res.status(400).json({ error: 'Only http and https URLs are allowed' })
+    }
+
+    const hostname = parsed.hostname.replace(/^\[|\]$/g, '') // strip IPv6 brackets
+    if (hostname === 'localhost' || hostname.endsWith('.localhost')) {
+        return res.status(400).json({ error: 'URL host is not allowed' })
+    }
+
+    try {
+        if (isIP(hostname)) {
+            if (blockedIpReason(hostname)) {
+                return res.status(400).json({ error: 'URL host is not allowed' })
+            }
+        } else {
+            const resolved = await lookup(hostname, { all: true })
+            // Note: residual DNS-rebinding risk remains (fetch re-resolves);
+            // acceptable for this workload — no internal network to pivot into.
+            if (resolved.length === 0 || resolved.some((r) => blockedIpReason(r.address))) {
+                return res.status(400).json({ error: 'URL host is not allowed' })
+            }
+        }
+    } catch {
+        return res.status(400).json({ error: 'Could not resolve URL host' })
     }
 
     try {

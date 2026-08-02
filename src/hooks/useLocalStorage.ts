@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useCallback, useState } from 'react';
 
-export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T) => void] {
+type SetValue<T> = (value: T | ((prev: T) => T)) => void;
+
+export function useLocalStorage<T>(key: string, initialValue: T): [T, SetValue<T>] {
     // Get from local storage then parse stored json or return initialValue
     const readValue = (): T => {
         if (typeof window === 'undefined') {
@@ -18,26 +20,25 @@ export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T)
 
     const [storedValue, setStoredValue] = useState<T>(readValue);
 
-    const setValue = (value: T) => {
-        try {
-            // Allow value to be a function so we have same API as useState
-            const valueToStore = value instanceof Function ? value(storedValue) : value;
-
-            setStoredValue(valueToStore);
-
-            if (typeof window !== 'undefined') {
-                window.localStorage.setItem(key, JSON.stringify(valueToStore));
-            }
-        } catch (error) {
-            console.warn(`Error setting localStorage key "${key}":`, error);
-        }
-    };
-
-    useEffect(() => {
-        // eslint-disable-next-line react-hooks/set-state-in-effect -- SSR hydration: readValue() guards window access; calling setState here is intentional to sync with localStorage after mount
-        setStoredValue(readValue());
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    // Compute the next value from the *latest* state inside the updater so two
+    // synchronous calls in one render can't drop each other's write, and persist
+    // it in the same step. (Vite SPA — no SSR — so no post-mount re-read needed.)
+    const setValue = useCallback<SetValue<T>>(
+        (value) => {
+            setStoredValue((prev) => {
+                const valueToStore = value instanceof Function ? value(prev) : value;
+                try {
+                    if (typeof window !== 'undefined') {
+                        window.localStorage.setItem(key, JSON.stringify(valueToStore));
+                    }
+                } catch (error) {
+                    console.warn(`Error setting localStorage key "${key}":`, error);
+                }
+                return valueToStore;
+            });
+        },
+        [key]
+    );
 
     return [storedValue, setValue];
 }
