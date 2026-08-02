@@ -1,8 +1,0 @@
-public/**
-.history/**
-*.svg
-node_modules/**
-dist/**
-build/**
-coverage/**
-.git/**
