@@ -1,5 +1,5 @@
 import { Suspense, lazy, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router';
 import { Layout } from './components/layout/Shell';
 import { CompetitorProvider } from './context/CompetitorContext';
 import { ToastProvider } from './context/ToastContext';
