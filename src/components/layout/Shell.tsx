@@ -18,7 +18,7 @@ import {
     Settings,
     SquareStack,
 } from 'lucide-react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router';
 import { SearchCommand } from '../common/SearchCommand';
 
 interface NavItemProps {

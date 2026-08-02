@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 const PrivacyPolicyPage: React.FC = () => {
   const effectiveDate = 'February 16, 2026';
