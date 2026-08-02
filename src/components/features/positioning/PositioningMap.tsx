@@ -7,10 +7,18 @@ export const PositioningMap: React.FC = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [draggingId, setDraggingId] = useState<string | null>(null);
     const [isDraggingUser, setIsDraggingUser] = useState(false);
+    // Live position during a drag. Kept in local state (visual only) and a ref
+    // (for the commit) so we persist to context ONCE on drag-end instead of on
+    // every mousemove — a per-pixel write previously flooded the snapshot history
+    // and caused jank.
+    const [dragPos, setDragPos] = useState<{ x: number; y: number } | null>(null);
+    const dragPosRef = useRef<{ x: number; y: number } | null>(null);
 
     const handleMouseDown = (e: React.MouseEvent, id: string | 'USER') => {
         e.preventDefault();
         e.stopPropagation();
+        dragPosRef.current = null;
+        setDragPos(null);
         if (id === 'USER') {
             setIsDraggingUser(true);
         } else {
@@ -19,30 +27,37 @@ export const PositioningMap: React.FC = () => {
     };
 
     useEffect(() => {
+        if (!draggingId && !isDraggingUser) return;
+
         const onMouseMove = (e: MouseEvent) => {
-            if (!draggingId && !isDraggingUser) return;
             if (!containerRef.current) return;
 
             const rect = containerRef.current.getBoundingClientRect();
             const x = Math.min(100, Math.max(0, ((e.clientX - rect.left) / rect.width) * 100));
             const y = Math.min(100, Math.max(0, ((e.clientY - rect.top) / rect.height) * 100));
 
-            if (isDraggingUser) {
-                updateUserProfile({ positionX: x, positionY: y });
-            } else if (draggingId) {
-                updateCompetitor(draggingId, { positionX: x, positionY: y });
-            }
+            const next = { x, y };
+            dragPosRef.current = next;
+            setDragPos(next); // visual only — no persistence mid-drag
         };
 
         const onMouseUp = () => {
+            const pos = dragPosRef.current;
+            if (pos) {
+                if (isDraggingUser) {
+                    updateUserProfile({ positionX: pos.x, positionY: pos.y });
+                } else if (draggingId) {
+                    updateCompetitor(draggingId, { positionX: pos.x, positionY: pos.y });
+                }
+            }
             setDraggingId(null);
             setIsDraggingUser(false);
+            setDragPos(null);
+            dragPosRef.current = null;
         };
 
-        if (draggingId || isDraggingUser) {
-            window.addEventListener('mousemove', onMouseMove);
-            window.addEventListener('mouseup', onMouseUp);
-        }
+        window.addEventListener('mousemove', onMouseMove);
+        window.addEventListener('mouseup', onMouseUp);
         return () => {
             window.removeEventListener('mousemove', onMouseMove);
             window.removeEventListener('mouseup', onMouseUp);
@@ -88,8 +103,8 @@ export const PositioningMap: React.FC = () => {
                             transition-transform duration-fast
                         `}
                         style={{
-                            left: `${comp.positionX ?? 50}%`,
-                            top: `${comp.positionY ?? 50}%`,
+                            left: `${draggingId === comp.id && dragPos ? dragPos.x : comp.positionX ?? 50}%`,
+                            top: `${draggingId === comp.id && dragPos ? dragPos.y : comp.positionY ?? 50}%`,
                             transform: 'translate(-50%, -50%)',
                         }}
                         onMouseDown={(e) => handleMouseDown(e, comp.id)}
@@ -132,8 +147,8 @@ export const PositioningMap: React.FC = () => {
                         transition-transform duration-fast
                     `}
                     style={{
-                        left: `${userProfile.positionX}%`,
-                        top: `${userProfile.positionY}%`,
+                        left: `${isDraggingUser && dragPos ? dragPos.x : userProfile.positionX}%`,
+                        top: `${isDraggingUser && dragPos ? dragPos.y : userProfile.positionY}%`,
                         transform: 'translate(-50%, -50%)',
                     }}
                     onMouseDown={(e) => handleMouseDown(e, 'USER')}

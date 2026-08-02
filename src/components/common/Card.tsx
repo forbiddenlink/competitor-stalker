@@ -62,10 +62,25 @@ export const Card: React.FC<CardProps> = ({
         `
         : '';
 
+    const interactiveProps =
+        interactive && onClick
+            ? {
+                  role: 'button',
+                  tabIndex: 0,
+                  onKeyDown: (e: React.KeyboardEvent) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          onClick();
+                      }
+                  },
+              }
+            : {};
+
     return (
         <Component
             className={`${baseStyles} ${variants[variant]} ${paddings[padding]} ${interactiveStyles} ${className}`}
             onClick={onClick}
+            {...interactiveProps}
         >
             {children}
         </Component>

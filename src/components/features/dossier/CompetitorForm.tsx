@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { X, Scan, Loader2, AlertCircle, CheckCircle } from 'lucide-react';
 import { Button } from '../../common/Button';
 import { Input } from '../../common/Input';
 import { useScraper, type CompetitorPageData } from '../../../hooks/useScraper';
+import { isValidUrl } from '../../../utils/validation';
 import type { Competitor, ThreatLevel } from '../../../types';
 
 interface CompetitorFormProps {
@@ -159,7 +160,19 @@ export const CompetitorForm: React.FC<CompetitorFormProps> = ({
         notes: competitor?.notes || '',
     });
     const [scrapedData, setScrapedData] = useState<CompetitorPageData | null>(null);
+    const [confirmDelete, setConfirmDelete] = useState(false);
     const { scrape, loading: scraping, error: scrapeError } = useScraper();
+
+    const websiteInvalid = !!form.website?.trim() && !isValidUrl(form.website.trim());
+
+    // Close on Escape, matching the app's other dismissible overlays.
+    useEffect(() => {
+        const onKey = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') onCancel();
+        };
+        window.addEventListener('keydown', onKey);
+        return () => window.removeEventListener('keydown', onKey);
+    }, [onCancel]);
 
     const handleScrape = async () => {
         if (!form.website) return;
@@ -183,6 +196,7 @@ export const CompetitorForm: React.FC<CompetitorFormProps> = ({
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (!form.name?.trim()) return;
+        if (websiteInvalid) return;
 
         const saved: Competitor = {
             id: competitor?.id || crypto.randomUUID(),
@@ -209,7 +223,12 @@ export const CompetitorForm: React.FC<CompetitorFormProps> = ({
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+        <div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="competitor-form-title"
+        >
             <div
                 className="w-full max-w-lg rounded-xl overflow-hidden animate-fade-in"
                 style={{
@@ -219,7 +238,7 @@ export const CompetitorForm: React.FC<CompetitorFormProps> = ({
             >
                 {/* Header */}
                 <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border-subtle)]">
-                    <h2 className="text-lg font-semibold text-[var(--text-primary)]">
+                    <h2 id="competitor-form-title" className="text-lg font-semibold text-[var(--text-primary)]">
                         {isNew ? 'Add Competitor' : 'Edit Competitor'}
                     </h2>
                     <button
@@ -267,6 +286,12 @@ export const CompetitorForm: React.FC<CompetitorFormProps> = ({
                                 {scraping ? 'Scanning...' : 'Scan'}
                             </Button>
                         </div>
+                        {websiteInvalid && (
+                            <div className="flex items-center gap-1.5 mt-2 text-xs text-[var(--accent-danger)]">
+                                <AlertCircle size={12} />
+                                Enter a valid URL (including http:// or https://)
+                            </div>
+                        )}
                         {scrapeError && (
                             <div className="flex items-center gap-1.5 mt-2 text-xs text-[var(--accent-danger)]">
                                 <AlertCircle size={12} />
@@ -352,21 +377,38 @@ export const CompetitorForm: React.FC<CompetitorFormProps> = ({
                     <div className="flex items-center justify-between pt-4 border-t border-[var(--border-subtle)]">
                         <div>
                             {!isNew && onDelete && (
-                                <Button
-                                    type="button"
-                                    variant="ghost"
-                                    onClick={() => onDelete(competitor.id)}
-                                    className="text-[var(--accent-danger)] hover:bg-[var(--accent-danger-muted)]"
-                                >
-                                    Delete
-                                </Button>
+                                confirmDelete ? (
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-xs text-[var(--text-muted)]">Delete permanently?</span>
+                                        <Button
+                                            type="button"
+                                            variant="ghost"
+                                            onClick={() => onDelete(competitor.id)}
+                                            className="text-[var(--accent-danger)] hover:bg-[var(--accent-danger-muted)]"
+                                        >
+                                            Confirm
+                                        </Button>
+                                        <Button type="button" variant="ghost" onClick={() => setConfirmDelete(false)}>
+                                            Cancel
+                                        </Button>
+                                    </div>
+                                ) : (
+                                    <Button
+                                        type="button"
+                                        variant="ghost"
+                                        onClick={() => setConfirmDelete(true)}
+                                        className="text-[var(--accent-danger)] hover:bg-[var(--accent-danger-muted)]"
+                                    >
+                                        Delete
+                                    </Button>
+                                )
                             )}
                         </div>
                         <div className="flex gap-2">
                             <Button type="button" variant="ghost" onClick={onCancel}>
                                 Cancel
                             </Button>
-                            <Button type="submit" disabled={!form.name?.trim()}>
+                            <Button type="submit" disabled={!form.name?.trim() || websiteInvalid}>
                                 {isNew ? 'Add Competitor' : 'Save Changes'}
                             </Button>
                         </div>

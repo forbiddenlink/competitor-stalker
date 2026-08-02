@@ -64,7 +64,7 @@ export const ALERT_TYPES = [
 // Navigation items
 export const NAV_ITEMS = [
     { path: '/', label: 'Dashboard', icon: 'LayoutDashboard' },
-    { path: '/competitors', label: 'Dossiers', icon: 'Users' },
+    { path: '/dossier', label: 'Dossiers', icon: 'Users' },
     { path: '/positioning', label: 'Positioning', icon: 'Crosshair' },
     { path: '/matrix', label: 'Feature Matrix', icon: 'Grid3X3' },
     { path: '/pricing', label: 'Pricing Intel', icon: 'DollarSign' },
