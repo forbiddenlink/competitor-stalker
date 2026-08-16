@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/forbiddenlink/competitor-stalker/compare/v1.0.0...v1.0.1) (2026-08-16)
+
+
+### Bug Fixes
+
+* **security:** pin transitive deps to patched versions (Dependabot high alerts) ([b722c6f](https://github.com/forbiddenlink/competitor-stalker/commit/b722c6fbc15a91bcbfb52978165685c08e08418e))
+
 ## 1.0.0 (2026-08-02)
 
 
