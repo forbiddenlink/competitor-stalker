@@ -1,0 +1,19 @@
+{
+	"allowedForCodex": true,
+	"automationLevel": "manual",
+	"confidentialContext": "none",
+	"context": "personal",
+	"hosting": ["vercel"],
+	"kind": "app",
+	"lastReviewedAt": "2026-08-27",
+	"lifecycle": "prototype",
+	"observability": [],
+	"ownerContext": "personal",
+	"surface": "product",
+	"systems": ["solo-control-tower", "market-intelligence"],
+	"tags": ["competitor-research", "eslint", "react", "tailwind", "vercel", "vitest"],
+	"urls": {
+		"repository": "https://github.com/forbiddenlink/competitor-stalker"
+	},
+	"notes": "Competitor research app candidate for feeding hq ideas with market and positioning evidence."
+}
