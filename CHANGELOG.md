@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.3](https://github.com/forbiddenlink/competitor-stalker/compare/v1.0.2...v1.0.3) (2026-08-29)
+
+
+### Bug Fixes
+
+* **deps:** move resolution overrides to package.json and add missing patches ([#56](https://github.com/forbiddenlink/competitor-stalker/issues/56)) ([ed1d595](https://github.com/forbiddenlink/competitor-stalker/commit/ed1d595183d567d69cc03d8103459309cae47f73))
+
 ## [1.0.2](https://github.com/forbiddenlink/competitor-stalker/compare/v1.0.1...v1.0.2) (2026-08-29)
 
 
