@@ -55,24 +55,25 @@
   "license": "MIT",
   "pnpm": {
     "overrides": {
-      "rollup": ">=4.59.0",
+      "@eslint/eslintrc>ajv": "^6.14.0",
+      "@opentelemetry/core": "^2.8.0",
+      "ajv": ">=8.18.0",
       "cookie": "^1.0.2",
-      "undici": ">=7.29.0 <8",
-      "systeminformation": ">=5.31.0",
+      "engine.io": ">=6.6.7 <7",
+      "engine.io@6": ">=6.6.7 <7",
+      "eslint>ajv": "^6.14.0",
+      "js-yaml": "^4.2.0",
+      "marked": "^18.0.2",
       "minimatch": ">=10.2.3",
       "path-to-regexp": ">=6.3.0",
-      "ajv": ">=8.18.0",
-      "@eslint/eslintrc>ajv": "^6.14.0",
-      "eslint>ajv": "^6.14.0",
-      "smol-toml": ">=1.6.1",
-      "vite": ">=7.3.2",
-      "sanitize-html": "^2.17.4",
-      "marked": "^18.0.2",
-      "js-yaml": "^4.2.0",
-      "ws": "^8.21.0",
-      "@opentelemetry/core": "^2.8.0",
       "react-router@8": ">=8.3.0 <9",
-      "engine.io@6": ">=6.6.7 <7"
+      "rollup": ">=4.59.0",
+      "sanitize-html": "^2.17.4",
+      "smol-toml": ">=1.6.1",
+      "systeminformation": ">=5.31.0",
+      "undici": ">=7.29.0 <8",
+      "vite": ">=7.3.2",
+      "ws": "^8.21.0"
     }
   }
 }
