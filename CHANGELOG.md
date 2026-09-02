@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.0.4](https://github.com/forbiddenlink/competitor-stalker/compare/v1.0.3...v1.0.4) (2026-09-02)
+
+
+### Bug Fixes
+
+* **ci:** let pnpm/action-setup read the version from packageManager ([df267c0](https://github.com/forbiddenlink/competitor-stalker/commit/df267c0e9b1ec3f40e125c917590793cf90e2536))
+* **ci:** let pnpm/action-setup read the version from packageManager ([4ac6970](https://github.com/forbiddenlink/competitor-stalker/commit/4ac6970cc55ed20a00dd84b3cde9eaa005ee00a3))
+* **deps:** give every resolution override an upper bound ([fc773bc](https://github.com/forbiddenlink/competitor-stalker/commit/fc773bc9e94f182267c042fa8dde17271d73967f))
+* **security:** pin transitive dependencies flagged by Dependabot ([1d16e0a](https://github.com/forbiddenlink/competitor-stalker/commit/1d16e0ab34c3e1293871ff2132a5a1912ff87882))
+
 ## [1.0.3](https://github.com/forbiddenlink/competitor-stalker/compare/v1.0.2...v1.0.3) (2026-08-29)
 
 
