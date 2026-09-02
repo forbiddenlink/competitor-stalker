@@ -76,5 +76,6 @@
       "ws": "^8.21.0",
       "browserslist": ">=4.28.7 <5"
     }
-  }
+  },
+  "packageManager": "pnpm@10.18.0"
 }
