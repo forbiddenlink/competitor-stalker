@@ -7,22 +7,22 @@ settings:
 overrides:
   '@eslint/eslintrc>ajv': ^6.14.0
   '@opentelemetry/core': ^2.8.0
-  ajv: '>=8.18.0'
+  ajv: '>=8.18.0 <9'
   cookie: ^1.0.2
   engine.io: '>=6.6.7 <7'
   engine.io@6: '>=6.6.7 <7'
   eslint>ajv: ^6.14.0
   js-yaml: ^4.2.0
   marked: ^18.0.2
-  minimatch: '>=10.2.3'
-  path-to-regexp: '>=6.3.0'
+  minimatch: '>=10.2.3 <11'
+  path-to-regexp: '>=6.3.0 <9'
   react-router@8: '>=8.3.0 <9'
-  rollup: '>=4.59.0'
+  rollup: '>=4.59.0 <5'
   sanitize-html: ^2.17.4
-  smol-toml: '>=1.6.1'
-  systeminformation: '>=5.31.0'
+  smol-toml: '>=1.6.1 <2'
+  systeminformation: '>=5.31.0 <6'
   undici: '>=7.29.0 <8'
-  vite: '>=7.3.2'
+  vite: '>=7.3.2 <9'
   ws: ^8.21.0
   browserslist: '>=4.28.7 <5'
 
@@ -119,7 +119,7 @@ importers:
         specifier: ^8.67.0
         version: 8.68.0(eslint@10.9.1(jiti@2.7.0))(typescript@6.0.3)
       vite:
-        specifier: '>=7.3.2'
+        specifier: '>=7.3.2 <9'
         version: 8.2.0(@types/node@26.3.0)(esbuild@0.27.0)(jiti@2.7.0)(terser@5.50.0)(tsx@4.21.0)
       vitest:
         specifier: ^4.1.11
@@ -646,7 +646,7 @@ packages:
     resolution: {integrity: sha512-MfPp06CjRLfXQ3wY0R8vJDYBy/MvVcc9OulEfR0B8Iv9ko+GCNaRZ+EpJYFl27LhKsZK0o420sYCRHCjfCgeUg==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
-      rollup: '>=4.59.0'
+      rollup: '>=4.59.0 <5'
     peerDependenciesMeta:
       rollup:
         optional: true
@@ -945,7 +945,7 @@ packages:
     peerDependencies:
       '@rolldown/plugin-babel': ^0.1.7 || ^0.2.0
       babel-plugin-react-compiler: ^1.0.0
-      vite: '>=7.3.2'
+      vite: '>=7.3.2 <9'
     peerDependenciesMeta:
       '@rolldown/plugin-babel':
         optional: true
@@ -968,7 +968,7 @@ packages:
     resolution: {integrity: sha512-2XJVD55d1o5AZous5CCGKS74g/riOj9odEt2bQpCVZeblHyHdnMeFl4jl0XjU21stf4mbjUkew2eXQZt65g5CQ==}
     peerDependencies:
       msw: ^2.4.9
-      vite: '>=7.3.2'
+      vite: '>=7.3.2 <9'
     peerDependenciesMeta:
       msw:
         optional: true
@@ -2151,7 +2151,7 @@ packages:
       '@vitest/ui': 4.1.11
       happy-dom: '*'
       jsdom: '*'
-      vite: '>=7.3.2'
+      vite: '>=7.3.2 <9'
     peerDependenciesMeta:
       '@edge-runtime/vm':
         optional: true
