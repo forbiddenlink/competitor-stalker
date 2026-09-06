@@ -58,10 +58,12 @@
       "@eslint/eslintrc>ajv": "^6.14.0",
       "@opentelemetry/core": "^2.8.0",
       "ajv": ">=8.18.0 <9",
+      "browserslist": ">=4.28.7 <5",
       "cookie": "^1.0.2",
       "engine.io": ">=6.6.7 <7",
       "engine.io@6": ">=6.6.7 <7",
       "eslint>ajv": "^6.14.0",
+      "fast-uri": ">=3.1.6 <4",
       "js-yaml": "^4.2.0",
       "marked": "^18.0.2",
       "minimatch": ">=10.2.3 <11",
@@ -73,8 +75,7 @@
       "systeminformation": ">=5.31.0 <6",
       "undici": ">=7.29.0 <8",
       "vite": ">=7.3.2 <9",
-      "ws": "^8.21.0",
-      "browserslist": ">=4.28.7 <5"
+      "ws": "^8.21.0"
     }
   },
   "packageManager": "pnpm@10.34.5"
