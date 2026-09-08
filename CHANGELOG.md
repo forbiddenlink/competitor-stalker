@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.5](https://github.com/forbiddenlink/competitor-stalker/compare/v1.0.4...v1.0.5) (2026-09-08)
+
+
+### Bug Fixes
+
+* preserve cleared data across remounts ([#74](https://github.com/forbiddenlink/competitor-stalker/issues/74)) ([29b2672](https://github.com/forbiddenlink/competitor-stalker/commit/29b26728a3e8eb3bd247f41cc53c7d7fa9e2e5ed))
+* **security:** pin transitive dependencies off their open advisories ([#68](https://github.com/forbiddenlink/competitor-stalker/issues/68)) ([5731b83](https://github.com/forbiddenlink/competitor-stalker/commit/5731b83a149963c486b38db8d98392d33d4ae019))
+
 ## [1.0.4](https://github.com/forbiddenlink/competitor-stalker/compare/v1.0.3...v1.0.4) (2026-09-02)
 
 
