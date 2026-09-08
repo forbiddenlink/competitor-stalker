@@ -35,7 +35,7 @@ const DEFAULT_PROFILE: BusinessProfile = {
 export const CompetitorProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [competitors, setCompetitors] = useLocalStorage<Competitor[]>('stalker_competitors', []);
     const [userProfile, setUserProfile] = useLocalStorage<BusinessProfile>('stalker_profile', DEFAULT_PROFILE);
-    const { snapshots, getSnapshots, addSnapshot, deleteSnapshot } = useSnapshots();
+    const { snapshots, getSnapshots, addSnapshot, deleteSnapshot, clearSnapshots } = useSnapshots();
 
     // Migration: Fix legacy array features (runs once on mount)
     const hasMigrated = useRef(false);
@@ -56,6 +56,13 @@ export const CompetitorProvider: React.FC<{ children: ReactNode }> = ({ children
     // Auto-seed on first load if no data exists
     useEffect(() => {
         if (hasSeeded.current) return;
+        hasSeeded.current = true;
+        try {
+            if (localStorage.getItem('stalker_competitors') !== null ||
+                localStorage.getItem('stalker_profile') !== null) return;
+        } catch {
+            // Storage may be unavailable; keep the in-memory first-load behavior.
+        }
         if (competitors.length === 0 && !userProfile.name) {
             hasSeeded.current = true;
             setCompetitors(SEED_COMPETITORS);
@@ -95,6 +102,7 @@ export const CompetitorProvider: React.FC<{ children: ReactNode }> = ({ children
     };
 
     const clearAllData = () => {
+        clearSnapshots();
         setCompetitors([]);
         setUserProfile(DEFAULT_PROFILE);
     };
