@@ -18,6 +18,7 @@ export interface UseSnapshotsReturn {
     getSnapshots: (competitorId: string) => Snapshot[];
     addSnapshot: (competitorId: string, competitor: Competitor, type: 'auto' | 'milestone', label?: string) => Snapshot;
     deleteSnapshot: (snapshotId: string) => void;
+    clearSnapshots: () => void;
     createSnapshotFromCompetitor: (competitor: Competitor, type: 'auto' | 'milestone', label?: string) => Snapshot;
 }
 
@@ -97,11 +98,14 @@ export const useSnapshots = (): UseSnapshotsReturn => {
         setSnapshots(snapshots.filter(s => s.id !== snapshotId));
     }, [snapshots, setSnapshots]);
 
+    const clearSnapshots = useCallback(() => setSnapshots([]), [setSnapshots]);
+
     return useMemo(() => ({
         snapshots,
+        clearSnapshots,
         getSnapshots,
         addSnapshot,
         deleteSnapshot,
         createSnapshotFromCompetitor,
-    }), [snapshots, getSnapshots, addSnapshot, deleteSnapshot, createSnapshotFromCompetitor]);
+    }), [snapshots, clearSnapshots, getSnapshots, addSnapshot, deleteSnapshot, createSnapshotFromCompetitor]);
 };
