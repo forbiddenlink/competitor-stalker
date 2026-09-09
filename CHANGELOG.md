@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.6](https://github.com/forbiddenlink/competitor-stalker/compare/v1.0.5...v1.0.6) (2026-09-09)
+
+
+### Bug Fixes
+
+* preserve cleared data across remounts ([#75](https://github.com/forbiddenlink/competitor-stalker/issues/75)) ([9cb4cda](https://github.com/forbiddenlink/competitor-stalker/commit/9cb4cda512077bf70abb151b47641aa4efa1dfda))
+
 ## [1.0.5](https://github.com/forbiddenlink/competitor-stalker/compare/v1.0.4...v1.0.5) (2026-09-08)
 
 
