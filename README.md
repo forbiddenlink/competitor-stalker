@@ -16,6 +16,7 @@ Production: `https://competitor-stalker.vercel.app`
 ### Analysis Tools
 - **SWOT Analysis** - Strengths, Weaknesses, Opportunities, and Threats for each competitor
 - **Weakness Spotter** - Track identified vulnerabilities with severity ratings and sources
+- **Historical Tracking** - Automatic and milestone snapshots per competitor, with a timeline and diff view
 - **Counter Strategy** - Develop and track strategic responses to competitive threats
 - **Social Monitor** - Track competitor social media handles and presence
 
@@ -61,9 +62,9 @@ You can reset to this sample data or clear all data from **Settings**.
 ## Tech Stack
 
 - **Framework**: React 19 with TypeScript 5.9
-- **Build Tool**: Vite 7
+- **Build Tool**: Vite 8
 - **Styling**: Tailwind CSS 4 with PostCSS
-- **Routing**: React Router 7
+- **Routing**: React Router 8
 - **Icons**: Lucide React
 - **Testing**: Vitest + React Testing Library
 - **Storage**: Browser localStorage (no backend required)
@@ -74,13 +75,13 @@ You can reset to this sample data or clear all data from **Settings**.
 ### Installation
 
 ```bash
-npm install
+pnpm install
 ```
 
 ### Development
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 Starts the dev server at `http://localhost:5173` with hot module replacement.
@@ -88,7 +89,7 @@ Starts the dev server at `http://localhost:5173` with hot module replacement.
 ### Build
 
 ```bash
-npm run build
+pnpm build
 ```
 
 Builds for production with TypeScript checking and optimization.
@@ -99,7 +100,7 @@ Builds for production with TypeScript checking and optimization.
 is prerendered with canonical/OpenGraph/Twitter metadata:
 
 ```bash
-SITE_URL=https://your-domain.com npm run build
+SITE_URL=https://your-domain.com pnpm build
 ```
 
 If `SITE_URL` is not provided, it defaults to `https://competitor-stalker.vercel.app`.
@@ -111,21 +112,21 @@ This supports crawlable route metadata for:
 ### Test
 
 ```bash
-npm test
+pnpm test:run
 ```
 
-Runs the test suite with Vitest. Use `npm test -- --coverage` for coverage report.
+Runs the test suite with Vitest. Use `pnpm test:coverage` for coverage report, or `pnpm test` to watch.
 
 ### Lint
 
 ```bash
-npm run lint
+pnpm lint
 ```
 
 ### Bundle Budgets
 
 ```bash
-npm run check:bundles
+pnpm check:bundles
 ```
 
 Enforces max bundle sizes for entry JS/CSS and runtime JS chunks.
@@ -146,7 +147,7 @@ Current target thresholds (p75-aligned):
 Optional sampling configuration:
 
 ```bash
-VITE_WEB_VITALS_SAMPLE_RATE=0.25 npm run build
+VITE_WEB_VITALS_SAMPLE_RATE=0.25 pnpm build
 ```
 
 ## Project Structure
@@ -180,6 +181,7 @@ src/
 All data is stored in browser localStorage:
 - `stalker_competitors` - Competitor data
 - `stalker_profile` - Your company profile
+- `stalker_snapshots` - Historical snapshots for change tracking
 
 ## Future Enhancements
 
