@@ -8,11 +8,11 @@ Live at https://competitor-stalker.vercel.app.
 
 ## Stack
 
-- React 19, TypeScript 5.9, Vite 8 (README says Vite 7; package.json pins `^8.2.2`)
+- React 19, TypeScript 6.0, Vite 8
 - Tailwind CSS 4 + PostCSS, React Router 8
 - Vitest + React Testing Library + jsdom
 - ESLint flat config (`eslint.config.js`)
-- pnpm (`packageManager: pnpm@10.18.0`, pnpm-lock.yaml)
+- pnpm (`packageManager: pnpm@10.34.5`, pnpm-lock.yaml)
 - Vercel: static build + one serverless function + prerendered route HTML
 
 ## Commands
