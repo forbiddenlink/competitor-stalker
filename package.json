@@ -75,7 +75,8 @@
       "systeminformation": ">=5.31.0 <6",
       "undici": ">=7.29.1 <8",
       "vite": ">=7.3.2 <9",
-      "ws": "^8.21.0"
+      "ws": "^8.21.0",
+      "brace-expansion": ">=5.0.12 <6"
     }
   },
   "packageManager": "pnpm@10.34.5"
