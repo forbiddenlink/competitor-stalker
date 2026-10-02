@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.7](https://github.com/forbiddenlink/competitor-stalker/compare/v1.0.6...v1.0.7) (2026-10-02)
+
+
+### Bug Fixes
+
+* **api:** close SSRF guard bypasses and harden open scrape proxy ([#84](https://github.com/forbiddenlink/competitor-stalker/issues/84)) ([1eb7cc6](https://github.com/forbiddenlink/competitor-stalker/commit/1eb7cc67746c64d8ae5e1d053dab9837a3df7e19))
+* **deps:** apply override fix plan ([#87](https://github.com/forbiddenlink/competitor-stalker/issues/87)) ([505eb8b](https://github.com/forbiddenlink/competitor-stalker/commit/505eb8ba73546dc11b120e439419c1ca0fbaaf79))
+* **deps:** raise stale override floors ([#86](https://github.com/forbiddenlink/competitor-stalker/issues/86)) ([e2ab2fd](https://github.com/forbiddenlink/competitor-stalker/commit/e2ab2fdcf3b4038a5895495230fa4a826f50dd58))
+
 ## [1.0.6](https://github.com/forbiddenlink/competitor-stalker/compare/v1.0.5...v1.0.6) (2026-09-09)
 
 
