@@ -11,14 +11,13 @@ import {
     Menu,
     X,
     ChevronRight,
-    Activity,
-    Shield,
     Crosshair,
     Search,
     Settings,
     SquareStack,
 } from 'lucide-react';
 import { Link, NavLink, useLocation } from 'react-router';
+import { useCompetitors } from '../../hooks/useCompetitors';
 import { SearchCommand } from '../common/SearchCommand';
 
 interface NavItemProps {
@@ -37,7 +36,7 @@ const NavItem: React.FC<NavItemProps> = ({ icon: Icon, label, to, badge, onClick
             group relative flex items-center gap-3 h-10 px-3 rounded-[var(--radius-control)]
             transition-all duration-150 ease-out
             ${isActive
-                ? 'bg-[var(--bg-surface)] text-[var(--text-primary)]'
+                ? 'bg-[var(--accent-brand-muted)] text-[var(--accent-brand-soft)]'
                 : 'text-[var(--text-muted)] hover:text-[var(--text-secondary)] hover:bg-[var(--bg-hover)]'
             }
         `}
@@ -79,8 +78,35 @@ const NavGroup: React.FC<NavGroupProps> = ({ label, children }) => (
 );
 
 export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const { storageError } = useCompetitors();
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const [isDesktop, setIsDesktop] = useState(() => window.matchMedia('(min-width: 1024px)').matches);
+    const sidebarRef = useRef<HTMLElement>(null);
+    const menuRef = useRef<HTMLButtonElement>(null);
+    useEffect(() => {
+        const media = window.matchMedia('(min-width: 1024px)');
+        const changed = (): void => setIsDesktop(media.matches);
+        media.addEventListener('change', changed);
+        return () => media.removeEventListener('change', changed);
+    }, []);
+    useEffect(() => {
+        if (!isSidebarOpen || isDesktop) return;
+        const trigger = menuRef.current;
+        sidebarRef.current?.querySelector<HTMLElement>('a[href]')?.focus();
+        return () => trigger?.focus();
+    }, [isSidebarOpen, isDesktop]);
+    const sidebarKeyDown = (e: React.KeyboardEvent): void => {
+        if (isDesktop) return;
+        if (e.key === 'Escape') { setIsSidebarOpen(false); return; }
+        if (e.key !== 'Tab') return;
+        const items = sidebarRef.current?.querySelectorAll<HTMLElement>('a[href], button:not([disabled])');
+        if (!items?.length) return;
+        const first = items[0];
+        const last = items[items.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    };
     const location = useLocation();
     const prevPathnameRef = useRef(location.pathname);
 
@@ -133,6 +159,12 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 
             {/* Sidebar */}
             <aside
+                ref={sidebarRef}
+                inert={!isDesktop && !isSidebarOpen}
+                role={!isDesktop && isSidebarOpen ? 'dialog' : undefined}
+                aria-modal={!isDesktop && isSidebarOpen ? true : undefined}
+                aria-label="Research navigation"
+                onKeyDown={sidebarKeyDown}
                 className={`
                     fixed lg:relative inset-y-0 left-0 z-50
                     flex flex-col bg-[var(--bg-primary)] border-r border-[var(--border-default)]
@@ -143,8 +175,8 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
             >
                 {/* Logo */}
                 <div className="flex items-center gap-3 px-4 h-16 border-b border-[var(--border-subtle)]">
-                    <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-br from-[var(--accent-brand)] to-[var(--accent-info)] shadow-lg">
-                        <Crosshair className="text-[var(--text-primary)]" size={18} strokeWidth={2.5} />
+                    <div className="flex items-center justify-center w-9 h-9 rounded-[var(--radius-control)] bg-[var(--accent-brand)]">
+                        <Crosshair className="text-[var(--text-inverse)]" size={18} strokeWidth={2.5} />
                     </div>
                     <div className="flex flex-col">
                         <span className="text-base font-semibold tracking-tight">Stalker</span>
@@ -156,13 +188,10 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                 <div className="px-4 py-3 border-b border-[var(--border-subtle)] bg-[var(--bg-secondary)]">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                            <span className="status-dot status-dot-success animate-pulse-soft" />
-                            <span className="text-xs text-[var(--text-secondary)]">System Active</span>
+                            <span className="status-dot status-dot-success" />
+                            <span className="text-xs text-[var(--text-secondary)]">Local workspace</span>
                         </div>
-                        <span className="badge badge-brand">
-                            <Shield size={10} />
-                            L5
-                        </span>
+                        <span className="text-[10px] text-[var(--text-muted)]">Browser storage</span>
                     </div>
                 </div>
 
@@ -194,15 +223,15 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 
                 {/* User Profile */}
                 <div className="p-3 border-t border-[var(--border-subtle)]">
-                    <div className="flex items-center gap-3 p-2 rounded-lg hover:bg-[var(--bg-hover)] transition-colors cursor-pointer">
+                    <div className="flex items-center gap-3 p-2 rounded-lg transition-colors">
                         <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-[var(--bg-surface)] border border-[var(--border-default)]">
                             <span className="text-xs font-semibold text-[var(--text-secondary)]">OP</span>
                         </div>
                         <div className="flex-1 min-w-0">
-                            <div className="text-sm font-medium truncate">Operator</div>
-                            <div className="text-xs text-[var(--text-muted)] truncate">Active Session</div>
+                            <div className="text-sm font-medium truncate">Research workspace</div>
+                            <div className="text-xs text-[var(--text-muted)] truncate">Saved in this browser</div>
                         </div>
-                        <Activity size={14} className="text-[var(--accent-success)] animate-pulse-soft" />
+
                     </div>
                 </div>
             </aside>
@@ -213,23 +242,27 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                 <header className="h-16 flex items-center justify-between px-6 border-b border-[var(--border-subtle)] bg-[var(--bg-primary)]/80 backdrop-blur-lg">
                     <div className="flex items-center gap-4">
                         <button
+                            ref={menuRef}
+                            aria-expanded={isSidebarOpen}
                             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                            className="p-2 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-hover)] transition-all"
+                            className="lg:hidden p-2 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-hover)] transition-all"
                             aria-label={isSidebarOpen ? "Close sidebar" : "Open sidebar"}
                         >
                             {isSidebarOpen ? <X size={18} /> : <Menu size={18} />}
                         </button>
+                        <span className="section-label hidden lg:inline">Competitor research / Workspace</span>
                     </div>
 
                     <div className="flex items-center gap-3">
                         {/* Search Button */}
                         <button
                             onClick={() => setIsSearchOpen(true)}
+                            aria-label="Search workspace ⌘K"
                             className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-[var(--border-default)] bg-[var(--bg-secondary)] hover:bg-[var(--bg-tertiary)] transition-colors"
                         >
                             <Search className="w-4 h-4 text-[var(--text-muted)]" />
-                            <span className="hidden sm:inline text-sm text-[var(--text-muted)]">Search...</span>
-                            <kbd className="hidden sm:inline px-1.5 py-0.5 text-[10px] text-[var(--text-subtle)] bg-[var(--bg-surface)] border border-[var(--border-default)] rounded">
+                            <span className="hidden sm:inline text-sm text-[var(--text-muted)]">Search workspace</span>
+                            <kbd aria-hidden="true" className="hidden sm:inline px-1.5 py-0.5 text-[10px] text-[var(--text-subtle)] bg-[var(--bg-surface)] border border-[var(--border-default)] rounded">
                                 ⌘K
                             </kbd>
                         </button>
@@ -237,21 +270,18 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                         {/* Status Indicator */}
                         <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-[var(--border-default)] bg-[var(--bg-secondary)]">
                             <span className="relative flex h-2 w-2">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent-success)] opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent-success)]"></span>
                             </span>
-                            <span className="hidden sm:inline text-xs font-medium text-[var(--text-secondary)]">Monitoring</span>
+                            <span className="text-xs font-medium text-[var(--text-secondary)]">Browser-local</span>
                         </div>
                     </div>
                 </header>
 
                 {/* Page Content */}
                 <div className="flex-1 overflow-auto">
-                    {/* Subtle gradient overlay */}
-                    <div className="fixed inset-0 pointer-events-none bg-gradient-radial opacity-50" />
-
                     <div className="relative z-10 max-w-[1200px] mx-auto w-full px-5 lg:px-8 py-8 lg:py-10">
-                        {children}
+                        {storageError && <div role="alert" className="p-4 mb-4 border border-[var(--accent-danger)] text-[var(--accent-danger)]">{storageError} <Link to="/settings" className="underline">Open backup controls</Link></div>}
+                    {children}
                     </div>
                 </div>
 

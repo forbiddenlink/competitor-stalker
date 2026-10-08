@@ -1,5 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { useLocalStorage } from './useLocalStorage';
+import { normalizeSnapshots } from '../utils/validation';
 import { STORAGE_KEYS } from '../constants';
 import type { Snapshot, Competitor } from '../types';
 
@@ -15,15 +16,18 @@ const generateId = (): string => {
 
 export interface UseSnapshotsReturn {
     snapshots: Snapshot[];
+    storageError: string | null;
+    rawStorage: string | null;
     getSnapshots: (competitorId: string) => Snapshot[];
     addSnapshot: (competitorId: string, competitor: Competitor, type: 'auto' | 'milestone', label?: string) => Snapshot;
     deleteSnapshot: (snapshotId: string) => void;
+    replaceSnapshots: (snapshots: Snapshot[]) => void;
     clearSnapshots: () => void;
     createSnapshotFromCompetitor: (competitor: Competitor, type: 'auto' | 'milestone', label?: string) => Snapshot;
 }
 
 export const useSnapshots = (): UseSnapshotsReturn => {
-    const [snapshots, setSnapshots] = useLocalStorage<Snapshot[]>(STORAGE_KEYS.SNAPSHOTS, []);
+    const [snapshots, setSnapshots, storageError, replaceSnapshots, rawStorage] = useLocalStorage<Snapshot[]>(STORAGE_KEYS.SNAPSHOTS, [], normalizeSnapshots);
 
     /**
      * Get all snapshots for a specific competitor, sorted by timestamp descending
@@ -68,7 +72,7 @@ export const useSnapshots = (): UseSnapshotsReturn => {
             timestamp: new Date().toISOString(),
             type,
             label,
-            data: { ...competitor }, // Deep copy the competitor data
+            data: structuredClone(competitor),
         };
     }, []);
 
@@ -83,29 +87,29 @@ export const useSnapshots = (): UseSnapshotsReturn => {
     ): Snapshot => {
         const snapshot = createSnapshotFromCompetitor(competitor, type, label);
 
-        const newSnapshots = [...snapshots, snapshot];
-        const prunedSnapshots = pruneSnapshots(newSnapshots, competitorId);
-
-        setSnapshots(prunedSnapshots);
+        setSnapshots(current => pruneSnapshots([...current, snapshot], competitorId));
 
         return snapshot;
-    }, [snapshots, setSnapshots, createSnapshotFromCompetitor, pruneSnapshots]);
+    }, [setSnapshots, createSnapshotFromCompetitor, pruneSnapshots]);
 
     /**
      * Delete a specific snapshot by ID
      */
     const deleteSnapshot = useCallback((snapshotId: string): void => {
-        setSnapshots(snapshots.filter(s => s.id !== snapshotId));
-    }, [snapshots, setSnapshots]);
+        setSnapshots(current => current.filter(s => s.id !== snapshotId));
+    }, [setSnapshots]);
 
-    const clearSnapshots = useCallback(() => setSnapshots([]), [setSnapshots]);
+    const clearSnapshots = useCallback(() => replaceSnapshots([]), [replaceSnapshots]);
 
     return useMemo(() => ({
         snapshots,
+        storageError,
+        rawStorage,
         clearSnapshots,
         getSnapshots,
         addSnapshot,
         deleteSnapshot,
+        replaceSnapshots,
         createSnapshotFromCompetitor,
-    }), [snapshots, clearSnapshots, getSnapshots, addSnapshot, deleteSnapshot, createSnapshotFromCompetitor]);
+    }), [snapshots, storageError, rawStorage, clearSnapshots, replaceSnapshots, getSnapshots, addSnapshot, deleteSnapshot, createSnapshotFromCompetitor]);
 };

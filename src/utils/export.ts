@@ -2,13 +2,15 @@
  * Import/Export utilities for competitor data
  */
 
-import type { Competitor, BusinessProfile } from '../types';
+import type { Competitor, BusinessProfile, Snapshot } from '../types';
+import { normalizeCompetitors, normalizeProfile, normalizeSnapshots } from './validation';
 
 export interface ExportData {
     version: string;
     exportedAt: string;
     competitors: Competitor[];
     userProfile: BusinessProfile;
+    snapshots?: Snapshot[];
 }
 
 /**
@@ -16,13 +18,15 @@ export interface ExportData {
  */
 export function exportToJson(
     competitors: Competitor[],
-    userProfile: BusinessProfile
+    userProfile: BusinessProfile,
+    snapshots?: Snapshot[]
 ): string {
     const data: ExportData = {
         version: '1.0',
         exportedAt: new Date().toISOString(),
         competitors,
         userProfile,
+        ...(snapshots === undefined ? {} : { snapshots }),
     };
     return JSON.stringify(data, null, 2);
 }
@@ -66,7 +70,8 @@ export function exportToCsv(competitors: Competitor[]): string {
     ]);
 
     const escapeCsv = (field: string) => {
-        if (field.includes(',') || field.includes('"') || field.includes('\n')) {
+        if (/^[\s]*[=+@-]/.test(field) || /^[\t\r\n]/.test(field)) field = `'${field}`;
+        if (field.includes(',') || field.includes('"') || field.includes('\n') || field.includes('\r')) {
             return `"${field.replace(/"/g, '""')}"`;
         }
         return field;
@@ -106,28 +111,15 @@ export function parseImportedJson(content: string): ExportData | null {
     try {
         const data = JSON.parse(content);
 
-        // Validate structure
-        if (!data.competitors || !Array.isArray(data.competitors)) {
-            console.error('Invalid import: missing competitors array');
-            return null;
-        }
-
-        if (!data.userProfile || typeof data.userProfile !== 'object') {
-            console.error('Invalid import: missing userProfile');
-            return null;
-        }
-
-        // Validate each competitor has required fields
-        for (const comp of data.competitors) {
-            if (!comp.id || !comp.name) {
-                console.error('Invalid import: competitor missing id or name');
-                return null;
-            }
-        }
-
-        return data as ExportData;
-    } catch (error) {
-        console.error('Failed to parse import data:', error);
+        if (!data || typeof data !== 'object' || Array.isArray(data)) return null;
+        const competitors = normalizeCompetitors(data.competitors);
+        const userProfile = normalizeProfile(data.userProfile);
+        if (!competitors || !userProfile) return null;
+        const snapshots = data.snapshots === undefined ? undefined : normalizeSnapshots(data.snapshots);
+        if (snapshots === null) return null;
+        return { ...data, competitors, userProfile, ...(snapshots === undefined ? {} : { snapshots }) } as ExportData;
+    } catch {
+        console.error('Failed to parse import data');
         return null;
     }
 }

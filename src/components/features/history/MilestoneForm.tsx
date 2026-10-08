@@ -65,6 +65,7 @@ export const MilestoneForm: React.FC<MilestoneFormProps> = ({ competitorId, onSa
                 <button
                     type="button"
                     onClick={onCancel}
+                    aria-label="Cancel milestone"
                     className="p-1 rounded text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-hover)] transition-colors"
                 >
                     <X size={16} />

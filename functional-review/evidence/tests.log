@@ -1,0 +1,8 @@
+
+ RUN  v4.1.11 /Volumes/LizsDisk/competitor-stalker
+
+
+ Test Files  18 passed (18)
+      Tests  222 passed (222)
+   Start at  14:39:53
+   Duration  100.23s (transform 1.59s, setup 18.06s, import 7.41s, tests 4.29s, environment 64.08s)

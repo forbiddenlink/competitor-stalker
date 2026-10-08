@@ -6,6 +6,14 @@ import { Badge } from '../../common/Badge';
 import { Plus, DollarSign } from 'lucide-react';
 import type { PricingPlan } from '../../../types';
 
+// Plan objects retain their identity across local row edits/deletions.
+const planKeys = new WeakMap<PricingPlan, string>();
+const planKey = (plan: PricingPlan): string => {
+    let key = planKeys.get(plan);
+    if (!key) { key = crypto.randomUUID(); planKeys.set(plan, key); }
+    return key;
+};
+
 export const PricingIntel: React.FC = () => {
     const { userProfile, competitors, updateUserProfile, updateCompetitor } = useCompetitors();
 
@@ -69,7 +77,7 @@ export const PricingIntel: React.FC = () => {
         <div className="space-y-10 animate-fade-in">
             {/* Page Header */}
             <div>
-                <h1 className="text-2xl font-semibold tracking-tight">
+                <h1 className="workspace-title">
                     Pricing Intelligence
                 </h1>
                 <p className="text-sm text-[var(--text-muted)] mt-1">
@@ -79,7 +87,7 @@ export const PricingIntel: React.FC = () => {
 
             {/* Your Business Section */}
             <section className="space-y-5">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-wrap gap-3 items-center justify-between">
                     <div className="flex items-center gap-3">
                         <h2 className="text-lg font-semibold text-[var(--text-primary)]">
                             {userProfile.name}
@@ -105,7 +113,7 @@ export const PricingIntel: React.FC = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                         {userProfile.pricingModels.map((plan, idx) => (
                             <PricingCard
-                                key={`user-plan-${idx}`}
+                                key={planKey(plan)}
                                 plan={plan}
                                 isEditable={true}
                                 onSave={(updated) => handleUpdateUserPlan(idx, updated)}
@@ -122,7 +130,7 @@ export const PricingIntel: React.FC = () => {
             {/* Competitors Section */}
             {competitors.map(competitor => (
                 <section key={competitor.id} className="space-y-5">
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-wrap gap-3 items-center justify-between">
                         <div className="flex items-center gap-3">
                             <h2 className="text-lg font-semibold text-[var(--text-primary)]">
                                 {competitor.name}
@@ -156,7 +164,7 @@ export const PricingIntel: React.FC = () => {
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                             {competitor.pricingModels.map((plan, idx) => (
                                 <PricingCard
-                                    key={`${competitor.id}-plan-${idx}`}
+                                    key={planKey(plan)}
                                     plan={plan}
                                     isEditable={true}
                                     onSave={(updated) => handleUpdateCompetitorPlan(competitor.id, idx, updated)}

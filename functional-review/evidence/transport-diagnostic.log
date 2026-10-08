@@ -1,0 +1,75 @@
+
+ RUN  v4.1.11 /Volumes/LizsDisk/competitor-stalker
+
+stderr | src/test/scrape.test.ts > scrape endpoint boundary > pins connections to the validated address without a second DNS lookup
+Page extraction failed TypeError: Cannot read properties of null (reading 'setServername')
+    at TLSSocket.setServername (node:internal/tls/wrap:1207:16)
+    at Object.connect (node:internal/tls/wrap:1929:13)
+    at Agent.createConnection (node:https:363:18)
+    at Agent.createSocket (node:_http_agent:462:26)
+    at Agent.addRequest (node:_http_agent:402:10)
+    at new ClientRequest (node:_http_client:404:16)
+    at request (node:https:629:10)
+    at /Volumes/LizsDisk/competitor-stalker/api/scrape.ts:289:83
+    at new Promise (<anonymous>)
+    at requestPublicPage (/Volumes/LizsDisk/competitor-stalker/api/scrape.ts:288:12)
+
+ ❯ src/test/scrape.test.ts (13 tests | 1 failed | 12 skipped) 26ms
+     × pins connections to the validated address without a second DNS lookup 23ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/test/scrape.test.ts > scrape endpoint boundary > pins connections to the validated address without a second DNS lookup
+AssertionError: expected 500 to be 200 // Object.is equality
+
+- Expected
++ Received
+
+- 200
++ 500
+
+ ❯ src/test/scrape.test.ts:49:67
+     47|     it('pins connections to the validated address without a second DNS…
+     48|         vi.mocked(lookup).mockResolvedValueOnce([{ address: '93.184.21…
+     49|         expect((await call({ url: 'https://example.com' })).code).toBe…
+       |                                                                   ^
+     50|         expect(transport.addresses).toEqual(['93.184.216.34']);
+     51|         expect(lookup).toHaveBeenCalledTimes(1);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+⎯⎯⎯⎯⎯⎯ Unhandled Errors ⎯⎯⎯⎯⎯⎯
+
+Vitest caught 1 unhandled error during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.
+
+⎯⎯⎯⎯⎯ Uncaught Exception ⎯⎯⎯⎯⎯
+Error: connect EPERM 93.184.216.34:443 - Local (0.0.0.0:0)
+ ❯ internalConnect node:net:1111:16
+ ❯ defaultTriggerAsyncIdScope node:internal/async_hooks:472:18
+ ❯ emitLookup node:net:1433:9
+ ❯ lookup api/scrape.ts:292:56
+    290|             signal, agent: false, autoSelectFamily: false,
+    291|             ...(target.protocol === 'https:' && !isIP(target.hostname.…
+    292|             lookup: (_hostname, _options, callback) => callback(null, …
+       |                                                        ^
+    293|             headers: {
+    294|                 'User-Agent': 'Mozilla/5.0 (compatible; CompetitorStal…
+ ❯ node:net:1410:5
+ ❯ defaultTriggerAsyncIdScope node:internal/async_hooks:472:18
+ ❯ lookupAndConnect node:net:1409:3
+ ❯ TLSSocket.Socket.connect node:net:1286:5
+ ❯ Object.connect node:internal/tls/wrap:1911:13
+ ❯ Agent.createConnection node:https:363:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { errno: -1, code: 'EPERM', syscall: 'connect', address: '93.184.216.34', port: 443 }
+This error originated in "src/test/scrape.test.ts" test file. It doesn't mean the error was thrown inside the file itself, but while it was running.
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 12 skipped (13)
+     Errors  1 error
+   Start at  14:23:54
+   Duration  8.00s (transform 251ms, setup 1.09s, import 935ms, tests 26ms, environment 4.99s)

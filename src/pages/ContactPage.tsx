@@ -2,15 +2,15 @@ import { Link } from 'react-router';
 
 const ContactPage: React.FC = () => {
   return (
-    <div className="space-y-8 animate-fade-in max-w-3xl">
+    <div className="reading-page space-y-8 animate-fade-in max-w-3xl">
       <header className="space-y-3">
-        <h1 className="text-2xl font-semibold tracking-tight">Contact</h1>
+        <h1 className="workspace-title">Contact</h1>
         <p className="text-[var(--text-secondary)]">
           Questions, bug reports, and product feedback are welcome. Use the details below to reach the team.
         </p>
       </header>
 
-      <section className="surface-card p-6 space-y-4">
+      <section className="panel p-5 sm:p-6 space-y-4">
         <h2 className="text-lg font-semibold">Support Channels</h2>
         <div className="space-y-2 text-[var(--text-secondary)]">
           <p>
@@ -37,7 +37,7 @@ const ContactPage: React.FC = () => {
         </div>
       </section>
 
-      <section className="surface-card p-6 space-y-3">
+      <section className="border-t border-[var(--border-muted)] pt-6 space-y-3">
         <h2 className="text-lg font-semibold">Response Time</h2>
         <p className="text-[var(--text-secondary)]">
           We typically respond to support requests within one business day. Security reports are prioritized and

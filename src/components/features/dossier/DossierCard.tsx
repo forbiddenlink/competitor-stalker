@@ -30,7 +30,7 @@ export const DossierCard: React.FC<DossierCardProps> = ({ competitor, onEdit }) 
     return (
         <Card
             variant="surface"
-            interactive
+            as="article"
             className="group cursor-pointer"
             padding="none"
             onClick={onEdit}
@@ -60,9 +60,9 @@ export const DossierCard: React.FC<DossierCardProps> = ({ competitor, onEdit }) 
 
                         {/* Name & Website */}
                         <div className="min-w-0">
-                            <h3 className="text-base font-semibold text-[var(--text-primary)] truncate group-hover:text-[var(--accent-brand-soft)] transition-colors">
+                            <h2 className="text-base font-semibold text-[var(--text-primary)] break-words group-hover:text-[var(--accent-brand-soft)] transition-colors">
                                 {competitor.name || 'Unknown'}
-                            </h3>
+                            </h2>
                             {competitor.website && (
                                 <a
                                     href={competitor.website}

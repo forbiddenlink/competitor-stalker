@@ -1,0 +1,58 @@
+
+> competitor-stalker@1.0.6 prebuild /Volumes/LizsDisk/competitor-stalker
+> npm run seo:assets
+
+npm warn Unknown env config "npm-globalconfig". This will error in a future major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown env config "package-import-method". This will error in a future major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown env config "verify-deps-before-run". This will error in a future major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown env config "allow-build". This will error in a future major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown env config "_jsr-registry". This will error in a future major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown env config "global-approve-builds". This will error in a future major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown user config "only-built-dependencies". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown global config "package-import-method". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown global config "allow-build". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown global config "global-approve-builds". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm notice run competitor-stalker@1.0.6 seo:assets
+npm notice run node scripts/generate-seo-assets.mjs
+Generated SEO assets using SITE_URL=https://competitor-stalker.vercel.app
+
+> competitor-stalker@1.0.6 build /Volumes/LizsDisk/competitor-stalker
+> tsc -b && vite build
+
+Both esbuild and oxc options were set. oxc options will be used and esbuild options will be ignored. The following esbuild options were set: `{ legalComments: 'none' }`
+vite v8.2.2 building client environment for production...
+transforming...
+✓ 2025 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                              5.80 kB │ gzip:  1.95 kB
+dist/assets/index-BOVwSKHW.css              60.55 kB │ gzip: 11.66 kB
+dist/assets/rolldown-runtime-LhxUO5vB.js     0.58 kB │ gzip:  0.36 kB
+dist/assets/Card-D0-n75cb.js                 1.30 kB │ gzip:  0.61 kB
+dist/assets/export-Cap4zqwQ.js               1.65 kB │ gzip:  0.89 kB
+dist/assets/PrivacyPolicyPage-BhgBZwNy.js    1.85 kB │ gzip:  0.71 kB
+dist/assets/ContactPage-Z2WuhbzQ.js          1.96 kB │ gzip:  0.67 kB
+dist/assets/Badge-CHOijqEB.js                2.09 kB │ gzip:  0.72 kB
+dist/assets/AboutPage-CQntpFKJ.js            2.11 kB │ gzip:  0.80 kB
+dist/assets/Input-kY39rHdF.js                2.93 kB │ gzip:  0.86 kB
+dist/assets/StrategyPage-Cbaofr8Y.js         5.80 kB │ gzip:  1.90 kB
+dist/assets/PricingPage-DQIHU1SG.js          6.18 kB │ gzip:  1.92 kB
+dist/assets/SocialPage-D6SoMZ9Y.js           6.32 kB │ gzip:  1.99 kB
+dist/assets/WeaknessPage-BcJpmOFt.js         6.34 kB │ gzip:  2.06 kB
+dist/assets/MatrixPage-W1Lmtqus.js           6.61 kB │ gzip:  1.92 kB
+dist/assets/Dashboard-Dr08piae.js            7.49 kB │ gzip:  2.42 kB
+dist/assets/SwotPage-3qVJZCRm.js             7.73 kB │ gzip:  2.16 kB
+dist/assets/AlertsPage--UM8pGIK.js           8.26 kB │ gzip:  2.76 kB
+dist/assets/SettingsPage-LCkb8FEK.js         8.69 kB │ gzip:  2.25 kB
+dist/assets/PositioningPage-CvTDLGpk.js      8.78 kB │ gzip:  2.75 kB
+dist/assets/icons-n7ynoevP.js               23.52 kB │ gzip:  8.62 kB
+dist/assets/DossierPage-WtbfiSZt.js         43.78 kB │ gzip: 10.83 kB
+dist/assets/index-DyWT6uiV.js               50.56 kB │ gzip: 14.24 kB
+dist/assets/vendor-CwJBXJhi.js             263.32 kB │ gzip: 84.70 kB
+
+✓ built in 4.24s
+
+> competitor-stalker@1.0.6 postbuild /Volumes/LizsDisk/competitor-stalker
+> node scripts/prerender-route-html.mjs
+
+Prerendered 14 route HTML files for https://competitor-stalker.vercel.app

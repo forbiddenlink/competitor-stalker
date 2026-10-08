@@ -161,12 +161,14 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
                     {compareMode && (
                         <button
                             type="button"
+                            aria-label={`Select snapshot ${snapshot.id}`}
+                            aria-pressed={isSelected}
                             onClick={onToggleSelect}
                             className={`
                                 flex-shrink-0 w-5 h-5 rounded border flex items-center justify-center
                                 transition-colors
                                 ${isSelected
-                                    ? 'bg-[var(--accent-brand)] border-[var(--accent-brand)] text-[var(--text-primary)]'
+                                    ? 'bg-[var(--accent-brand)] border-[var(--accent-brand)] text-[var(--text-inverse)]'
                                     : 'border-[var(--border-muted)] hover:border-[var(--border-emphasis)]'}
                             `}
                         >
@@ -222,7 +224,7 @@ const SnapshotDetails: React.FC<{ snapshot: Snapshot }> = ({ snapshot }) => {
 };
 
 export const SnapshotTimeline: React.FC<SnapshotTimelineProps> = ({ competitorId, onCompare }) => {
-    const { getSnapshots } = useCompetitors();
+    const { getSnapshots, competitors } = useCompetitors();
     const [selectedIds, setSelectedIds] = useState<string[]>([]);
     const [compareMode, setCompareMode] = useState(false);
 
@@ -277,6 +279,13 @@ export const SnapshotTimeline: React.FC<SnapshotTimelineProps> = ({ competitorId
 
     return (
         <div>
+            {onCompare && competitors.some(c => c.id === competitorId) && (
+                <Button variant="secondary" size="sm" className="mb-4" onClick={() => {
+                    const current = competitors.find(c => c.id === competitorId);
+                    if (!current || !snapshots[0]) return;
+                    onCompare(snapshots[0], { id: `current-${competitorId}`, competitorId, timestamp: current.updatedAt || new Date().toISOString(), type: 'auto', label: 'Current dossier', data: current });
+                }}>Compare with current</Button>
+            )}
             {/* Compare mode controls */}
             {onCompare && (
                 <div className="flex items-center justify-between mb-4 pb-3 border-b border-[var(--border-subtle)]">

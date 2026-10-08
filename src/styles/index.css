@@ -2,55 +2,56 @@
 
 :root {
   /* ═══════════════════════════════════════════════════════════════
-     REFINED INTELLIGENCE THEME - Modern & Professional
+     EDITORIAL RESEARCH WORKSPACE
      ═══════════════════════════════════════════════════════════════ */
 
-  /* Background Scale - Zinc-based for sophistication */
-  --bg-base: #09090b;
-  --bg-primary: #0c0c0f;
-  --bg-secondary: #121218;
-  --bg-tertiary: #18181b;
-  --bg-elevated: #1f1f23;
-  --bg-surface: #27272a;
-  --bg-hover: rgba(255, 255, 255, 0.04);
-  --bg-active: rgba(255, 255, 255, 0.06);
+  /* Warm paper and working surfaces */
+  --bg-base: #f5f3ee;
+  --bg-primary: #eeece5;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f3f2ed;
+  --bg-elevated: #e9e7df;
+  --bg-surface: #e3e1d8;
+  --bg-hover: rgba(32, 40, 35, 0.04);
+  --bg-active: rgba(32, 40, 35, 0.10);
 
   /* Border Scale */
-  --border-subtle: rgba(255, 255, 255, 0.06);
-  --border-default: rgba(255, 255, 255, 0.08);
-  --border-muted: rgba(255, 255, 255, 0.12);
-  --border-emphasis: rgba(255, 255, 255, 0.16);
-  --border-strong: rgba(255, 255, 255, 0.24);
+  --border-subtle: rgba(32, 40, 35, 0.10);
+  --border-default: rgba(32, 40, 35, 0.16);
+  --border-muted: rgba(32, 40, 35, 0.22);
+  --border-emphasis: rgba(32, 40, 35, 0.30);
+  --border-strong: rgba(32, 40, 35, 0.40);
 
   /* Text Scale */
-  --text-primary: #e4e4e7;
-  --text-secondary: #a1a1aa;
-  --text-muted: #71717a;
-  --text-subtle: #52525b;
+  --text-primary: #202823;
+  --text-inverse: #ffffff;
+  --text-secondary: #47534c;
+  --text-muted: #59665e;
+  --text-subtle: #536057;
 
   /* Accent Colors - Refined & Purposeful */
-  --accent-brand: #3b82f6;          /* Primary blue */
-  --accent-brand-soft: #60a5fa;
+  --accent-brand: #2454a0;          /* Primary blue */
+  --accent-brand-soft: #1d4789;
   --accent-brand-muted: rgba(59, 130, 246, 0.15);
 
-  --accent-success: #22c55e;
-  --accent-success-soft: #4ade80;
+  --accent-success: #237449;
+  --accent-success-soft: #20643f;
   --accent-success-muted: rgba(34, 197, 94, 0.15);
 
-  --accent-warning: #f59e0b;
-  --accent-warning-soft: #fbbf24;
+  --accent-warning: #936013;
+  --accent-warning-soft: #825313;
   --accent-warning-muted: rgba(245, 158, 11, 0.15);
 
-  --accent-danger: #ef4444;
-  --accent-danger-soft: #f87171;
+  --accent-danger: #b33e38;
+  --accent-danger-soft: #a93630;
   --accent-danger-muted: rgba(239, 68, 68, 0.15);
 
-  --accent-info: #06b6d4;
-  --accent-info-soft: #22d3ee;
+  --accent-info: #176c7d;
+  --accent-info-soft: #155f6d;
   --accent-info-muted: rgba(6, 182, 212, 0.15);
 
-  --accent-purple: #a855f7;
-  --accent-purple-soft: #c084fc;
+  --accent-purple: #7352a3;
+  --accent-purple-soft: #65458f;
   --accent-purple-muted: rgba(168, 85, 247, 0.15);
 
   /* Threat Level Colors */
@@ -94,9 +95,9 @@
   --radius-xl: 16px;
   --radius-2xl: 20px;
   --radius-full: 9999px;
-  --radius-control: 10px;
-  --radius-card: 12px;
-  --radius-modal: 14px;
+  --radius-control: 6px;
+  --radius-card: 8px;
+  --radius-modal: 10px;
 
   /* Section Rhythm */
   --space-section-mobile: 2rem;
@@ -240,7 +241,7 @@
 
   /* Glass Card - Refined */
   .glass-card {
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--bg-secondary);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--border-subtle);
@@ -364,7 +365,7 @@
     font-family: var(--font-display);
     font-weight: 400;
     letter-spacing: -0.01em;
-    font-style: italic;
+    font-style: normal;
   }
 
   /* Section Label */
@@ -379,13 +380,7 @@
   /* Divider */
   .divider {
     height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      var(--border-muted) 20%,
-      var(--border-muted) 80%,
-      transparent
-    );
+    background: var(--border-default);
   }
 
   /* Focus Ring */
@@ -726,4 +721,73 @@ button {
 button:disabled {
   cursor: not-allowed;
   opacity: 0.5;
+}
+
+/* Workspace hierarchy and motion preferences */
+@layer components {
+  .workspace-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(2rem, 3vw, 2.75rem);
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+  }
+  .workspace-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 40px;
+    padding: 8px 14px;
+    border: 1px solid var(--border-muted);
+    border-radius: var(--radius-control);
+    background: var(--bg-secondary);
+    font-weight: 500;
+  }
+  .workspace-link:hover { background: var(--bg-tertiary); }
+  .workspace-link-primary {
+    background: var(--accent-brand);
+    border-color: var(--accent-brand);
+    color: var(--text-inverse);
+  }
+  .workspace-link-primary:hover { background: var(--accent-brand-soft); }
+  .briefing-row {
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr) auto;
+    gap: 14px;
+    align-items: start;
+    padding: 20px;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .briefing-row:hover { background: var(--bg-tertiary); }
+}
+
+a:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid var(--accent-brand);
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (max-width: 639px) {
+  .dashboard-briefing { gap: 20px; }
+  .dashboard-briefing .kpi-value { font-size: 26px; line-height: 28px; }
+}
+
+.reading-page { line-height: 1.85; }
+.reading-page section p { max-width: 68ch; }
+.reading-page a { overflow-wrap: anywhere; }
+@media print {
+  body, #root { height: auto !important; overflow: visible !important; }
+  aside, header, footer, .print-hidden { display: none !important; }
+  .h-screen, .overflow-hidden, .overflow-auto { height: auto !important; overflow: visible !important; }
+  body:has(.battlecard) * { visibility: hidden; }
+  body:has(.battlecard) .battlecard, body:has(.battlecard) .battlecard * { visibility: visible; }
+  .battlecard { position: absolute; inset: 0; border: 0; }
 }

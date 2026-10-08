@@ -1,0 +1,370 @@
+[
+  {
+    "device": "desktop",
+    "viewport": {
+      "height": 887,
+      "scrollHeight": 1208,
+      "width": 1192,
+      "scrollWidth": 1192
+    },
+    "errors": [],
+    "headings": [
+      "Your competitive landscape.",
+      "Research queue",
+      "Vercel",
+      "Netlify",
+      "Render",
+      "Fly.io",
+      "Heroku",
+      "Make the next move.",
+      "Compare & investigate",
+      "Threat breakdown"
+    ],
+    "links": [
+      {
+        "text": "Skip to main content",
+        "href": "#app-main"
+      },
+      {
+        "text": "Dashboard",
+        "href": "/"
+      },
+      {
+        "text": "Alerts",
+        "href": "/alerts"
+      },
+      {
+        "text": "Competitors",
+        "href": "/dossier"
+      },
+      {
+        "text": "Positioning",
+        "href": "/positioning"
+      },
+      {
+        "text": "Feature Matrix",
+        "href": "/matrix"
+      },
+      {
+        "text": "Pricing Intel",
+        "href": "/pricing"
+      },
+      {
+        "text": "Social Monitor",
+        "href": "/social"
+      },
+      {
+        "text": "Weaknesses",
+        "href": "/weaknesses"
+      },
+      {
+        "text": "Strategy",
+        "href": "/strategy"
+      },
+      {
+        "text": "SWOT Analysis",
+        "href": "/swot"
+      },
+      {
+        "text": "Settings",
+        "href": "/settings"
+      },
+      {
+        "text": " Add a competitor",
+        "href": "/dossier"
+      },
+      {
+        "text": "01VercelHigh threatThe platform for frontend developers, providing speed and reliabilityNo saved dateNo linked sources",
+        "href": "/dossier?competitor=vercel"
+      },
+      {
+        "text": "02NetlifyHigh threatBuild and deploy modern web projects with continuous deploymentNo saved dateNo linked sources",
+        "href": "/dossier?competitor=netlify"
+      },
+      {
+        "text": "03RenderHigh threatCloud application platform that makes it easy to build and run appsNo saved dateNo linked sources",
+        "href": "/dossier?competitor=render"
+      },
+      {
+        "text": "04Fly.ioMedium threatRun your full-stack apps and databases close to your usersNo saved dateNo linked sources",
+        "href": "/dossier?competitor=flyio"
+      },
+      {
+        "text": "05HerokuMedium threatCloud platform for building, delivering, and scaling appsNo saved dateNo linked sources",
+        "href": "/dossier?competitor=heroku"
+      },
+      {
+        "text": "All competitors ",
+        "href": "/dossier"
+      },
+      {
+        "text": "Open strategy board ",
+        "href": "/strategy"
+      },
+      {
+        "text": "Feature comparison15 features across your landscape",
+        "href": "/matrix"
+      },
+      {
+        "text": "Pricing intelligenceCompare recorded plans and packaging",
+        "href": "/pricing"
+      },
+      {
+        "text": "Weakness research23 findings to investigate",
+        "href": "/weaknesses"
+      },
+      {
+        "text": "About",
+        "href": "/about"
+      },
+      {
+        "text": "Contact",
+        "href": "/contact"
+      },
+      {
+        "text": "Privacy Policy",
+        "href": "/privacy-policy"
+      },
+      {
+        "text": "Dashboard",
+        "href": "/"
+      },
+      {
+        "text": "Competitors",
+        "href": "/dossier"
+      },
+      {
+        "text": "Positioning",
+        "href": "/positioning"
+      },
+      {
+        "text": "Feature Matrix",
+        "href": "/matrix"
+      },
+      {
+        "text": "Pricing Intel",
+        "href": "/pricing"
+      },
+      {
+        "text": "Social Monitor",
+        "href": "/social"
+      },
+      {
+        "text": "Weaknesses",
+        "href": "/weaknesses"
+      },
+      {
+        "text": "Alerts",
+        "href": "/alerts"
+      },
+      {
+        "text": "Strategy",
+        "href": "/strategy"
+      },
+      {
+        "text": "SWOT Analysis",
+        "href": "/swot"
+      },
+      {
+        "text": "Settings",
+        "href": "/settings"
+      },
+      {
+        "text": "About",
+        "href": "/about"
+      },
+      {
+        "text": "Contact",
+        "href": "/contact"
+      },
+      {
+        "text": "Privacy Policy",
+        "href": "/privacy-policy"
+      }
+    ]
+  },
+  {
+    "device": "mobile",
+    "viewport": {
+      "height": 731,
+      "scrollHeight": 2204,
+      "width": 390,
+      "scrollWidth": 390
+    },
+    "errors": [],
+    "headings": [
+      "Your competitive landscape.",
+      "Research queue",
+      "Vercel",
+      "Netlify",
+      "Render",
+      "Fly.io",
+      "Heroku",
+      "Make the next move.",
+      "Compare & investigate",
+      "Threat breakdown"
+    ],
+    "links": [
+      {
+        "text": "Skip to main content",
+        "href": "#app-main"
+      },
+      {
+        "text": "Dashboard",
+        "href": "/"
+      },
+      {
+        "text": "Alerts",
+        "href": "/alerts"
+      },
+      {
+        "text": "Competitors",
+        "href": "/dossier"
+      },
+      {
+        "text": "Positioning",
+        "href": "/positioning"
+      },
+      {
+        "text": "Feature Matrix",
+        "href": "/matrix"
+      },
+      {
+        "text": "Pricing Intel",
+        "href": "/pricing"
+      },
+      {
+        "text": "Social Monitor",
+        "href": "/social"
+      },
+      {
+        "text": "Weaknesses",
+        "href": "/weaknesses"
+      },
+      {
+        "text": "Strategy",
+        "href": "/strategy"
+      },
+      {
+        "text": "SWOT Analysis",
+        "href": "/swot"
+      },
+      {
+        "text": "Settings",
+        "href": "/settings"
+      },
+      {
+        "text": " Add a competitor",
+        "href": "/dossier"
+      },
+      {
+        "text": "01VercelHigh threatThe platform for frontend developers, providing speed and reliabilityNo saved dateNo linked sources",
+        "href": "/dossier?competitor=vercel"
+      },
+      {
+        "text": "02NetlifyHigh threatBuild and deploy modern web projects with continuous deploymentNo saved dateNo linked sources",
+        "href": "/dossier?competitor=netlify"
+      },
+      {
+        "text": "03RenderHigh threatCloud application platform that makes it easy to build and run appsNo saved dateNo linked sources",
+        "href": "/dossier?competitor=render"
+      },
+      {
+        "text": "04Fly.ioMedium threatRun your full-stack apps and databases close to your usersNo saved dateNo linked sources",
+        "href": "/dossier?competitor=flyio"
+      },
+      {
+        "text": "05HerokuMedium threatCloud platform for building, delivering, and scaling appsNo saved dateNo linked sources",
+        "href": "/dossier?competitor=heroku"
+      },
+      {
+        "text": "All competitors ",
+        "href": "/dossier"
+      },
+      {
+        "text": "Open strategy board ",
+        "href": "/strategy"
+      },
+      {
+        "text": "Feature comparison15 features across your landscape",
+        "href": "/matrix"
+      },
+      {
+        "text": "Pricing intelligenceCompare recorded plans and packaging",
+        "href": "/pricing"
+      },
+      {
+        "text": "Weakness research23 findings to investigate",
+        "href": "/weaknesses"
+      },
+      {
+        "text": "About",
+        "href": "/about"
+      },
+      {
+        "text": "Contact",
+        "href": "/contact"
+      },
+      {
+        "text": "Privacy Policy",
+        "href": "/privacy-policy"
+      },
+      {
+        "text": "Dashboard",
+        "href": "/"
+      },
+      {
+        "text": "Competitors",
+        "href": "/dossier"
+      },
+      {
+        "text": "Positioning",
+        "href": "/positioning"
+      },
+      {
+        "text": "Feature Matrix",
+        "href": "/matrix"
+      },
+      {
+        "text": "Pricing Intel",
+        "href": "/pricing"
+      },
+      {
+        "text": "Social Monitor",
+        "href": "/social"
+      },
+      {
+        "text": "Weaknesses",
+        "href": "/weaknesses"
+      },
+      {
+        "text": "Alerts",
+        "href": "/alerts"
+      },
+      {
+        "text": "Strategy",
+        "href": "/strategy"
+      },
+      {
+        "text": "SWOT Analysis",
+        "href": "/swot"
+      },
+      {
+        "text": "Settings",
+        "href": "/settings"
+      },
+      {
+        "text": "About",
+        "href": "/about"
+      },
+      {
+        "text": "Contact",
+        "href": "/contact"
+      },
+      {
+        "text": "Privacy Policy",
+        "href": "/privacy-policy"
+      }
+    ]
+  }
+]

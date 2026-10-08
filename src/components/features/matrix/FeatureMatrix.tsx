@@ -87,21 +87,22 @@ export const FeatureMatrix: React.FC = () => {
         <div className="flex flex-col h-full space-y-6">
             <div className="flex justify-between items-end gap-4 flex-wrap">
                 <div>
-                    <h2 className="text-2xl font-semibold tracking-tight text-[var(--text-primary)]">Feature Matrix</h2>
+                    <h1 className="workspace-title text-[var(--text-primary)]">Feature Matrix</h1>
                     <p className="text-sm text-[var(--text-muted)]">Comparative analysis of capabilities.</p>
                 </div>
 
-                <form onSubmit={handleAddFeature} className="flex gap-2">
+                <form onSubmit={handleAddFeature} className="flex gap-2 w-full sm:w-auto">
                     <input
                         type="text"
                         value={newFeatureName}
                         onChange={(e) => setNewFeatureName(e.target.value)}
+                        aria-label="New feature name"
                         placeholder="New feature..."
-                        className="h-10 bg-[var(--bg-secondary)] border border-[var(--border-default)] rounded-[var(--radius-control)] px-3 text-sm text-[var(--text-primary)] focus:border-[var(--accent-info)] outline-none"
+                        className="min-w-0 flex-1 h-10 bg-[var(--bg-secondary)] border border-[var(--border-default)] rounded-[var(--radius-control)] px-3 text-sm text-[var(--text-primary)] focus:border-[var(--accent-info)] outline-none"
                     />
                     <button
                         type="submit"
-                        className="h-10 w-10 flex items-center justify-center bg-[var(--accent-info-muted)] text-[var(--accent-info)] border border-[var(--accent-info)] rounded-[var(--radius-control)] hover:bg-[var(--accent-info-muted)]/80 transition-colors"
+                        className="h-10 w-10 shrink-0 flex items-center justify-center bg-[var(--accent-info-muted)] text-[var(--accent-info)] border border-[var(--accent-info)] rounded-[var(--radius-control)] hover:bg-[var(--accent-info-muted)]/80 transition-colors"
                         aria-label="Add feature"
                     >
                         <Plus size={16} />
@@ -109,11 +110,12 @@ export const FeatureMatrix: React.FC = () => {
                 </form>
             </div>
 
+            <p className="text-xs text-[var(--text-muted)]">Scroll sideways to compare all competitors. Select a status to change it.</p>
             <div className="flex-1 overflow-auto bg-[var(--bg-secondary)] border border-[var(--border-default)] rounded-[var(--radius-card)]">
                 <table className="w-full border-collapse">
                     <thead>
                         <tr>
-                            <th className="sticky top-0 z-20 bg-[var(--bg-primary)] h-11 px-3 text-left font-mono text-xs text-[var(--text-muted)] uppercase border-b border-[var(--border-default)] min-w-[220px]">
+                            <th className="sticky top-0 z-20 bg-[var(--bg-primary)] h-11 px-3 text-left font-mono text-xs text-[var(--text-muted)] uppercase border-b border-[var(--border-default)] min-w-[160px] sticky left-0">
                                 Feature
                             </th>
                             <th className="sticky top-0 z-20 bg-[var(--bg-primary)] h-11 px-3 text-center font-mono text-xs text-[var(--accent-info)] uppercase border-b border-[var(--border-default)] min-w-[140px]">
@@ -153,34 +155,32 @@ export const FeatureMatrix: React.FC = () => {
                                     key={feature}
                                     className="group h-[52px] hover:bg-[var(--bg-hover)] transition-colors border-b border-[var(--border-subtle)]"
                                 >
-                                    <td className="px-3 py-2.5 font-mono text-sm text-[var(--text-primary)] border-r border-[var(--border-subtle)]">
+                                    <td className="sticky left-0 bg-[var(--bg-secondary)] z-10 px-3 py-2.5 font-mono text-sm text-[var(--text-primary)] border-r border-[var(--border-subtle)]">
                                         {feature}
                                     </td>
 
                                     <td
-                                        onClick={() => toggleUserFeature(feature)}
                                         className="px-3 py-2.5 text-center cursor-pointer hover:bg-[var(--bg-hover)] border-r border-[var(--border-subtle)] transition-colors"
                                     >
-                                        <div className="flex justify-center flex-col items-center gap-1">
+                                        <button type="button" onClick={() => toggleUserFeature(feature)} aria-label={`Your Startup: ${feature} — ${userProfile.features[feature] || 'Unknown'}. Change status`} className="flex w-full min-h-10 justify-center flex-col items-center gap-1">
                                             {getIconForStatus(userProfile.features[feature])}
-                                            <span className="text-[10px] uppercase text-[var(--text-muted)] font-mono opacity-0 group-hover:opacity-100 transition-opacity">
-                                                {userProfile.features[feature] || '-'}
+                                            <span className="text-[10px] uppercase text-[var(--text-muted)] font-mono ">
+                                                {userProfile.features[feature] || 'Unknown'}
                                             </span>
-                                        </div>
+                                        </button>
                                     </td>
 
                                     {competitors.map((comp) => (
                                         <td
                                             key={comp.id}
-                                            onClick={() => cycleCompetitorFeature(comp.id, feature)}
                                             className="px-3 py-2.5 text-center cursor-pointer hover:bg-[var(--bg-hover)] border-r border-[var(--border-subtle)] transition-colors"
                                         >
-                                            <div className="flex justify-center flex-col items-center gap-1">
+                                            <button type="button" onClick={() => cycleCompetitorFeature(comp.id, feature)} aria-label={`${comp.name}: ${feature} — ${comp.features[feature] || 'Unknown'}. Change status`} className="flex w-full min-h-10 justify-center flex-col items-center gap-1">
                                                 {getIconForStatus(comp.features[feature])}
-                                                <span className="text-[10px] uppercase text-[var(--text-muted)] font-mono opacity-0 group-hover:opacity-100 transition-opacity">
-                                                    {comp.features[feature] || '-'}
+                                                <span className="text-[10px] uppercase text-[var(--text-muted)] font-mono ">
+                                                    {comp.features[feature] || 'Unknown'}
                                                 </span>
-                                            </div>
+                                            </button>
                                         </td>
                                     ))}
                                 </tr>
@@ -195,7 +195,7 @@ export const FeatureMatrix: React.FC = () => {
                 <span className="flex items-center gap-1"><TrendingUp size={12} className="text-[var(--accent-info)]" /> Better</span>
                 <span className="flex items-center gap-1"><TrendingDown size={12} className="text-[var(--accent-warning)]" /> Worse</span>
                 <span className="flex items-center gap-1"><X size={12} className="text-[var(--accent-danger)]" /> Missing</span>
-                <span className="ml-auto opacity-50">Click cells to toggle status</span>
+                <span className="ml-auto">Activate a status to cycle · Scroll sideways for all competitors</span>
             </div>
         </div>
     );

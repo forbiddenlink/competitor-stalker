@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { X, Scan, Loader2, AlertCircle, CheckCircle } from 'lucide-react';
 import { Button } from '../../common/Button';
 import { Input } from '../../common/Input';
@@ -158,10 +158,28 @@ export const CompetitorForm: React.FC<CompetitorFormProps> = ({
         size: competitor?.size || '',
         estimatedRevenue: competitor?.estimatedRevenue || '',
         notes: competitor?.notes || '',
+        socialHandles: competitor?.socialHandles || {},
     });
     const [scrapedData, setScrapedData] = useState<CompetitorPageData | null>(null);
     const [confirmDelete, setConfirmDelete] = useState(false);
-    const { scrape, loading: scraping, error: scrapeError } = useScraper();
+    const { scrape, loading: scraping, error: scrapeError, reset: resetScrape } = useScraper();
+
+    const modalRef = useRef<HTMLDivElement>(null);
+    const previousFocus = useRef(document.activeElement as HTMLElement | null);
+    useEffect(() => {
+        const previous = previousFocus.current;
+        modalRef.current?.querySelector<HTMLInputElement>('#competitor-name')?.focus();
+        return () => previous?.focus();
+    }, []);
+    const trapFocus = (e: React.KeyboardEvent): void => {
+        if (e.key !== 'Tab') return;
+        const items = modalRef.current?.querySelectorAll<HTMLElement>('button:not([disabled]), input, textarea, select, a[href]');
+        if (!items?.length) return;
+        const first = items[0];
+        const last = items[items.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    };
 
     const websiteInvalid = !!form.website?.trim() && !isValidUrl(form.website.trim());
 
@@ -199,9 +217,10 @@ export const CompetitorForm: React.FC<CompetitorFormProps> = ({
         if (websiteInvalid) return;
 
         const saved: Competitor = {
+            ...competitor,
             id: competitor?.id || crypto.randomUUID(),
             name: form.name.trim(),
-            website: form.website || '',
+            website: form.website?.trim() || '',
             threatLevel: form.threatLevel as ThreatLevel,
             oneLiner: form.oneLiner || '',
             size: form.size || '',
@@ -211,7 +230,7 @@ export const CompetitorForm: React.FC<CompetitorFormProps> = ({
             pricingModels: competitor?.pricingModels || [],
             weaknesses: competitor?.weaknesses || [],
             strategies: competitor?.strategies || [],
-            socialHandles: competitor?.socialHandles || {},
+            socialHandles: form.socialHandles || {},
             positionX: competitor?.positionX,
             positionY: competitor?.positionY,
         };
@@ -219,18 +238,21 @@ export const CompetitorForm: React.FC<CompetitorFormProps> = ({
     };
 
     const updateField = (field: keyof Competitor, value: string) => {
+        if (field === 'website') { resetScrape(); setScrapedData(null); }
         setForm(prev => ({ ...prev, [field]: value }));
     };
 
     return (
         <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+            ref={modalRef}
+            onKeyDown={trapFocus}
             role="dialog"
             aria-modal="true"
             aria-labelledby="competitor-form-title"
         >
             <div
-                className="w-full max-w-lg rounded-xl overflow-hidden animate-fade-in"
+                className="w-full max-w-lg max-h-[calc(100dvh-2rem)] rounded-xl overflow-y-auto animate-fade-in"
                 style={{
                     background: 'var(--bg-primary)',
                     border: '1px solid var(--border-default)'
@@ -254,10 +276,11 @@ export const CompetitorForm: React.FC<CompetitorFormProps> = ({
                 {/* Form */}
                 <form onSubmit={handleSubmit} className="p-6 space-y-4">
                     <div>
-                        <label className="block text-xs font-medium text-[var(--text-muted)] mb-1.5">
+                        <label htmlFor="competitor-name" className="block text-xs font-medium text-[var(--text-muted)] mb-1.5">
                             Company Name *
                         </label>
                         <Input
+                            id="competitor-name"
                             value={form.name || ''}
                             onChange={(e) => updateField('name', e.target.value)}
                             placeholder="e.g. Acme Corp"
@@ -266,12 +289,13 @@ export const CompetitorForm: React.FC<CompetitorFormProps> = ({
                     </div>
 
                     <div>
-                        <label className="block text-xs font-medium text-[var(--text-muted)] mb-1.5">
+                        <label htmlFor="competitor-website" className="block text-xs font-medium text-[var(--text-muted)] mb-1.5">
                             Website
                         </label>
                         <div className="flex gap-2">
                             <Input
-                                value={form.website || ''}
+                                id="competitor-website"
+                            value={form.website || ''}
                                 onChange={(e) => updateField('website', e.target.value)}
                                 placeholder="https://example.com"
                                 className="flex-1"
@@ -307,10 +331,11 @@ export const CompetitorForm: React.FC<CompetitorFormProps> = ({
                     </div>
 
                     <div>
-                        <label className="block text-xs font-medium text-[var(--text-muted)] mb-1.5">
+                        <label htmlFor="competitor-threatLevel" className="block text-xs font-medium text-[var(--text-muted)] mb-1.5">
                             Threat Level
                         </label>
                         <select
+                            id="competitor-threatLevel"
                             value={form.threatLevel}
                             onChange={(e) => updateField('threatLevel', e.target.value)}
                             className="w-full px-3 py-2 rounded-lg text-sm bg-[var(--bg-secondary)] border border-[var(--border-default)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-brand)]"
@@ -323,21 +348,23 @@ export const CompetitorForm: React.FC<CompetitorFormProps> = ({
 
                     <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <label className="block text-xs font-medium text-[var(--text-muted)] mb-1.5">
+                            <label htmlFor="competitor-size" className="block text-xs font-medium text-[var(--text-muted)] mb-1.5">
                                 Company Size
                             </label>
                             <Input
-                                value={form.size || ''}
+                                id="competitor-size"
+                            value={form.size || ''}
                                 onChange={(e) => updateField('size', e.target.value)}
                                 placeholder="e.g. 50-100"
                             />
                         </div>
                         <div>
-                            <label className="block text-xs font-medium text-[var(--text-muted)] mb-1.5">
+                            <label htmlFor="competitor-estimatedRevenue" className="block text-xs font-medium text-[var(--text-muted)] mb-1.5">
                                 Est. Revenue
                             </label>
                             <Input
-                                value={form.estimatedRevenue || ''}
+                                id="competitor-estimatedRevenue"
+                            value={form.estimatedRevenue || ''}
                                 onChange={(e) => updateField('estimatedRevenue', e.target.value)}
                                 placeholder="e.g. $5M - $10M"
                             />
@@ -345,10 +372,11 @@ export const CompetitorForm: React.FC<CompetitorFormProps> = ({
                     </div>
 
                     <div>
-                        <label className="block text-xs font-medium text-[var(--text-muted)] mb-1.5">
+                        <label htmlFor="competitor-oneLiner" className="block text-xs font-medium text-[var(--text-muted)] mb-1.5">
                             One-liner Description
                         </label>
                         <Input
+                            id="competitor-oneLiner"
                             value={form.oneLiner || ''}
                             onChange={(e) => updateField('oneLiner', e.target.value)}
                             placeholder="What do they do?"
@@ -356,10 +384,11 @@ export const CompetitorForm: React.FC<CompetitorFormProps> = ({
                     </div>
 
                     <div>
-                        <label className="block text-xs font-medium text-[var(--text-muted)] mb-1.5">
+                        <label htmlFor="competitor-notes" className="block text-xs font-medium text-[var(--text-muted)] mb-1.5">
                             Notes
                         </label>
                         <textarea
+                            id="competitor-notes"
                             value={form.notes || ''}
                             onChange={(e) => updateField('notes', e.target.value)}
                             placeholder="Additional notes..."
@@ -374,7 +403,7 @@ export const CompetitorForm: React.FC<CompetitorFormProps> = ({
                     )}
 
                     {/* Actions */}
-                    <div className="flex items-center justify-between pt-4 border-t border-[var(--border-subtle)]">
+                    <div className="flex flex-wrap gap-3 items-center justify-between pt-4 border-t border-[var(--border-subtle)]">
                         <div>
                             {!isNew && onDelete && (
                                 confirmDelete ? (

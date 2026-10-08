@@ -1,0 +1,161 @@
+
+ RUN  v4.1.11 /Volumes/LizsDisk/competitor-stalker
+
+ ❯ src/test/scrape.test.ts (13 tests | 7 failed) 5364ms
+     × pins connections to the validated address without a second DNS lookup 19ms
+     × rejects redirects to private hosts before another request 29ms
+     × validates and pins each public redirect then extracts actual HTML 8ms
+     × does not treat JSON as a successfully scraped page 8ms
+     × normalizes protocol-relative social links into a response the client accepts 26ms
+     × bounds stalled DNS validation with the overall request deadline 5245ms
+     × rejects oversized HTML 9ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 7 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/test/scrape.test.ts > scrape endpoint boundary > pins connections to the validated address without a second DNS lookup
+AssertionError: expected [] to deeply equal [ '93.184.216.34' ]
+
+- Expected
++ Received
+
+- [
+-   "93.184.216.34",
+- ]
++ []
+
+ ❯ src/test/scrape.test.ts:50:37
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+ FAIL  src/test/scrape.test.ts > scrape endpoint boundary > rejects redirects to private hosts before another request
+AssertionError: expected 200 to be 400 // Object.is equality
+
+- Expected
++ Received
+
+- 400
++ 200
+
+ ❯ src/test/scrape.test.ts:56:67
+     54|     it('rejects redirects to private hosts before another request', as…
+     55|         transport.responses.push({ status: 302, headers: { location: '…
+     56|         expect((await call({ url: 'https://example.com' })).code).toBe…
+       |                                                                   ^
+     57|         expect(transport.request).toHaveBeenCalledTimes(1);
+     58|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+ FAIL  src/test/scrape.test.ts > scrape endpoint boundary > validates and pins each public redirect then extracts actual HTML
+AssertionError: expected { code: 200, data: { …(10) } } to match object { code: 200, data: { …(2) } }
+(14 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "code": 200,
+    "data": {
+-     "features": [
+-       "Deploy",
+-     ],
+-     "title": "Audit public page",
++     "features": [],
++     "title": "Old transport",
+    },
+  }
+
+ ❯ src/test/scrape.test.ts:66:66
+     64|         transport.responses.push({ status: 301, headers: { location: '…
+     65|         vi.mocked(lookup).mockResolvedValueOnce([{ address: '93.184.21…
+     66|         expect(await call({ url: 'https://example.com/start' })).toMat…
+       |                                                                  ^
+     67|         expect(transport.addresses).toEqual(['93.184.216.34', '93.184.…
+     68|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯
+
+ FAIL  src/test/scrape.test.ts > scrape endpoint boundary > does not treat JSON as a successfully scraped page
+AssertionError: expected 200 to be 400 // Object.is equality
+
+- Expected
++ Received
+
+- 400
++ 200
+
+ ❯ src/test/scrape.test.ts:71:67
+     69|     it('does not treat JSON as a successfully scraped page', async () …
+     70|         transport.responses.push({ headers: { 'content-type': 'applica…
+     71|         expect((await call({ url: 'https://example.com' })).code).toBe…
+       |                                                                   ^
+     72|     });
+     73|     it('normalizes protocol-relative social links into a response the …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/7]⎯
+
+ FAIL  src/test/scrape.test.ts > scrape endpoint boundary > normalizes protocol-relative social links into a response the client accepts
+AssertionError: expected { code: 200, data: { …(10) } } to match object { code: 200, data: { …(1) } }
+(15 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+    "code": 200,
+    "data": {
+-     "socialLinks": {
+-       "twitter": "https://x.com/acme",
+-     },
++     "socialLinks": {},
+    },
+  }
+
+ ❯ src/test/scrape.test.ts:76:26
+     74|         transport.responses.push({ body: '<title>Social page</title><a…
+     75|         const response = await call({ url: 'https://example.com' });
+     76|         expect(response).toMatchObject({ code: 200, data: { socialLink…
+       |                          ^
+     77|         expect((response.data as { socialLinks: object }).socialLinks)…
+     78|         vi.mocked(fetch).mockResolvedValue(new Response(JSON.stringify…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/7]⎯
+
+ FAIL  src/test/scrape.test.ts > scrape endpoint boundary > bounds stalled DNS validation with the overall request deadline
+Error: Test timed out in 5000ms.
+If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".
+ ❯ src/test/scrape.test.ts:83:5
+     81|         expect(result.current.data?.socialLinks.twitter).toBe('https:/…
+     82|     });
+     83|     it('bounds stalled DNS validation with the overall request deadlin…
+       |     ^
+     84|         vi.useFakeTimers(); vi.mocked(lookup).mockImplementation(() =>…
+     85|         const pending = call({ url: 'https://example.com' });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/7]⎯
+
+ FAIL  src/test/scrape.test.ts > scrape endpoint boundary > rejects oversized HTML
+AssertionError: expected 200 to be 413 // Object.is equality
+
+- Expected
++ Received
+
+- 413
++ 200
+
+ ❯ src/test/scrape.test.ts:92:67
+     90|     it('rejects oversized HTML', async () => {
+     91|         transport.responses.push({ body: 'x'.repeat(2 * 1024 * 1024 + …
+     92|         expect((await call({ url: 'https://example.com' })).code).toBe…
+       |                                                                   ^
+     93|     });
+     94| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/7]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  7 failed | 6 passed (13)
+   Start at  14:21:05
+   Duration  20.29s (transform 615ms, setup 2.82s, import 1.51s, tests 5.36s, environment 9.89s)

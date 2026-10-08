@@ -1,0 +1,858 @@
+
+ RUN  v4.1.11 /Volumes/LizsDisk/competitor-stalker
+
+ ❯ src/pages/__tests__/FunctionalReview.test.tsx (9 tests | 9 failed) 6248ms
+     × edits the displayed plan after deleting an earlier Audit Business row 1865ms
+     × keeps an open Audit Business draft on its own row when an earlier row is deleted 1776ms
+     × edits the displayed plan after deleting an earlier Audit One row 169ms
+     × keeps an open Audit One draft on its own row when an earlier row is deleted 881ms
+   × rejects blank weakness descriptions and never invents a source 82ms
+   × shows source changes rather than claiming content is identical 7ms
+   × compares the first saved before-state to current without creating a milestone 392ms
+   × keeps focus inside history after a milestone save 585ms
+   × normalizes a padded search query 267ms
+ ❯ src/test/scrape.test.ts (10 tests | 7 failed) 470ms
+     × handles missing request bodies as validation errors 283ms
+     × keeps the public fetch manually redirect-controlled 140ms
+     × rejects redirects to private hosts before another request 3ms
+     × rejects unsafe address http://[::ffff:a9fe:a9fe] 6ms
+     × rejects unsafe address http://[febf::1] 3ms
+     × follows a validated public redirect and extracts actual HTML 22ms
+     × does not treat JSON as a successfully scraped page 9ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 16 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/test/scrape.test.ts > scrape endpoint boundary > handles missing request bodies as validation errors
+TypeError: Cannot destructure property 'url' of 'req.body' as it is undefined.
+ ❯ Module.handler api/scrape.ts:265:13
+    263|     }
+    264|
+    265|     const { url } = req.body
+       |             ^
+    266|
+    267|     if (!url || typeof url !== 'string') {
+ ❯ call src/test/scrape.test.ts:12:11
+ ❯ src/test/scrape.test.ts:18:89
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/16]⎯
+
+ FAIL  src/test/scrape.test.ts > scrape endpoint boundary > keeps the public fetch manually redirect-controlled
+AssertionError: expected "vi.fn()" to be called with arguments: [ Anything, ObjectContaining{…} ]
+
+Received:
+
+  1st vi.fn() call:
+
+  [
+-   Anything,
+-   ObjectContaining {
+-     "redirect": "manual",
++   "https://example.com",
++   {
++     "headers": {
++       "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
++       "Accept-Language": "en-US,en;q=0.5",
++       "User-Agent": "Mozilla/5.0 (compatible; CompetitorStalker/1.0)",
++     },
++     "signal": AbortSignal {
++       Symbol(kEvents): Map {},
++       Symbol(events.maxEventTargetListeners): 0,
++       Symbol(events.maxEventTargetListenersWarned): false,
++       Symbol(kHandlers): Map {},
++       Symbol(kAborted): false,
++       Symbol(kReason): undefined,
++       Symbol(kComposite): false,
++     },
+    },
+  ]
+
+
+Number of calls: 1
+
+ ❯ src/test/scrape.test.ts:21:23
+     19|     it('keeps the public fetch manually redirect-controlled', async ()…
+     20|         expect((await call({ url: 'https://example.com' })).code).toBe…
+     21|         expect(fetch).toHaveBeenCalledWith(expect.anything(), expect.o…
+       |                       ^
+     22|     });
+     23|     it('rejects redirects to private hosts before another request', as…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/16]⎯
+
+ FAIL  src/test/scrape.test.ts > scrape endpoint boundary > rejects redirects to private hosts before another request
+AssertionError: expected 302 to be 400 // Object.is equality
+
+- Expected
++ Received
+
+- 400
++ 302
+
+ ❯ src/test/scrape.test.ts:25:67
+     23|     it('rejects redirects to private hosts before another request', as…
+     24|         vi.mocked(fetch).mockResolvedValueOnce(new Response(null, { st…
+     25|         expect((await call({ url: 'https://example.com' })).code).toBe…
+       |                                                                   ^
+     26|         expect(fetch).toHaveBeenCalledTimes(1);
+     27|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/16]⎯
+
+ FAIL  src/test/scrape.test.ts > scrape endpoint boundary > rejects unsafe address http://[::ffff:a9fe:a9fe]
+ FAIL  src/test/scrape.test.ts > scrape endpoint boundary > rejects unsafe address http://[febf::1]
+AssertionError: expected 200 to be 400 // Object.is equality
+
+- Expected
++ Received
+
+- 400
++ 200
+
+ ❯ src/test/scrape.test.ts:29:44
+     27|     });
+     28|     it.each(['http://[::ffff:a9fe:a9fe]', 'http://[febf::1]', 'http://…
+     29|         expect((await call({ url })).code).toBe(400);
+       |                                            ^
+     30|         expect(fetch).not.toHaveBeenCalled();
+     31|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/16]⎯
+
+ FAIL  src/test/scrape.test.ts > scrape endpoint boundary > follows a validated public redirect and extracts actual HTML
+AssertionError: expected { code: 301, …(1) } to match object { code: 200, data: { …(2) } }
+(1 matching property omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "code": 200,
++   "code": 301,
+    "data": {
+-     "features": [
+-       "Deploy",
+-     ],
+-     "title": "Audit public page",
++     "error": "Failed to fetch page: ",
+    },
+  }
+
+ ❯ src/test/scrape.test.ts:35:24
+     33|         vi.mocked(fetch).mockResolvedValueOnce(new Response(null, { st…
+     34|         const result = await call({ url: 'https://example.com/start' }…
+     35|         expect(result).toMatchObject({ code: 200, data: { title: 'Audi…
+       |                        ^
+     36|         expect(fetch).toHaveBeenLastCalledWith('https://example.com/pu…
+     37|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/16]⎯
+
+ FAIL  src/test/scrape.test.ts > scrape endpoint boundary > does not treat JSON as a successfully scraped page
+AssertionError: expected 200 to be 400 // Object.is equality
+
+- Expected
++ Received
+
+- 400
++ 200
+
+ ❯ src/test/scrape.test.ts:40:67
+     38|     it('does not treat JSON as a successfully scraped page', async () …
+     39|         vi.mocked(fetch).mockResolvedValue(new Response('{"message":"n…
+     40|         expect((await call({ url: 'https://example.com' })).code).toBe…
+       |                                                                   ^
+     41|     });
+     42| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/16]⎯
+
+ FAIL  src/pages/__tests__/FunctionalReview.test.tsx > pricing row identity > edits the displayed plan after deleting an earlier Audit Business row
+ FAIL  src/pages/__tests__/FunctionalReview.test.tsx > pricing row identity > edits the displayed plan after deleting an earlier Audit One row
+Error: expect(element).toHaveValue(B)
+
+Expected the element to have value:
+  B
+Received:
+  A
+ ❯ src/pages/__tests__/FunctionalReview.test.tsx:30:65
+     28|             await userEvent.click(within(section).getAllByRole('button…
+     29|             await userEvent.click(within(section).getAllByRole('button…
+     30|             expect(within(section).getByLabelText('Plan Name')).toHave…
+       |                                                                 ^
+     31|             await userEvent.click(within(section).getByRole('button', …
+     32|             expect(within(section).getByRole('heading', { name: 'B' })…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/16]⎯
+
+ FAIL  src/pages/__tests__/FunctionalReview.test.tsx > pricing row identity > keeps an open Audit Business draft on its own row when an earlier row is deleted
+ FAIL  src/pages/__tests__/FunctionalReview.test.tsx > pricing row identity > keeps an open Audit One draft on its own row when an earlier row is deleted
+AssertionError: expected [ 'B', 'B revised' ] to deeply equal [ 'B revised', 'C' ]
+
+- Expected
++ Received
+
+  [
++   "B",
+    "B revised",
+-   "C",
+  ]
+
+ ❯ src/pages/__tests__/FunctionalReview.test.tsx:44:64
+     42|             const data = JSON.parse(localStorage.getItem(owner === 'Au…
+     43|             const plans = owner === 'Audit One' ? data[0].pricingModel…
+     44|             expect(plans.map((p: { name: string }) => p.name)).toEqual…
+       |                                                                ^
+     45|         });
+     46|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/16]⎯
+
+ FAIL  src/pages/__tests__/FunctionalReview.test.tsx > rejects blank weakness descriptions and never invents a source
+AssertionError: expected [ { …(5) } ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "date": "2026-10-08",
++     "id": "cb5e6f8c-e16a-4428-8105-a9de6b811648",
++     "severity": "Medium",
++     "source": "G2 Crowd",
++     "text": "   ",
++   },
++ ]
+
+ ❯ src/pages/__tests__/FunctionalReview.test.tsx:52:90
+     50|     await userEvent.type(screen.getByLabelText('Vulnerability Descript…
+     51|     await userEvent.click(screen.getByRole('button', { name: 'Log' }));
+     52|     expect(JSON.parse(localStorage.getItem('stalker_competitors')!)[0]…
+       |                                                                                          ^
+     53|     await userEvent.clear(screen.getByLabelText('Vulnerability Descrip…
+     54|     await userEvent.type(screen.getByLabelText('Vulnerability Descript…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/16]⎯
+
+ FAIL  src/pages/__tests__/FunctionalReview.test.tsx > shows source changes rather than claiming content is identical
+Error: expect(element).not.toBeInTheDocument()
+
+expected document not to contain element, found <p
+  class="text-xs text-[var(--text-muted)] mt-1"
+>
+  These snapshots have identical data.
+</p> instead
+ ❯ src/pages/__tests__/FunctionalReview.test.tsx:61:76
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/16]⎯
+
+ FAIL  src/pages/__tests__/FunctionalReview.test.tsx > compares the first saved before-state to current without creating a milestone
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name "Compare with current"
+
+Here are the accessible roles:
+
+  dialog:
+
+  Name "History for Audit One":
+  [36m<div[39m
+    [33maria-label[39m=[32m"History for Audit One"[39m
+    [33maria-modal[39m=[32m"true"[39m
+    [33mclass[39m=[32m"
+                      fixed inset-y-0 right-0 z-50 w-full max-w-md
+                      flex flex-col
+                      bg-[var(--bg-primary)] border-l border-[var(--border-default)]
+                      shadow-2xl
+                      transform transition-transform duration-300 ease-out
+                      translate-x-0
+                  "[39m
+    [33mrole[39m=[32m"dialog"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  heading:
+
+  Name "History":
+  [36m<h2[39m
+    [33mclass[39m=[32m"text-base font-semibold text-[var(--text-primary)] truncate"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  paragraph:
+
+  Name "":
+  [36m<p[39m
+    [33mclass[39m=[32m"text-xs text-[var(--text-muted)] truncate"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "Close history":
+  [36m<button[39m
+    [33maria-label[39m=[32m"Close history"[39m
+    [33mclass[39m=[32m"p-2 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-hover)] transition-colors"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Add Milestone":
+  [36m<button[39m
+    [33mclass[39m=[32m"
+          inline-flex items-center justify-center gap-2
+          font-medium tracking-tight
+          transition-all duration-fast ease-out
+          disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none
+          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-base)]
+
+              bg-[var(--bg-surface)] text-[var(--text-primary)]
+              border border-[var(--border-muted)]
+              hover:bg-[var(--bg-elevated)] hover:border-[var(--border-emphasis)]
+              focus-visible:ring-[var(--border-strong)]
+           h-8 px-3 text-xs rounded-[var(--radius-control)] w-full"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Compare":
+  [36m<button[39m
+    [33mclass[39m=[32m"
+          inline-flex items-center justify-center gap-2
+          font-medium tracking-tight
+          transition-all duration-fast ease-out
+          disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none
+          focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-base)]
+
+              bg-transparent text-[var(--text-secondary)]
+              hover:text-[var(--text-primary)] hover:bg-[var(--bg-hover)]
+              focus-visible:ring-[var(--border-muted)]
+           h-8 px-3 text-xs rounded-[var(--radius-control)] "[39m
+    [33mdisabled[39m=[32m""[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  Name "Initial snapshot":
+  [36m<button[39m
+    [33mclass[39m=[32m"mt-2 flex items-center gap-1 text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"[39m
+    [33mtype[39m=[32m"button"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div />[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"fixed inset-0 z-40 bg-black/50 backdrop-blur-sm animate-fade-in"[39m
+  [36m/>[39m
+  [36m<div[39m
+    [33maria-label[39m=[32m"History for Audit One"[39m
+    [33maria-modal[39m=[32m"true"[39m
+    [33mclass[39m=[32m"
+                    fixed inset-y-0 right-0 z-50 w-full max-w-md
+                    flex flex-col
+                    bg-[var(--bg-primary)] border-l border-[var(--border-default)]
+                    shadow-2xl
+                    transform transition-transform duration-300 ease-out
+                    translate-x-0
+                "[39m
+    [33mrole[39m=[32m"dialog"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"flex items-center justify-between px-5 py-4 border-b border-[var(--border-subtle)]"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"flex items-center gap-3 min-w-0"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex items-center gap-2.5 min-w-0"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"flex-shrink-0 w-9 h-9 rounded-lg bg-[var(--bg-secondary)] flex items-center justify-center"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"lucide lucide-rotate-ccw-clock text-[var(--accent-brand)]"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mheight[39m=[32m"18"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"2"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+              [33mwidth[39m=[32m"18"[39m
+              [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"[39m
+              [36m/>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M3 3v5h5"[39m
+              [36m/>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M12 7v5l4 2"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"min-w-0"[39m
+          [36m>[39m
+            [36m<h2[39m
+              [33mclass[39m=[32m"text-base font-semibold text-[var(--text-primary)] truncate"[39m
+            [36m>[39m
+              [0mHistory[0m
+            [36m</h2>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"text-xs text-[var(--text-muted)] truncate"[39m
+            [36m>[39m
+              [0mAudit One[0m
+            [36m</p>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<button[39m
+        [33maria-label[39m=[32m"Close history"[39m
+        [33mclass[39m=[32m"p-2 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-hover)] transition-colors"[39m
+        [33mtype[39m=[32m"button"[39m
+      [36m>[39m
+        [36m<svg[39m
+          [33maria-hidden[39m=[32m"true"[39m
+          [33mclass[39m=[32m"lucide lucide-x"[39m
+          [33mfill[39m=[32m"none"[39m
+          [33mheight[39m=[32m"18"[39m
+          [33mstroke[39m=[32m"currentColor"[39m
+          [33mstroke-linecap[39m=[32m"round"[39m
+          [33mstroke-linejoin[39m=[32m"round"[39m
+          [33mstroke-width[39m=[32m"2"[39m
+          [33mviewBox[39m=[32m"0 0 24 24"[39m
+          [33mwidth[39m=[32m"18"[39m
+          [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+        [36m>[39m
+          [36m<path[39m
+            [33md[39m=[32m"M18 6 6 18"[39m
+          [36m/>[39m
+          [36m<path[39m
+            [33md[39m=[32m"m6 6 12 12"[39m
+          [36m/>[39m
+        [36m</svg>[39m
+      [36m</button>[39m
+    [36m</div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"flex-1 overflow-hidden"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"h-full flex flex-col"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"px-5 py-4 border-b border-[var(--border-subtle)]"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33mclass[39m=[32m"
+        inline-flex items-center justify-center gap-2
+        font-medium tracking-tight
+        transition-all duration-fast ease-out
+        disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none
+        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-base)]
+
+            bg-[var(--bg-surface)] text-[var(--text-primary)]
+            border border-[var(--border-muted)]
+            hover:bg-[var(--bg-elevated)] hover:border-[var(--border-emphasis)]
+            focus-visible:ring-[var(--border-strong)]
+         h-8 px-3 text-xs rounded-[var(--radius-control)] w-full"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"lucide lucide-plus"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mheight[39m=[32m"14"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"2"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+              [33mwidth[39m=[32m"14"[39m
+              [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M5 12h14"[39m
+              [36m/>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M12 5v14"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+            [0mAdd Milestone[0m
+          [36m</button>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex-1 overflow-y-auto px-5 py-4"[39m
+        [36m>[39m
+          [36m<div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"flex items-center justify-between mb-4 pb-3 border-b border-[var(--border-subtle)]"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"text-xs text-[var(--text-muted)]"[39m
+              [36m>[39m
+                [0m1[0m
+                [0m snapshot[0m
+              [36m</span>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"
+        inline-flex items-center justify-center gap-2
+        font-medium tracking-tight
+        transition-all duration-fast ease-out
+        disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none
+        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-base)]
+
+            bg-transparent text-[var(--text-secondary)]
+            hover:text-[var(--text-primary)] hover:bg-[var(--bg-hover)]
+            focus-visible:ring-[var(--border-muted)]
+         h-8 px-3 text-xs rounded-[var(--radius-control)] "[39m
+                [33mdisabled[39m=[32m""[39m
+                [33mtype[39m=[32m"button"[39m
+              [36m>[39m
+                [0mCompare[0m
+              [36m</button>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"relative"[39m
+            [36m>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"relative flex gap-3"[39m
+              [36m>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"relative flex-shrink-0 mt-1"[39m
+                [36m>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"w-6 h-6 rounded-full bg-[var(--bg-secondary)] border border-[var(--border-muted)] flex items-center justify-center"[39m
+                  [36m>[39m
+                    [36m<svg[39m
+                      [33maria-hidden[39m=[32m"true"[39m
+                      [33mclass[39m=[32m"lucide lucide-circle text-[var(--text-muted)] fill-[var(--text-muted)]"[39m
+                      [33mfill[39m=[32m"none"[39m
+                      [33mheight[39m=[32m"8"[39m
+                      [33mstroke[39m=[32m"currentColor"[39m
+                      [33mstroke-linecap[39m=[32m"round"[39m
+                      [33mstroke-linejoin[39m=[32m"round"[39m
+                      [33mstroke-width[39m=[32m"2"[39m
+                      [33mviewBox[39m=[32m"0 0 24 24"[39m
+                      [33mwidth[39m=[32m"8"[39m
+                      [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                    [36m>[39m
+                      [36m<circle[39m
+                        [33mcx[39m=[32m"12"[39m
+                        [33mcy[39m=[32m"12"[39m
+                        [33mr[39m=[32m"10"[39m
+                      [36m/>[39m
+                    [36m</svg>[39m
+                  [36m</div>[39m
+                [36m</div>[39m
+                [36m<div[39m
+                  [33mclass[39m=[32m"flex-1 pb-5 min-w-0"[39m
+                [36m>[39m
+                  [36m<div[39m
+                    [33mclass[39m=[32m"flex items-start justify-between gap-2"[39m
+                  [36m>[39m
+                    [36m<div[39m
+                      [33mclass[39m=[32m"min-w-0 flex-1"[39m
+                    [36m>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"flex items-center gap-2 flex-wrap"[39m
+                      [36m>[39m
+                        [36m<span[39m
+                          [33mclass[39m=[32m"text-sm font-medium text-[var(--text-primary)]"[39m
+                        [36m>[39m
+                          [0mAuto-saved[0m
+                        [36m</span>[39m
+                      [36m</div>[39m
+                      [36m<div[39m
+                        [33mclass[39m=[32m"flex items-center gap-2 mt-0.5 text-xs text-[var(--text-muted)]"[39m
+                      [36m>[39m
+                        [36m<svg[39m
+                          [33maria-hidden[39m=[32m"true"[39m
+                          [33mclass[39m=[32m"lucide lucide-clock"[39m
+                          [33mfill[39m=[32m"none"[39m
+                          [33mheight[39m=[32m"10"[39m
+                          [33mstroke[39m=[32m"currentColor"[39m
+                          [33mstroke-linecap[39m=[32m"round"[39m
+                          [33mstroke-linejoin[39m=[32m"round"[39m
+                          [33mstroke-width[39m=[32m"2"[39m
+                          [33mviewBox[39m=[32m"0 0 24 24"[39m
+                          [33mwidth[39m=[32m"10"[39m
+                          [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                        [36m>[39m
+                          [36m<circle[39m
+                            [33mcx[39m=[32m"12"[39m
+                            [33mcy[39m=[32m"12"[39m
+                            [33mr[39m=[32m"10"[39m
+                          [36m/>[39m
+                          [36m<path[39m
+                            [33md[39m=[32m"M12 6v6l4 2"[39m
+                          [36m/>[39m
+                        [36m</svg>[39m
+                        [36m<span>[39m
+                          [0mSep 30[0m
+                          [0m at [0m
+                          [0m8:00 PM[0m
+                        [36m</span>[39m
+                      [36m</div>[39m
+                    [36m</div>[39m
+                  [36m</div>[39m
+                  [36m<button[39m
+                    [33mclass[39m=[32m"mt-2 flex items-center gap-1 text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"[39m
+                    [33mtype[39m=[32m"button"[39m
+                  [36m>[39m
+                    [36m<svg[39m
+                      [33maria-hidden[39m=[32m"true"[39m
+                      [33mclass[39m=[32m"lucide lucide-chevron-right"[39m
+                      [33mfill[39m=[32m"none"[39m
+                      [33mheight[39m=[32m"12"[39m
+                      [33mstroke[39m=[32m"currentColor"[39m
+                      [33mstroke-linecap[39m=[32m"round"[39m
+                      [33mstroke-linejoin[39m=[32m"round"[39m
+                      [33mstroke-width[39m=[32m"2"[39m
+                      [33mviewBox[39m=[32m"0 0 24 24"[39m
+                      [33mwidth[39m=[32m"12"[39m
+                      [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+                    [36m>[39m
+                      [36m<path[39m
+                        [33md[39m=[32m"m9 18 6-6-6-6"[39m
+                      [36m/>[39m
+                    [36m</svg>[39m
+                    [36m<span>[39m
+                      [0mInitial snapshot[0m
+                    [36m</span>[39m
+                  [36m</button>[39m
+                [36m</div>[39m
+              [36m</div>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/pages/__tests__/FunctionalReview.test.tsx:67:34
+     65| it('compares the first saved before-state to current without creating …
+     66|     mount(<HistoryDrawer competitor={competitor} isOpen onClose={() =>…
+     67|     await userEvent.click(screen.getByRole('button', { name: 'Compare …
+       |                                  ^
+     68|     expect(screen.getByText('Comparing Snapshots')).toBeInTheDocument(…
+     69|     expect(screen.getByText('Before')).toBeInTheDocument();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/16]⎯
+
+ FAIL  src/pages/__tests__/FunctionalReview.test.tsx > keeps focus inside history after a milestone save
+Error: expect(element).toContainElement(element)
+
+<div
+  aria-label="History for Audit One"
+  aria-modal="true"
+  class="
+                    fixed inset-y-0 right-0 z-50 w-full max-w-md
+                    flex flex-col
+                    bg-[var(--bg-primary)] border-l border-[var(--border-default)]
+                    shadow-2xl
+                    transform transition-transform duration-300 ease-out
+                    translate-x-0
+                "
+  role="dialog"
+/> does not contain: <body />
+
+ ❯ src/pages/__tests__/FunctionalReview.test.tsx:78:40
+     76|     await userEvent.type(screen.getByLabelText('Milestone Label'), 'Au…
+     77|     await userEvent.click(screen.getByRole('button', { name: 'Save Mil…
+     78|     expect(screen.getByRole('dialog')).toContainElement(document.activ…
+       |                                        ^
+     79| });
+     80| it('normalizes a padded search query', async () => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/16]⎯
+
+ FAIL  src/pages/__tests__/FunctionalReview.test.tsx > normalizes a padded search query
+TestingLibraryElementError: Unable to find an accessible element with the role "button" and name `/Audit One/`
+
+Here are the accessible roles:
+
+  dialog:
+
+  Name "Command palette":
+  [36m<div[39m
+    [33maria-label[39m=[32m"Command palette"[39m
+    [33maria-modal[39m=[32m"true"[39m
+    [33mclass[39m=[32m"relative w-full max-w-lg bg-[var(--bg-elevated)] border border-[var(--border-muted)] rounded-[var(--radius-modal)] shadow-2xl overflow-hidden animate-scale-in"[39m
+    [33mrole[39m=[32m"dialog"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  textbox:
+
+  Name "Search competitors and pages":
+  [36m<input[39m
+    [33maria-label[39m=[32m"Search competitors and pages"[39m
+    [33mclass[39m=[32m"flex-1 bg-transparent border-none outline-none text-[var(--text-primary)] placeholder:text-[var(--text-subtle)]"[39m
+    [33mplaceholder[39m=[32m"Search competitors, pages..."[39m
+    [33mtype[39m=[32m"text"[39m
+    [33mvalue[39m=[32m" Audit One "[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+  button:
+
+  Name "Close search":
+  [36m<button[39m
+    [33maria-label[39m=[32m"Close search"[39m
+    [33mclass[39m=[32m"sm:hidden p-1 text-[var(--text-muted)] hover:text-[var(--text-primary)]"[39m
+  [36m/>[39m
+
+  --------------------------------------------------
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"fixed inset-0 z-[var(--z-modal)] flex items-start justify-center pt-[15vh]"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"absolute inset-0 bg-black/60 backdrop-blur-sm"[39m
+      [36m/>[39m
+      [36m<div[39m
+        [33maria-label[39m=[32m"Command palette"[39m
+        [33maria-modal[39m=[32m"true"[39m
+        [33mclass[39m=[32m"relative w-full max-w-lg bg-[var(--bg-elevated)] border border-[var(--border-muted)] rounded-[var(--radius-modal)] shadow-2xl overflow-hidden animate-scale-in"[39m
+        [33mrole[39m=[32m"dialog"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex items-center gap-3 px-4 py-3 border-b border-[var(--border-default)]"[39m
+        [36m>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"lucide lucide-search w-5 h-5 text-[var(--text-muted)]"[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mheight[39m=[32m"24"[39m
+            [33mstroke[39m=[32m"currentColor"[39m
+            [33mstroke-linecap[39m=[32m"round"[39m
+            [33mstroke-linejoin[39m=[32m"round"[39m
+            [33mstroke-width[39m=[32m"2"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+            [33mwidth[39m=[32m"24"[39m
+            [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"m21 21-4.34-4.34"[39m
+            [36m/>[39m
+            [36m<circle[39m
+              [33mcx[39m=[32m"11"[39m
+              [33mcy[39m=[32m"11"[39m
+              [33mr[39m=[32m"8"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+          [36m<input[39m
+            [33maria-label[39m=[32m"Search competitors and pages"[39m
+            [33mclass[39m=[32m"flex-1 bg-transparent border-none outline-none text-[var(--text-primary)] placeholder:text-[var(--text-subtle)]"[39m
+            [33mplaceholder[39m=[32m"Search competitors, pages..."[39m
+            [33mtype[39m=[32m"text"[39m
+            [33mvalue[39m=[32m" Audit One "[39m
+          [36m/>[39m
+          [36m<kbd[39m
+            [33mclass[39m=[32m"hidden sm:inline-flex items-center gap-1 px-2 py-0.5 text-xs text-[var(--text-muted)] bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-[var(--radius-control)]"[39m
+          [36m>[39m
+            [0mESC[0m
+          [36m</kbd>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Close search"[39m
+            [33mclass[39m=[32m"sm:hidden p-1 text-[var(--text-muted)] hover:text-[var(--text-primary)]"[39m
+          [36m>[39m
+            [36m<svg[39m
+              [33maria-hidden[39m=[32m"true"[39m
+              [33mclass[39m=[32m"lucide lucide-x w-4 h-4"[39m
+              [33mfill[39m=[32m"none"[39m
+              [33mheight[39m=[32m"24"[39m
+              [33mstroke[39m=[32m"currentColor"[39m
+              [33mstroke-linecap[39m=[32m"round"[39m
+              [33mstroke-linejoin[39m=[32m"round"[39m
+              [33mstroke-width[39m=[32m"2"[39m
+              [33mviewBox[39m=[32m"0 0 24 24"[39m
+              [33mwidth[39m=[32m"24"[39m
+              [33mxmlns[39m=[32m"http://www.w3.org/2000/svg"[39m
+            [36m>[39m
+              [36m<path[39m
+                [33md[39m=[32m"M18 6 6 18"[39m
+              [36m/>[39m
+              [36m<path[39m
+                [33md[39m=[32m"m6 6 12 12"[39m
+              [36m/>[39m
+            [36m</svg>[39m
+          [36m</button>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"max-h-80 overflow-y-auto"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"p-8 text-center text-[var(--text-muted)]"[39m
+          [36m>[39m
+            [0mNo results found for "[0m
+            [0m Audit One [0m
+            [0m"[0m
+          [36m</div>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"flex items-center justify-between px-4 py-2 border-t border-[var(--border-subtle)] bg-[var(--bg-secondary)]"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"flex items-center gap-3 text-xs text-[var(--text-muted)]"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"flex items-center gap-1"[39m
+            [36m>[39m
+              [36m<kbd[39m
+                [33mclass[39m=[32m"px-1.5 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-[var(--radius-control)] text-[10px]"[39m
+              [36m>[39m
+                [0m↑↓[0m
+              [36m</kbd>[39m
+              [0mNavigate[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"flex items-center gap-1"[39m
+            [36m>[39m
+              [36m<kbd[39m
+                [33mclass[39m=[32m"px-1.5 py-0.5 bg-[var(--bg-surface)] border border-[var(--border-default)] rounded-[var(--radius-control)] text-[10px]"[39m
+              [36m>[39m
+                [0m↵[0m
+              [36m</kbd>[39m
+              [0mSelect[0m
+            [36m</span>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"text-xs text-[var(--text-muted)]"[39m
+          [36m>[39m
+            [0m0[0m
+            [0m results[0m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+ ❯ node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+ ❯ node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/pages/__tests__/FunctionalReview.test.tsx:83:19
+     81|     mount(<SearchCommand isOpen onClose={() => {}} />);
+     82|     await userEvent.type(screen.getByRole('textbox', { name: 'Search c…
+     83|     expect(screen.getByRole('button', { name: /Audit One/ })).toBeInTh…
+       |                   ^
+     84| });
+     85|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/16]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  16 failed | 3 passed (19)
+   Start at  14:01:02
+   Duration  33.22s (transform 1.35s, setup 4.16s, import 3.14s, tests 6.72s, environment 18.07s)

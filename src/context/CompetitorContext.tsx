@@ -2,6 +2,7 @@ import React, { createContext, type ReactNode, useEffect, useRef, useCallback } 
 import type { Competitor, BusinessProfile, FeatureStatus, Snapshot } from '../types';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { useSnapshots } from '../hooks/useSnapshots';
+import { normalizeCompetitors, normalizeProfile } from '../utils/validation';
 import { SEED_COMPETITORS, SEED_USER_PROFILE } from '../data/seedData';
 
 interface CompetitorContextType {
@@ -13,8 +14,10 @@ interface CompetitorContextType {
     updateUserProfile: (updates: Partial<BusinessProfile>) => void;
     resetToSeedData: () => void;
     clearAllData: () => void;
-    importData: (competitors: Competitor[], userProfile: BusinessProfile) => void;
+    importData: (competitors: Competitor[], userProfile: BusinessProfile, snapshots?: Snapshot[]) => void;
     // Snapshot functionality
+    storageError?: string | null;
+    rawStorageRecovery?: Record<string, string>;
     snapshots: Snapshot[];
     getSnapshots: (competitorId: string) => Snapshot[];
     addMilestone: (competitorId: string, label: string) => Snapshot | null;
@@ -33,13 +36,19 @@ const DEFAULT_PROFILE: BusinessProfile = {
 };
 
 export const CompetitorProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    const [competitors, setCompetitors] = useLocalStorage<Competitor[]>('stalker_competitors', []);
-    const [userProfile, setUserProfile] = useLocalStorage<BusinessProfile>('stalker_profile', DEFAULT_PROFILE);
-    const { snapshots, getSnapshots, addSnapshot, deleteSnapshot, clearSnapshots } = useSnapshots();
+    const [competitors, setCompetitors, competitorStorageError, replaceCompetitors, rawCompetitors] = useLocalStorage<Competitor[]>('stalker_competitors', [], normalizeCompetitors);
+    const [userProfile, setUserProfile, profileStorageError, replaceProfile, rawProfile] = useLocalStorage<BusinessProfile>('stalker_profile', DEFAULT_PROFILE, normalizeProfile);
+    const { snapshots, getSnapshots, addSnapshot, deleteSnapshot, clearSnapshots, replaceSnapshots, storageError: snapshotStorageError, rawStorage: rawSnapshots } = useSnapshots();
 
     // Migration: Fix legacy array features (runs once on mount)
     const hasMigrated = useRef(false);
-    const hasSeeded = useRef(false);
+    const hasSeeded = useRef((() => {
+        try {
+            return window.localStorage.getItem('stalker_competitors') !== null || window.localStorage.getItem('stalker_profile') !== null;
+        } catch {
+            return true;
+        }
+    })());
 
     useEffect(() => {
         if (hasMigrated.current) return;
@@ -72,44 +81,43 @@ export const CompetitorProvider: React.FC<{ children: ReactNode }> = ({ children
 
     const addCompetitor = (competitor: Competitor) => {
         const now = new Date().toISOString();
-        setCompetitors([...competitors, { ...competitor, createdAt: now, updatedAt: now }]);
+        setCompetitors(current => [...current, { ...competitor, createdAt: now, updatedAt: now }]);
     };
 
     const updateCompetitor = useCallback((id: string, updates: Partial<Competitor>) => {
-        // Find the current competitor state before updating
-        const currentCompetitor = competitors.find(c => c.id === id);
-
-        // Create auto-snapshot of the "before" state if competitor exists
-        if (currentCompetitor) {
-            addSnapshot(id, currentCompetitor, 'auto');
-        }
-
         const now = new Date().toISOString();
-        setCompetitors(competitors.map(c => c.id === id ? { ...c, ...updates, updatedAt: now } : c));
-    }, [competitors, setCompetitors, addSnapshot]);
+        setCompetitors(current => {
+            const previous = current.find(c => c.id === id);
+            if (!previous) return current;
+            addSnapshot(id, previous, 'auto');
+            return current.map(c => c.id === id ? { ...c, ...updates, updatedAt: now } : c);
+        });
+    }, [setCompetitors, addSnapshot]);
 
     const removeCompetitor = (id: string) => {
-        setCompetitors(competitors.filter(c => c.id !== id));
+        setCompetitors(current => current.filter(c => c.id !== id));
     };
 
     const updateUserProfile = (updates: Partial<BusinessProfile>) => {
-        setUserProfile({ ...userProfile, ...updates });
+        setUserProfile(current => ({ ...current, ...updates }));
     };
 
     const resetToSeedData = () => {
-        setCompetitors(SEED_COMPETITORS);
-        setUserProfile(SEED_USER_PROFILE);
+        replaceSnapshots([]);
+        replaceCompetitors(SEED_COMPETITORS);
+        replaceProfile(SEED_USER_PROFILE);
     };
 
     const clearAllData = () => {
         clearSnapshots();
-        setCompetitors([]);
-        setUserProfile(DEFAULT_PROFILE);
+        replaceCompetitors([]);
+        replaceProfile(DEFAULT_PROFILE);
     };
 
-    const importData = (importedCompetitors: Competitor[], importedProfile: BusinessProfile) => {
-        setCompetitors(importedCompetitors);
-        setUserProfile(importedProfile);
+    const importData = (importedCompetitors: Competitor[], importedProfile: BusinessProfile, importedSnapshots?: Snapshot[]) => {
+        if (importedSnapshots !== undefined) replaceSnapshots(importedSnapshots);
+        replaceCompetitors(importedCompetitors);
+        replaceProfile(importedProfile);
     };
 
     /**
@@ -133,6 +141,12 @@ export const CompetitorProvider: React.FC<{ children: ReactNode }> = ({ children
             clearAllData,
             importData,
             // Snapshot functionality
+            storageError: competitorStorageError || profileStorageError || snapshotStorageError,
+            rawStorageRecovery: {
+                ...(rawCompetitors !== null ? { stalker_competitors: rawCompetitors } : {}),
+                ...(rawProfile !== null ? { stalker_profile: rawProfile } : {}),
+                ...(rawSnapshots !== null ? { stalker_snapshots: rawSnapshots } : {}),
+            },
             snapshots,
             getSnapshots,
             addMilestone,

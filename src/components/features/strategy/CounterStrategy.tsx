@@ -19,14 +19,14 @@ export const CounterStrategy: React.FC = () => {
     };
 
     const handleAddStrategy = () => {
-        if (!newStrategy.title || !newStrategy.targetId) return;
+        if (!newStrategy.title.trim() || !newStrategy.targetId) return;
 
         const competitor = competitors.find((c) => c.id === newStrategy.targetId);
         if (!competitor) return;
 
         const strategy: Strategy = {
             id: crypto.randomUUID(),
-            title: newStrategy.title,
+            title: newStrategy.title.trim(),
             description: '',
             status: 'Planned',
             targetCompetitorId: newStrategy.targetId,
@@ -71,20 +71,21 @@ export const CounterStrategy: React.FC = () => {
     };
 
     return (
-        <div className="h-full flex flex-col gap-6 p-6">
+        <div className="h-full flex flex-col gap-6">
             <div className="flex items-center justify-between gap-4 flex-wrap">
                 <div>
-                    <h2 className="text-2xl font-semibold tracking-tight text-[var(--text-primary)] flex items-center gap-2">
+                    <h1 className="workspace-title text-[var(--text-primary)] flex items-center gap-2">
                         <Crosshair className="text-[var(--accent-danger)]" /> Strategy Board
-                    </h2>
+                    </h1>
                     <p className="text-sm text-[var(--text-muted)]">
-                        Plan and execute counter-offensives against high-value targets.
+                        Turn competitor research into planned, active and completed responses.
                     </p>
                 </div>
 
-                <div className="flex gap-2 items-end bg-[var(--bg-primary)]/60 p-2 rounded-[var(--radius-control)] border border-[var(--border-default)] border-dashed">
-                    <div className="w-56">
+                <div className="grid grid-cols-1 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] w-full gap-2 items-end bg-[var(--bg-primary)]/60 p-2 rounded-[var(--radius-control)] border border-[var(--border-default)] border-dashed">
+                    <div className="min-w-0">
                         <Input
+                            label="Strategy title"
                             placeholder="New tactic name..."
                             value={newStrategy.title}
                             onChange={(e) => setNewStrategy({ ...newStrategy, title: e.target.value })}
@@ -94,7 +95,7 @@ export const CounterStrategy: React.FC = () => {
                     <label htmlFor="target-select" className="sr-only">Select Target Competitor</label>
                     <select
                         id="target-select"
-                        className="h-10 bg-[var(--bg-primary)] border border-[var(--border-default)] rounded-[var(--radius-control)] px-3 text-sm text-[var(--text-primary)] focus:border-[var(--accent-info)] outline-none"
+                        className="min-w-0 w-full h-10 bg-[var(--bg-primary)] border border-[var(--border-default)] rounded-[var(--radius-control)] px-3 text-sm text-[var(--text-primary)] focus:border-[var(--accent-info)] outline-none"
                         value={newStrategy.targetId}
                         onChange={(e) => setNewStrategy({ ...newStrategy, targetId: e.target.value })}
                         aria-label="Select target competitor"
@@ -104,7 +105,7 @@ export const CounterStrategy: React.FC = () => {
                             <option key={c.id} value={c.id}>{c.name}</option>
                         ))}
                     </select>
-                    <Button size="sm" onClick={handleAddStrategy} disabled={!newStrategy.title || !newStrategy.targetId} className="h-10">
+                    <Button size="sm" onClick={handleAddStrategy} disabled={!newStrategy.title.trim() || !newStrategy.targetId} className="h-10">
                         <Plus size={14} className="mr-1" /> Plan
                     </Button>
                 </div>
@@ -139,7 +140,7 @@ export const CounterStrategy: React.FC = () => {
                                     key={strategy.id}
                                     className={`p-4 border-l-4 hover:bg-[var(--bg-hover)] transition-colors group relative ${getThreatColor(strategy.competitorColor || 'Medium')}`}
                                 >
-                                    <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <div className="absolute top-2 right-2 opacity-100 transition-opacity">
                                         <button
                                             onClick={() => deleteStrategy(strategy)}
                                             className="text-[var(--text-muted)] hover:text-[var(--accent-danger)]"

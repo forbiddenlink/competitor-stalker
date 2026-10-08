@@ -2,16 +2,16 @@ import { Link } from 'react-router';
 
 const AboutPage: React.FC = () => {
   return (
-    <div className="space-y-8 animate-fade-in max-w-4xl">
+    <div className="reading-page space-y-8 animate-fade-in max-w-3xl">
       <header className="space-y-3">
-        <h1 className="text-2xl font-semibold tracking-tight">About Competitor Stalker</h1>
+        <h1 className="workspace-title">About Competitor Stalker</h1>
         <p className="text-[var(--text-secondary)]">
           Competitor Stalker is a practical operating console for teams that need fast, consistent competitive
           intelligence across product, strategy, and go-to-market decisions.
         </p>
       </header>
 
-      <section className="surface-card p-6 space-y-3">
+      <section className="border-t border-[var(--border-muted)] pt-6 space-y-3">
         <h2 className="text-lg font-semibold">What The Platform Covers</h2>
         <p className="text-[var(--text-secondary)]">
           The workspace combines competitor dossiers, positioning analysis, feature matrix tracking, pricing
@@ -20,7 +20,7 @@ const AboutPage: React.FC = () => {
         </p>
       </section>
 
-      <section className="surface-card p-6 space-y-3">
+      <section className="border-t border-[var(--border-muted)] pt-6 space-y-3">
         <h2 className="text-lg font-semibold">How Teams Use It</h2>
         <p className="text-[var(--text-secondary)]">
           Product teams use it to prioritize roadmap differentiation, GTM teams use it to sharpen messaging and
@@ -29,7 +29,7 @@ const AboutPage: React.FC = () => {
         </p>
       </section>
 
-      <section className="surface-card p-6 space-y-3">
+      <section className="border-t border-[var(--border-muted)] pt-6 space-y-3">
         <h2 className="text-lg font-semibold">Related Pages</h2>
         <p className="text-[var(--text-secondary)]">
           <Link className="text-[var(--accent-brand-soft)] hover:underline" to="/contact">

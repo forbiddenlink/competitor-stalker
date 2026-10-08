@@ -1,0 +1,6574 @@
+[
+  {
+    "device": "desktop",
+    "route": "/",
+    "title": "Dashboard | Stalker | Competitive Intelligence",
+    "headings": [
+      "Your competitive landscape.",
+      "Research queue",
+      "Audit One",
+      "Make the next move.",
+      "Compare & investigate",
+      "Threat breakdown"
+    ],
+    "controls": [
+      {
+        "tag": "A",
+        "name": "Skip to main content",
+        "href": "#app-main",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Open sidebar",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Search workspace ⌘K",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Add a competitor",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Refresh Data",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "01Audit OneMedium threathttps://example.comNo saved dateNo linked sources",
+        "href": "/dossier?competitor=audit-one",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "All competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Open strategy board",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature comparison1 features across your landscape",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing intelligenceCompare recorded plans and packaging",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weakness research0 findings to investigate",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "device": "desktop",
+    "route": "/dossier",
+    "title": "Competitor Dossiers | Stalker | Competitive Intelligence",
+    "headings": [
+      "Competitors",
+      "Audit One"
+    ],
+    "controls": [
+      {
+        "tag": "A",
+        "name": "Skip to main content",
+        "href": "#app-main",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Open sidebar",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Search workspace ⌘K",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Add Target",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "INPUT",
+        "name": "Find competitors",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "SELECT",
+        "name": "AllHighMediumLow",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "SELECT",
+        "name": "NameThreatRecently saved",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Clear filters",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Open battlecard for Audit One",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "example.com",
+        "href": "https://example.com",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Research",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "View history for Audit One",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Edit Audit One",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "device": "desktop",
+    "route": "/positioning",
+    "title": "Positioning Map | Stalker | Competitive Intelligence",
+    "headings": [
+      "Market Positioning",
+      "Recorded coordinates / Price · Quality"
+    ],
+    "controls": [
+      {
+        "tag": "A",
+        "name": "Skip to main content",
+        "href": "#app-main",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Open sidebar",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Search workspace ⌘K",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "INPUT",
+        "name": "Price coordinate for Audit One",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "INPUT",
+        "name": "Quality coordinate for Audit One",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "INPUT",
+        "name": "Price coordinate for Audit Business",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "INPUT",
+        "name": "Quality coordinate for Audit Business",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "device": "desktop",
+    "route": "/matrix",
+    "title": "Feature Matrix | Stalker | Competitive Intelligence",
+    "headings": [
+      "Feature Matrix"
+    ],
+    "controls": [
+      {
+        "tag": "A",
+        "name": "Skip to main content",
+        "href": "#app-main",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Open sidebar",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Search workspace ⌘K",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "INPUT",
+        "name": "New feature name",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Add feature",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Your Startup: Deploy — Have. Change status",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Audit One: Deploy — Have. Change status",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "device": "desktop",
+    "route": "/pricing",
+    "title": "Pricing Intel | Stalker | Competitive Intelligence",
+    "headings": [
+      "Pricing Intelligence",
+      "Audit Business",
+      "A",
+      "B",
+      "C",
+      "Audit One",
+      "A",
+      "B",
+      "C"
+    ],
+    "controls": [
+      {
+        "tag": "A",
+        "name": "Skip to main content",
+        "href": "#app-main",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Open sidebar",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Search workspace ⌘K",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Add Plan",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Edit pricing plan",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Delete pricing plan",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Edit pricing plan",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Delete pricing plan",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Edit pricing plan",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Delete pricing plan",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Add Plan",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Edit pricing plan",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Delete pricing plan",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Edit pricing plan",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Delete pricing plan",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Edit pricing plan",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Delete pricing plan",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "device": "desktop",
+    "route": "/social",
+    "title": "Social Monitor | Stalker | Competitive Intelligence",
+    "headings": [
+      " Social Monitor",
+      "Target Links"
+    ],
+    "controls": [
+      {
+        "tag": "A",
+        "name": "Skip to main content",
+        "href": "#app-main",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Open sidebar",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Search workspace ⌘K",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "INPUT",
+        "name": "Filter competitors and handles",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Scan local targets",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Research Audit One on X",
+        "href": "https://x.com/search?q=Audit%20One",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "LinkedIn research",
+        "href": "https://www.google.com/search?q=Audit%20One%20site%3Alinkedin.com%2Fcompany",
+        "disabled": false
+      },
+      {
+        "tag": "INPUT",
+        "name": "Twitter handle for Audit One",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "INPUT",
+        "name": "LinkedIn handle for Audit One",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "device": "desktop",
+    "route": "/weaknesses",
+    "title": "Weakness Spotter | Stalker | Competitive Intelligence",
+    "headings": [
+      " Weakness Spotter"
+    ],
+    "controls": [
+      {
+        "tag": "A",
+        "name": "Skip to main content",
+        "href": "#app-main",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Open sidebar",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Search workspace ⌘K",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Audit One0 vulnerabilities",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "INPUT",
+        "name": "e.g. Server downtime during peak hours...",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "SELECT",
+        "name": "LowMediumCritical",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "INPUT",
+        "name": "e.g. G2 Review",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Log",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "device": "desktop",
+    "route": "/alerts",
+    "title": "Movement Alerts | Stalker | Competitive Intelligence",
+    "headings": [
+      "Alerts",
+      "Local change history"
+    ],
+    "controls": [
+      {
+        "tag": "A",
+        "name": "Skip to main content",
+        "href": "#app-main",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Open sidebar",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Search workspace ⌘K",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Mark All Read",
+        "href": null,
+        "disabled": true
+      },
+      {
+        "tag": "BUTTON",
+        "name": "All",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Pricing",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Feature",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Marketing",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "device": "desktop",
+    "route": "/strategy",
+    "title": "Counter Strategy | Stalker | Competitive Intelligence",
+    "headings": [
+      " Strategy Board"
+    ],
+    "controls": [
+      {
+        "tag": "A",
+        "name": "Skip to main content",
+        "href": "#app-main",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Open sidebar",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Search workspace ⌘K",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "INPUT",
+        "name": "New tactic name...",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "SELECT",
+        "name": "Select target competitor",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Plan",
+        "href": null,
+        "disabled": true
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "device": "desktop",
+    "route": "/swot",
+    "title": "SWOT Analysis | Stalker | Competitive Intelligence",
+    "headings": [
+      "SWOT Analysis",
+      "Audit One",
+      "Strengths",
+      "Weaknesses",
+      "Opportunities",
+      "Threats"
+    ],
+    "controls": [
+      {
+        "tag": "A",
+        "name": "Skip to main content",
+        "href": "#app-main",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Open sidebar",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Search workspace ⌘K",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "All",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "High",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Medium",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Low",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "AUAudit One0 total insightsMedium",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Add Item",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Add Item",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Add Item",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Add Item",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "device": "desktop",
+    "route": "/settings",
+    "title": "Settings | Stalker | Competitive Intelligence",
+    "headings": [
+      "Settings",
+      "Your Business",
+      "Export Data",
+      "Import Data",
+      "Data Overview",
+      "Keyboard Shortcuts",
+      "Danger Zone"
+    ],
+    "controls": [
+      {
+        "tag": "A",
+        "name": "Skip to main content",
+        "href": "#app-main",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Open sidebar",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Search workspace ⌘K",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "INPUT",
+        "name": null,
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Export as JSON",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Export as CSV",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "INPUT",
+        "name": null,
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Choose JSON File",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Reset",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Clear",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "device": "desktop",
+    "route": "/about",
+    "title": "About | Stalker | Competitive Intelligence",
+    "headings": [
+      "About Competitor Stalker",
+      "What The Platform Covers",
+      "How Teams Use It",
+      "Related Pages"
+    ],
+    "controls": [
+      {
+        "tag": "A",
+        "name": "Skip to main content",
+        "href": "#app-main",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Open sidebar",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Search workspace ⌘K",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "device": "desktop",
+    "route": "/contact",
+    "title": "Contact | Stalker | Competitive Intelligence",
+    "headings": [
+      "Contact",
+      "Support Channels",
+      "Response Time"
+    ],
+    "controls": [
+      {
+        "tag": "A",
+        "name": "Skip to main content",
+        "href": "#app-main",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Open sidebar",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Search workspace ⌘K",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "support@competitorstalker.com",
+        "href": "mailto:support@competitorstalker.com",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "security@competitorstalker.com",
+        "href": "mailto:security@competitorstalker.com",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "partnerships@competitorstalker.com",
+        "href": "mailto:partnerships@competitorstalker.com",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "device": "desktop",
+    "route": "/privacy-policy",
+    "title": "Privacy Policy | Stalker | Competitive Intelligence",
+    "headings": [
+      "Privacy Policy",
+      "What Data Is Stored",
+      "How Data Is Used",
+      "Your Controls"
+    ],
+    "controls": [
+      {
+        "tag": "A",
+        "name": "Skip to main content",
+        "href": "#app-main",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Open sidebar",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Search workspace ⌘K",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact page",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "device": "mobile",
+    "route": "/",
+    "title": "Dashboard | Stalker | Competitive Intelligence",
+    "headings": [
+      "Your competitive landscape.",
+      "Research queue",
+      "Audit One",
+      "Make the next move.",
+      "Compare & investigate",
+      "Threat breakdown"
+    ],
+    "controls": [
+      {
+        "tag": "A",
+        "name": "Skip to main content",
+        "href": "#app-main",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Open sidebar",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Search workspace ⌘K",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Add a competitor",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Refresh Data",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "01Audit OneMedium threathttps://example.comNo saved dateNo linked sources",
+        "href": "/dossier?competitor=audit-one",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "All competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Open strategy board",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature comparison1 features across your landscape",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing intelligenceCompare recorded plans and packaging",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weakness research0 findings to investigate",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "device": "mobile",
+    "route": "/dossier",
+    "title": "Competitor Dossiers | Stalker | Competitive Intelligence",
+    "headings": [
+      "Competitors",
+      "Audit One"
+    ],
+    "controls": [
+      {
+        "tag": "A",
+        "name": "Skip to main content",
+        "href": "#app-main",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Open sidebar",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Search workspace ⌘K",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Add Target",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "INPUT",
+        "name": "Find competitors",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "SELECT",
+        "name": "AllHighMediumLow",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "SELECT",
+        "name": "NameThreatRecently saved",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Clear filters",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Open battlecard for Audit One",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "example.com",
+        "href": "https://example.com",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Research",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "View history for Audit One",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Edit Audit One",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "device": "mobile",
+    "route": "/positioning",
+    "title": "Positioning Map | Stalker | Competitive Intelligence",
+    "headings": [
+      "Market Positioning",
+      "Recorded coordinates / Price · Quality"
+    ],
+    "controls": [
+      {
+        "tag": "A",
+        "name": "Skip to main content",
+        "href": "#app-main",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Open sidebar",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Search workspace ⌘K",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "INPUT",
+        "name": "Price coordinate for Audit One",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "INPUT",
+        "name": "Quality coordinate for Audit One",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "INPUT",
+        "name": "Price coordinate for Audit Business",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "INPUT",
+        "name": "Quality coordinate for Audit Business",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "device": "mobile",
+    "route": "/matrix",
+    "title": "Feature Matrix | Stalker | Competitive Intelligence",
+    "headings": [
+      "Feature Matrix"
+    ],
+    "controls": [
+      {
+        "tag": "A",
+        "name": "Skip to main content",
+        "href": "#app-main",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Open sidebar",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Search workspace ⌘K",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "INPUT",
+        "name": "New feature name",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Add feature",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Your Startup: Deploy — Have. Change status",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Audit One: Deploy — Have. Change status",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "device": "mobile",
+    "route": "/pricing",
+    "title": "Pricing Intel | Stalker | Competitive Intelligence",
+    "headings": [
+      "Pricing Intelligence",
+      "Audit Business",
+      "A",
+      "B",
+      "C",
+      "Audit One",
+      "A",
+      "B",
+      "C"
+    ],
+    "controls": [
+      {
+        "tag": "A",
+        "name": "Skip to main content",
+        "href": "#app-main",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Open sidebar",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Search workspace ⌘K",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Add Plan",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Edit pricing plan",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Delete pricing plan",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Edit pricing plan",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Delete pricing plan",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Edit pricing plan",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Delete pricing plan",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Add Plan",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Edit pricing plan",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Delete pricing plan",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Edit pricing plan",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Delete pricing plan",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Edit pricing plan",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Delete pricing plan",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "device": "mobile",
+    "route": "/social",
+    "title": "Social Monitor | Stalker | Competitive Intelligence",
+    "headings": [
+      " Social Monitor",
+      "Target Links"
+    ],
+    "controls": [
+      {
+        "tag": "A",
+        "name": "Skip to main content",
+        "href": "#app-main",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Open sidebar",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Search workspace ⌘K",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "INPUT",
+        "name": "Filter competitors and handles",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Scan local targets",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Research Audit One on X",
+        "href": "https://x.com/search?q=Audit%20One",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "LinkedIn research",
+        "href": "https://www.google.com/search?q=Audit%20One%20site%3Alinkedin.com%2Fcompany",
+        "disabled": false
+      },
+      {
+        "tag": "INPUT",
+        "name": "Twitter handle for Audit One",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "INPUT",
+        "name": "LinkedIn handle for Audit One",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "device": "mobile",
+    "route": "/weaknesses",
+    "title": "Weakness Spotter | Stalker | Competitive Intelligence",
+    "headings": [
+      " Weakness Spotter"
+    ],
+    "controls": [
+      {
+        "tag": "A",
+        "name": "Skip to main content",
+        "href": "#app-main",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Open sidebar",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Search workspace ⌘K",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Audit One0 vulnerabilities",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "INPUT",
+        "name": "e.g. Server downtime during peak hours...",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "SELECT",
+        "name": "LowMediumCritical",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "INPUT",
+        "name": "e.g. G2 Review",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Log",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "device": "mobile",
+    "route": "/alerts",
+    "title": "Movement Alerts | Stalker | Competitive Intelligence",
+    "headings": [
+      "Alerts",
+      "Local change history"
+    ],
+    "controls": [
+      {
+        "tag": "A",
+        "name": "Skip to main content",
+        "href": "#app-main",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Open sidebar",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Search workspace ⌘K",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Mark All Read",
+        "href": null,
+        "disabled": true
+      },
+      {
+        "tag": "BUTTON",
+        "name": "All",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Pricing",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Feature",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Marketing",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "device": "mobile",
+    "route": "/strategy",
+    "title": "Counter Strategy | Stalker | Competitive Intelligence",
+    "headings": [
+      " Strategy Board"
+    ],
+    "controls": [
+      {
+        "tag": "A",
+        "name": "Skip to main content",
+        "href": "#app-main",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Open sidebar",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Search workspace ⌘K",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "INPUT",
+        "name": "New tactic name...",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "SELECT",
+        "name": "Select target competitor",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Plan",
+        "href": null,
+        "disabled": true
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "device": "mobile",
+    "route": "/swot",
+    "title": "SWOT Analysis | Stalker | Competitive Intelligence",
+    "headings": [
+      "SWOT Analysis",
+      "Audit One",
+      "Strengths",
+      "Weaknesses",
+      "Opportunities",
+      "Threats"
+    ],
+    "controls": [
+      {
+        "tag": "A",
+        "name": "Skip to main content",
+        "href": "#app-main",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Open sidebar",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Search workspace ⌘K",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "All",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "High",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Medium",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Low",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "AUAudit One0 total insightsMedium",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Add Item",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Add Item",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Add Item",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Add Item",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "device": "mobile",
+    "route": "/settings",
+    "title": "Settings | Stalker | Competitive Intelligence",
+    "headings": [
+      "Settings",
+      "Your Business",
+      "Export Data",
+      "Import Data",
+      "Data Overview",
+      "Keyboard Shortcuts",
+      "Danger Zone"
+    ],
+    "controls": [
+      {
+        "tag": "A",
+        "name": "Skip to main content",
+        "href": "#app-main",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Open sidebar",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Search workspace ⌘K",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "INPUT",
+        "name": null,
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Export as JSON",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Export as CSV",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "INPUT",
+        "name": null,
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Choose JSON File",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Reset",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Clear",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "device": "mobile",
+    "route": "/about",
+    "title": "About | Stalker | Competitive Intelligence",
+    "headings": [
+      "About Competitor Stalker",
+      "What The Platform Covers",
+      "How Teams Use It",
+      "Related Pages"
+    ],
+    "controls": [
+      {
+        "tag": "A",
+        "name": "Skip to main content",
+        "href": "#app-main",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Open sidebar",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Search workspace ⌘K",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "device": "mobile",
+    "route": "/contact",
+    "title": "Contact | Stalker | Competitive Intelligence",
+    "headings": [
+      "Contact",
+      "Support Channels",
+      "Response Time"
+    ],
+    "controls": [
+      {
+        "tag": "A",
+        "name": "Skip to main content",
+        "href": "#app-main",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Open sidebar",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Search workspace ⌘K",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "support@competitorstalker.com",
+        "href": "mailto:support@competitorstalker.com",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "security@competitorstalker.com",
+        "href": "mailto:security@competitorstalker.com",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "partnerships@competitorstalker.com",
+        "href": "mailto:partnerships@competitorstalker.com",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      }
+    ],
+    "overflow": false
+  },
+  {
+    "device": "mobile",
+    "route": "/privacy-policy",
+    "title": "Privacy Policy | Stalker | Competitive Intelligence",
+    "headings": [
+      "Privacy Policy",
+      "What Data Is Stored",
+      "How Data Is Used",
+      "Your Controls"
+    ],
+    "controls": [
+      {
+        "tag": "A",
+        "name": "Skip to main content",
+        "href": "#app-main",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Open sidebar",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "BUTTON",
+        "name": "Search workspace ⌘K",
+        "href": null,
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact page",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Dashboard",
+        "href": "/",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Competitors",
+        "href": "/dossier",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Positioning",
+        "href": "/positioning",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Feature Matrix",
+        "href": "/matrix",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Pricing Intel",
+        "href": "/pricing",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Social Monitor",
+        "href": "/social",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Weaknesses",
+        "href": "/weaknesses",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Alerts",
+        "href": "/alerts",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Strategy",
+        "href": "/strategy",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "SWOT Analysis",
+        "href": "/swot",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Settings",
+        "href": "/settings",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "About",
+        "href": "/about",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Contact",
+        "href": "/contact",
+        "disabled": false
+      },
+      {
+        "tag": "A",
+        "name": "Privacy Policy",
+        "href": "/privacy-policy",
+        "disabled": false
+      }
+    ],
+    "overflow": false
+  }
+]

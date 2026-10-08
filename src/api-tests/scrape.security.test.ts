@@ -1,6 +1,11 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { EventEmitter } from 'node:events'
+import { Readable } from 'node:stream'
+import type { IncomingMessage, RequestOptions } from 'node:http'
 
-const lookupMock = vi.hoisted(() => vi.fn())
+const { lookupMock, requestMock, upstreamMock } = vi.hoisted(() => ({ lookupMock: vi.fn(), requestMock: vi.fn(), upstreamMock: vi.fn<() => Promise<Response>>() }))
+vi.mock('node:http', async importOriginal => { const actual = await importOriginal<typeof import('node:http')>(); return { ...actual, request: requestMock, default: { ...actual, request: requestMock } } })
+vi.mock('node:https', async importOriginal => { const actual = await importOriginal<typeof import('node:https')>(); return { ...actual, request: requestMock, default: { ...actual, request: requestMock } } })
 vi.mock('node:dns/promises', () => ({ lookup: lookupMock, default: { lookup: lookupMock } }))
 
 import handler, { blockedIpReason, resetRateLimit } from '../../api/scrape'
@@ -52,7 +57,39 @@ beforeEach(() => {
     resetRateLimit()
     lookupMock.mockReset()
     lookupMock.mockResolvedValue([{ address: '93.184.216.34', family: 4 }])
-    vi.stubGlobal('fetch', vi.fn(async () => htmlResponse()))
+    upstreamMock.mockReset().mockImplementation(async () => htmlResponse())
+    requestMock.mockReset().mockImplementation((_url: URL, options: RequestOptions, callback: (response: IncomingMessage) => void) => {
+        const request = new EventEmitter()
+        Object.assign(request, { end: () => {
+            const respond = async () => {
+                try {
+                    const fixture = await upstreamMock()
+                    const reader = fixture.body?.getReader()
+                    const response = new Readable({
+                        async read() {
+                            if (!reader) { this.push(null); return }
+                            try {
+                                const { done, value } = await reader.read()
+                                this.push(done ? null : Buffer.from(value))
+                            } catch (error) { this.destroy(error as Error) }
+                        },
+                        destroy(error, done) {
+                            void reader?.cancel().catch(() => undefined)
+                            done(error)
+                        },
+                    })
+                    Object.assign(response, { statusCode: fixture.status, headers: Object.fromEntries(fixture.headers) })
+                    callback(response as IncomingMessage)
+                } catch (error) { request.emit('error', error) }
+            }
+            if (options.lookup) options.lookup('public.example', {}, (error) => {
+                if (error) request.emit('error', error)
+                else void respond()
+            })
+            else void respond()
+        } })
+        return request
+    })
 })
 
 describe('blockedIpReason bypass forms', () => {
@@ -114,14 +151,18 @@ describe('handler: URL forms', () => {
         'http://localhost/',
         'http://foo.localhost/',
         'http://metadata.google.internal/',
+        'http://metadata.google.internal./',
+        'http://service.internal/',
+        'http://localhost./',
+        'https://user:password@public.example/',
         'http://169.254.169.254/',
         'http://0.0.0.0/',
         'ftp://example.com/',
     ]
-    it.each(urls)('rejects %s without fetching', async (u) => {
+    it.each(urls)('rejects %s without requesting', async (u) => {
         const res = await call(u)
         expect(res.statusCode).toBe(400)
-        expect(fetch).not.toHaveBeenCalled()
+        expect(requestMock).not.toHaveBeenCalled()
     })
 
     it('rejects a hostname whose DNS answer includes any private address', async () => {
@@ -131,33 +172,33 @@ describe('handler: URL forms', () => {
         ])
         const res = await call('http://rebind.example/')
         expect(res.statusCode).toBe(400)
-        expect(fetch).not.toHaveBeenCalled()
+        expect(requestMock).not.toHaveBeenCalled()
     })
 })
 
 describe('handler: redirects', () => {
-    it('calls fetch with redirect: manual', async () => {
+    it('uses the pinned transport without automatic redirects', async () => {
         await call('http://public.example/')
-        const init = vi.mocked(fetch).mock.calls[0][1] as RequestInit
-        expect(init.redirect).toBe('manual')
+        expect(requestMock).toHaveBeenCalledWith(expect.any(URL), expect.objectContaining({ agent: false, autoSelectFamily: false, lookup: expect.any(Function) }), expect.any(Function))
+        expect(requestMock).toHaveBeenCalledTimes(1)
     })
 
     it('blocks a redirect to a private IP literal', async () => {
-        vi.mocked(fetch).mockResolvedValueOnce(
+        upstreamMock.mockResolvedValueOnce(
             new Response(null, { status: 302, headers: { location: 'http://169.254.169.254/latest' } }),
         )
         const res = await call('http://public.example/')
         expect(res.statusCode).toBe(400)
-        expect(fetch).toHaveBeenCalledTimes(1)
+        expect(requestMock).toHaveBeenCalledTimes(1)
     })
 
     it('blocks a redirect to a mapped IPv6 loopback', async () => {
-        vi.mocked(fetch).mockResolvedValueOnce(
+        upstreamMock.mockResolvedValueOnce(
             new Response(null, { status: 301, headers: { location: 'http://[::ffff:7f00:1]/' } }),
         )
         const res = await call('http://public.example/')
         expect(res.statusCode).toBe(400)
-        expect(fetch).toHaveBeenCalledTimes(1)
+        expect(requestMock).toHaveBeenCalledTimes(1)
     })
 
     it('blocks a redirect to a hostname resolving to a private address', async () => {
@@ -166,40 +207,40 @@ describe('handler: redirects', () => {
                 ? [{ address: '10.0.0.5', family: 4 }]
                 : [{ address: '93.184.216.34', family: 4 }],
         )
-        vi.mocked(fetch).mockResolvedValueOnce(
+        upstreamMock.mockResolvedValueOnce(
             new Response(null, { status: 307, headers: { location: '/x' } }),
         )
-        vi.mocked(fetch).mockResolvedValueOnce(
+        upstreamMock.mockResolvedValueOnce(
             new Response(null, { status: 302, headers: { location: 'http://internal.example/' } }),
         )
         const res = await call('http://public.example/')
         expect(res.statusCode).toBe(400)
-        expect(fetch).toHaveBeenCalledTimes(2)
+        expect(requestMock).toHaveBeenCalledTimes(2)
     })
 
     it('follows a safe redirect and returns parsed data', async () => {
-        vi.mocked(fetch).mockResolvedValueOnce(
+        upstreamMock.mockResolvedValueOnce(
             new Response(null, { status: 301, headers: { location: 'https://public.example/new' } }),
         )
-        vi.mocked(fetch).mockResolvedValueOnce(htmlResponse())
+        upstreamMock.mockResolvedValueOnce(htmlResponse())
         const res = await call('http://public.example/')
         expect(res.statusCode).toBe(200)
         expect((res.body as { title: string }).title).toBe('Hi')
     })
 
     it('stops after too many redirects', async () => {
-        vi.mocked(fetch).mockImplementation(
+        upstreamMock.mockImplementation(
             async () => new Response(null, { status: 302, headers: { location: 'http://public.example/loop' } }),
         )
         const res = await call('http://public.example/')
         expect(res.statusCode).toBe(502)
-        expect(vi.mocked(fetch).mock.calls.length).toBeLessThanOrEqual(6)
+        expect(upstreamMock.mock.calls.length).toBeLessThanOrEqual(6)
     })
 })
 
 describe('handler: response limits', () => {
     it('rejects a non-HTML content type', async () => {
-        vi.mocked(fetch).mockResolvedValueOnce(
+        upstreamMock.mockResolvedValueOnce(
             new Response('{"a":1}', { status: 200, headers: { 'content-type': 'application/json' } }),
         )
         const res = await call('http://public.example/')
@@ -216,7 +257,7 @@ describe('handler: response limits', () => {
                 if (sent > 100) controller.close()
             },
         })
-        vi.mocked(fetch).mockResolvedValueOnce(
+        upstreamMock.mockResolvedValueOnce(
             new Response(stream, { status: 200, headers: { 'content-type': 'text/html' } }),
         )
         const res = await call('http://public.example/')
@@ -225,7 +266,7 @@ describe('handler: response limits', () => {
     })
 
     it('rejects when content-length already exceeds the cap', async () => {
-        vi.mocked(fetch).mockResolvedValueOnce(
+        upstreamMock.mockResolvedValueOnce(
             htmlResponse('<html></html>', { 'content-length': String(5 * 1024 * 1024) }),
         )
         const res = await call('http://public.example/')
@@ -233,13 +274,15 @@ describe('handler: response limits', () => {
     })
 
     it('does not echo upstream status text or error messages', async () => {
-        vi.mocked(fetch).mockResolvedValueOnce(
+        upstreamMock.mockResolvedValueOnce(
             new Response('x', { status: 500, statusText: 'secret-internal-detail' }),
         )
         const res = await call('http://public.example/')
+        expect(res.statusCode).toBe(502)
         expect(JSON.stringify(res.body)).not.toContain('secret-internal-detail')
-        vi.mocked(fetch).mockRejectedValueOnce(new Error('connect ECONNREFUSED 10.0.0.1:5432'))
+        upstreamMock.mockRejectedValueOnce(new Error('connect ECONNREFUSED 10.0.0.1:5432'))
         const res2 = await call('http://public.example/')
+        expect(res2.statusCode).toBe(502)
         expect(JSON.stringify(res2.body)).not.toContain('10.0.0.1')
     })
 })
@@ -248,7 +291,7 @@ describe('handler: same-origin check', () => {
     it('rejects a mismatched Origin', async () => {
         const res = await call('http://public.example/', { headers: { origin: 'https://evil.example' } })
         expect(res.statusCode).toBe(403)
-        expect(fetch).not.toHaveBeenCalled()
+        expect(requestMock).not.toHaveBeenCalled()
     })
 
     it('rejects an unparseable Origin', async () => {
