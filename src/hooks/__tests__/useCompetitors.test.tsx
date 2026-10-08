@@ -202,6 +202,30 @@ describe('useCompetitors', () => {
         expect(result.current.userProfile.name).toBe('');
     });
 
+    it('keeps deliberately cleared persisted data and history empty after remount', () => {
+        preventAutoSeed();
+        const competitor = createTestCompetitor();
+        localStorage.setItem('stalker_competitors', JSON.stringify([competitor]));
+        localStorage.setItem('stalker_snapshots', JSON.stringify([{
+            id: 'history-fixture', competitorId: competitor.id, type: 'milestone',
+            timestamp: '2026-01-01T00:00:00Z', data: competitor,
+        }]));
+        const first = renderHook(() => useCompetitors(), { wrapper });
+        expect(first.result.current.snapshots).toHaveLength(1);
+        act(() => first.result.current.clearAllData());
+        expect(first.result.current.competitors).toEqual([]);
+        expect(first.result.current.userProfile.name).toBe('');
+        expect(first.result.current.snapshots).toEqual([]);
+        expect(JSON.parse(localStorage.getItem('stalker_snapshots')!)).toEqual([]);
+        first.unmount();
+        const second = renderHook(() => useCompetitors(), { wrapper });
+        expect(second.result.current.competitors).toEqual([]);
+        expect(second.result.current.userProfile.name).toBe('');
+        expect(second.result.current.snapshots).toEqual([]);
+        act(() => second.result.current.resetToSeedData());
+        expect(second.result.current.competitors.length).toBeGreaterThan(0);
+    });
+
     describe('importData', () => {
         it('imports competitors and user profile', () => {
             preventAutoSeed();

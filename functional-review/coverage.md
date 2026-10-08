@@ -78,3 +78,7 @@ Final results are summarized in report.md with `typecheck.log`, `lint.log`, `tes
 The intermediate full suite (`tests-before-final.log`) started before the last nested-ID fix and included the three red cases while other files were still running. Its 219 passing checks plus three failures are superseded by the clean final run; `import-final.log` separately verifies all 18 import checks against the fixed validator. No source or tests are modified during the clean final run.
 
 Final accepted results: 222/222 tests in 18 files; 24/24 audit browser checks + 33/33 original journeys (57/57 total), zero page exceptions in either harness, type-check/lint/build/all six bundle budgets pass. All results use the final source and production build. No material local defect remains identified by the audit or independent review; partially verified rows retain the explicit external/environment limits above.
+
+Post-audit main integration: fresh checks under Node 22.23.1 / pnpm 10.34.5 pass all 295 tests across 19 files, type-check, lint, build and six bundle budgets. The additional upstream API security suite and audit transport assertions are retained; merge review found no concrete blocker. `merge-*.log` records this newer checkpoint.
+
+Fresh production-build browser verification: 24/24 audit checks and 33/33 design journeys pass (57 total), with no page exceptions. Evidence: `merge-browser.log`, `merge-journeys.log` and refreshed synthetic captures.

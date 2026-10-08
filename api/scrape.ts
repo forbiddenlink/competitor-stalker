@@ -218,43 +218,162 @@ function extractOpenGraph($: cheerio.CheerioAPI): Record<string, string | undefi
     }
 }
 
+const MAX_BODY_BYTES = 2 * 1024 * 1024
+const FETCH_TIMEOUT_MS = 10_000
+const MAX_REDIRECTS = 5
+const RATE_LIMIT_MAX = 10
+const RATE_LIMIT_WINDOW_MS = 60_000
+const RATE_LIMIT_MAX_KEYS = 5_000
+
+const BLOCKED_HOSTNAMES = new Set([
+    'localhost',
+    'metadata',
+    'metadata.google.internal',
+    'instance-data',
+    'instance-data.ec2.internal',
+])
+
+/** Parse one inet_aton-style component (decimal, 0octal, 0xhex). NaN if invalid. */
+function parseV4Part(part: string): number {
+    if (/^0x[0-9a-f]+$/i.test(part)) return parseInt(part, 16)
+    if (/^0[0-7]+$/.test(part)) return parseInt(part, 8)
+    if (/^(0|[1-9]\d*)$/.test(part)) return parseInt(part, 10)
+    return NaN
+}
+
 /**
- * Return a reason string if the IP falls in a private, loopback, link-local,
- * or otherwise reserved range that must never be reachable from the scraper;
- * null means the address is a routable public IP. Blocks SSRF to internal
- * services and cloud metadata endpoints (e.g. 169.254.169.254).
+ * Parse an IPv4 literal in any inet_aton form (1-4 parts; decimal, octal, hex)
+ * into a 32-bit number, or null when the string is not such a literal.
  */
-function blockedIpReason(ip: string): string | null {
-    // Unwrap IPv4-mapped IPv6 (e.g. ::ffff:169.254.169.254)
-    const mapped = ip.match(/^::ffff:(\d+\.\d+\.\d+\.\d+)$/i)
-    if (mapped) ip = mapped[1]
-    const mappedHex = ip.match(/^::ffff:([\da-f]{1,4}):([\da-f]{1,4})$/i)
-    if (mappedHex) {
-        const high = parseInt(mappedHex[1], 16), low = parseInt(mappedHex[2], 16)
-        ip = `${high >> 8}.${high & 255}.${low >> 8}.${low & 255}`
-    }
+function parseIPv4Loose(host: string): number | null {
+    const parts = host.split('.')
+    if (parts.length < 1 || parts.length > 4) return null
+    const nums = parts.map(parseV4Part)
+    if (nums.some((n) => Number.isNaN(n))) return null
+    const last = nums[nums.length - 1]
+    const lead = nums.slice(0, -1)
+    if (lead.some((n) => n > 255)) return null
+    if (last >= 256 ** (5 - nums.length)) return null
+    let value = last
+    lead.forEach((n, i) => {
+        value += n * 256 ** (3 - i)
+    })
+    return value
+}
 
-    if (isIP(ip) === 4) {
-        const [a, b] = ip.split('.').map(Number)
-        if (a === 0) return 'unspecified'
-        if (a === 10) return 'private'
-        if (a === 127) return 'loopback'
-        if (a === 169 && b === 254) return 'link-local' // incl. cloud metadata
-        if (a === 172 && b >= 16 && b <= 31) return 'private'
-        if (a === 192 && b === 168) return 'private'
-        if (a === 100 && b >= 64 && b <= 127) return 'cgnat'
-        if (a >= 224) return 'reserved' // multicast + future-use
-        return null
-    }
-
-    const v6 = ip.toLowerCase()
-    if (v6 === '::' || v6 === '::0') return 'unspecified'
-    if (v6 === '::1') return 'loopback'
-    if ((parseInt(v6.split(':')[0], 16) & 0xffc0) === 0xfe80) return 'link-local'
-    if (v6.startsWith('fc') || v6.startsWith('fd')) return 'unique-local' // fc00::/7
-    if (v6.startsWith('ff')) return 'multicast'
+function ipv4Reason(n: number): string | null {
+    const a = Math.floor(n / 2 ** 24)
+    const b = Math.floor(n / 2 ** 16) % 256
+    if (a === 0) return 'unspecified'
+    if (a === 10) return 'private'
+    if (a === 127) return 'loopback'
+    if (a === 169 && b === 254) return 'link-local' // incl. cloud metadata
+    if (a === 172 && b >= 16 && b <= 31) return 'private'
+    if (a === 192 && b === 168) return 'private'
+    if (a === 100 && b >= 64 && b <= 127) return 'cgnat'
+    if (a >= 224) return 'reserved' // multicast + future-use + broadcast
     return null
 }
+
+/** Expand an IPv6 literal to eight 16-bit groups, or null if malformed. */
+function parseIPv6(input: string): number[] | null {
+    let ip = input.split('%')[0] // drop zone id
+    const dotted = ip.match(/(\d+\.\d+\.\d+\.\d+)$/)
+    if (dotted) {
+        const v4 = parseIPv4Loose(dotted[1])
+        if (v4 === null) return null
+        ip = ip.slice(0, -dotted[1].length) + `${(v4 >>> 16).toString(16)}:${(v4 & 0xffff).toString(16)}`
+    }
+    const halves = ip.split('::')
+    if (halves.length > 2) return null
+    const toGroups = (h: string) => (h === '' ? [] : h.split(':'))
+    const left = toGroups(halves[0])
+    const right = halves.length === 2 ? toGroups(halves[1]) : []
+    const missing = 8 - left.length - right.length
+    if (halves.length === 2 ? missing < 1 : missing !== 0) return null
+    const all = [...left, ...Array<string>(halves.length === 2 ? missing : 0).fill('0'), ...right]
+    const groups = all.map((g) => (/^[0-9a-f]{1,4}$/i.test(g) ? parseInt(g, 16) : NaN))
+    return groups.length === 8 && groups.every((g) => !Number.isNaN(g)) ? groups : null
+}
+
+/**
+ * Return a reason string if the address falls in a private, loopback,
+ * link-local, or otherwise reserved range that must never be reachable from
+ * the scraper; null means a routable public IP. Accepts IPv4 in any
+ * inet_aton form (decimal, octal, hex, short), bracketed or zoned IPv6, and
+ * unwraps every IPv6 form that embeds an IPv4 address (::ffff:, ::/96,
+ * 64:ff9b::/96, 6to4). Anything unparseable is blocked (fail closed).
+ */
+export function blockedIpReason(input: string): string | null {
+    const ip = input.replace(/^\[|\]$/g, '')
+
+    if (!ip.includes(':')) {
+        const v4 = parseIPv4Loose(ip)
+        return v4 === null ? 'unparseable' : ipv4Reason(v4)
+    }
+
+    const g = parseIPv6(ip)
+    if (!g) return 'unparseable'
+    const v4From = (hi: number, lo: number) => hi * 65536 + lo
+
+    if (g.every((x) => x === 0)) return 'unspecified'
+    if (g.slice(0, 7).every((x) => x === 0) && g[7] === 1) return 'loopback'
+    // ::ffff:0:0/96 mapped, ::/96 compatible, 64:ff9b::/96 NAT64
+    const mapped = g.slice(0, 5).every((x) => x === 0) && g[5] === 0xffff
+    const compat = g.slice(0, 6).every((x) => x === 0)
+    const nat64 = g[0] === 0x64 && g[1] === 0xff9b && g.slice(2, 6).every((x) => x === 0)
+    if (mapped || compat || nat64) return ipv4Reason(v4From(g[6], g[7])) ?? (compat ? 'reserved' : null)
+    if (g[0] === 0x2002) return ipv4Reason(v4From(g[1], g[2])) ?? null // 6to4
+    if (g[0] === 0x2001 && g[1] === 0) return 'reserved' // Teredo
+    if ((g[0] & 0xffc0) === 0xfe80) return 'link-local'
+    if ((g[0] & 0xfe00) === 0xfc00) return 'unique-local'
+    if ((g[0] & 0xff00) === 0xff00) return 'multicast'
+    return null
+}
+
+// Per-IP fixed-window rate limit. State lives in this lambda instance's
+// memory only: each warm instance counts separately and a cold start resets
+// it, so this is best-effort abuse damping, NOT a hard global limit. A shared
+// store (Vercel Firewall rate-limit rules, Upstash) would be needed for that.
+const hits = new Map<string, { count: number; resetAt: number }>()
+
+export function resetRateLimit(): void {
+    hits.clear()
+}
+
+function rateLimited(ip: string, now = Date.now()): boolean {
+    if (hits.size > RATE_LIMIT_MAX_KEYS) {
+        for (const [k, v] of hits) if (v.resetAt <= now) hits.delete(k)
+        if (hits.size > RATE_LIMIT_MAX_KEYS) hits.clear() // bound memory under a spray
+    }
+    const entry = hits.get(ip)
+    if (!entry || entry.resetAt <= now) {
+        hits.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS })
+        return false
+    }
+    entry.count += 1
+    return entry.count > RATE_LIMIT_MAX
+}
+
+function clientIp(req: VercelRequest): string {
+    const h = req.headers['x-vercel-forwarded-for'] ?? req.headers['x-forwarded-for']
+    const first = (Array.isArray(h) ? h[0] : h)?.split(',')[0]?.trim()
+    return first || req.socket?.remoteAddress || 'unknown'
+}
+
+/** Origin, when sent, must be this deployment's own host. */
+function originAllowed(req: VercelRequest): boolean {
+    const origin = req.headers.origin
+    if (origin === undefined) return true
+    try {
+        return new URL(origin).host === req.headers.host
+    } catch {
+        return false
+    }
+}
+
+class BlockedError extends Error {}
+class UpstreamError extends Error {}
 
 interface PublicAddress { address: string; family: number }
 
@@ -268,18 +387,18 @@ function withinDeadline<T>(operation: Promise<T>, signal: AbortSignal): Promise<
 }
 
 async function validateTarget(parsed: URL, signal: AbortSignal): Promise<PublicAddress> {
-    if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') throw new Error('Only http and https URLs are allowed')
-    if (parsed.username || parsed.password) throw new Error('URLs with credentials are not allowed')
-    const hostname = parsed.hostname.replace(/^\[|\]$/g, '')
-    if (hostname === 'localhost' || hostname.endsWith('.localhost')) throw new Error('URL host is not allowed')
+    if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') throw new BlockedError('scheme')
+    if (parsed.username || parsed.password) throw new BlockedError('credentials')
+    const hostname = parsed.hostname.replace(/^\[|\]$/g, '').toLowerCase().replace(/\.$/, '')
+    if (BLOCKED_HOSTNAMES.has(hostname) || hostname.endsWith('.localhost') || hostname.endsWith('.internal')) throw new BlockedError('host')
     if (isIP(hostname)) {
-        if (blockedIpReason(hostname)) throw new Error('URL host is not allowed')
+        if (blockedIpReason(hostname)) throw new BlockedError('host')
         return { address: hostname, family: isIP(hostname) }
     }
     let resolved: PublicAddress[]
     try { resolved = await withinDeadline(lookup(hostname, { all: true }), signal) }
-    catch { if (signal.aborted) throw new Error('Request timed out'); throw new Error('Could not resolve URL host') }
-    if (!resolved.length || resolved.some(result => blockedIpReason(result.address))) throw new Error('URL host is not allowed')
+    catch { if (signal.aborted) throw new Error('Request timed out'); throw new UpstreamError('dns') }
+    if (!resolved.length || resolved.some(result => blockedIpReason(result.address))) throw new BlockedError('host')
     return resolved[0]
 }
 
@@ -304,36 +423,35 @@ function requestPublicPage(target: URL, address: PublicAddress, signal: AbortSig
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
+    if (!originAllowed(req)) return res.status(403).json({ error: 'Cross-origin requests are not allowed' })
+    if (rateLimited(clientIp(req))) return res.status(429).json({ error: 'Too many requests' })
     const { url } = req.body ?? {}
     if (!url || typeof url !== 'string') return res.status(400).json({ error: 'URL is required' })
     let target: URL
     try { target = new URL(url) }
     catch { return res.status(400).json({ error: 'Invalid URL' }) }
     const controller = new AbortController()
-    const timeout = setTimeout(() => controller.abort(), 10000)
+    const timeout = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS)
     try {
-        for (let redirects = 0; redirects <= 3; redirects++) {
-            let address: PublicAddress
-            try { address = await validateTarget(target, controller.signal) }
-            catch (error) {
-                if (controller.signal.aborted) throw error
-                return res.status(400).json({ error: error instanceof Error ? error.message : 'URL host is not allowed' })
-            }
+        for (let redirects = 0; redirects <= MAX_REDIRECTS; redirects++) {
+            const address = await validateTarget(target, controller.signal)
             const response = await requestPublicPage(target, address, controller.signal)
             const status = response.statusCode ?? 502
             if ([301, 302, 303, 307, 308].includes(status)) {
                 const location = response.headers.location
                 response.destroy()
-                if (!location || redirects === 3) return res.status(400).json({ error: 'Page redirect could not be followed' })
+                if (!location || redirects === MAX_REDIRECTS) throw new UpstreamError('redirect could not be followed')
                 try { target = new URL(location, target) }
-                catch { return res.status(400).json({ error: 'Invalid page redirect' }) }
+                catch { throw new UpstreamError('invalid redirect') }
                 continue
             }
-            if (status < 200 || status >= 300) { response.destroy(); return res.status(status).json({ error: `Failed to fetch page (${status})` }) }
+            if (status < 200 || status >= 300) { response.destroy(); return res.status(502).json({ error: 'Target returned an error' }) }
             if (!/^(text\/html|application\/xhtml\+xml)(?:;|$)/i.test(response.headers['content-type'] || '')) {
                 response.destroy()
-                return res.status(400).json({ error: 'The URL did not return an HTML page' })
+                return res.status(415).json({ error: 'Only HTML pages can be scraped' })
             }
+            const declared = Number(response.headers['content-length'])
+            if (Number.isFinite(declared) && declared > MAX_BODY_BYTES) { response.destroy(); return res.status(413).json({ error: 'Response too large' }) }
             const encoding = response.headers['content-encoding']?.toLowerCase()
             const decoder = encoding === 'gzip' ? createGunzip() : encoding === 'deflate' ? createInflate() : encoding === 'br' ? createBrotliDecompress() : null
             if (encoding && encoding !== 'identity' && !decoder) { response.destroy(); return res.status(400).json({ error: 'Unsupported page encoding' }) }
@@ -345,7 +463,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
                 for await (const chunk of body) {
                     const value = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk)
                     bytes += value.length
-                    if (bytes > 2 * 1024 * 1024) return res.status(413).json({ error: 'Page is too large to extract. Enter details manually.' })
+                    if (bytes > MAX_BODY_BYTES) return res.status(413).json({ error: 'Page is too large to extract. Enter details manually.' })
                     chunks.push(value)
                 }
             } finally { body.destroy(); response.destroy() }
@@ -354,7 +472,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         }
     } catch (error) {
         if (controller.signal.aborted || (error instanceof Error && error.name === 'AbortError')) return res.status(504).json({ error: 'Request timed out' })
-        console.error('Page extraction failed')
-        return res.status(500).json({ error: 'Failed to scrape page' })
+        if (error instanceof BlockedError) return res.status(400).json({ error: 'URL host is not allowed' })
+        if (!(error instanceof UpstreamError)) console.error('Page extraction failed')
+        return res.status(502).json({ error: 'Failed to fetch page' })
     } finally { clearTimeout(timeout) }
 }

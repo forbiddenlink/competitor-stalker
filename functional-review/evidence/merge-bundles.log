@@ -1,0 +1,14 @@
+
+> competitor-stalker@1.0.6 check:bundles /Volumes/LizsDisk/competitor-stalker
+> node scripts/check-bundle-budgets.mjs
+
+Bundle budget report
+- Entry JS: index-CA5tE6Mp.js
+- Entry CSS: index-BOVwSKHW.css
+- Runtime JS chunks: icons-Dt51njxc.js, index-CA5tE6Mp.js, vendor-C68_HecP.js
+- [PASS] Entry JS (raw): 49.4KB (limit 200.0KB)
+- [PASS] Entry JS (gzip): 13.9KB (limit 65.0KB)
+- [PASS] Entry CSS (raw): 59.1KB (limit 65.0KB)
+- [PASS] Entry CSS (gzip): 11.3KB (limit 12.0KB)
+- [PASS] Runtime JS (raw): 297.3KB (limit 340.0KB)
+- [PASS] Runtime JS (gzip): 94.2KB (limit 105.0KB)

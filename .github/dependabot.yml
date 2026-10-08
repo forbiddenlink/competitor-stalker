@@ -6,12 +6,15 @@ updates:
     schedule:
       interval: "weekly"
       day: "monday"
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 0
     cooldown:
       semver-major-days: 30
       semver-minor-days: 7
       semver-patch-days: 3
     groups:
+      security-updates:
+        applies-to: security-updates
+        patterns: ["*"]
       patch-and-minor:
         patterns: ["*"]
         update-types: ["patch", "minor"]
@@ -21,6 +24,12 @@ updates:
     ignore:
       - dependency-name: "cookie"
         update-types: ["version-update:semver-major"]
+      # typescript-eslint has no TS 7 support yet: eslint aborts with
+      # "typescript-eslint does not support TS 7.0" before linting anything.
+      # Tracked upstream at typescript-eslint/typescript-eslint#10940; drop this
+      # once that ships.
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
     labels: ["dependencies"]
     commit-message:
       prefix: "chore(deps):"
@@ -29,8 +38,11 @@ updates:
     schedule:
       interval: "weekly"
       day: "monday"
-    open-pull-requests-limit: 5
+    open-pull-requests-limit: 0
     groups:
+      security-updates:
+        applies-to: security-updates
+        patterns: ["*"]
       github-actions:
         patterns: ["*"]
     commit-message:

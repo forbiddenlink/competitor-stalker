@@ -42,3 +42,11 @@ No deployment or real communication occurred. Live scrape service, deployed tele
 The most valuable proposals in [improvements.md](improvements.md) need owner decisions: align team/automatic-monitoring promises with actual infrastructure; define cross-tab conflict behavior; consider import previews and assisted recovery. They are not implemented. Accounts, billing, admin and background jobs are intentionally excluded because they do not exist in this application.
 
 The final accepted browser total is 57/57 checks, covering both viewport sizes and all 14 page families. Audit changes are prepared on design/upgrade; unrelated user-owned CLAUDE.md was not read, edited or included.
+
+## Follow-up integration verification
+
+After the user authorized commit, push and verification, main `e87d60a` was integrated into `design/upgrade`. The merge preserves upstream origin/rate-limit/IP safeguards and dependency pins alongside audited connection pinning, bounded extraction and storage recovery. Upstream scraper responses remain 415 for non-HTML and sanitized 502 for upstream failures, with at most five redirects. Independent review found no concrete blocker in the resolved source and API tests.
+
+Fresh verification uses Node 22.23.1 / pnpm 10.34.5: 295/295 tests in 19 files pass, including 87 API tests. Type-check, lint, production build and all six bundle budgets pass. Evidence: `merge-types.log`, `merge-lint.log`, `merge-tests.log`, `merge-build.log`, `merge-bundles.log`. The initial audit results above remain their original checkpoint.
+
+Fresh production-build browser verification: 24/24 audit checks and 33/33 design journeys pass (57 total), with no page exceptions. Evidence: `merge-browser.log`, `merge-journeys.log` and refreshed synthetic captures.

@@ -6,7 +6,7 @@ import type { RequestOptions, IncomingMessage } from 'node:http';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { act, renderHook } from '@testing-library/react';
 import { useScraper } from '../hooks/useScraper';
-import handler from '../../api/scrape';
+import handler, { resetRateLimit } from '../../api/scrape';
 const transport = vi.hoisted(() => ({ request: vi.fn(), lookup: vi.fn<() => Promise<{ address: string; family: number }[]>>(), responses: [] as { status?: number; headers?: Record<string, string>; body?: string | Buffer; hold?: boolean }[], addresses: [] as string[] }));
 vi.mock('node:http', async importOriginal => { const actual = await importOriginal<typeof import('node:http')>(); return { ...actual, request: transport.request, default: { ...actual, request: transport.request } }; });
 vi.mock('node:https', async importOriginal => { const actual = await importOriginal<typeof import('node:https')>(); return { ...actual, request: transport.request, default: { ...actual, request: transport.request } }; });
@@ -18,10 +18,12 @@ vi.mock('node:dns/promises', async importOriginal => {
 const call = async (body: unknown, method = 'POST') => {
     let code = 0; let data: unknown;
     const res = { status: (status: number) => { code = status; return res; }, json: (value: unknown) => { data = value; return res; } };
-    await handler({ method, body } as VercelRequest, res as unknown as VercelResponse);
+    await handler({ method, body, headers: {} } as VercelRequest, res as unknown as VercelResponse);
     return { code, data };
 };
 beforeEach(() => {
+    resetRateLimit();
+    transport.lookup.mockReset();
     transport.responses.length = 0; transport.addresses.length = 0;
     transport.lookup.mockResolvedValue([{ address: '93.184.216.34', family: 4 }]);
     transport.request.mockReset().mockImplementation((_url: URL, options: RequestOptions, callback: (response: IncomingMessage) => void) => {
@@ -69,7 +71,7 @@ describe('scrape endpoint boundary', () => {
     });
     it('does not treat JSON as a successfully scraped page', async () => {
         transport.responses.push({ headers: { 'content-type': 'application/json' }, body: '{}' });
-        expect((await call({ url: 'https://example.com' })).code).toBe(400);
+        expect((await call({ url: 'https://example.com' })).code).toBe(415);
     });
     it('normalizes protocol-relative social links into a response the client accepts', async () => {
         transport.responses.push({ body: '<title>Social page</title><a href="//x.com/acme">Follow</a><a href="javascript:github.com">Unsafe</a>' });

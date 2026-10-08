@@ -62,3 +62,9 @@ All seven phases are complete. Resumed October 8 at phase 3 and finished phases 
 ## Completion
 
 No remaining work inside the approved upgrade scope. See `report.md` and `phase-6-verification.md` for results and limits. User-owned `CLAUDE.md` remains untracked and untouched. Future production, service, schema or substantive legal/contact work requires a separate request.
+
+## Authorized commit and push follow-up — October 8
+
+The user subsequently authorized committing, pushing and verifying the work. Audit commit `fcc1aa1` was pushed to `design/upgrade`; draft PR [92](https://github.com/forbiddenlink/competitor-stalker/pull/92) targets main. Main was integrated locally to resolve PR conflicts and retain its newer security guards and dependency pins. This does not merge the PR into main.
+
+User-local `CLAUDE.md` was not read or staged; the upstream tracked version is inherited through the merge. Its local working copy remains preserved. A failed cross-volume backup followed by a continuing command replaced the local AGENTS file; the supplied project instructions were reconstructed before proceeding. The full supplied global instructions remain active in conversation; restoring their text was blocked by the local boundary hook.
