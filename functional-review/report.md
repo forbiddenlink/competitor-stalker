@@ -50,3 +50,11 @@ After the user authorized commit, push and verification, main `e87d60a` was inte
 Fresh verification uses Node 22.23.1 / pnpm 10.34.5: 295/295 tests in 19 files pass, including 87 API tests. Type-check, lint, production build and all six bundle budgets pass. Evidence: `merge-types.log`, `merge-lint.log`, `merge-tests.log`, `merge-build.log`, `merge-bundles.log`. The initial audit results above remain their original checkpoint.
 
 Fresh production-build browser verification: 24/24 audit checks and 33/33 design journeys pass (57 total), with no page exceptions. Evidence: `merge-browser.log`, `merge-journeys.log` and refreshed synthetic captures.
+
+## All-branch integration — October 8
+
+The user authorized merging all active branches into main after fixes. The dependency branches `renovate/pnpm-10.x` and `renovate/prod-minor` were merged into the upgrade branch for combined verification. Node 22.23.1 / pnpm 10.34.6, React/DOM 19.3.0, React Router 8.4.0 and lucide-react 1.52.0 pass all 295 tests, type-check, lint, build and six budgets. The runtime bundle is 104.0KB gzip against its 105KB budget. Logs: `all-branches-types.log`, `all-branches-lint.log`, `all-branches-tests.log`, `all-branches-build.log`, `all-branches-bundles.log`. Independent review found no concrete blocker.
+
+CodeQL alert 59 at the outbound scraper request appears to be unrecognized custom validation: every hop checks all DNS answers, uses only a validated address for connection lookup, disables agent reuse and automatic family fallback, and validates literal IPs separately. Regression tests cover rebinding and private redirects. The alert remains visible; no suppression or security-policy change was made.
+
+The combined production build also passes 24 audit browser checks and 33 design journeys (57/57 total), with zero page exceptions. Evidence: `all-branches-browser.log`, `all-branches-journeys.log` and refreshed synthetic captures.
