@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.1.0](https://github.com/forbiddenlink/competitor-stalker/compare/v1.0.6...v1.1.0) (2026-10-08)
+
+
+### Features
+
+* complete and verify local competitive research workflows ([c8e1614](https://github.com/forbiddenlink/competitor-stalker/commit/c8e16148278309898d892c68d92a19cb3c55861f))
+* complete the local research-to-response workflow ([7df3566](https://github.com/forbiddenlink/competitor-stalker/commit/7df356662f4d0cca19a7a7483376629f9e630445))
+* put actionable research ahead of passive dashboard metrics ([d96e922](https://github.com/forbiddenlink/competitor-stalker/commit/d96e9229f91aff5e562bf8d471bc0b292fbc1dd0))
+
+
+### Bug Fixes
+
+* **api:** close SSRF guard bypasses and harden open scrape proxy ([#84](https://github.com/forbiddenlink/competitor-stalker/issues/84)) ([1eb7cc6](https://github.com/forbiddenlink/competitor-stalker/commit/1eb7cc67746c64d8ae5e1d053dab9837a3df7e19))
+* **deps:** apply override fix plan ([#87](https://github.com/forbiddenlink/competitor-stalker/issues/87)) ([505eb8b](https://github.com/forbiddenlink/competitor-stalker/commit/505eb8ba73546dc11b120e439419c1ca0fbaaf79))
+* **deps:** raise stale override floors ([#86](https://github.com/forbiddenlink/competitor-stalker/issues/86)) ([e2ab2fd](https://github.com/forbiddenlink/competitor-stalker/commit/e2ab2fdcf3b4038a5895495230fa4a826f50dd58))
+* prevent data loss and broken research workflows ([fcc1aa1](https://github.com/forbiddenlink/competitor-stalker/commit/fcc1aa1bbf1380fc239c10e9c9bf8719dbe5eb76))
+* verify research workflows and remove accessibility barriers ([842fe29](https://github.com/forbiddenlink/competitor-stalker/commit/842fe2964f88c511ae4d241218776a23295ac86c))
+
 ## [1.0.6](https://github.com/forbiddenlink/competitor-stalker/compare/v1.0.5...v1.0.6) (2026-09-09)
 
 
