@@ -1,0 +1,47 @@
+[
+  {
+    "id": "crayon-product",
+    "group": "features",
+    "url": "https://www.crayon.co/product/aggregate"
+  },
+  {
+    "id": "klue-product",
+    "group": "features",
+    "url": "https://klue.com/competitive-intelligence-software"
+  },
+  {
+    "id": "kompyte-product",
+    "group": "features",
+    "url": "https://www.kompyte.com/kompyte-competitive-intelligence-automation-ai"
+  },
+  {
+    "id": "contify-product",
+    "group": "features",
+    "url": "https://www.contify.com/platform/"
+  },
+  {
+    "id": "visualping-product",
+    "group": "features",
+    "url": "https://visualping.io/competitive-monitoring"
+  },
+  {
+    "id": "competitors-app-product",
+    "group": "features",
+    "url": "https://competitors.app/features/"
+  },
+  {
+    "id": "rival-iq-product",
+    "group": "features",
+    "url": "https://www.rivaliq.com/product/"
+  },
+  {
+    "id": "brandwatch-product",
+    "group": "features",
+    "url": "https://www.brandwatch.com/suite/consumer-intelligence/"
+  },
+  {
+    "id": "hexowatch-product",
+    "group": "features",
+    "url": "https://hexowatch.com/advanced-monitoring"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "edolus",
+    "group": "references",
+    "url": "https://edolus.com/",
+    "gallery": "https://www.awwwards.com/sites/edolus",
+    "motion": "no-preference",
+    "settleMs": 20000
+  },
+  {
+    "id": "lidar",
+    "group": "references",
+    "url": "https://drone.riotters.com/",
+    "gallery": "https://www.awwwards.com/sites/lidar-drone-scanning",
+    "motion": "no-preference",
+    "settleMs": 20000
+  },
+  {
+    "id": "twks",
+    "group": "references",
+    "url": "https://twks.ch/en",
+    "gallery": "https://www.awwwards.com/sites/twks-1",
+    "motion": "no-preference",
+    "settleMs": 20000
+  }
+]

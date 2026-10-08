@@ -1,0 +1,47 @@
+[
+  {
+    "id": "kompyte-detail",
+    "group": "features",
+    "url": "https://www.kompyte.com/plans"
+  },
+  {
+    "id": "klue-detail",
+    "group": "features",
+    "url": "https://klue.com/compete-agent"
+  },
+  {
+    "id": "crayon-detail",
+    "group": "features",
+    "url": "https://www.crayon.co/product/publish"
+  },
+  {
+    "id": "contify-detail",
+    "group": "features",
+    "url": "https://www.contify.com/product-tour/"
+  },
+  {
+    "id": "competitors-app-detail",
+    "group": "features",
+    "url": "https://competitors.app/pricing/"
+  },
+  {
+    "id": "visualping-detail",
+    "group": "features",
+    "url": "https://visualping.io/pricing"
+  },
+  {
+    "id": "rival-iq-detail",
+    "group": "features",
+    "url": "https://www.rivaliq.com/pricing/"
+  },
+  {
+    "id": "brandwatch-detail",
+    "group": "features",
+    "url": "https://www.brandwatch.com/plans/"
+  },
+  {
+    "id": "hexowatch-detail",
+    "group": "features",
+    "url": "https://hexowatch.com/pricing"
+  }
+]

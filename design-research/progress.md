@@ -6,14 +6,14 @@ Updated October 8, 2026. Branch: `design/upgrade`. Baseline: `28e0dbc`.
 
 Complete the user-requested seven phases in order. Commit after each phase. Never merge, push, deploy, change main/production, delete files/pages/content, remove features, change routes, migrate a database or add paid services/API keys. Keep artifacts here. Make design and implementation decisions independently; no options or routine approval questions.
 
-Existing untracked `CLAUDE.md` belongs to the user and must remain untouched/uncommitted. No application code changed during phase 1. Phase 1 evidence totals 52 native Chromium screenshots (28 route/viewport baselines, 17 lower-content views, 7 shared-state views), plus 2 contact sheets. Browser page errors: 0. Build/lint/tests/Lighthouse are not yet run; they belong to phase 6 after implementation.
+Existing untracked `CLAUDE.md` belongs to the user and must remain untouched/uncommitted. No application code changed during phases 1–2. Phase 1 evidence totals 52 native Chromium screenshots (28 route/viewport baselines, 17 lower-content views, 7 shared-state views), plus 2 contact sheets. Browser page errors: 0. Build/lint/tests/Lighthouse are not yet run; they belong to phase 6 after implementation.
 
 ## Phase status
 
 | Phase | Status | Evidence / next step |
 |---|---|---|
 | 1 Understand | done | `profile.md`; all 14 templates loaded and captured in Chromium desktop/mobile; shared states captured; `before-browser-evidence.json`, `before-states-evidence.json` |
-| 2 Research | not done | Initial discovery searches only. Need 12–15 live gallery-qualified design references, including 4 outside CI; need 8–10 leaders with key-page screenshots and observed feature inventories. Do not count search results as loaded live sites. |
+| 2 Research | done | `references.md`: 13 loaded live design references, 5 clearly outside industry; `features.md`: 9 loaded leaders × 3 public pages. Native Chromium screenshots and JSON evidence saved. Gallery protection, failed rendering and gated-product limits documented. |
 | 3 Decide | not started | Write `plan.md` only after live reference/feature research. |
 | 4 Foundation + homepage | not started | Tokens, typography, shared components, homepage; at least 2 screenshot/score/fix rounds. |
 | 5 Every template | not started | All 14 templates still need upgrade and state verification. |
@@ -42,16 +42,23 @@ Local Vite server: `pnpm dev --host 127.0.0.1`, port 5173. Starting a listening 
 
 Initial default Python lacks Playwright; the stale standalone `playwright` launcher points to a missing Anaconda executable. Use the functioning Node Playwright import in the saved scripts instead. Do not repeat the failed Python/launcher attempts.
 
-## Research discovery (not accepted references)
+## Phase 2 research checkpoint
 
-Web search was used as requested. Land-book and SiteInspire gallery text loaded successfully. Godly redirected to recent.design and the text browser could not fetch that redirect; Awwwards' SOTD index failed in the text browser. Try real Chromium for those galleries and document any actual browser blocking. None has yet been captured in Chromium, so **phase 2 is incomplete and no live reference site is being cited**.
+- Web search discovery followed by live Chromium loads, screenshots and public-page text inspection.
+- Accepted design references: Paper, Stripe Press, Mintlify, Retool, Plain, Fey (current closure announcement only), Topology, Time.fyi, Capsule, Lidar Drone Scanning, TWKS, Paste and AuthKit. Five are outside the app's industry. Gallery provenance spans Awwwards SOTD, SiteInspire, Godly's current Recent Design redirect and Land-book text discovery.
+- Land-book galleries blocked by Cloudflare 403 in Chromium; their target sites independently loaded. Shopify Design rendered a blank hero on two attempts. Edolus stayed on a preloader and its retry failed. Both excluded. Native screenshots and errors preserved; HTTP 200 alone is not accepted as a finished design reference.
+- Nine accepted peers: Crayon, Klue, Kompyte, Contify, Visualping, Competitors App, Rival IQ, Brandwatch and Hexowatch. Their home/product/supporting pages all loaded. Similarweb returned 403 and is excluded. Public feature inventory is bounded by those pages, not gated interiors.
+- Competitor evidence: 27 loaded pages, 81 screenshots; Similarweb adds 3 blocked-page captures. Design evidence: 13 accepted sites, 39 native screenshots; excluded attempts and gallery captures retained separately.
+- Strongest candidates: actionable research briefing, find/filter/sort, local snapshot-derived change feed, composed battlecards, accessible comparisons, honest manual social research and printable/exportable summaries. Final scope remains phase 3.
+- Strongest visual inputs: Paper's precise workspace, Stripe Press's editorial structure, Mintlify's type hierarchy and Retool/Paste's visible tool content. Showcase motion, low contrast and unsupported product promises are rejected.
+- No application code, runtime dependencies, data, routes or production settings changed. No forms submitted, accounts created or services purchased. Build/typecheck/lint/tests/Lighthouse remain pending until implementation.
 
-Competitive-intelligence searches surfaced candidate vendors; verify their own live public pages, not comparison articles, before listing features. Do not claim exhaustive access to gated product interiors. Mark genuinely blocked pages and missing evidence explicitly.
+Research capture runner: `node design-research/research-browser.mjs design-research/<targets>.json`. It records native top/middle/bottom viewport images, public text/headings/links, HTTP/final URL and failures. Normal-motion retries were necessary for Topology/TWKS/Lidar. `references.md` distinguishes accepted captures from preloader/blank attempts; earlier machine statuses are preliminary and do not override visual review.
 
 ## Context checkpoint
 
-Phase 1 is complete. Stop here because the context is long, as the user instructed. Resume in a new session at phase 2; do not treat this as a completed upgrade or final phase-7 report.
+Phases 1–2 are complete. Stop here because the research session context is long, as the user instructed. Resume in a new session at phase 3; do not treat this as a completed upgrade or final phase-7 report.
 
 ## Resume instructions
 
-Start with phase 2. Read `profile.md`, this checkpoint and `needs-approval.md`. Confirm branch/status; leave `CLAUDE.md` alone. Research/screenshots must precede final direction. Use real Chromium; keep evidence and notes here. Commit phase 2, then phase 3, then implement. Finish the current phase before any next context checkpoint. The seven-phase goal is still incomplete.
+Start with phase 3. Read `profile.md`, `references.md`, `features.md`, this checkpoint and `needs-approval.md`. Confirm branch/status; leave `CLAUDE.md` alone. Choose ONE design direction, ranked safe features and a plan for all 14 templates in `plan.md`; commit phase 3 and continue directly into phase 4. Use real Chromium; keep evidence and notes here. Follow the two homepage screenshot/score/fix rounds before rollout. Finish the current phase before any next context checkpoint. The seven-phase goal is still incomplete.

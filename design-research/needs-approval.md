@@ -2,7 +2,7 @@
 
 No risky or destructive operations have been performed.
 
-Deferred items identified during phase 1:
+Deferred items identified during phases 1–2:
 
 | Item | Why deferred | Safe scope for the upgrade |
 |---|---|---|
@@ -15,3 +15,14 @@ Deferred items identified during phase 1:
 | Paid fonts, paid datasets, new API keys or services | Explicitly prohibited | Use existing assets, system fonts or freely licensed self-hosted assets |
 
 This list will be expanded as research and implementation reveal concrete dependencies. No approval is being requested at this checkpoint.
+
+## Research dependencies added in phase 2
+
+| Item | Why deferred | Safe scope |
+|---|---|---|
+| Persistent source citations, verification/confidence, review dates, intelligence tags or additional battlecard fields | New content-field/section structure; user explicitly reserved such changes for approval | Derive existing website/update/snapshot metadata and compose reports from current fields |
+| Sales CRM/deal records, win/loss interviews and pipeline analytics | New sensitive content models, backend and integrations; no current data supports them | Summarize existing SWOT, weaknesses and counter strategies |
+| Automated outbound newsletters, reports and notifications | External delivery, integrations and service commitments | Local printable/copyable/exportable briefs only |
+| Paid social/SEO/traffic datasets, sentiment/influencer tools and monitor proxies | New services, keys, usage costs and unverified data collection | Manual public research links; clearly label current local metrics |
+
+The public peer feature inventory does not authorize these additions. No schema, account, API, paid service or delivery changes were made.
