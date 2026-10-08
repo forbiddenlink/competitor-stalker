@@ -255,12 +255,12 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                         {/* Search Button */}
                         <button
                             onClick={() => setIsSearchOpen(true)}
-                            aria-label="Search workspace"
+                            aria-label="Search workspace ⌘K"
                             className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-[var(--border-default)] bg-[var(--bg-secondary)] hover:bg-[var(--bg-tertiary)] transition-colors"
                         >
                             <Search className="w-4 h-4 text-[var(--text-muted)]" />
-                            <span className="hidden sm:inline text-sm text-[var(--text-muted)]">Search...</span>
-                            <kbd className="hidden sm:inline px-1.5 py-0.5 text-[10px] text-[var(--text-subtle)] bg-[var(--bg-surface)] border border-[var(--border-default)] rounded">
+                            <span className="hidden sm:inline text-sm text-[var(--text-muted)]">Search workspace</span>
+                            <kbd aria-hidden="true" className="hidden sm:inline px-1.5 py-0.5 text-[10px] text-[var(--text-subtle)] bg-[var(--bg-surface)] border border-[var(--border-default)] rounded">
                                 ⌘K
                             </kbd>
                         </button>

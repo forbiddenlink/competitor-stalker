@@ -27,7 +27,7 @@
   --text-inverse: #ffffff;
   --text-secondary: #47534c;
   --text-muted: #59665e;
-  --text-subtle: #66736a;
+  --text-subtle: #536057;
 
   /* Accent Colors - Refined & Purposeful */
   --accent-brand: #2454a0;          /* Primary blue */
@@ -788,6 +788,6 @@ a:focus-visible, [tabindex]:focus-visible {
   aside, header, footer, .print-hidden { display: none !important; }
   .h-screen, .overflow-hidden, .overflow-auto { height: auto !important; overflow: visible !important; }
   body:has(.battlecard) * { visibility: hidden; }
-  .battlecard, .battlecard * { visibility: visible; }
+  body:has(.battlecard) .battlecard, body:has(.battlecard) .battlecard * { visibility: visible; }
   .battlecard { position: absolute; inset: 0; border: 0; }
 }

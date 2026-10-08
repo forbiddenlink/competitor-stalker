@@ -6,7 +6,7 @@ Updated October 8, 2026. Branch: `design/upgrade`. Baseline: `28e0dbc`.
 
 Complete the user-requested seven phases in order. Commit after each phase. Never merge, push, deploy, change main/production, delete files/pages/content, remove features, change routes, migrate a database or add paid services/API keys. Keep artifacts here. Make design and implementation decisions independently; no options or routine approval questions.
 
-Existing untracked `CLAUDE.md` belongs to the user and must remain untouched/uncommitted. No application code changed during phases 1–2. Phase 4 changes tokens, solid-button contrast, shell and dashboard. Phase 1 evidence totals 52 native Chromium screenshots (28 route/viewport baselines, 17 lower-content views, 7 shared-state views), plus 2 contact sheets. Browser page errors: 0. Phase 4 focused verification: typecheck/lint pass, all 160 tests pass. Build/budgets/Lighthouse and full journeys remain phase 6.
+Existing untracked `CLAUDE.md` belongs to the user and must remain untouched/uncommitted. No application code changed during phases 1–2. Phase 4 changes tokens, solid-button contrast, shell and dashboard. Phase 1 evidence totals 52 native Chromium screenshots (28 route/viewport baselines, 17 lower-content views, 7 shared-state views), plus 2 contact sheets. Browser page errors: 0. Final pre-submit passes: typecheck, lint, 169 tests, production build and bundle budgets. Production journeys: 33/33 pass. Lighthouse: accessibility/SEO 100, performance 99–100, best practices 96 due to local Vercel telemetry 404s.
 
 ## Phase status
 
@@ -17,12 +17,12 @@ Existing untracked `CLAUDE.md` belongs to the user and must remain untouched/unc
 | 3 Decide | done | `plan.md`: editorial research workspace; ranked local-only features, all 14 templates, acceptance/verification gates. |
 | 4 Foundation + homepage | done | `phase-4-reasoning.md`; two native screenshot/score/fix rounds plus accepted desktop/mobile captures; typecheck/lint and 160 tests pass. |
 | 5 Every template | done | `phase-5-reasoning.md`; all 14 templates upgraded; 29/29 initial browser journey checks and 169 tests pass; final captures supersede initial rollout. |
-| 6 Verify | not started | Full pre-submit, Lighthouse on key pages, every main journey. |
+| 6 Verify | done | `phase-6-verification.md`; full pre-submit, 33/33 production journeys, 66/66 contrast pairs; six Lighthouse reports and final native captures. |
 | 7 Report | not started | Before/after evidence, features, rubric, blocked/untested items, approval list. |
 
 ## Template implementation tracker
 
-All 14 templates are implemented and qualitatively scored: dashboard, dossiers, positioning, matrix, pricing, social, weaknesses, alerts, strategy, SWOT, settings, about, contact and privacy policy. Forms/history/search/mobile navigation have isolated browser state checks. Phase 6 production verification remains pending.
+All 14 templates are implemented and qualitatively scored: dashboard, dossiers, positioning, matrix, pricing, social, weaknesses, alerts, strategy, SWOT, settings, about, contact and privacy policy. Forms/history/search/mobile navigation have isolated browser state checks. Final production browser verification and Lighthouse repeat pass; see phase 6 evidence.
 
 ## Decisions / findings
 
@@ -57,8 +57,8 @@ Research capture runner: `node design-research/research-browser.mjs design-resea
 
 ## Context checkpoint
 
-Phases 1–5 are complete. Resumed October 8 at phase 3; implementation now proceeds to phase 6. This remains an incomplete seven-phase upgrade.
+Phases 1–6 are complete. Resumed October 8 at phase 3; only phase 7 report/commit remains. No push or deployment is authorized.
 
 ## Resume instructions
 
-Continue with phase 6. Read `profile.md`, `references.md`, `features.md`, this checkpoint and `needs-approval.md`. Confirm branch/status; leave `CLAUDE.md` alone. Follow the fixed direction and scope in `plan.md`. Phase 3 committed as `6a51c92`; phase 4 implementation and evidence are complete. Use real Chromium; keep evidence and notes here. The two homepage screenshot/score/fix rounds are complete; see `phase-4-reasoning.md`. Finish the current phase before any next context checkpoint. The seven-phase goal is still incomplete.
+Finish phase 7: finalize `report.md`, check evidence links and branch/diff, mark progress/plan complete and commit report. All implementation and verification are complete. Leave user-owned `CLAUDE.md` untouched. No push, merge or deployment.

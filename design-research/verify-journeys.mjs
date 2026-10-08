@@ -10,7 +10,7 @@ for (const [device, width, height] of [['desktop', 1440, 1000], ['mobile', 390, 
     const page = await context.newPage();
     page.setDefaultTimeout(10000);
     const errors = []; page.on('pageerror', e => errors.push(e.message));
-    const go = async route => { await page.goto(`${process.env.VERIFY_BASE_URL || 'http://127.0.0.1:5173'}${route}`, { waitUntil: 'networkidle' }); };
+    const go = async route => { await page.goto(`${process.env.VERIFY_BASE_URL || 'http://127.0.0.1:5173'}${route}`, { waitUntil: 'networkidle' }); assert.ok((await page.title()).includes('| Stalker | Competitive Intelligence'), 'Refuse to exercise an unexpected app'); };
     const capture = async name => page.screenshot({ path: `${dir}/${name}-${device}.png` });
     const step = async (name, action) => {
         try { await action(); results.push({ device, name, passed: true }); }
@@ -28,10 +28,11 @@ for (const [device, width, height] of [['desktop', 1440, 1000], ['mobile', 390, 
         const stream = await download.createReadStream();
         let text = ''; for await (const chunk of stream) text += chunk.toString();
         assert.ok(text.includes('Features:') && text.includes('Pricing:') && text.includes('Vercel'));
-        await page.emulateMedia({ media: 'print' });
-        assert.equal(await page.locator('.battlecard').evaluate(el => getComputedStyle(el).visibility), 'visible');
-        await capture('battlecard-print');
-        await page.emulateMedia({ media: 'screen' });
+        try {
+            await page.emulateMedia({ media: 'print' });
+            assert.equal(await page.locator('.battlecard').evaluate(el => getComputedStyle(el).visibility), 'visible');
+            await capture('battlecard-print');
+        } finally { await page.emulateMedia({ media: 'screen' }); }
     });
     await step('dossier search and form', async () => {
         await go('/dossier');
@@ -192,6 +193,28 @@ for (const [device, width, height] of [['desktop', 1440, 1000], ['mobile', 390, 
         assert.equal(await dialog.evaluate(el => el.contains(document.activeElement)), true);
         await capture('navigation'); await page.keyboard.press('Escape');
         assert.equal(await page.getByRole('button', { name: 'Open sidebar' }).evaluate(el => el === document.activeElement), true);
+    });
+    await step('long partial records and empty workspace', async () => {
+        await go('/dossier');
+        const name = 'A very long competitor name for responsive layout verification';
+        await page.evaluate(name => {
+            localStorage.setItem('stalker_competitors', JSON.stringify([{ id: 'partial', name, website: '', threatLevel: 'Low', features: {}, pricingModels: [], notes: '', updatedAt: 'invalid' }]));
+            localStorage.setItem('stalker_profile', JSON.stringify({ name: 'Browser test business', positionX: 50, positionY: 50, features: {}, pricingModels: [] }));
+            localStorage.setItem('stalker_snapshots', '[]');
+        }, name);
+        await go('/dossier?competitor=partial');
+        await page.getByRole('heading', { name: `${name} / Battlecard` }).waitFor();
+        assert.equal(await page.locator('.flex-1.overflow-auto').evaluate(el => el.scrollWidth > el.clientWidth), false);
+        await capture('partial-battlecard');
+        await page.evaluate(() => localStorage.setItem('stalker_competitors', '[]'));
+        await go('/');
+        await page.getByRole('heading', { name: 'Start your research workspace' }).waitFor();
+        await capture('empty-dashboard');
+        for (const route of ['/dossier', '/positioning', '/matrix', '/pricing', '/social', '/weaknesses', '/alerts', '/strategy', '/swot', '/settings']) {
+            await go(route);
+            assert.equal(await page.getByRole('heading', { level: 1 }).count(), 1);
+            assert.equal(await page.locator('.flex-1.overflow-auto').first().evaluate(el => el.scrollWidth > el.clientWidth), false);
+        }
     });
     results.push({ device, name: 'page errors', passed: errors.length === 0, errors });
     await context.close();

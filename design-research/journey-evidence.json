@@ -21,6 +21,11 @@
   },
   {
     "device": "desktop",
+    "name": "position numeric and pointer cancellation",
+    "passed": true
+  },
+  {
+    "device": "desktop",
     "name": "pricing editing",
     "passed": true
   },
@@ -66,6 +71,11 @@
   },
   {
     "device": "desktop",
+    "name": "long partial records and empty workspace",
+    "passed": true
+  },
+  {
+    "device": "desktop",
     "name": "page errors",
     "passed": true,
     "errors": []
@@ -88,6 +98,11 @@
   {
     "device": "mobile",
     "name": "positioning keyboard and pointer",
+    "passed": true
+  },
+  {
+    "device": "mobile",
+    "name": "position numeric and pointer cancellation",
     "passed": true
   },
   {
@@ -138,6 +153,11 @@
   {
     "device": "mobile",
     "name": "mobile navigation focus",
+    "passed": true
+  },
+  {
+    "device": "mobile",
+    "name": "long partial records and empty workspace",
     "passed": true
   },
   {

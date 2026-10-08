@@ -1,0 +1,248 @@
+[
+  {
+    "name": "dashboard",
+    "route": "/",
+    "device": "mobile",
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 96,
+      "seo": 100
+    },
+    "failures": [
+      {
+        "id": "errors-in-console",
+        "title": "Browser errors were logged to the console",
+        "details": [
+          {
+            "source": "network",
+            "description": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+            "sourceLocation": {
+              "type": "source-location",
+              "url": "http://127.0.0.1:4175/_vercel/insights/script.js",
+              "urlProvider": "network",
+              "line": 0,
+              "column": 0
+            }
+          },
+          {
+            "source": "network",
+            "description": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+            "sourceLocation": {
+              "type": "source-location",
+              "url": "http://127.0.0.1:4175/_vercel/speed-insights/script.js",
+              "urlProvider": "network",
+              "line": 0,
+              "column": 0
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "dashboard",
+    "route": "/",
+    "device": "desktop",
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 96,
+      "seo": 100
+    },
+    "failures": [
+      {
+        "id": "errors-in-console",
+        "title": "Browser errors were logged to the console",
+        "details": [
+          {
+            "source": "network",
+            "description": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+            "sourceLocation": {
+              "type": "source-location",
+              "url": "http://127.0.0.1:4175/_vercel/insights/script.js",
+              "urlProvider": "network",
+              "line": 0,
+              "column": 0
+            }
+          },
+          {
+            "source": "network",
+            "description": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+            "sourceLocation": {
+              "type": "source-location",
+              "url": "http://127.0.0.1:4175/_vercel/speed-insights/script.js",
+              "urlProvider": "network",
+              "line": 0,
+              "column": 0
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "dossier",
+    "route": "/dossier",
+    "device": "mobile",
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 96,
+      "seo": 100
+    },
+    "failures": [
+      {
+        "id": "errors-in-console",
+        "title": "Browser errors were logged to the console",
+        "details": [
+          {
+            "source": "network",
+            "description": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+            "sourceLocation": {
+              "type": "source-location",
+              "url": "http://127.0.0.1:4175/_vercel/insights/script.js",
+              "urlProvider": "network",
+              "line": 0,
+              "column": 0
+            }
+          },
+          {
+            "source": "network",
+            "description": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+            "sourceLocation": {
+              "type": "source-location",
+              "url": "http://127.0.0.1:4175/_vercel/speed-insights/script.js",
+              "urlProvider": "network",
+              "line": 0,
+              "column": 0
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "dossier",
+    "route": "/dossier",
+    "device": "desktop",
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 96,
+      "seo": 100
+    },
+    "failures": [
+      {
+        "id": "errors-in-console",
+        "title": "Browser errors were logged to the console",
+        "details": [
+          {
+            "source": "network",
+            "description": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+            "sourceLocation": {
+              "type": "source-location",
+              "url": "http://127.0.0.1:4175/_vercel/insights/script.js",
+              "urlProvider": "network",
+              "line": 0,
+              "column": 0
+            }
+          },
+          {
+            "source": "network",
+            "description": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+            "sourceLocation": {
+              "type": "source-location",
+              "url": "http://127.0.0.1:4175/_vercel/speed-insights/script.js",
+              "urlProvider": "network",
+              "line": 0,
+              "column": 0
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "matrix",
+    "route": "/matrix",
+    "device": "mobile",
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 96,
+      "seo": 100
+    },
+    "failures": [
+      {
+        "id": "errors-in-console",
+        "title": "Browser errors were logged to the console",
+        "details": [
+          {
+            "source": "network",
+            "description": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+            "sourceLocation": {
+              "type": "source-location",
+              "url": "http://127.0.0.1:4175/_vercel/insights/script.js",
+              "urlProvider": "network",
+              "line": 0,
+              "column": 0
+            }
+          },
+          {
+            "source": "network",
+            "description": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+            "sourceLocation": {
+              "type": "source-location",
+              "url": "http://127.0.0.1:4175/_vercel/speed-insights/script.js",
+              "urlProvider": "network",
+              "line": 0,
+              "column": 0
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "matrix",
+    "route": "/matrix",
+    "device": "desktop",
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 96,
+      "seo": 100
+    },
+    "failures": [
+      {
+        "id": "errors-in-console",
+        "title": "Browser errors were logged to the console",
+        "details": [
+          {
+            "source": "network",
+            "description": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+            "sourceLocation": {
+              "type": "source-location",
+              "url": "http://127.0.0.1:4175/_vercel/insights/script.js",
+              "urlProvider": "network",
+              "line": 0,
+              "column": 0
+            }
+          },
+          {
+            "source": "network",
+            "description": "Failed to load resource: the server responded with a status of 404 (Not Found)",
+            "sourceLocation": {
+              "type": "source-location",
+              "url": "http://127.0.0.1:4175/_vercel/speed-insights/script.js",
+              "urlProvider": "network",
+              "line": 0,
+              "column": 0
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

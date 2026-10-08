@@ -82,11 +82,11 @@ Use existing page/feature files. Share the new tokens and header/section rhythm;
 
 ## Phase 6: verification
 
-- [ ] Run `pnpm exec tsc -b`, `pnpm lint`, `pnpm test:run`, `pnpm build`, `pnpm check:bundles` with Node 22.
-- [ ] Exercise research → dossier → comparison → weakness → strategy → snapshot → transfer journeys in isolated storage; verify clean and `.html` routes.
-- [ ] Capture all templates and shared states in Chromium at 1440×1000 and 390×844. Record errors, overflow and focus results. Check reduced motion and text/background contrast.
-- [ ] Run Lighthouse on dashboard, dossier and a dense comparison page desktop/mobile. Record scores and actual failures. Local Vite cannot validate the deployed serverless scrape function: keep that limitation explicit.
-- [ ] Fix attributable failures, rerun affected checks, record results and commit phase 6.
+- [x] Run `pnpm exec tsc -b`, `pnpm lint`, `pnpm test:run`, `pnpm build`, `pnpm check:bundles` with Node 22.
+- [x] Exercise research → dossier → comparison → weakness → strategy → snapshot → transfer journeys in isolated storage; verify clean and `.html` routes.
+- [x] Capture all templates and shared states in Chromium at 1440×1000 and 390×844. Record errors, overflow and focus results. Check reduced motion and text/background contrast.
+- [x] Run Lighthouse on dashboard, dossier and a dense comparison page desktop/mobile. Record scores and actual failures. Local Vite cannot validate the deployed serverless scrape function: keep that limitation explicit.
+- [x] Fix attributable failures, rerun affected checks, record results and commit phase 6.
 
 ## Phase 7: report
 
