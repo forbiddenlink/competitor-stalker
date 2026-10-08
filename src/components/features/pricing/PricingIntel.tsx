@@ -6,6 +6,14 @@ import { Badge } from '../../common/Badge';
 import { Plus, DollarSign } from 'lucide-react';
 import type { PricingPlan } from '../../../types';
 
+// Plan objects retain their identity across local row edits/deletions.
+const planKeys = new WeakMap<PricingPlan, string>();
+const planKey = (plan: PricingPlan): string => {
+    let key = planKeys.get(plan);
+    if (!key) { key = crypto.randomUUID(); planKeys.set(plan, key); }
+    return key;
+};
+
 export const PricingIntel: React.FC = () => {
     const { userProfile, competitors, updateUserProfile, updateCompetitor } = useCompetitors();
 
@@ -105,7 +113,7 @@ export const PricingIntel: React.FC = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                         {userProfile.pricingModels.map((plan, idx) => (
                             <PricingCard
-                                key={`user-plan-${idx}`}
+                                key={planKey(plan)}
                                 plan={plan}
                                 isEditable={true}
                                 onSave={(updated) => handleUpdateUserPlan(idx, updated)}
@@ -156,7 +164,7 @@ export const PricingIntel: React.FC = () => {
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                             {competitor.pricingModels.map((plan, idx) => (
                                 <PricingCard
-                                    key={`${competitor.id}-plan-${idx}`}
+                                    key={planKey(plan)}
                                     plan={plan}
                                     isEditable={true}
                                     onSave={(updated) => handleUpdateCompetitorPlan(competitor.id, idx, updated)}

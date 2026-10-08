@@ -17,13 +17,15 @@ const SearchCommandContent: React.FC<Omit<SearchCommandProps, 'isOpen'>> = ({ on
     const navigate = useNavigate();
     const { competitors } = useCompetitors();
 
+    const normalizedQuery = query.toLowerCase().trim();
+
     // Filter competitors based on query
-    const filteredCompetitors = query.trim()
+    const filteredCompetitors = normalizedQuery
         ? competitors.filter(c =>
-            c.name.toLowerCase().includes(query.toLowerCase()) ||
-            c.website.toLowerCase().includes(query.toLowerCase()) ||
-            c.notes?.toLowerCase().includes(query.toLowerCase()) ||
-            c.oneLiner?.toLowerCase().includes(query.toLowerCase())
+            c.name.toLowerCase().includes(normalizedQuery) ||
+            c.website.toLowerCase().includes(normalizedQuery) ||
+            c.notes?.toLowerCase().includes(normalizedQuery) ||
+            c.oneLiner?.toLowerCase().includes(normalizedQuery)
         )
         : competitors.slice(0, 5);
 
@@ -40,8 +42,8 @@ const SearchCommandContent: React.FC<Omit<SearchCommandProps, 'isOpen'>> = ({ on
         { id: 'privacy', label: 'Privacy Policy', action: () => navigate('/privacy-policy') },
     ];
 
-    const filteredActions = query.trim()
-        ? quickActions.filter(a => a.label.toLowerCase().includes(query.toLowerCase()))
+    const filteredActions = normalizedQuery
+        ? quickActions.filter(a => a.label.toLowerCase().includes(normalizedQuery))
         : quickActions.slice(0, 3);
 
     const totalResults = filteredCompetitors.length + filteredActions.length;

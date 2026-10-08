@@ -1,0 +1,25 @@
+
+ RUN  v4.1.11 /Volumes/LizsDisk/competitor-stalker
+
+ ❯ src/hooks/__tests__/useLocalStorage.test.ts (10 tests | 1 failed) 60ms
+   × keeps unsaved changes available and exposes write failure for recovery 10ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/hooks/__tests__/useLocalStorage.test.ts > keeps unsaved changes available and exposes write failure for recovery
+TypeError: .toMatch() expects to receive a string, but got undefined
+ ❯ src/hooks/__tests__/useLocalStorage.test.ts:121:31
+    119|     act(() => result.current[1]('recoverable draft'));
+    120|     expect(result.current[0]).toBe('recoverable draft');
+    121|     expect(result.current[2]).toMatch(/not saved/i);
+       |                               ^
+    122|     write.mockRestore(); warn.mockRestore();
+    123|     act(() => result.current[1]('retry'));
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 9 passed (10)
+   Start at  13:52:18
+   Duration  19.44s (transform 180ms, setup 3.50s, import 84ms, tests 60ms, environment 14.11s)

@@ -46,16 +46,20 @@ export const HistoryDrawer: React.FC<HistoryDrawerProps> = ({ competitor, isOpen
             }
         };
 
-        document.addEventListener('keydown', handleEscape);
-        return () => document.removeEventListener('keydown', handleEscape);
+        document.addEventListener('keydown', handleEscape, true);
+        return () => document.removeEventListener('keydown', handleEscape, true);
     }, [isOpen, view, onClose]);
 
     useEffect(() => {
         if (!isOpen) return;
         const previous = document.activeElement as HTMLElement | null;
-        drawerRef.current?.querySelector<HTMLButtonElement>('button')?.focus();
+        drawerRef.current?.querySelector<HTMLButtonElement>('[aria-label="Close history"]')?.focus();
         return () => previous?.focus();
     }, [isOpen]);
+
+    useEffect(() => {
+        if (isOpen) drawerRef.current?.querySelector<HTMLButtonElement>('[aria-label="Close history"]')?.focus();
+    }, [isOpen, view]);
 
     const trapFocus = (e: React.KeyboardEvent): void => {
         e.stopPropagation();

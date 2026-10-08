@@ -1,0 +1,124 @@
+[
+  {
+    "device": "desktop",
+    "name": "all page families and controls",
+    "passed": true
+  },
+  {
+    "device": "desktop",
+    "name": "pricing deletion keeps drafts with intended plans",
+    "passed": true
+  },
+  {
+    "device": "desktop",
+    "name": "invalid nested import does not replace data and same file retries",
+    "passed": true
+  },
+  {
+    "device": "desktop",
+    "name": "clear and reset remove history and persist after reload",
+    "passed": true
+  },
+  {
+    "device": "desktop",
+    "name": "backup restores history and legacy import preserves it",
+    "passed": true
+  },
+  {
+    "device": "desktop",
+    "name": "scrape failure retry saved response and malformed response recovery",
+    "passed": true
+  },
+  {
+    "device": "desktop",
+    "name": "history current comparison milestone focus and keyboard containment",
+    "passed": true
+  },
+  {
+    "device": "desktop",
+    "name": "blank weakness prevention source honesty and padded search",
+    "passed": true
+  },
+  {
+    "device": "desktop",
+    "name": "quota failure stays visible and draft can be exported",
+    "passed": true
+  },
+  {
+    "device": "desktop",
+    "name": "malformed stored data has visible recovery without overwriting original",
+    "passed": true
+  },
+  {
+    "device": "desktop",
+    "name": "business name saves and survives reload",
+    "passed": true
+  },
+  {
+    "device": "desktop",
+    "name": "page exceptions",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "name": "all page families and controls",
+    "passed": true
+  },
+  {
+    "device": "mobile",
+    "name": "pricing deletion keeps drafts with intended plans",
+    "passed": true
+  },
+  {
+    "device": "mobile",
+    "name": "invalid nested import does not replace data and same file retries",
+    "passed": true
+  },
+  {
+    "device": "mobile",
+    "name": "clear and reset remove history and persist after reload",
+    "passed": true
+  },
+  {
+    "device": "mobile",
+    "name": "backup restores history and legacy import preserves it",
+    "passed": true
+  },
+  {
+    "device": "mobile",
+    "name": "scrape failure retry saved response and malformed response recovery",
+    "passed": true
+  },
+  {
+    "device": "mobile",
+    "name": "history current comparison milestone focus and keyboard containment",
+    "passed": true
+  },
+  {
+    "device": "mobile",
+    "name": "blank weakness prevention source honesty and padded search",
+    "passed": true
+  },
+  {
+    "device": "mobile",
+    "name": "quota failure stays visible and draft can be exported",
+    "passed": true
+  },
+  {
+    "device": "mobile",
+    "name": "malformed stored data has visible recovery without overwriting original",
+    "passed": true
+  },
+  {
+    "device": "mobile",
+    "name": "business name saves and survives reload",
+    "passed": true
+  },
+  {
+    "device": "mobile",
+    "name": "page exceptions",
+    "passed": true,
+    "errors": []
+  }
+]

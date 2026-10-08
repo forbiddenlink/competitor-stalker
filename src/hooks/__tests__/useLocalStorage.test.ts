@@ -111,3 +111,30 @@ describe('useLocalStorage', () => {
         expect(result.current[0]).toBe('not-null');
     });
 });
+
+it('keeps unsaved changes available and exposes write failure for recovery', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const write = vi.spyOn(localStorage, 'setItem').mockImplementation(() => { throw new DOMException('Quota exceeded', 'QuotaExceededError'); });
+    const { result } = renderHook(() => useLocalStorage('quota-test', 'old'));
+    act(() => result.current[1]('recoverable draft'));
+    expect(result.current[0]).toBe('recoverable draft');
+    expect(result.current[2]).toMatch(/not saved/i);
+    write.mockRestore(); warn.mockRestore();
+    act(() => result.current[1]('retry'));
+    expect(localStorage.getItem('quota-test')).toBe('"retry"');
+    expect(result.current[2]).toBeNull();
+});
+
+it('preserves unread original bytes during ordinary edits until explicit replacement', () => {
+    const original = '[{"valid":true},{"invalid":true}]';
+    localStorage.setItem('unread', original);
+    const { result } = renderHook(() => useLocalStorage<string[]>('unread', [], value => Array.isArray(value) && value.every(item => typeof item === 'string') ? value : null));
+    act(() => result.current[1](['draft']));
+    expect(localStorage.getItem('unread')).toBe(original);
+    expect(result.current[2]).toMatch(/could not be read/i);
+    expect(result.current[4]).toBe(original);
+    act(() => result.current[3](['explicit replacement']));
+    expect(localStorage.getItem('unread')).toBe('["explicit replacement"]');
+    expect(result.current[2]).toBeNull();
+    expect(result.current[4]).toBeNull();
+});

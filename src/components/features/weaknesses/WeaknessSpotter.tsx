@@ -11,7 +11,7 @@ export const WeaknessSpotter: React.FC = () => {
     const [selectedCompetitorId, setSelectedCompetitorId] = useState<string>('');
     const [newWeakness, setNewWeakness] = useState<Partial<Weakness>>({
         severity: 'Medium',
-        source: 'G2 Crowd',
+        source: '',
     });
 
     const effectiveSelectedId =
@@ -20,15 +20,15 @@ export const WeaknessSpotter: React.FC = () => {
             : competitors[0]?.id ?? '';
 
     const handleAddWeakness = () => {
-        if (!effectiveSelectedId || !newWeakness.text) return;
+        if (!effectiveSelectedId || !newWeakness.text?.trim()) return;
 
         const competitor = competitors.find((c) => c.id === effectiveSelectedId);
         if (!competitor) return;
 
         const weakness: Weakness = {
             id: crypto.randomUUID(),
-            text: newWeakness.text,
-            source: newWeakness.source || 'Unknown',
+            text: newWeakness.text.trim(),
+            source: newWeakness.source?.trim() || 'Unknown',
             severity: newWeakness.severity as 'Low' | 'Medium' | 'Critical',
             date: new Date().toISOString().split('T')[0],
         };
@@ -37,7 +37,7 @@ export const WeaknessSpotter: React.FC = () => {
             weaknesses: [...(competitor.weaknesses || []), weakness],
         });
 
-        setNewWeakness({ severity: 'Medium', source: 'G2 Crowd', text: '' });
+        setNewWeakness({ severity: 'Medium', source: '', text: '' });
     };
 
     const handleDeleteWeakness = (competitorId: string, weaknessId: string) => {

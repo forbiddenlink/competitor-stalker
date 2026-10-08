@@ -158,10 +158,11 @@ export const CompetitorForm: React.FC<CompetitorFormProps> = ({
         size: competitor?.size || '',
         estimatedRevenue: competitor?.estimatedRevenue || '',
         notes: competitor?.notes || '',
+        socialHandles: competitor?.socialHandles || {},
     });
     const [scrapedData, setScrapedData] = useState<CompetitorPageData | null>(null);
     const [confirmDelete, setConfirmDelete] = useState(false);
-    const { scrape, loading: scraping, error: scrapeError } = useScraper();
+    const { scrape, loading: scraping, error: scrapeError, reset: resetScrape } = useScraper();
 
     const modalRef = useRef<HTMLDivElement>(null);
     const previousFocus = useRef(document.activeElement as HTMLElement | null);
@@ -216,9 +217,10 @@ export const CompetitorForm: React.FC<CompetitorFormProps> = ({
         if (websiteInvalid) return;
 
         const saved: Competitor = {
+            ...competitor,
             id: competitor?.id || crypto.randomUUID(),
             name: form.name.trim(),
-            website: form.website || '',
+            website: form.website?.trim() || '',
             threatLevel: form.threatLevel as ThreatLevel,
             oneLiner: form.oneLiner || '',
             size: form.size || '',
@@ -228,7 +230,7 @@ export const CompetitorForm: React.FC<CompetitorFormProps> = ({
             pricingModels: competitor?.pricingModels || [],
             weaknesses: competitor?.weaknesses || [],
             strategies: competitor?.strategies || [],
-            socialHandles: competitor?.socialHandles || {},
+            socialHandles: form.socialHandles || {},
             positionX: competitor?.positionX,
             positionY: competitor?.positionY,
         };
@@ -236,6 +238,7 @@ export const CompetitorForm: React.FC<CompetitorFormProps> = ({
     };
 
     const updateField = (field: keyof Competitor, value: string) => {
+        if (field === 'website') { resetScrape(); setScrapedData(null); }
         setForm(prev => ({ ...prev, [field]: value }));
     };
 

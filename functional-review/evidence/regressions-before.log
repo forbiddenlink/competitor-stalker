@@ -1,0 +1,1013 @@
+
+ RUN  v4.1.11 /Volumes/LizsDisk/competitor-stalker
+
+ ❯ src/utils/__tests__/import-safety.test.ts (10 tests | 10 failed) 128ms
+     × rejects incompatible records 0 before replacing workspace 16ms
+     × rejects incompatible records 1 before replacing workspace 10ms
+     × rejects incompatible records 2 before replacing workspace 11ms
+     × rejects incompatible records 3 before replacing workspace 13ms
+     × rejects incompatible records 4 before replacing workspace 1ms
+     × rejects incompatible records 5 before replacing workspace 1ms
+     × rejects incompatible records 6 before replacing workspace 0ms
+     × rejects duplicate record IDs 0ms
+     × normalizes legacy sparse exports to usable records and profile 23ms
+     × neutralizes spreadsheet formulas and quotes carriage returns 34ms
+ ❯ src/context/__tests__/CompetitorContext.test.tsx (2 tests | 2 failed) 36ms
+     × keeps an intentionally cleared workspace empty after remount 30ms
+     × retains synchronous additions and consecutive before-state snapshots exactly once 5ms
+ ❯ src/components/features/dossier/__tests__/CompetitorForm.test.tsx (16 tests | 1 failed) 987ms
+   × persists scanned social handles and retains existing evidence fields 62ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 13 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/context/__tests__/CompetitorContext.test.tsx > workspace persistence > keeps an intentionally cleared workspace empty after remount
+AssertionError: expected [ { id: 'vercel', …(18) }, …(5) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   {
++     "estimatedRevenue": "$100M+ ARR",
++     "features": {
++       "Analytics Dashboard": "Better",
++       "Auto-scaling": "Better",
++       "Background Workers": "DontHave",
++       "CI/CD Pipeline": "Better",
++       "Cron Jobs": "Have",
++       "Custom Domains": "Have",
++       "Docker Support": "DontHave",
++       "Edge Functions": "Have",
++       "Managed Database": "Have",
++       "Preview Deploys": "Better",
++       "SSL Certificates": "Have",
++       "Serverless Functions": "Better",
++       "Static Hosting": "Better",
++       "Team Collaboration": "Better",
++       "WebSockets": "Have",
++     },
++     "founded": "2015",
++     "id": "vercel",
++     "keyPeople": [
++       "Guillermo Rauch (CEO)",
++       "Malte Ubl (CTO)",
++     ],
++     "location": "San Francisco, CA",
++     "name": "Vercel",
++     "notes": "Primary competitor in frontend deployment. Strong brand, but pricing and lock-in are vulnerabilities we can exploit.",
++     "oneLiner": "The platform for frontend developers, providing speed and reliability",
++     "positionX": 75,
++     "positionY": 85,
++     "pricingModels": [
++       {
++         "description": "For personal projects and experiments",
++         "name": "Hobby",
++         "price": "Free",
++       },
++       {
++         "description": "For professional developers and small teams",
++         "name": "Pro",
++         "price": "$20/user/mo",
++       },
++       {
++         "description": "For large organizations with advanced needs",
++         "name": "Enterprise",
++         "price": "Custom",
++       },
++     ],
++     "size": "500-550 employees",
++     "socialHandles": {
++       "linkedin": "company/vercel",
++       "twitter": "vercel",
++     },
++     "strategies": [
++       {
++         "description": "Emphasize full container support for complex backends that Vercel cannot handle",
++         "id": "vs1",
++         "status": "Active",
++         "targetCompetitorId": "vercel",
++         "title": "Highlight Docker flexibility",
++       },
++     ],
++     "targetAudience": "Frontend developers, Next.js users, enterprise teams",
++     "threatLevel": "High",
++     "weaknesses": [
++       {
++         "date": "2024-12",
++         "id": "v1",
++         "severity": "Critical",
++         "source": "Reddit r/webdev",
++         "text": "Expensive at scale - costs can explode with traffic",
++       },
++       {
++         "date": "2024-11",
++         "id": "v2",
++         "severity": "Medium",
++         "source": "HackerNews",
++         "text": "Strong Next.js lock-in, less optimal for other frameworks",
++       },
++       {
++         "date": "2025-01",
++         "id": "v3",
++         "severity": "Low",
++         "source": "Twitter",
++         "text": "v0 AI credits burn quickly, feels like a money grab",
++       },
++       {
++         "date": "2024-10",
++         "id": "v4",
++         "severity": "Medium",
++         "source": "G2 Reviews",
++         "text": "No Docker support limits backend flexibility",
++       },
++     ],
++     "website": "https://vercel.com",
++   },
++   {
++     "estimatedRevenue": "$50-70M ARR",
++     "features": {
++       "Analytics Dashboard": "Have",
++       "Auto-scaling": "Have",
++       "Background Workers": "DontHave",
++       "CI/CD Pipeline": "Have",
++       "Cron Jobs": "Have",
++       "Custom Domains": "Have",
++       "Docker Support": "DontHave",
++       "Edge Functions": "Have",
++       "Managed Database": "DontHave",
++       "Preview Deploys": "Better",
++       "SSL Certificates": "Have",
++       "Serverless Functions": "Have",
++       "Static Hosting": "Better",
++       "Team Collaboration": "Have",
++       "WebSockets": "Worse",
++     },
++     "founded": "2014",
++     "id": "netlify",
++     "keyPeople": [
++       "Matt Biilmann (CEO)",
++       "Chris Bach (President)",
++     ],
++     "location": "San Francisco, CA",
++     "name": "Netlify",
++     "notes": "JAMstack pioneer but increasingly seen as dated. Good brand recognition but feature set falling behind.",
++     "oneLiner": "Build and deploy modern web projects with continuous deployment",
++     "positionX": 70,
++     "positionY": 75,
++     "pricingModels": [
++       {
++         "description": "For personal projects",
++         "name": "Starter",
++         "price": "Free",
++       },
++       {
++         "description": "For professional projects",
++         "name": "Pro",
++         "price": "$19/user/mo",
++       },
++       {
++         "description": "For large-scale applications",
++         "name": "Enterprise",
++         "price": "Custom",
++       },
++     ],
++     "size": "180-200 employees",
++     "socialHandles": {
++       "linkedin": "company/netlify",
++       "twitter": "netlify",
++     },
++     "strategies": [
++       {
++         "description": "Promote integrated database as key differentiator vs Netlify",
++         "id": "ns1",
++         "status": "Planned",
++         "targetCompetitorId": "netlify",
++         "title": "Database bundling advantage",
++       },
++     ],
++     "targetAudience": "JAMstack developers, static sites, marketing teams",
++     "threatLevel": "High",
++     "weaknesses": [
++       {
++         "date": "2024-11",
++         "id": "n1",
++         "severity": "Medium",
++         "source": "G2 Reviews",
++         "text": "Build times can be very slow for large sites",
++       },
++       {
++         "date": "2024-09",
++         "id": "n2",
++         "severity": "Critical",
++         "source": "HackerNews",
++         "text": "DDoS attacks can cause massive billing spikes",
++       },
++       {
++         "date": "2024-12",
++         "id": "n3",
++         "severity": "Medium",
++         "source": "Reddit",
++         "text": "Function execution timeouts limit complex operations",
++       },
++       {
++         "date": "2025-01",
++         "id": "n4",
++         "severity": "Medium",
++         "source": "Product comparison",
++         "text": "No managed database offering",
++       },
++     ],
++     "website": "https://netlify.com",
++   },
++   {
++     "estimatedRevenue": "$15-25M ARR",
++     "features": {
++       "Analytics Dashboard": "Worse",
++       "Auto-scaling": "Have",
++       "Background Workers": "Better",
++       "CI/CD Pipeline": "Have",
++       "Cron Jobs": "Have",
++       "Custom Domains": "Have",
++       "Docker Support": "Have",
++       "Edge Functions": "DontHave",
++       "Managed Database": "Better",
++       "Preview Deploys": "Have",
++       "SSL Certificates": "Have",
++       "Serverless Functions": "DontHave",
++       "Static Hosting": "Have",
++       "Team Collaboration": "Have",
++       "WebSockets": "Have",
++     },
++     "founded": "2018",
++     "id": "render",
++     "keyPeople": [
++       "Anurag Goel (CEO)",
++     ],
++     "location": "San Francisco, CA",
++     "name": "Render",
++     "notes": "Most direct competitor. Similar positioning but we have advantages in DX and cold start times.",
++     "oneLiner": "Cloud application platform that makes it easy to build and run apps",
++     "positionX": 45,
++     "positionY": 70,
++     "pricingModels": [
++       {
++         "description": "For hobby projects with limited resources",
++         "name": "Individual",
++         "price": "Free",
++       },
++       {
++         "description": "For small teams",
++         "name": "Team",
++         "price": "$19/user/mo",
++       },
++       {
++         "description": "For larger organizations",
++         "name": "Organization",
++         "price": "$29/user/mo",
++       },
++       {
++         "description": "Custom enterprise solutions",
++         "name": "Enterprise",
++         "price": "Custom",
++       },
++     ],
++     "size": "60-70 employees",
++     "socialHandles": {
++       "linkedin": "company/render",
++       "twitter": "render",
++     },
++     "strategies": [
++       {
++         "description": "Emphasize our faster startup times vs Render cold starts",
++         "id": "rs1",
++         "status": "Active",
++         "targetCompetitorId": "render",
++         "title": "Faster cold starts messaging",
++       },
++     ],
++     "targetAudience": "Full-stack developers, startups, Heroku refugees",
++     "threatLevel": "High",
++     "weaknesses": [
++       {
++         "date": "2024-12",
++         "id": "r1",
++         "severity": "Critical",
++         "source": "Reddit r/webdev",
++         "text": "Cold starts can take 25-90 seconds on free tier",
++       },
++       {
++         "date": "2025-01",
++         "id": "r2",
++         "severity": "Medium",
++         "source": "Product comparison",
++         "text": "No serverless functions - must use always-on services",
++       },
++       {
++         "date": "2024-10",
++         "id": "r3",
++         "severity": "Low",
++         "source": "Support forums",
++         "text": "No static IP addresses available",
++       },
++       {
++         "date": "2024-11",
++         "id": "r4",
++         "severity": "Medium",
++         "source": "Documentation",
++         "text": "Limited regions compared to competitors",
++       },
++     ],
++     "website": "https://render.com",
++   },
++   {
++     "estimatedRevenue": "$10-20M ARR",
++     "features": {
++       "Analytics Dashboard": "Worse",
++       "Auto-scaling": "Better",
++       "Background Workers": "Have",
++       "CI/CD Pipeline": "Worse",
++       "Cron Jobs": "Have",
++       "Custom Domains": "Have",
++       "Docker Support": "Better",
++       "Edge Functions": "Better",
++       "Managed Database": "Have",
++       "Preview Deploys": "Worse",
++       "SSL Certificates": "Have",
++       "Serverless Functions": "DontHave",
++       "Static Hosting": "Worse",
++       "Team Collaboration": "Worse",
++       "WebSockets": "Better",
++     },
++     "founded": "2017",
++     "id": "flyio",
++     "keyPeople": [
++       "Kurt Mackey (CEO)",
++       "Thomas Ptacek (Co-founder)",
++     ],
++     "location": "Chicago, IL",
++     "name": "Fly.io",
++     "notes": "Strong technical product for edge computing but DX and reliability concerns. Appeals to a more technical audience.",
++     "oneLiner": "Run your full-stack apps and databases close to your users",
++     "positionX": 55,
++     "positionY": 80,
++     "pricingModels": [
++       {
++         "description": "Pay only for resources consumed",
++         "name": "Pay-as-you-go",
++         "price": "Usage-based",
++       },
++       {
++         "description": "For small production apps",
++         "name": "Launch",
++         "price": "$29/mo",
++       },
++       {
++         "description": "For scaling applications",
++         "name": "Scale",
++         "price": "$199/mo+",
++       },
++       {
++         "description": "Custom enterprise solutions",
++         "name": "Enterprise",
++         "price": "Custom",
++       },
++     ],
++     "size": "55-70 employees",
++     "socialHandles": {
++       "linkedin": "company/fly-io",
++       "twitter": "flydotio",
++     },
++     "strategies": [],
++     "targetAudience": "Backend developers, distributed systems builders, edge computing enthusiasts",
++     "threatLevel": "Medium",
++     "weaknesses": [
++       {
++         "date": "2024-11",
++         "id": "f1",
++         "severity": "Medium",
++         "source": "Twitter discourse",
++         "text": "No free tier - barrier to entry for hobbyists",
++       },
++       {
++         "date": "2024-12",
++         "id": "f2",
++         "severity": "Critical",
++         "source": "Status page history",
++         "text": "Reliability issues and outages reported",
++       },
++       {
++         "date": "2024-10",
++         "id": "f3",
++         "severity": "Medium",
++         "source": "Reddit",
++         "text": "Complex pricing model confuses users",
++       },
++       {
++         "date": "2024-09",
++         "id": "f4",
++         "severity": "Low",
++         "source": "G2 Reviews",
++         "text": "Steeper learning curve than competitors",
++       },
++     ],
++     "website": "https://fly.io",
++   },
++   {
++     "estimatedRevenue": "$100M+ (Salesforce subsidiary)",
++     "features": {
++       "Analytics Dashboard": "Have",
++       "Auto-scaling": "Have",
++       "Background Workers": "Have",
++       "CI/CD Pipeline": "Have",
++       "Cron Jobs": "Have",
++       "Custom Domains": "Have",
++       "Docker Support": "Have",
++       "Edge Functions": "DontHave",
++       "Managed Database": "Have",
++       "Preview Deploys": "Have",
++       "SSL Certificates": "Have",
++       "Serverless Functions": "DontHave",
++       "Static Hosting": "Worse",
++       "Team Collaboration": "Have",
++       "WebSockets": "Have",
++     },
++     "founded": "2007",
++     "id": "heroku",
++     "keyPeople": [
++       "Bob Wise (GM)",
++     ],
++     "location": "San Francisco, CA",
++     "name": "Heroku",
++     "notes": "The original PaaS but losing relevance. Many users looking to migrate. Good target for acquisition campaigns.",
++     "oneLiner": "Cloud platform for building, delivering, and scaling apps",
++     "positionX": 65,
++     "positionY": 55,
++     "pricingModels": [
++       {
++         "description": "For hobby and small projects",
++         "name": "Eco",
++         "price": "$5/mo",
++       },
++       {
++         "description": "For light production workloads",
++         "name": "Basic",
++         "price": "$7/mo",
++       },
++       {
++         "description": "For production applications",
++         "name": "Standard",
++         "price": "$25-50/mo",
++       },
++       {
++         "description": "For enterprise requirements",
++         "name": "Enterprise",
++         "price": "Custom",
++       },
++     ],
++     "size": "200-500 employees",
++     "socialHandles": {
++       "linkedin": "company/heroku",
++       "twitter": "heroku",
++     },
++     "strategies": [
++       {
++         "description": "Target Heroku users frustrated by pricing changes with easy migration path",
++         "id": "hs1",
++         "status": "Active",
++         "targetCompetitorId": "heroku",
++         "title": "Heroku migration campaign",
++       },
++     ],
++     "targetAudience": "Enterprise, legacy apps, Salesforce ecosystem",
++     "threatLevel": "Medium",
++     "weaknesses": [
++       {
++         "date": "2024-06",
++         "id": "h1",
++         "severity": "Critical",
++         "source": "HackerNews",
++         "text": "No free tier anymore - lost developer mindshare",
++       },
++       {
++         "date": "2024-11",
++         "id": "h2",
++         "severity": "Medium",
++         "source": "Reddit r/webdev",
++         "text": "Perceived as expensive for what you get",
++       },
++       {
++         "date": "2024-12",
++         "id": "h3",
++         "severity": "Medium",
++         "source": "Twitter discourse",
++         "text": "Legacy perception - seen as outdated",
++       },
++       {
++         "date": "2024-10",
++         "id": "h4",
++         "severity": "Low",
++         "source": "G2 Reviews",
++         "text": "Limited customization compared to modern alternatives",
++       },
++     ],
++     "website": "https://heroku.com",
++   },
++   {
++     "estimatedRevenue": "$700M+ total (App Platform portion smaller)",
++     "features": {
++       "Analytics Dashboard": "Worse",
++       "Auto-scaling": "Have",
++       "Background Workers": "Have",
++       "CI/CD Pipeline": "Worse",
++       "Cron Jobs": "Worse",
++       "Custom Domains": "Have",
++       "Docker Support": "Have",
++       "Edge Functions": "DontHave",
++       "Managed Database": "Have",
++       "Preview Deploys": "Worse",
++       "SSL Certificates": "Have",
++       "Serverless Functions": "DontHave",
++       "Static Hosting": "Have",
++       "Team Collaboration": "Worse",
++       "WebSockets": "Have",
++     },
++     "founded": "2011",
++     "id": "digitalocean",
++     "keyPeople": [
++       "Paddy Srinivasan (CEO)",
++     ],
++     "location": "New York, NY",
++     "name": "DigitalOcean App Platform",
++     "notes": "More of a budget alternative than direct competitor. Appeals to cost-conscious users who need basic deployment.",
++     "oneLiner": "Simple, scalable cloud platform for developers",
++     "positionX": 30,
++     "positionY": 50,
++     "pricingModels": [
++       {
++         "description": "For static sites only",
++         "name": "Starter",
++         "price": "$0",
++       },
++       {
++         "description": "For simple applications",
++         "name": "Basic",
++         "price": "$5/mo",
++       },
++       {
++         "description": "For production workloads",
++         "name": "Professional",
++         "price": "$12/mo+",
++       },
++     ],
++     "size": "1000+ employees",
++     "socialHandles": {
++       "linkedin": "company/digitalocean",
++       "twitter": "digitalocean",
++     },
++     "strategies": [],
++     "targetAudience": "Budget-conscious developers, SMBs, bootstrapped startups",
++     "threatLevel": "Low",
++     "weaknesses": [
++       {
++         "date": "2024-11",
++         "id": "d1",
++         "severity": "Medium",
++         "source": "Product reviews",
++         "text": "App Platform is secondary focus, less polished",
++       },
++       {
++         "date": "2024-12",
++         "id": "d2",
++         "severity": "Medium",
++         "source": "Comparison articles",
++         "text": "Limited PaaS features compared to dedicated platforms",
++       },
++       {
++         "date": "2024-10",
++         "id": "d3",
++         "severity": "Low",
++         "source": "Community forums",
++         "text": "Slower iteration on App Platform vs core products",
++       },
++     ],
++     "website": "https://digitalocean.com/products/app-platform",
++   },
++ ]
+
+ ❯ src/context/__tests__/CompetitorContext.test.tsx:16:49
+     14|         first.unmount();
+     15|         const next = renderHook(useCompetitors, { wrapper });
+     16|         expect(next.result.current.competitors).toEqual([]);
+       |                                                 ^
+     17|         expect(next.result.current.userProfile.name).toBe('');
+     18|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/13]⎯
+
+ FAIL  src/context/__tests__/CompetitorContext.test.tsx > workspace persistence > retains synchronous additions and consecutive before-state snapshots exactly once
+AssertionError: expected [ { id: 'audit-two', …(8) } ] to have a length of 2 but got 1
+
+- Expected
++ Received
+
+- 2
++ 1
+
+ ❯ src/context/__tests__/CompetitorContext.test.tsx:23:44
+     21|         act(() => result.current.clearAllData());
+     22|         act(() => { result.current.addCompetitor(competitor); result.c…
+     23|         expect(result.current.competitors).toHaveLength(2);
+       |                                            ^
+     24|         act(() => { result.current.updateCompetitor(competitor.id, { n…
+     25|         expect(result.current.competitors[0]).toMatchObject({ notes: '…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/13]⎯
+
+ FAIL  src/utils/__tests__/import-safety.test.ts > import safety > rejects incompatible records 0 before replacing workspace
+AssertionError: expected { competitors: [ { …(7) } ], …(1) } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "competitors": [
+    {
+      "features": {},
+      "id": "audit-one",
+      "name": 12,
+      "notes": "",
+      "pricingModels": [],
+      "threatLevel": "Medium",
+      "website": "",
+    },
+  ],
+  "userProfile": {
+    "features": {},
+    "name": "",
+    "positionX": 50,
+    "positionY": 50,
+    "pricingModels": [],
+  },
+}
+
+ ❯ src/utils/__tests__/import-safety.test.ts:7:409
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/13]⎯
+
+ FAIL  src/utils/__tests__/import-safety.test.ts > import safety > rejects incompatible records 1 before replacing workspace
+AssertionError: expected { competitors: [ { …(7) } ], …(1) } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "competitors": [
+    {
+      "features": null,
+      "id": "audit-one",
+      "name": "Audit One",
+      "notes": "",
+      "pricingModels": [],
+      "threatLevel": "Medium",
+      "website": "",
+    },
+  ],
+  "userProfile": {
+    "features": {},
+    "name": "",
+    "positionX": 50,
+    "positionY": 50,
+    "pricingModels": [],
+  },
+}
+
+ ❯ src/utils/__tests__/import-safety.test.ts:7:409
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/13]⎯
+
+ FAIL  src/utils/__tests__/import-safety.test.ts > import safety > rejects incompatible records 2 before replacing workspace
+AssertionError: expected { competitors: [ { …(7) } ], …(1) } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "competitors": [
+    {
+      "features": {},
+      "id": "audit-one",
+      "name": "Audit One",
+      "notes": "",
+      "pricingModels": [
+        null,
+      ],
+      "threatLevel": "Medium",
+      "website": "",
+    },
+  ],
+  "userProfile": {
+    "features": {},
+    "name": "",
+    "positionX": 50,
+    "positionY": 50,
+    "pricingModels": [],
+  },
+}
+
+ ❯ src/utils/__tests__/import-safety.test.ts:7:409
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/13]⎯
+
+ FAIL  src/utils/__tests__/import-safety.test.ts > import safety > rejects incompatible records 3 before replacing workspace
+AssertionError: expected { competitors: [ { …(8) } ], …(1) } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "competitors": [
+    {
+      "features": {},
+      "id": "audit-one",
+      "name": "Audit One",
+      "notes": "",
+      "pricingModels": [],
+      "threatLevel": "Medium",
+      "weaknesses": [
+        {
+          "text": "missing fields",
+        },
+      ],
+      "website": "",
+    },
+  ],
+  "userProfile": {
+    "features": {},
+    "name": "",
+    "positionX": 50,
+    "positionY": 50,
+    "pricingModels": [],
+  },
+}
+
+ ❯ src/utils/__tests__/import-safety.test.ts:7:409
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/13]⎯
+
+ FAIL  src/utils/__tests__/import-safety.test.ts > import safety > rejects incompatible records 4 before replacing workspace
+AssertionError: expected { competitors: [ { …(8) } ], …(1) } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "competitors": [
+    {
+      "features": {},
+      "id": "audit-one",
+      "name": "Audit One",
+      "notes": "",
+      "positionX": 101,
+      "pricingModels": [],
+      "threatLevel": "Medium",
+      "website": "",
+    },
+  ],
+  "userProfile": {
+    "features": {},
+    "name": "",
+    "positionX": 50,
+    "positionY": 50,
+    "pricingModels": [],
+  },
+}
+
+ ❯ src/utils/__tests__/import-safety.test.ts:7:409
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/13]⎯
+
+ FAIL  src/utils/__tests__/import-safety.test.ts > import safety > rejects incompatible records 5 before replacing workspace
+AssertionError: expected { competitors: [ { …(8) } ], …(1) } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "competitors": [
+    {
+      "features": {},
+      "id": "audit-one",
+      "name": "Audit One",
+      "notes": "",
+      "pricingModels": [],
+      "socialHandles": {
+        "twitter": 12,
+      },
+      "threatLevel": "Medium",
+      "website": "",
+    },
+  ],
+  "userProfile": {
+    "features": {},
+    "name": "",
+    "positionX": 50,
+    "positionY": 50,
+    "pricingModels": [],
+  },
+}
+
+ ❯ src/utils/__tests__/import-safety.test.ts:7:409
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/13]⎯
+
+ FAIL  src/utils/__tests__/import-safety.test.ts > import safety > rejects incompatible records 6 before replacing workspace
+AssertionError: expected { competitors: [ { …(7) } ], …(1) } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "competitors": [
+    {
+      "features": {},
+      "id": "audit-one",
+      "name": "Audit One",
+      "notes": "",
+      "pricingModels": [],
+      "threatLevel": "Medium",
+      "website": "javascript:alert(1)",
+    },
+  ],
+  "userProfile": {
+    "features": {},
+    "name": "",
+    "positionX": 50,
+    "positionY": 50,
+    "pricingModels": [],
+  },
+}
+
+ ❯ src/utils/__tests__/import-safety.test.ts:7:409
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/13]⎯
+
+ FAIL  src/utils/__tests__/import-safety.test.ts > import safety > rejects duplicate record IDs
+AssertionError: expected { …(2) } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "competitors": [
+    {
+      "features": {},
+      "id": "audit-one",
+      "name": "Audit One",
+      "notes": "",
+      "pricingModels": [],
+      "threatLevel": "Medium",
+      "website": "",
+    },
+    {
+      "features": {},
+      "id": "audit-one",
+      "name": "Audit One",
+      "notes": "",
+      "pricingModels": [],
+      "threatLevel": "Medium",
+      "website": "",
+    },
+  ],
+  "userProfile": {
+    "features": {},
+    "name": "",
+    "positionX": 50,
+    "positionY": 50,
+    "pricingModels": [],
+  },
+}
+
+ ❯ src/utils/__tests__/import-safety.test.ts:8:153
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/13]⎯
+
+ FAIL  src/utils/__tests__/import-safety.test.ts > import safety > normalizes legacy sparse exports to usable records and profile
+AssertionError: expected { id: 'legacy', name: 'Legacy' } to match object { website: '', features: {}, …(3) }
+(2 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "features": {},
+-   "notes": "",
+-   "pricingModels": [],
+-   "threatLevel": "Medium",
+-   "website": "",
++   "id": "legacy",
++   "name": "Legacy",
+  }
+
+ ❯ src/utils/__tests__/import-safety.test.ts:11:38
+      9|     it('normalizes legacy sparse exports to usable records and profile…
+     10|         const data = parse({ id: 'legacy', name: 'Legacy' }, { company…
+     11|         expect(data?.competitors[0]).toMatchObject({ website: '', feat…
+       |                                      ^
+     12|         expect(data?.userProfile).toMatchObject({ name: 'Legacy busine…
+     13|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/13]⎯
+
+ FAIL  src/utils/__tests__/import-safety.test.ts > import safety > neutralizes spreadsheet formulas and quotes carriage returns
+AssertionError: expected 'Name,Website,Threat Level,Founded,Siz…' to contain '\'=1+1'
+
+- Expected
++ Received
+
+- '=1+1
++ Name,Website,Threat Level,Founded,Size,Location,One Liner,Target Audience,Estimated Revenue,Position X,Position Y,Twitter,LinkedIn,Notes
++ =1+1,,Medium,,,,,,,,,,,line
+break
+
+ ❯ src/utils/__tests__/import-safety.test.ts:16:21
+     14|     it('neutralizes spreadsheet formulas and quotes carriage returns',…
+     15|         const csv = exportToCsv([{ ...competitor, threatLevel: 'Medium…
+     16|         expect(csv).toContain("'=1+1");
+       |                     ^
+     17|         expect(csv).toContain('"line\rbreak"');
+     18|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/13]⎯
+
+ FAIL  src/components/features/dossier/__tests__/CompetitorForm.test.tsx > persists scanned social handles and retains existing evidence fields
+AssertionError: expected "vi.fn()" to be called with arguments: [ ObjectContaining{…} ]
+
+Received:
+
+  1st vi.fn() call:
+
+  [
+-   ObjectContaining {
+-     "socialHandles": {
+-       "linkedin": "https://linkedin.com/company/audit",
+-       "twitter": "audit_handle",
+-     },
+-     "sources": [
+    {
+-         "addedAt": "2026-10-08",
+-         "id": "source",
+-         "label": "Evidence",
+-         "url": "https://example.com",
+-       },
+-     ],
+-     "strengths": [
+-       "Reliability",
+-     ],
++     "estimatedRevenue": "$5M",
++     "features": {},
++     "id": "test-id-123",
++     "name": "Test Corp",
++     "notes": "Some notes",
++     "oneLiner": "A test company",
++     "positionX": undefined,
++     "positionY": undefined,
++     "pricingModels": [],
++     "size": "50-100",
++     "socialHandles": {},
++     "strategies": [],
++     "threatLevel": "Medium",
++     "weaknesses": [],
++     "website": "https://testcorp.com",
+    },
+  ]
+
+
+Number of calls: 1
+
+ ❯ src/components/features/dossier/__tests__/CompetitorForm.test.tsx:292:20
+
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/13]⎯
+
+
+ Test Files  3 failed (3)
+      Tests  13 failed | 15 passed (28)
+   Start at  13:50:30
+   Duration  5.43s (transform 547ms, setup 2.55s, import 908ms, tests 1.15s, environment 7.11s)

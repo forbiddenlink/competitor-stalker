@@ -1,0 +1,175 @@
+
+ RUN  v4.1.11 /Volumes/LizsDisk/competitor-stalker
+
+ ❯ src/utils/__tests__/import-safety.test.ts (18 tests | 3 failed | 15 skipped) 12ms
+   × rejects duplicate and empty IDs within weaknesses to avoid deleting multiple records 6ms
+   × rejects duplicate and empty IDs within strategies to avoid deleting multiple records 2ms
+   × rejects duplicate and empty IDs within sources to avoid deleting multiple records 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/utils/__tests__/import-safety.test.ts > rejects duplicate and empty IDs within weaknesses to avoid deleting multiple records
+AssertionError: expected { competitors: [ { …(8) } ], …(1) } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "competitors": [
+    {
+      "features": {},
+      "id": "audit-one",
+      "name": "Audit One",
+      "notes": "",
+      "pricingModels": [],
+      "threatLevel": "Medium",
+      "weaknesses": [
+        {
+          "date": "",
+          "id": "nested",
+          "severity": "Low",
+          "source": "",
+          "text": "Audit",
+        },
+        {
+          "date": "",
+          "id": "nested",
+          "severity": "Low",
+          "source": "",
+          "text": "Audit",
+        },
+      ],
+      "website": "",
+    },
+  ],
+  "userProfile": {
+    "features": {},
+    "name": "",
+    "positionX": 50,
+    "positionY": 50,
+    "pricingModels": [],
+  },
+}
+
+ ❯ src/utils/__tests__/import-safety.test.ts:47:75
+     45|     ['sources', { id: 'nested', url: 'https://example.com', label: 'Au…
+     46| ])('rejects duplicate and empty IDs within %s to avoid deleting multip…
+     47|     expect(parse({ ...competitor, [field as string]: [record, record] …
+       |                                                                           ^
+     48|     expect(parse({ ...competitor, [field as string]: [{ ...record as o…
+     49| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  src/utils/__tests__/import-safety.test.ts > rejects duplicate and empty IDs within strategies to avoid deleting multiple records
+AssertionError: expected { competitors: [ { …(8) } ], …(1) } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "competitors": [
+    {
+      "features": {},
+      "id": "audit-one",
+      "name": "Audit One",
+      "notes": "",
+      "pricingModels": [],
+      "strategies": [
+        {
+          "description": "",
+          "id": "nested",
+          "status": "Planned",
+          "targetCompetitorId": "audit-one",
+          "title": "Audit",
+        },
+        {
+          "description": "",
+          "id": "nested",
+          "status": "Planned",
+          "targetCompetitorId": "audit-one",
+          "title": "Audit",
+        },
+      ],
+      "threatLevel": "Medium",
+      "website": "",
+    },
+  ],
+  "userProfile": {
+    "features": {},
+    "name": "",
+    "positionX": 50,
+    "positionY": 50,
+    "pricingModels": [],
+  },
+}
+
+ ❯ src/utils/__tests__/import-safety.test.ts:47:75
+     45|     ['sources', { id: 'nested', url: 'https://example.com', label: 'Au…
+     46| ])('rejects duplicate and empty IDs within %s to avoid deleting multip…
+     47|     expect(parse({ ...competitor, [field as string]: [record, record] …
+       |                                                                           ^
+     48|     expect(parse({ ...competitor, [field as string]: [{ ...record as o…
+     49| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  src/utils/__tests__/import-safety.test.ts > rejects duplicate and empty IDs within sources to avoid deleting multiple records
+AssertionError: expected { competitors: [ { …(8) } ], …(1) } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "competitors": [
+    {
+      "features": {},
+      "id": "audit-one",
+      "name": "Audit One",
+      "notes": "",
+      "pricingModels": [],
+      "sources": [
+        {
+          "addedAt": "",
+          "id": "nested",
+          "label": "Audit",
+          "url": "https://example.com",
+        },
+        {
+          "addedAt": "",
+          "id": "nested",
+          "label": "Audit",
+          "url": "https://example.com",
+        },
+      ],
+      "threatLevel": "Medium",
+      "website": "",
+    },
+  ],
+  "userProfile": {
+    "features": {},
+    "name": "",
+    "positionX": 50,
+    "positionY": 50,
+    "pricingModels": [],
+  },
+}
+
+ ❯ src/utils/__tests__/import-safety.test.ts:47:75
+     45|     ['sources', { id: 'nested', url: 'https://example.com', label: 'Au…
+     46| ])('rejects duplicate and empty IDs within %s to avoid deleting multip…
+     47|     expect(parse({ ...competitor, [field as string]: [record, record] …
+       |                                                                           ^
+     48|     expect(parse({ ...competitor, [field as string]: [{ ...record as o…
+     49| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 15 skipped (18)
+   Start at  14:36:16
+   Duration  24.76s (transform 111ms, setup 2.62s, import 98ms, tests 12ms, environment 20.69s)

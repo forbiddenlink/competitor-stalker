@@ -17,6 +17,7 @@ import {
     SquareStack,
 } from 'lucide-react';
 import { Link, NavLink, useLocation } from 'react-router';
+import { useCompetitors } from '../../hooks/useCompetitors';
 import { SearchCommand } from '../common/SearchCommand';
 
 interface NavItemProps {
@@ -77,6 +78,7 @@ const NavGroup: React.FC<NavGroupProps> = ({ label, children }) => (
 );
 
 export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const { storageError } = useCompetitors();
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [isDesktop, setIsDesktop] = useState(() => window.matchMedia('(min-width: 1024px)').matches);
@@ -278,7 +280,8 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                 {/* Page Content */}
                 <div className="flex-1 overflow-auto">
                     <div className="relative z-10 max-w-[1200px] mx-auto w-full px-5 lg:px-8 py-8 lg:py-10">
-                        {children}
+                        {storageError && <div role="alert" className="p-4 mb-4 border border-[var(--accent-danger)] text-[var(--accent-danger)]">{storageError} <Link to="/settings" className="underline">Open backup controls</Link></div>}
+                    {children}
                     </div>
                 </div>
 

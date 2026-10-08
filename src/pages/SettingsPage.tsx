@@ -14,6 +14,7 @@ import {
 import { useCompetitors } from '../hooks/useCompetitors';
 import { useToast } from '../context/ToastContext';
 import { Button } from '../components/common/Button';
+import { Input } from '../components/common/Input';
 import {
     exportToJson,
     exportToCsv,
@@ -23,14 +24,14 @@ import {
 } from '../utils/export';
 
 const SettingsPage: React.FC = () => {
-    const { competitors, userProfile, resetToSeedData, clearAllData, importData } = useCompetitors();
+    const { competitors, userProfile, updateUserProfile, rawStorageRecovery, snapshots, resetToSeedData, clearAllData, importData } = useCompetitors();
     const toast = useToast();
     const fileInputRef = useRef<HTMLInputElement>(null);
     const [showClearConfirm, setShowClearConfirm] = useState(false);
     const [showResetConfirm, setShowResetConfirm] = useState(false);
 
     const handleExportJson = () => {
-        const content = exportToJson(competitors, userProfile);
+        const content = exportToJson(competitors, userProfile, snapshots);
         const filename = `competitor-stalker-export-${new Date().toISOString().split('T')[0]}.json`;
         downloadFile(content, filename, 'application/json');
         toast.success('Data exported as JSON');
@@ -57,15 +58,14 @@ const SettingsPage: React.FC = () => {
             }
 
             // Import the data
-            importData(data.competitors, data.userProfile);
+            if (data.snapshots === undefined) importData(data.competitors, data.userProfile);
+            else importData(data.competitors, data.userProfile, data.snapshots);
             toast.success(`Imported ${data.competitors.length} competitors successfully!`);
         } catch {
             toast.error('Failed to read file');
-        }
-
-        // Reset file input
-        if (fileInputRef.current) {
-            fileInputRef.current.value = '';
+        } finally {
+            // Allow the same file to be selected again after failure or success.
+            if (fileInputRef.current) fileInputRef.current.value = '';
         }
     };
 
@@ -93,6 +93,19 @@ const SettingsPage: React.FC = () => {
                     Manage your data and preferences
                 </p>
             </div>
+
+            <section className="surface-card p-6">
+                <h2 className="text-lg font-semibold mb-4">Your Business</h2>
+                <Input label="Your business name" value={userProfile.name} onChange={event => updateUserProfile({ name: event.target.value })} />
+            </section>
+
+            {rawStorageRecovery && Object.keys(rawStorageRecovery).length > 0 && (
+                <section className="surface-card p-6">
+                    <h2 className="text-lg font-semibold mb-4">Recover Original Storage</h2>
+                    <p className="text-sm text-[var(--text-muted)] mb-4">Download the unread original records before replacing data. This recovery file preserves the original text for repair; it is separate from a normal workspace backup.</p>
+                    <Button variant="secondary" onClick={() => downloadFile(JSON.stringify(rawStorageRecovery, null, 2), 'stalker-original-storage.json', 'application/json')}>Download original storage</Button>
+                </section>
+            )}
 
             {/* Export */}
             <section className="surface-card p-6">
@@ -122,7 +135,7 @@ const SettingsPage: React.FC = () => {
                     Import Data
                 </h2>
                 <p className="text-sm text-[var(--text-muted)] mb-4">
-                    Import data from a previous export file (JSON format).
+                    Import replaces competitors and your business profile. Full backups also replace history; older files without history keep existing snapshots. Export a backup first.
                 </p>
                 <input
                     ref={fileInputRef}
@@ -207,7 +220,7 @@ const SettingsPage: React.FC = () => {
                     <div>
                         <div className="font-medium">Reset to Sample Data</div>
                         <div className="text-sm text-[var(--text-muted)]">
-                            Replace all data with the default dev tools competitors
+                            Replace competitors and your profile with sample data, and delete saved history
                         </div>
                     </div>
                     {showResetConfirm ? (
@@ -233,7 +246,7 @@ const SettingsPage: React.FC = () => {
                     <div>
                         <div className="font-medium">Clear All Data</div>
                         <div className="text-sm text-[var(--text-muted)]">
-                            Permanently delete all competitors and settings
+                            Permanently delete all competitors, profile settings and saved history
                         </div>
                     </div>
                     {showClearConfirm ? (

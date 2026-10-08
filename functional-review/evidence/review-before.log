@@ -1,0 +1,212 @@
+
+ RUN  v4.1.11 /Volumes/LizsDisk/competitor-stalker
+
+stderr | src/hooks/__tests__/useLocalStorage.test.ts > preserves unread original bytes during ordinary edits until explicit replacement
+Error reading localStorage key "unread"
+
+ ❯ src/hooks/__tests__/useLocalStorage.test.ts (11 tests | 1 failed) 59ms
+   × preserves unread original bytes during ordinary edits until explicit replacement 10ms
+ ❯ src/utils/__tests__/import-safety.test.ts (15 tests | 4 failed) 125ms
+   × rejects coerced enum values in imported and stored competitors 0 5ms
+   × rejects coerced enum values in imported and stored competitors 1 1ms
+   × rejects coerced enum values in imported and stored competitors 2 77ms
+   × rejects a snapshot with an array type 13ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 5 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/hooks/__tests__/useLocalStorage.test.ts > preserves unread original bytes during ordinary edits until explicit replacement
+AssertionError: expected '["draft"]' to be '[{"valid":true},{"invalid":true}]' // Object.is equality
+
+Expected: "[{"valid":true},{"invalid":true}]"
+Received: "["draft"]"
+
+ ❯ src/hooks/__tests__/useLocalStorage.test.ts:133:44
+    131|     const { result } = renderHook(() => useLocalStorage<string[]>('unr…
+    132|     act(() => result.current[1](['draft']));
+    133|     expect(localStorage.getItem('unread')).toBe(original);
+       |                                            ^
+    134|     expect(result.current[2]).toMatch(/could not be read/i);
+    135| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/5]⎯
+
+ FAIL  src/utils/__tests__/import-safety.test.ts > rejects coerced enum values in imported and stored competitors 0
+AssertionError: expected { competitors: [ { …(7) } ], …(1) } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "competitors": [
+    {
+      "features": {},
+      "id": "audit-one",
+      "name": "Audit One",
+      "notes": "",
+      "pricingModels": [],
+      "threatLevel": [
+        "High",
+      ],
+      "website": "",
+    },
+  ],
+  "userProfile": {
+    "features": {},
+    "name": "",
+    "positionX": 50,
+    "positionY": 50,
+    "pricingModels": [],
+  },
+}
+
+ ❯ src/utils/__tests__/import-safety.test.ts:34:26
+     32| ])('rejects coerced enum values in imported and stored competitors %#'…
+     33|     const { normalizeCompetitors } = await import('../validation');
+     34|     expect(parse(value)).toBeNull();
+       |                          ^
+     35|     expect(normalizeCompetitors([value])).toBeNull();
+     36| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/5]⎯
+
+ FAIL  src/utils/__tests__/import-safety.test.ts > rejects coerced enum values in imported and stored competitors 1
+AssertionError: expected { competitors: [ { …(8) } ], …(1) } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "competitors": [
+    {
+      "features": {},
+      "id": "audit-one",
+      "name": "Audit One",
+      "notes": "",
+      "pricingModels": [],
+      "threatLevel": "Medium",
+      "weaknesses": [
+        {
+          "date": "",
+          "id": "w",
+          "severity": [
+            "Critical",
+          ],
+          "source": "",
+          "text": "Audit",
+        },
+      ],
+      "website": "",
+    },
+  ],
+  "userProfile": {
+    "features": {},
+    "name": "",
+    "positionX": 50,
+    "positionY": 50,
+    "pricingModels": [],
+  },
+}
+
+ ❯ src/utils/__tests__/import-safety.test.ts:34:26
+     32| ])('rejects coerced enum values in imported and stored competitors %#'…
+     33|     const { normalizeCompetitors } = await import('../validation');
+     34|     expect(parse(value)).toBeNull();
+       |                          ^
+     35|     expect(normalizeCompetitors([value])).toBeNull();
+     36| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/5]⎯
+
+ FAIL  src/utils/__tests__/import-safety.test.ts > rejects coerced enum values in imported and stored competitors 2
+AssertionError: expected { competitors: [ { …(8) } ], …(1) } to be null
+
+- Expected:
+null
+
++ Received:
+{
+  "competitors": [
+    {
+      "features": {},
+      "id": "audit-one",
+      "name": "Audit One",
+      "notes": "",
+      "pricingModels": [],
+      "strategies": [
+        {
+          "description": "",
+          "id": "s",
+          "status": [
+            "Active",
+          ],
+          "targetCompetitorId": "audit-one",
+          "title": "Audit",
+        },
+      ],
+      "threatLevel": "Medium",
+      "website": "",
+    },
+  ],
+  "userProfile": {
+    "features": {},
+    "name": "",
+    "positionX": 50,
+    "positionY": 50,
+    "pricingModels": [],
+  },
+}
+
+ ❯ src/utils/__tests__/import-safety.test.ts:34:26
+     32| ])('rejects coerced enum values in imported and stored competitors %#'…
+     33|     const { normalizeCompetitors } = await import('../validation');
+     34|     expect(parse(value)).toBeNull();
+       |                          ^
+     35|     expect(normalizeCompetitors([value])).toBeNull();
+     36| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/5]⎯
+
+ FAIL  src/utils/__tests__/import-safety.test.ts > rejects a snapshot with an array type
+AssertionError: expected [ { id: 's', …(4) } ] to be null
+
+- Expected:
+null
+
++ Received:
+[
+  {
+    "competitorId": "audit-one",
+    "data": {
+      "features": {},
+      "id": "audit-one",
+      "name": "Audit One",
+      "notes": "",
+      "pricingModels": [],
+      "threatLevel": "Medium",
+      "website": "",
+    },
+    "id": "s",
+    "timestamp": "2026-10-08",
+    "type": [
+      "auto",
+    ],
+  },
+]
+
+ ❯ src/utils/__tests__/import-safety.test.ts:39:135
+     37| it('rejects a snapshot with an array type', async () => {
+     38|     const { normalizeSnapshots } = await import('../validation');
+     39|     expect(normalizeSnapshots([{ id: 's', competitorId: competitor.id,…
+       |                                                                                                                                       ^
+     40| });
+     41|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/5]⎯
+
+
+ Test Files  2 failed (2)
+      Tests  5 failed | 21 passed (26)
+   Start at  14:19:57
+   Duration  25.19s (transform 412ms, setup 5.15s, import 384ms, tests 184ms, environment 17.41s)

@@ -279,3 +279,16 @@ describe('CompetitorForm', () => {
         });
     });
 });
+
+ it('persists scanned social handles and retains existing evidence fields', async () => {
+    const response = { title: 'Audit site', description: 'Scanned summary', pricing: '', features: [], h1: '', h2s: [], techStack: [], ctaButtons: [], socialLinks: { twitter: 'https://x.com/audit_handle', linkedin: 'https://linkedin.com/company/audit' } };
+    vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true, json: async () => response }));
+    const onSave = vi.fn();
+    const record = { ...mockCompetitor, sources: [{ id: 'source', url: 'https://example.com', label: 'Evidence', addedAt: '2026-10-08' }], strengths: ['Reliability'] };
+    render(<CompetitorForm competitor={record} onSave={onSave} onCancel={() => {}} />);
+    await userEvent.click(screen.getByRole('button', { name: 'Scan' }));
+    await screen.findByText('Data extracted successfully');
+    await userEvent.click(screen.getByRole('button', { name: /save changes/i }));
+    expect(onSave).toHaveBeenCalledWith(expect.objectContaining({ sources: record.sources, strengths: record.strengths, socialHandles: { twitter: 'audit_handle', linkedin: 'https://linkedin.com/company/audit' } }));
+    vi.unstubAllGlobals();
+});

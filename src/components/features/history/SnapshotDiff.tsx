@@ -107,6 +107,9 @@ const BASIC_FIELDS: Array<{ key: keyof Competitor; label: string }> = [
     { key: 'targetAudience', label: 'Target Audience' },
     { key: 'founded', label: 'Founded' },
     { key: 'location', label: 'Location' },
+    { key: 'logo', label: 'Logo' },
+    { key: 'lastReviewed', label: 'Last Reviewed' },
+    { key: 'keyPeople', label: 'Key People' },
 ];
 
 /**
@@ -234,6 +237,10 @@ const calculateDiffs = (old: Competitor, newC: Competitor): DiffItem[] => {
         });
     }
 
+    const sourcesDiff = diffArrayField('sources', 'Sources', old.sources || [], newC.sources || [], arr =>
+        (arr as NonNullable<Competitor['sources']>).map(source => `${source.label}: ${source.url} (${source.addedAt})`).join(', ') || '(none)');
+    if (sourcesDiff) diffs.push(sourcesDiff);
+
     // Notes
     if (old.notes !== newC.notes) {
         const formatNotes = (notes: string | undefined) =>
@@ -320,6 +327,7 @@ export const SnapshotDiff: React.FC<SnapshotDiffProps> = ({ snapshot1, snapshot2
                 <button
                     type="button"
                     onClick={onClose}
+                    aria-label="Back to history"
                     className="p-2 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-hover)] transition-colors"
                 >
                     <X size={18} />

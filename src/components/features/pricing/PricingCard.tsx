@@ -102,7 +102,7 @@ export const PricingCard: React.FC<PricingCardProps> = ({
                         <div className="flex gap-1 opacity-100 transition-opacity">
                             <button
                                 type="button"
-                                onClick={() => setIsEditing(true)}
+                                onClick={() => { setEditedPlan(plan); setIsEditing(true); }}
                                 className="p-1.5 rounded-md text-[var(--text-muted)] hover:text-[var(--accent-brand)] hover:bg-[var(--bg-hover)] transition-colors"
                                 aria-label="Edit pricing plan"
                             >
