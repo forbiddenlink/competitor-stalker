@@ -161,12 +161,14 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
                     {compareMode && (
                         <button
                             type="button"
+                            aria-label={`Select snapshot ${snapshot.id}`}
+                            aria-pressed={isSelected}
                             onClick={onToggleSelect}
                             className={`
                                 flex-shrink-0 w-5 h-5 rounded border flex items-center justify-center
                                 transition-colors
                                 ${isSelected
-                                    ? 'bg-[var(--accent-brand)] border-[var(--accent-brand)] text-[var(--text-primary)]'
+                                    ? 'bg-[var(--accent-brand)] border-[var(--accent-brand)] text-[var(--text-inverse)]'
                                     : 'border-[var(--border-muted)] hover:border-[var(--border-emphasis)]'}
                             `}
                         >

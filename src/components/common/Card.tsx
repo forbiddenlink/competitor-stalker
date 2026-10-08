@@ -68,7 +68,7 @@ export const Card: React.FC<CardProps> = ({
                   role: 'button',
                   tabIndex: 0,
                   onKeyDown: (e: React.KeyboardEvent) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
+                      if (e.target === e.currentTarget && (e.key === 'Enter' || e.key === ' ')) {
                           e.preventDefault();
                           onClick();
                       }

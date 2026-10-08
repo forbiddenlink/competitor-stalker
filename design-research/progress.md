@@ -16,13 +16,13 @@ Existing untracked `CLAUDE.md` belongs to the user and must remain untouched/unc
 | 2 Research | done | `references.md`: 13 loaded live design references, 5 clearly outside industry; `features.md`: 9 loaded leaders × 3 public pages. Native Chromium screenshots and JSON evidence saved. Gallery protection, failed rendering and gated-product limits documented. |
 | 3 Decide | done | `plan.md`: editorial research workspace; ranked local-only features, all 14 templates, acceptance/verification gates. |
 | 4 Foundation + homepage | done | `phase-4-reasoning.md`; two native screenshot/score/fix rounds plus accepted desktop/mobile captures; typecheck/lint and 160 tests pass. |
-| 5 Every template | not started | All 14 templates still need upgrade and state verification. |
+| 5 Every template | done | `phase-5-reasoning.md`; all 14 templates upgraded; 29/29 initial browser journey checks and 169 tests pass; final captures supersede initial rollout. |
 | 6 Verify | not started | Full pre-submit, Lighthouse on key pages, every main journey. |
 | 7 Report | not started | Before/after evidence, features, rubric, blocked/untested items, approval list. |
 
 ## Template implementation tracker
 
-Dashboard foundation is complete. These are **not started**, not complete: dossiers, positioning, matrix, pricing, social, weaknesses, alerts, strategy, SWOT, settings, about, contact, privacy policy. Forms/history/search/mobile navigation also require foundation verification. Dashboard has been scored/accepted in two rounds; other templates have not.
+All 14 templates are implemented and qualitatively scored: dashboard, dossiers, positioning, matrix, pricing, social, weaknesses, alerts, strategy, SWOT, settings, about, contact and privacy policy. Forms/history/search/mobile navigation have isolated browser state checks. Phase 6 production verification remains pending.
 
 ## Decisions / findings
 
@@ -57,8 +57,8 @@ Research capture runner: `node design-research/research-browser.mjs design-resea
 
 ## Context checkpoint
 
-Phases 1–4 are complete. Resumed October 8 at phase 3; implementation now proceeds to phase 5. This remains an incomplete seven-phase upgrade.
+Phases 1–5 are complete. Resumed October 8 at phase 3; implementation now proceeds to phase 6. This remains an incomplete seven-phase upgrade.
 
 ## Resume instructions
 
-Continue with phase 5. Read `profile.md`, `references.md`, `features.md`, this checkpoint and `needs-approval.md`. Confirm branch/status; leave `CLAUDE.md` alone. Follow the fixed direction and scope in `plan.md`. Phase 3 committed as `6a51c92`; phase 4 implementation and evidence are complete. Use real Chromium; keep evidence and notes here. The two homepage screenshot/score/fix rounds are complete; see `phase-4-reasoning.md`. Finish the current phase before any next context checkpoint. The seven-phase goal is still incomplete.
+Continue with phase 6. Read `profile.md`, `references.md`, `features.md`, this checkpoint and `needs-approval.md`. Confirm branch/status; leave `CLAUDE.md` alone. Follow the fixed direction and scope in `plan.md`. Phase 3 committed as `6a51c92`; phase 4 implementation and evidence are complete. Use real Chromium; keep evidence and notes here. The two homepage screenshot/score/fix rounds are complete; see `phase-4-reasoning.md`. Finish the current phase before any next context checkpoint. The seven-phase goal is still incomplete.

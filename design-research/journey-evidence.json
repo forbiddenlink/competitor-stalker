@@ -1,0 +1,149 @@
+[
+  {
+    "device": "desktop",
+    "name": "dashboard selected dossier",
+    "passed": true
+  },
+  {
+    "device": "desktop",
+    "name": "dossier search and form",
+    "passed": true
+  },
+  {
+    "device": "desktop",
+    "name": "matrix keyboard and local changes",
+    "passed": true
+  },
+  {
+    "device": "desktop",
+    "name": "positioning keyboard and pointer",
+    "passed": true
+  },
+  {
+    "device": "desktop",
+    "name": "pricing editing",
+    "passed": true
+  },
+  {
+    "device": "desktop",
+    "name": "weakness and strategy",
+    "passed": true
+  },
+  {
+    "device": "desktop",
+    "name": "history milestone and focus",
+    "passed": true
+  },
+  {
+    "device": "desktop",
+    "name": "search navigation",
+    "passed": true
+  },
+  {
+    "device": "desktop",
+    "name": "SWOT editing",
+    "passed": true
+  },
+  {
+    "device": "desktop",
+    "name": "snapshot comparison",
+    "passed": true
+  },
+  {
+    "device": "desktop",
+    "name": "export and isolated import",
+    "passed": true
+  },
+  {
+    "device": "desktop",
+    "name": "route aliases and informational links",
+    "passed": true
+  },
+  {
+    "device": "desktop",
+    "name": "social manual research",
+    "passed": true
+  },
+  {
+    "device": "desktop",
+    "name": "page errors",
+    "passed": true,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "name": "dashboard selected dossier",
+    "passed": true
+  },
+  {
+    "device": "mobile",
+    "name": "dossier search and form",
+    "passed": true
+  },
+  {
+    "device": "mobile",
+    "name": "matrix keyboard and local changes",
+    "passed": true
+  },
+  {
+    "device": "mobile",
+    "name": "positioning keyboard and pointer",
+    "passed": true
+  },
+  {
+    "device": "mobile",
+    "name": "pricing editing",
+    "passed": true
+  },
+  {
+    "device": "mobile",
+    "name": "weakness and strategy",
+    "passed": true
+  },
+  {
+    "device": "mobile",
+    "name": "history milestone and focus",
+    "passed": true
+  },
+  {
+    "device": "mobile",
+    "name": "search navigation",
+    "passed": true
+  },
+  {
+    "device": "mobile",
+    "name": "SWOT editing",
+    "passed": true
+  },
+  {
+    "device": "mobile",
+    "name": "snapshot comparison",
+    "passed": true
+  },
+  {
+    "device": "mobile",
+    "name": "export and isolated import",
+    "passed": true
+  },
+  {
+    "device": "mobile",
+    "name": "route aliases and informational links",
+    "passed": true
+  },
+  {
+    "device": "mobile",
+    "name": "social manual research",
+    "passed": true
+  },
+  {
+    "device": "mobile",
+    "name": "mobile navigation focus",
+    "passed": true
+  },
+  {
+    "device": "mobile",
+    "name": "page errors",
+    "passed": true,
+    "errors": []
+  }
+]

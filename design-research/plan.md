@@ -77,8 +77,8 @@ Use existing page/feature files. Share the new tokens and header/section rhythm;
 | Contact `/contact` | Clear channel hierarchy; preserve addresses/SLA | All mailto/privacy links, mobile |
 | Privacy `/privacy-policy` | Readable legal measure, section rhythm; preserve policy/date | All content, contact link, mobile |
 
-- [ ] Verify shared form/history/search/mobile navigation focus and semantics; fix within existing components.
-- [ ] Complete each template's listed states, update tracker, review diff, commit phase 5.
+- [x] Verify shared form/history/search/mobile navigation focus and semantics; fix within existing components.
+- [x] Complete each template's listed states, update tracker, review diff, commit phase 5.
 
 ## Phase 6: verification
 

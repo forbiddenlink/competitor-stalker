@@ -49,7 +49,7 @@ const SwotCard: React.FC<SwotCardProps> = ({
                         <span className="flex-1 text-sm text-[var(--text-secondary)]">{item}</span>
                         <button
                             onClick={() => onRemove(index)}
-                            className="opacity-0 group-hover:opacity-100 p-1 text-[var(--text-muted)] hover:text-[var(--accent-danger)] transition-all"
+                            className="opacity-100 p-1 text-[var(--text-muted)] hover:text-[var(--accent-danger)] transition-all"
                             aria-label={`Remove ${title.toLowerCase()} item`}
                         >
                             <X className="w-3 h-3" />
@@ -70,12 +70,13 @@ const SwotCard: React.FC<SwotCardProps> = ({
                             value={newItem}
                             onChange={(e) => setNewItem(e.target.value)}
                             onKeyDown={(e) => e.key === 'Enter' && handleAdd()}
+                            aria-label={`New ${title.toLowerCase()} item`}
                             placeholder={`Add ${title.toLowerCase()}...`}
-                            className="flex-1 px-3 py-2 text-sm rounded-lg bg-[var(--bg-primary)] border border-[var(--border-default)]"
+                            className="min-w-0 flex-1 px-3 py-2 text-sm rounded-lg bg-[var(--bg-primary)] border border-[var(--border-default)]"
                             autoFocus
                         />
                         <Button size="sm" onClick={handleAdd}>Add</Button>
-                        <Button size="sm" variant="ghost" onClick={() => setIsAdding(false)}>
+                        <Button size="sm" variant="ghost" aria-label="Cancel new SWOT item" onClick={() => setIsAdding(false)}>
                             <X className="w-4 h-4" />
                         </Button>
                     </div>
@@ -221,7 +222,7 @@ const SwotPage: React.FC = () => {
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                    <h1 className="text-2xl font-semibold flex items-center gap-3">
+                    <h1 className="workspace-title flex items-center gap-3">
                         <SquareStack className="w-7 h-7 text-[var(--accent-purple)]" />
                         SWOT Analysis
                     </h1>

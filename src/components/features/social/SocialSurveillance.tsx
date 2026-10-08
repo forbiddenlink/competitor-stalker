@@ -59,30 +59,31 @@ export const SocialSurveillance: React.FC = () => {
     };
 
     return (
-        <div className="h-full flex flex-col gap-6 p-6">
+        <div className="h-full flex flex-col gap-6">
             <div className="flex items-center justify-between gap-4 flex-wrap">
                 <div>
-                    <h2 className="text-2xl font-semibold tracking-tight text-[var(--text-primary)] flex items-center gap-2">
+                    <h1 className="workspace-title text-[var(--text-primary)] flex items-center gap-2">
                         <Wifi className="text-[var(--accent-info)]" /> Social Monitor
-                    </h2>
-                    <p className="text-sm text-[var(--text-muted)]">Monitor competitor chatter and social signals.</p>
+                    </h1>
+                    <p className="text-sm text-[var(--text-muted)]">Research public profiles and record handles in this browser. No social feed is connected.</p>
                 </div>
 
                 <form onSubmit={handleSearch} className="flex gap-2 w-full max-w-md">
                     <Input
-                        placeholder="Enter keywords (e.g. pricing, launch)..."
+                        aria-label="Filter competitors and handles"
+                        placeholder="Filter competitors and handles..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                         className="font-mono"
                     />
-                    <Button type="submit" disabled={isScanning}>
+                    <Button type="submit" disabled={isScanning} aria-label="Scan local targets">
                         {isScanning ? 'Scanning...' : <Search size={18} />}
                     </Button>
                 </form>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 flex-1 min-h-0 bg-transparent">
-                <Card className="col-span-1 flex flex-col gap-4 overflow-y-auto bg-[var(--bg-primary)]/60" variant="surface">
+                <Card className="col-span-1 max-h-[420px] lg:max-h-none flex flex-col gap-4 overflow-y-auto bg-[var(--bg-primary)]/60" variant="surface">
                     <h3 className="font-semibold text-[var(--text-secondary)] border-b border-[var(--border-default)] pb-2">Target Links</h3>
 
                     {filteredCompetitors.length === 0 && <p className="text-[var(--text-muted)] text-sm italic">No targets found.</p>}
@@ -105,6 +106,10 @@ export const SocialSurveillance: React.FC = () => {
                                 <span className="font-semibold text-sm tracking-wide text-[var(--text-primary)]">{comp.name}</span>
                             </div>
 
+                            <div className="flex flex-wrap gap-3 text-xs text-[var(--accent-brand)] mb-3">
+                                <a href={`https://x.com/search?q=${encodeURIComponent(comp.name)}`} target="_blank" rel="noopener noreferrer">Research {comp.name} on X</a>
+                                <a href={`https://www.google.com/search?q=${encodeURIComponent(comp.name + ' site:linkedin.com/company')}`} target="_blank" rel="noopener noreferrer">LinkedIn research</a>
+                            </div>
                             <div className="space-y-2">
                                 <div className="flex items-center gap-2">
                                     <Twitter size={14} className="text-[var(--accent-info)]" aria-hidden="true" />
@@ -141,18 +146,18 @@ export const SocialSurveillance: React.FC = () => {
                         {!isScanning && feed.length === 0 && (
                             <div className="h-full flex flex-col items-center justify-center text-[var(--accent-info)]/50">
                                 <Wifi size={64} className="mb-4 opacity-50" />
-                                <p>Awaiting input sequence...</p>
+                                <p>Start with a public research link.</p>
                                 <p className="text-xs mt-2 text-[var(--text-muted)]">
-                                    Configure social API integrations to enable live signal monitoring
+                                    The scan control previews a local workflow; it does not fetch posts.
                                 </p>
                             </div>
                         )}
 
                         {isScanning && (
                             <div className="space-y-1">
-                                <div className="text-[var(--accent-success)]">{'>'} Initializing search protocols...</div>
-                                <div className="text-[var(--accent-success)]">{'>'} Connecting to node 64.23.1...</div>
-                                <div className="text-[var(--accent-success)] animate-pulse">{'>'} Intercepting packets...</div>
+                                <div className="text-[var(--accent-success)]">{'>'} Previewing local workflow...</div>
+                                <div className="text-[var(--accent-success)]">{'>'} No connected social API.</div>
+                                <div className="text-[var(--accent-success)] animate-pulse">{'>'} Use public research links; no posts are fetched.</div>
                             </div>
                         )}
 

@@ -63,18 +63,18 @@ export const WeaknessSpotter: React.FC = () => {
     };
 
     return (
-        <div className="h-full flex flex-col gap-6 p-6">
+        <div className="h-full flex flex-col gap-6">
             <div className="flex items-center justify-between">
                 <div>
-                    <h2 className="text-2xl font-semibold tracking-tight text-[var(--text-primary)] flex items-center gap-2">
+                    <h1 className="workspace-title text-[var(--text-primary)] flex items-center gap-2">
                         <ShieldAlert className="text-[var(--accent-danger)]" /> Weakness Spotter
-                    </h2>
-                    <p className="text-sm text-[var(--text-muted)]">Catalog and exploit competitor vulnerabilities.</p>
+                    </h1>
+                    <p className="text-sm text-[var(--text-muted)]">Record competitor weaknesses with sources and severity.</p>
                 </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 h-full min-h-0">
-                <div className="lg:col-span-1 flex flex-col gap-3 overflow-y-auto">
+                <div className="lg:col-span-1 grid grid-cols-2 lg:flex lg:flex-col gap-3 max-h-[220px] lg:max-h-none overflow-y-auto">
                     {competitors.map((comp) => (
                         <button
                             key={comp.id}
@@ -108,9 +108,9 @@ export const WeaknessSpotter: React.FC = () => {
 
                     {effectiveSelectedId ? (
                         <>
-                            <div className="p-6 border-b border-[var(--border-default)] bg-[var(--bg-secondary)]/40 backdrop-blur-md z-10">
+                            <div className="p-3 sm:p-6 border-b border-[var(--border-default)] bg-[var(--bg-secondary)]/40 backdrop-blur-md z-10">
                                 <div className="flex gap-4 items-end flex-wrap">
-                                    <div className="flex-1 min-w-[280px]">
+                                    <div className="basis-full min-w-0 w-full">
                                         <Input
                                             label="Vulnerability Description"
                                             placeholder="e.g. Server downtime during peak hours..."
@@ -118,9 +118,9 @@ export const WeaknessSpotter: React.FC = () => {
                                             onChange={(e) => setNewWeakness({ ...newWeakness, text: e.target.value })}
                                         />
                                     </div>
-                                    <div className="w-48">
-                                        <label className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wide mb-1 block">Severity</label>
-                                        <select
+                                    <div className="w-full sm:w-48">
+                                        <label htmlFor="weakness-severity" className="text-xs font-medium text-[var(--text-muted)] uppercase tracking-wide mb-1 block">Severity</label>
+                                        <select id="weakness-severity"
                                             className="w-full h-10 bg-[var(--bg-primary)] border border-[var(--border-default)] px-3 rounded-[var(--radius-control)] text-[var(--text-primary)] focus:border-[var(--accent-info)] outline-none"
                                             value={newWeakness.severity}
                                             onChange={(e) =>
@@ -132,7 +132,7 @@ export const WeaknessSpotter: React.FC = () => {
                                             <option value="Critical">Critical</option>
                                         </select>
                                     </div>
-                                    <div className="w-48">
+                                    <div className="w-full sm:w-48">
                                         <Input
                                             label="Source"
                                             placeholder="e.g. G2 Review"

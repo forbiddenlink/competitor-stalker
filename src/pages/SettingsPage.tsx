@@ -82,10 +82,10 @@ const SettingsPage: React.FC = () => {
     };
 
     return (
-        <div className="space-y-8 animate-fade-in max-w-3xl">
+        <div className="settings-page space-y-8 animate-fade-in max-w-3xl">
             {/* Header */}
             <div>
-                <h1 className="text-2xl font-semibold flex items-center gap-3">
+                <h1 className="workspace-title flex items-center gap-3">
                     <Settings className="w-7 h-7 text-[var(--accent-brand)]" />
                     Settings
                 </h1>
@@ -93,35 +93,6 @@ const SettingsPage: React.FC = () => {
                     Manage your data and preferences
                 </p>
             </div>
-
-            {/* Data Overview */}
-            <section className="surface-card p-6">
-                <h2 className="text-lg font-semibold mb-4">Data Overview</h2>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                    <div className="p-4 bg-[var(--bg-primary)] rounded-lg">
-                        <div className="text-2xl font-semibold data-mono">{competitors.length}</div>
-                        <div className="text-sm text-[var(--text-muted)]">Competitors</div>
-                    </div>
-                    <div className="p-4 bg-[var(--bg-primary)] rounded-lg">
-                        <div className="text-2xl font-semibold data-mono">
-                            {competitors.filter(c => c.threatLevel === 'High').length}
-                        </div>
-                        <div className="text-sm text-[var(--text-muted)]">High Threats</div>
-                    </div>
-                    <div className="p-4 bg-[var(--bg-primary)] rounded-lg">
-                        <div className="text-2xl font-semibold data-mono">
-                            {competitors.reduce((acc, c) => acc + (c.weaknesses?.length || 0), 0)}
-                        </div>
-                        <div className="text-sm text-[var(--text-muted)]">Weaknesses</div>
-                    </div>
-                    <div className="p-4 bg-[var(--bg-primary)] rounded-lg">
-                        <div className="text-2xl font-semibold data-mono">
-                            {competitors.reduce((acc, c) => acc + (c.strategies?.length || 0), 0)}
-                        </div>
-                        <div className="text-sm text-[var(--text-muted)]">Strategies</div>
-                    </div>
-                </div>
-            </section>
 
             {/* Export */}
             <section className="surface-card p-6">
@@ -166,6 +137,35 @@ const SettingsPage: React.FC = () => {
                 </Button>
             </section>
 
+            {/* Data Overview */}
+            <section className="surface-card p-6">
+                <h2 className="text-lg font-semibold mb-4">Data Overview</h2>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    <div className="p-4 bg-[var(--bg-primary)] rounded-lg">
+                        <div className="text-2xl font-semibold data-mono">{competitors.length}</div>
+                        <div className="text-sm text-[var(--text-muted)]">Competitors</div>
+                    </div>
+                    <div className="p-4 bg-[var(--bg-primary)] rounded-lg">
+                        <div className="text-2xl font-semibold data-mono">
+                            {competitors.filter(c => c.threatLevel === 'High').length}
+                        </div>
+                        <div className="text-sm text-[var(--text-muted)]">High Threats</div>
+                    </div>
+                    <div className="p-4 bg-[var(--bg-primary)] rounded-lg">
+                        <div className="text-2xl font-semibold data-mono">
+                            {competitors.reduce((acc, c) => acc + (c.weaknesses?.length || 0), 0)}
+                        </div>
+                        <div className="text-sm text-[var(--text-muted)]">Weaknesses</div>
+                    </div>
+                    <div className="p-4 bg-[var(--bg-primary)] rounded-lg">
+                        <div className="text-2xl font-semibold data-mono">
+                            {competitors.reduce((acc, c) => acc + (c.strategies?.length || 0), 0)}
+                        </div>
+                        <div className="text-sm text-[var(--text-muted)]">Strategies</div>
+                    </div>
+                </div>
+            </section>
+
             {/* Keyboard Shortcuts */}
             <section className="surface-card p-6">
                 <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
@@ -203,7 +203,7 @@ const SettingsPage: React.FC = () => {
                 </h2>
 
                 {/* Reset to Sample Data */}
-                <div className="flex items-center justify-between py-4 border-b border-[var(--border-subtle)]">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 py-4 border-b border-[var(--border-subtle)]">
                     <div>
                         <div className="font-medium">Reset to Sample Data</div>
                         <div className="text-sm text-[var(--text-muted)]">
@@ -229,7 +229,7 @@ const SettingsPage: React.FC = () => {
                 </div>
 
                 {/* Clear All Data */}
-                <div className="flex items-center justify-between py-4">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 py-4">
                     <div>
                         <div className="font-medium">Clear All Data</div>
                         <div className="text-sm text-[var(--text-muted)]">

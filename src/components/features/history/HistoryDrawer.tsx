@@ -1,3 +1,4 @@
+import { createPortal } from 'react-dom';
 import React, { useState, useEffect, useRef } from 'react';
 import { X, History, Plus, ArrowLeft } from 'lucide-react';
 import { Button } from '../../common/Button';
@@ -17,6 +18,7 @@ type DrawerView = 'timeline' | 'milestone' | 'diff';
 export const HistoryDrawer: React.FC<HistoryDrawerProps> = ({ competitor, isOpen, onClose }) => {
     const [view, setView] = useState<DrawerView>('timeline');
     const [diffSnapshots, setDiffSnapshots] = useState<{ snap1: Snapshot; snap2: Snapshot } | null>(null);
+    const drawerRef = useRef<HTMLDivElement>(null);
     const prevIsOpen = useRef(isOpen);
 
     // Reset view when drawer opens (using ref to avoid effect setState lint error)
@@ -48,6 +50,24 @@ export const HistoryDrawer: React.FC<HistoryDrawerProps> = ({ competitor, isOpen
         return () => document.removeEventListener('keydown', handleEscape);
     }, [isOpen, view, onClose]);
 
+    useEffect(() => {
+        if (!isOpen) return;
+        const previous = document.activeElement as HTMLElement | null;
+        drawerRef.current?.querySelector<HTMLButtonElement>('button')?.focus();
+        return () => previous?.focus();
+    }, [isOpen]);
+
+    const trapFocus = (e: React.KeyboardEvent): void => {
+        e.stopPropagation();
+        if (e.key !== 'Tab') return;
+        const elements = drawerRef.current?.querySelectorAll<HTMLElement>('button:not([disabled]), a[href], input, select, textarea, [tabindex="0"]');
+        if (!elements?.length) return;
+        const first = elements[0];
+        const last = elements[elements.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    };
+
     const handleCompare = (snap1: Snapshot, snap2: Snapshot) => {
         setDiffSnapshots({ snap1, snap2 });
         setView('diff');
@@ -64,16 +84,22 @@ export const HistoryDrawer: React.FC<HistoryDrawerProps> = ({ competitor, isOpen
 
     if (!isOpen) return null;
 
-    return (
+    return createPortal(
         <>
             {/* Backdrop */}
             <div
                 className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm animate-fade-in"
-                onClick={onClose}
+                onClick={e => { e.stopPropagation(); onClose(); }}
             />
 
             {/* Drawer */}
             <div
+                ref={drawerRef}
+                onClick={e => e.stopPropagation()}
+                role="dialog"
+                aria-modal="true"
+                aria-label={`History for ${competitor.name}`}
+                onKeyDown={trapFocus}
                 className={`
                     fixed inset-y-0 right-0 z-50 w-full max-w-md
                     flex flex-col
@@ -90,6 +116,7 @@ export const HistoryDrawer: React.FC<HistoryDrawerProps> = ({ competitor, isOpen
                             <button
                                 type="button"
                                 onClick={handleBackToTimeline}
+                                aria-label="Back to timeline"
                                 className="p-1.5 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-hover)] transition-colors"
                             >
                                 <ArrowLeft size={18} />
@@ -113,6 +140,7 @@ export const HistoryDrawer: React.FC<HistoryDrawerProps> = ({ competitor, isOpen
                     <button
                         type="button"
                         onClick={onClose}
+                        aria-label="Close history"
                         className="p-2 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-hover)] transition-colors"
                     >
                         <X size={18} />
@@ -165,6 +193,6 @@ export const HistoryDrawer: React.FC<HistoryDrawerProps> = ({ competitor, isOpen
                     )}
                 </div>
             </div>
-        </>
+        </>, document.body
     );
 };

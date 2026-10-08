@@ -48,8 +48,9 @@ const SearchCommandContent: React.FC<Omit<SearchCommandProps, 'isOpen'>> = ({ on
 
     // Focus input on mount
     useEffect(() => {
+        const previousFocus = document.activeElement as HTMLElement | null;
         const timer = setTimeout(() => inputRef.current?.focus(), 50);
-        return () => clearTimeout(timer);
+        return () => { clearTimeout(timer); previousFocus?.focus(); };
     }, []);
 
     // Keyboard navigation
@@ -63,8 +64,10 @@ const SearchCommandContent: React.FC<Omit<SearchCommandProps, 'isOpen'>> = ({ on
         } else if (e.key === 'Enter') {
             e.preventDefault();
             if (selectedIndex < filteredCompetitors.length) {
-                navigate('/dossier');
-                onClose();
+                if (filteredCompetitors[selectedIndex]) {
+                    navigate(`/dossier?competitor=${encodeURIComponent(filteredCompetitors[selectedIndex].id)}`);
+                    onClose();
+                }
             } else {
                 const actionIndex = selectedIndex - filteredCompetitors.length;
                 if (filteredActions[actionIndex]) {
@@ -75,7 +78,7 @@ const SearchCommandContent: React.FC<Omit<SearchCommandProps, 'isOpen'>> = ({ on
         } else if (e.key === 'Escape') {
             onClose();
         }
-    }, [selectedIndex, filteredCompetitors.length, filteredActions, totalResults, onClose, navigate]);
+    }, [selectedIndex, filteredCompetitors, filteredActions, totalResults, onClose, navigate]);
 
     // Keep focus inside the palette (Tab trap) and close on Escape regardless of
     // which element currently has focus.
@@ -140,6 +143,7 @@ const SearchCommandContent: React.FC<Omit<SearchCommandProps, 'isOpen'>> = ({ on
                     </kbd>
                     <button
                         onClick={onClose}
+                        aria-label="Close search"
                         className="sm:hidden p-1 text-[var(--text-muted)] hover:text-[var(--text-primary)]"
                     >
                         <X className="w-4 h-4" />
@@ -155,7 +159,7 @@ const SearchCommandContent: React.FC<Omit<SearchCommandProps, 'isOpen'>> = ({ on
                             {filteredCompetitors.map((competitor, index) => (
                                 <button
                                     key={competitor.id}
-                                    onClick={() => { navigate('/dossier'); onClose(); }}
+                                    onClick={() => { navigate(`/dossier?competitor=${encodeURIComponent(competitor.id)}`); onClose(); }}
                                     className={`
                                         w-full flex items-center gap-3 px-3 py-2 rounded-[var(--radius-control)] text-left
                                         transition-colors

@@ -779,3 +779,15 @@ a:focus-visible, [tabindex]:focus-visible {
   .dashboard-briefing { gap: 20px; }
   .dashboard-briefing .kpi-value { font-size: 26px; line-height: 28px; }
 }
+
+.reading-page { line-height: 1.85; }
+.reading-page section p { max-width: 68ch; }
+.reading-page a { overflow-wrap: anywhere; }
+@media print {
+  body, #root { height: auto !important; overflow: visible !important; }
+  aside, header, footer, .print-hidden { display: none !important; }
+  .h-screen, .overflow-hidden, .overflow-auto { height: auto !important; overflow: visible !important; }
+  body:has(.battlecard) * { visibility: hidden; }
+  .battlecard, .battlecard * { visibility: visible; }
+  .battlecard { position: absolute; inset: 0; border: 0; }
+}

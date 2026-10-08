@@ -69,7 +69,7 @@ export const PricingIntel: React.FC = () => {
         <div className="space-y-10 animate-fade-in">
             {/* Page Header */}
             <div>
-                <h1 className="text-2xl font-semibold tracking-tight">
+                <h1 className="workspace-title">
                     Pricing Intelligence
                 </h1>
                 <p className="text-sm text-[var(--text-muted)] mt-1">
@@ -79,7 +79,7 @@ export const PricingIntel: React.FC = () => {
 
             {/* Your Business Section */}
             <section className="space-y-5">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-wrap gap-3 items-center justify-between">
                     <div className="flex items-center gap-3">
                         <h2 className="text-lg font-semibold text-[var(--text-primary)]">
                             {userProfile.name}
@@ -122,7 +122,7 @@ export const PricingIntel: React.FC = () => {
             {/* Competitors Section */}
             {competitors.map(competitor => (
                 <section key={competitor.id} className="space-y-5">
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-wrap gap-3 items-center justify-between">
                         <div className="flex items-center gap-3">
                             <h2 className="text-lg font-semibold text-[var(--text-primary)]">
                                 {competitor.name}

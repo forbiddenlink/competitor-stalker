@@ -89,17 +89,17 @@ export const PricingCard: React.FC<PricingCardProps> = ({
                             {plan.name}
                         </h3>
                         <div className="flex items-baseline gap-1 mt-1">
-                            <span className="text-2xl font-semibold font-mono text-[var(--accent-brand)]">
+                            <span className="text-xl font-semibold font-mono break-words text-[var(--accent-brand)]">
                                 {plan.price}
                             </span>
                             {plan.price !== 'Custom' && !plan.price.includes('Contact') && (
-                                <span className="text-xs text-[var(--text-muted)]">/month</span>
+                                <span className="text-xs text-[var(--text-muted)]">recorded</span>
                             )}
                         </div>
                     </div>
 
                     {isEditable && (
-                        <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div className="flex gap-1 opacity-100 transition-opacity">
                             <button
                                 type="button"
                                 onClick={() => setIsEditing(true)}

@@ -1,9 +1,10 @@
 import { chromium } from '/Users/elizabethstein/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.mjs';
-import { mkdir, writeFile } from 'node:fs/promises';
-const routes = ['/', '/dossier', '/positioning', '/matrix', '/pricing', '/social', '/weaknesses', '/alerts', '/strategy', '/swot', '/settings', '/about', '/contact', '/privacy-policy'];
+import { mkdir, writeFile, readFile } from 'node:fs/promises';
+const allRoutes = ['/', '/dossier', '/positioning', '/matrix', '/pricing', '/social', '/weaknesses', '/alerts', '/strategy', '/swot', '/settings', '/about', '/contact', '/privacy-policy'];
+const routes = process.env.CAPTURE_ROUTES ? allRoutes.filter(route => process.env.CAPTURE_ROUTES.split(',').includes(route)) : allRoutes;
 const phase = process.argv[2] || 'before';
 const browser = await chromium.launch({headless:true, executablePath:'/Users/elizabethstein/Library/Caches/ms-playwright/chromium_headless_shell-1243/chrome-headless-shell-mac-arm64/chrome-headless-shell'});
-const evidence=[];
+const evidence = process.env.CAPTURE_ROUTES ? JSON.parse(await readFile(`design-research/${phase}-browser-evidence.json`, 'utf8')).filter(row => !routes.includes(row.route)) : [];
 for (const [device, width, height] of [['desktop',1440,1000], ['mobile',390,844]]) {
  const context=await browser.newContext({viewport:{width,height}, reducedMotion:'reduce'});
  const page=await context.newPage();
@@ -14,13 +15,15 @@ for (const [device, width, height] of [['desktop',1440,1000], ['mobile',390,844]
   await page.locator('h1,h2').first().waitFor();
   await page.waitForTimeout(800);
   await mkdir(`design-research/screenshots/${phase}`,{recursive:true});
-  await page.screenshot({path:`design-research/screenshots/${phase}/${name}-${device}.png`,fullPage:true});
+  await page.screenshot({animations:'disabled', timeout:60000, path:`design-research/screenshots/${phase}/${name}-${device}.png`,fullPage:true});
   const scrollRegion = page.locator('.flex-1.overflow-auto').first();
   if (await scrollRegion.count() && await scrollRegion.evaluate(el => el.scrollHeight > el.clientHeight)) {
    await scrollRegion.evaluate(el => el.scrollTop = el.scrollHeight);
-   await page.screenshot({path:`design-research/screenshots/${phase}/${name}-${device}-bottom.png`,fullPage:true});
+   await page.screenshot({animations:'disabled', timeout:60000, path:`design-research/screenshots/${phase}/${name}-${device}-bottom.png`,fullPage:true});
   }
+  console.log(`Captured ${route} ${device}`);
   evidence.push({route,device,title:await page.title(),headings:await page.locator('h1,h2,h3').allTextContents(),buttons:await page.getByRole('button').allTextContents(),overflow:await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),errors:[...errors]});
+  await writeFile(`design-research/${phase}-browser-evidence.json`,JSON.stringify(evidence,null,2));
  }
  await context.close();
 }

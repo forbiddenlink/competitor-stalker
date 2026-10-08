@@ -79,6 +79,32 @@ const NavGroup: React.FC<NavGroupProps> = ({ label, children }) => (
 export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
+    const [isDesktop, setIsDesktop] = useState(() => window.matchMedia('(min-width: 1024px)').matches);
+    const sidebarRef = useRef<HTMLElement>(null);
+    const menuRef = useRef<HTMLButtonElement>(null);
+    useEffect(() => {
+        const media = window.matchMedia('(min-width: 1024px)');
+        const changed = (): void => setIsDesktop(media.matches);
+        media.addEventListener('change', changed);
+        return () => media.removeEventListener('change', changed);
+    }, []);
+    useEffect(() => {
+        if (!isSidebarOpen || isDesktop) return;
+        const trigger = menuRef.current;
+        sidebarRef.current?.querySelector<HTMLElement>('a[href]')?.focus();
+        return () => trigger?.focus();
+    }, [isSidebarOpen, isDesktop]);
+    const sidebarKeyDown = (e: React.KeyboardEvent): void => {
+        if (isDesktop) return;
+        if (e.key === 'Escape') { setIsSidebarOpen(false); return; }
+        if (e.key !== 'Tab') return;
+        const items = sidebarRef.current?.querySelectorAll<HTMLElement>('a[href], button:not([disabled])');
+        if (!items?.length) return;
+        const first = items[0];
+        const last = items[items.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    };
     const location = useLocation();
     const prevPathnameRef = useRef(location.pathname);
 
@@ -131,6 +157,12 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 
             {/* Sidebar */}
             <aside
+                ref={sidebarRef}
+                inert={!isDesktop && !isSidebarOpen}
+                role={!isDesktop && isSidebarOpen ? 'dialog' : undefined}
+                aria-modal={!isDesktop && isSidebarOpen ? true : undefined}
+                aria-label="Research navigation"
+                onKeyDown={sidebarKeyDown}
                 className={`
                     fixed lg:relative inset-y-0 left-0 z-50
                     flex flex-col bg-[var(--bg-primary)] border-r border-[var(--border-default)]
@@ -208,6 +240,8 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                 <header className="h-16 flex items-center justify-between px-6 border-b border-[var(--border-subtle)] bg-[var(--bg-primary)]/80 backdrop-blur-lg">
                     <div className="flex items-center gap-4">
                         <button
+                            ref={menuRef}
+                            aria-expanded={isSidebarOpen}
                             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                             className="lg:hidden p-2 rounded-lg text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-hover)] transition-all"
                             aria-label={isSidebarOpen ? "Close sidebar" : "Open sidebar"}
