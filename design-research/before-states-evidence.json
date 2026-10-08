@@ -1,0 +1,134 @@
+[
+  {
+    "device": "desktop",
+    "state": "competitor-form",
+    "headings": [
+      "Competitors",
+      "Vercel",
+      "Netlify",
+      "Render",
+      "Fly.io",
+      "Heroku",
+      "DigitalOcean App Platform",
+      "Add Competitor"
+    ],
+    "labels": [
+      "Company Name *",
+      "Website",
+      "Threat Level",
+      "Company Size",
+      "Est. Revenue",
+      "One-liner Description",
+      "Notes"
+    ],
+    "buttons": [
+      "",
+      "Search...⌘K",
+      "Add Target",
+      "VVercelvercel.comHighSize500-550 employeesRevenue$100M+ ARR\"The platform for frontend developers, providing speed and reliability\"Research",
+      "Research",
+      "",
+      "",
+      "NNetlifynetlify.comHighSize180-200 employeesRevenue$50-70M ARR\"Build and deploy modern web projects with continuous deployment\"Research",
+      "Research",
+      "",
+      "",
+      "RRenderrender.comHighSize60-70 employeesRevenue$15-25M ARR\"Cloud application platform that makes it easy to build and run apps\"Research",
+      "Research",
+      "",
+      "",
+      "FFly.iofly.ioMediumSize55-70 employeesRevenue$10-20M ARR\"Run your full-stack apps and databases close to your users\"Research",
+      "Research",
+      "",
+      "",
+      "HHerokuheroku.comMediumSize200-500 employeesRevenue$100M+ (Salesforce subsidiary)\"Cloud platform for building, delivering, and scaling apps\"Research",
+      "Research",
+      "",
+      "",
+      "DDigitalOcean App Platformdigitalocean.comLowSize1000+ employeesRevenue$700M+ total (App Platform portion smaller)\"Simple, scalable cloud platform for developers\"Research",
+      "Research",
+      "",
+      "",
+      "",
+      "Scan",
+      "Cancel",
+      "Add Competitor"
+    ]
+  },
+  {
+    "device": "desktop",
+    "state": "history",
+    "text": "History\n\nVercel\n\nAdd Milestone\n\nNo history yet\n\nChanges will be tracked automatically when you edit this competitor."
+  },
+  {
+    "device": "desktop",
+    "state": "search",
+    "text": "ESC\nCOMPETITORS\nVercel\nThe platform for frontend developers, providing speed and reliability\nHIGH\nNetlify\nBuild and deploy modern web projects with continuous deployment\nHIGH\nRender\nCloud application platform that makes it easy to build and run apps\nHIGH\nFly.io\nRun your full-stack apps and databases close to your users\nMEDIUM\nHeroku\nCloud platform for building, delivering, and scaling apps\nMEDIUM\nQUICK ACTIONS\nGo to Dashboard\nView All Competitors\nPositioning Map\n↑↓\nNavigate\n↵\nSelect\n8 results"
+  },
+  {
+    "device": "mobile",
+    "state": "competitor-form",
+    "headings": [
+      "Competitors",
+      "Vercel",
+      "Netlify",
+      "Render",
+      "Fly.io",
+      "Heroku",
+      "DigitalOcean App Platform",
+      "Add Competitor"
+    ],
+    "labels": [
+      "Company Name *",
+      "Website",
+      "Threat Level",
+      "Company Size",
+      "Est. Revenue",
+      "One-liner Description",
+      "Notes"
+    ],
+    "buttons": [
+      "",
+      "Search...⌘K",
+      "Add Target",
+      "VVercelvercel.comHighSize500-550 employeesRevenue$100M+ ARR\"The platform for frontend developers, providing speed and reliability\"Research",
+      "Research",
+      "",
+      "",
+      "NNetlifynetlify.comHighSize180-200 employeesRevenue$50-70M ARR\"Build and deploy modern web projects with continuous deployment\"Research",
+      "Research",
+      "",
+      "",
+      "RRenderrender.comHighSize60-70 employeesRevenue$15-25M ARR\"Cloud application platform that makes it easy to build and run apps\"Research",
+      "Research",
+      "",
+      "",
+      "FFly.iofly.ioMediumSize55-70 employeesRevenue$10-20M ARR\"Run your full-stack apps and databases close to your users\"Research",
+      "Research",
+      "",
+      "",
+      "HHerokuheroku.comMediumSize200-500 employeesRevenue$100M+ (Salesforce subsidiary)\"Cloud platform for building, delivering, and scaling apps\"Research",
+      "Research",
+      "",
+      "",
+      "DDigitalOcean App Platformdigitalocean.comLowSize1000+ employeesRevenue$700M+ total (App Platform portion smaller)\"Simple, scalable cloud platform for developers\"Research",
+      "Research",
+      "",
+      "",
+      "",
+      "Scan",
+      "Cancel",
+      "Add Competitor"
+    ]
+  },
+  {
+    "device": "mobile",
+    "state": "history",
+    "text": "History\n\nVercel\n\nAdd Milestone\n\nNo history yet\n\nChanges will be tracked automatically when you edit this competitor."
+  },
+  {
+    "device": "mobile",
+    "state": "search",
+    "text": "COMPETITORS\nVercel\nThe platform for frontend developers, providing speed and reliability\nHIGH\nNetlify\nBuild and deploy modern web projects with continuous deployment\nHIGH\nRender\nCloud application platform that makes it easy to build and run apps\nHIGH\nFly.io\nRun your full-stack apps and databases close to your users\nMEDIUM\nHeroku\nCloud platform for building, delivering, and scaling apps\nMEDIUM\nQUICK ACTIONS\nGo to Dashboard\nView All Competitors\nPositioning Map\n↑↓\nNavigate\n↵\nSelect\n8 results"
+  }
+]
