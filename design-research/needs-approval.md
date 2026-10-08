@@ -14,7 +14,7 @@ Deferred items identified during phases 1–2:
 | Changing snapshot retention, clearing history, bulk reset or replacing live imports | Can destroy user intelligence | Preserve current data; verify only in isolated test-browser storage |
 | Paid fonts, paid datasets, new API keys or services | Explicitly prohibited | Use existing assets, system fonts or freely licensed self-hosted assets |
 
-This list will be expanded as research and implementation reveal concrete dependencies. No approval is being requested at this checkpoint.
+The seven-phase local upgrade is complete. No additional dependency emerged during implementation. These items remain deferred; no approval is being requested by this report.
 
 ## Research dependencies added in phase 2
 

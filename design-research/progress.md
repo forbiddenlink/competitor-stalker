@@ -18,7 +18,7 @@ Existing untracked `CLAUDE.md` belongs to the user and must remain untouched/unc
 | 4 Foundation + homepage | done | `phase-4-reasoning.md`; two native screenshot/score/fix rounds plus accepted desktop/mobile captures; typecheck/lint and 160 tests pass. |
 | 5 Every template | done | `phase-5-reasoning.md`; all 14 templates upgraded; 29/29 initial browser journey checks and 169 tests pass; final captures supersede initial rollout. |
 | 6 Verify | done | `phase-6-verification.md`; full pre-submit, 33/33 production journeys, 66/66 contrast pairs; six Lighthouse reports and final native captures. |
-| 7 Report | not started | Before/after evidence, features, rubric, blocked/untested items, approval list. |
+| 7 Report | done | `report.md`: linked before/after for all 14 templates, features/rubric, exact test/Lighthouse results, deferred and untested limits. |
 
 ## Template implementation tracker
 
@@ -57,8 +57,8 @@ Research capture runner: `node design-research/research-browser.mjs design-resea
 
 ## Context checkpoint
 
-Phases 1–6 are complete. Resumed October 8 at phase 3; only phase 7 report/commit remains. No push or deployment is authorized.
+All seven phases are complete. Resumed October 8 at phase 3 and finished phases 3–7 on `design/upgrade`. Phase commits: `6a51c92`, `d96e922`, `7df3566`, `842fe29`; phase 7 is the report commit in repository history. No push, merge or deployment occurred.
 
-## Resume instructions
+## Completion
 
-Finish phase 7: finalize `report.md`, check evidence links and branch/diff, mark progress/plan complete and commit report. All implementation and verification are complete. Leave user-owned `CLAUDE.md` untouched. No push, merge or deployment.
+No remaining work inside the approved upgrade scope. See `report.md` and `phase-6-verification.md` for results and limits. User-owned `CLAUDE.md` remains untracked and untouched. Future production, service, schema or substantive legal/contact work requires a separate request.

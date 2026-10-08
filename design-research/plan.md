@@ -90,9 +90,9 @@ Use existing page/feature files. Share the new tokens and header/section rhythm;
 
 ## Phase 7: report
 
-- [ ] Write report with linked before/after screenshots, delivered features, per-template rubric, test/Lighthouse results and blocked/untested items.
-- [ ] Update approval list only for concrete deferred dependencies. No implicit permission to perform them.
-- [ ] Verify diff and branch status, leave untracked user file alone, commit phase 7. Report local completion and commit IDs; no push/deploy.
+- [x] Write report with linked before/after screenshots, delivered features, per-template rubric, test/Lighthouse results and blocked/untested items.
+- [x] Update approval list only for concrete deferred dependencies. No implicit permission to perform them.
+- [x] Verify diff and branch status, leave untracked user file alone, commit phase 7. Report local completion and commit IDs; no push/deploy.
 
 ## Visual acceptance rubric
 
