@@ -49,12 +49,12 @@ Alternatives considered: retaining the dark command-center style would preserve 
 
 Files: `src/styles/index.css`, `src/components/common/Button.tsx`, `src/components/common/Card.tsx`, `src/components/layout/Shell.tsx`, `src/pages/Dashboard.tsx`; behavior tests adjacent to dashboard; evidence in this directory.
 
-- [ ] Set warm neutral surface/text/border tokens, accessible semantic colors and inverse text for solid buttons. Set common radius, spacing, focus and reduced-motion rules.
-- [ ] Restyle shell with clear workspace identity and browser-local status; keep navigation groups, search, footer, mobile drawer and routes.
-- [ ] Replace dashboard hierarchy with compact metrics, a prioritized research queue, direct dossier/action links, saved-date/source context and useful empty state. Keep refresh and threat/feature/weakness summaries.
-- [ ] Add behavior tests for empty/partial records, queue ordering and direct action destinations; confirm expected failure before implementation and pass afterward.
-- [ ] Capture homepage desktop/mobile round 1, score it, fix visible issues; capture/score/fix round 2 and capture accepted state. Do not roll out templates before both rounds.
-- [ ] Review diff, run focused checks, write phase reasoning/progress and commit foundation.
+- [x] Set warm neutral surface/text/border tokens, accessible semantic colors and inverse text for solid buttons. Set common radius, spacing, focus and reduced-motion rules.
+- [x] Restyle shell with clear workspace identity and browser-local status; keep navigation groups, search, footer, mobile drawer and routes.
+- [x] Replace dashboard hierarchy with compact metrics, a prioritized research queue, direct dossier/action links, saved-date/source context and useful empty state. Keep refresh and threat/feature/weakness summaries.
+- [x] Add behavior tests for empty/partial records, queue ordering and direct action destinations; confirm expected failure before implementation and pass afterward.
+- [x] Capture homepage desktop/mobile round 1, score it, fix visible issues; capture/score/fix round 2 and capture accepted state. Do not roll out templates before both rounds.
+- [x] Review diff, run focused checks, write phase reasoning/progress and commit foundation.
 
 ## Phase 5: every template
 

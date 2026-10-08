@@ -1,309 +1,132 @@
 import React from 'react';
+import { Link } from 'react-router';
 import { useCompetitors } from '../hooks/useCompetitors';
 import { Badge } from '../components/common/Badge';
 import { Button } from '../components/common/Button';
-import {
-    TrendingUp,
-    TrendingDown,
-    AlertTriangle,
-    Activity,
-    Target,
-    Eye,
-    ArrowUpRight,
-    RefreshCw,
-    Users,
-} from 'lucide-react';
-
-interface MetricCardProps {
-    title: string;
-    value: string | number;
-    change?: string;
-    changeType?: 'positive' | 'negative' | 'neutral';
-    icon: React.ElementType;
-    accentColor: 'brand' | 'success' | 'warning' | 'danger';
-}
-
-const MetricCard: React.FC<MetricCardProps> = ({
-    title,
-    value,
-    change,
-    changeType = 'neutral',
-    icon: Icon,
-    accentColor,
-}) => {
-    const colorMap = {
-        brand: {
-            border: 'var(--accent-brand)',
-            text: 'var(--accent-brand-soft)',
-            bg: 'var(--accent-brand-muted)',
-        },
-        success: {
-            border: 'var(--accent-success)',
-            text: 'var(--accent-success-soft)',
-            bg: 'var(--accent-success-muted)',
-        },
-        warning: {
-            border: 'var(--accent-warning)',
-            text: 'var(--accent-warning-soft)',
-            bg: 'var(--accent-warning-muted)',
-        },
-        danger: {
-            border: 'var(--accent-danger)',
-            text: 'var(--accent-danger-soft)',
-            bg: 'var(--accent-danger-muted)',
-        },
-    };
-
-    const colors = colorMap[accentColor];
-
-    const changeColorMap = {
-        positive: 'var(--accent-success-soft)',
-        negative: 'var(--accent-danger-soft)',
-        neutral: 'var(--text-muted)',
-    } as const;
-
-    return (
-        <div
-            className="metric-card metric-card-accent-left"
-            style={{ borderLeftColor: colors.border }}
-        >
-            <div className="flex items-start justify-between gap-3">
-                <div className="space-y-3 min-w-0">
-                    <span className="section-label block">{title}</span>
-                    <div className="flex items-baseline gap-3">
-                        <span className="kpi-value" style={{ color: colors.text }}>
-                            {value}
-                        </span>
-                        {change && (
-                            <span
-                                className="flex items-center gap-1 text-xs font-medium"
-                                style={{ color: changeColorMap[changeType] }}
-                            >
-                                {changeType === 'positive' && <TrendingUp size={12} />}
-                                {changeType === 'negative' && <TrendingDown size={12} />}
-                                {change}
-                            </span>
-                        )}
-                    </div>
-                </div>
-                <div
-                    className="h-9 w-9 rounded-[var(--radius-control)] flex items-center justify-center"
-                    style={{ background: colors.bg }}
-                >
-                    <Icon size={18} style={{ color: colors.text }} />
-                </div>
-            </div>
-        </div>
-    );
-};
-
-const threatStyleMap = {
-    High: {
-        bg: 'var(--accent-danger-muted)',
-        text: 'var(--accent-danger-soft)',
-        dot: 'var(--accent-danger)',
-    },
-    Medium: {
-        bg: 'var(--accent-warning-muted)',
-        text: 'var(--accent-warning-soft)',
-        dot: 'var(--accent-warning)',
-    },
-    Low: {
-        bg: 'var(--accent-success-muted)',
-        text: 'var(--accent-success-soft)',
-        dot: 'var(--accent-success)',
-    },
-} as const;
+import { ArrowUpRight, Plus, RefreshCw, ArrowRight } from 'lucide-react';
 
 const Dashboard: React.FC = () => {
     const { competitors, userProfile } = useCompetitors();
-
     const highThreats = competitors.filter((c) => c.threatLevel === 'High').length;
     const mediumThreats = competitors.filter((c) => c.threatLevel === 'Medium').length;
-    const totalCompetitors = competitors.length;
-
-    const allFeatures = new Set<string>();
-    competitors.forEach((c) => {
-        Object.keys(c.features || {}).forEach((f) => allFeatures.add(f));
-    });
-    if (userProfile?.features) {
-        Object.keys(userProfile.features).forEach((f) => allFeatures.add(f));
-    }
-    const featureCount = allFeatures.size;
-
     const totalWeaknesses = competitors.reduce((sum, c) => sum + (c.weaknesses?.length || 0), 0);
+    const featureCount = new Set([
+        ...competitors.flatMap((c) => Object.keys(c.features || {})),
+        ...Object.keys(userProfile.features || {}),
+    ]).size;
+    const strategies = competitors.flatMap((c) => c.strategies || []);
+    const activeStrategies = strategies.filter((s) => s.status === 'Active').length;
+    const threatRank = { High: 0, Medium: 1, Low: 2 };
+    const queue = [...competitors].sort((a, b) =>
+        threatRank[a.threatLevel] - threatRank[b.threatLevel]
+        || Number(Boolean(a.sources?.length)) - Number(Boolean(b.sources?.length))
+        || (Date.parse(a.updatedAt || '') || 0) - (Date.parse(b.updatedAt || '') || 0),
+    ).slice(0, 5);
 
     return (
-        <div className="page-stack animate-fade-in">
-            <div className="page-header flex-col sm:flex-row">
+        <div className="page-stack dashboard-briefing animate-fade-in">
+            <div className="page-header flex-col items-start sm:flex-row sm:items-end">
                 <div>
-                    <h1 className="text-2xl font-semibold tracking-tight text-[var(--text-primary)]">
-                        Dashboard
-                    </h1>
-                    <p className="text-sm mt-1 text-[var(--text-muted)]">
-                        Intelligence overview for{' '}
-                        {new Date().toLocaleDateString('en-US', {
-                            weekday: 'long',
-                            month: 'long',
-                            day: 'numeric',
-                        })}
+                    <p className="section-label mb-3">01 / Research briefing</p>
+                    <h1 className="workspace-title">Your competitive landscape.</h1>
+                    <p className="text-[var(--text-secondary)] mt-3 max-w-xl">
+                        Review the evidence. Compare the gaps. Decide your next move.
                     </p>
                 </div>
-                <Button
-                    variant="secondary"
-                    size="sm"
-                    leftIcon={<RefreshCw size={14} />}
-                    onClick={() => window.location.reload()}
-                >
+                <Link className="workspace-link workspace-link-primary shrink-0" to="/dossier">
+                    <Plus size={16} /> Add a competitor
+                </Link>
+            </div>
+
+            <div className="flex flex-wrap items-center justify-between gap-3 border-y border-[var(--border-default)] py-3 text-xs text-[var(--text-muted)]">
+                <p>Browser-local research · Starter records are examples; verify details against sources.</p>
+                <Button variant="ghost" size="sm" leftIcon={<RefreshCw size={13} />} onClick={() => window.location.reload()}>
                     Refresh Data
                 </Button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                <MetricCard title="High Threats" value={highThreats} icon={AlertTriangle} accentColor="danger" />
-                <MetricCard title="Medium Threats" value={mediumThreats} icon={Activity} accentColor="warning" />
-                <MetricCard title="Features Tracked" value={featureCount} icon={Eye} accentColor="success" />
-                <MetricCard title="Targets Tracked" value={totalCompetitors} icon={Target} accentColor="brand" />
-            </div>
+            <dl className="order-3 lg:order-none grid grid-cols-2 lg:grid-cols-4 gap-4">
+                {[
+                    { label: 'Targets tracked', value: competitors.length, detail: 'Competitor dossiers' },
+                    { label: 'High threats', value: highThreats, detail: `${mediumThreats} medium threats` },
+                    { label: 'Features tracked', value: featureCount, detail: 'Across your comparison' },
+                    { label: 'Weaknesses found', value: totalWeaknesses, detail: 'Recorded research findings' },
+                ].map((metric) => (
+                    <div key={metric.label} className="border-l border-[var(--border-muted)] pl-4 py-1">
+                        <dt className="section-label">{metric.label}</dt>
+                        <dd className="kpi-value mt-2 lg:mt-3">{metric.value}</dd>
+                        <dd className="text-xs text-[var(--text-muted)] mt-1 lg:mt-2">{metric.detail}</dd>
+                    </div>
+                ))}
+            </dl>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <div className="panel lg:col-span-2 overflow-hidden">
-                    <div className="flex items-center justify-between px-5 pt-5 pb-4">
+            <div className="order-2 lg:order-none grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_300px] gap-6">
+                <section className="panel overflow-hidden" aria-labelledby="research-queue-title">
+                    <div className="p-5 flex items-start justify-between gap-4">
                         <div>
-                            <h3 className="text-base font-semibold text-[var(--text-primary)]">Competitor Overview</h3>
-                            <p className="text-sm mt-0.5 text-[var(--text-muted)]">
-                                {totalCompetitors > 0 ? 'Your tracked competitors' : 'No competitors tracked yet'}
-                            </p>
+                            <p className="section-label mb-2">Where to focus</p>
+                            <h2 id="research-queue-title" className="text-xl">Research queue</h2>
+                            <p className="text-sm text-[var(--text-muted)] mt-1">High threats first, then missing sources and older saved records.</p>
                         </div>
-                        {totalCompetitors > 0 && (
-                            <Badge variant="info" size="sm">
-                                {totalCompetitors} tracked
-                            </Badge>
-                        )}
+                        <span className="font-mono text-sm text-[var(--text-muted)]">{String(queue.length).padStart(2, '0')}</span>
                     </div>
-                    <div className="px-2 pb-2">
-                        {competitors.length === 0 ? (
-                            <div className="flex flex-col items-center justify-center py-12 text-center">
-                                <Users size={48} className="mb-4 opacity-20 text-[var(--text-muted)]" />
-                                <p className="text-sm text-[var(--text-muted)]">No competitors added yet</p>
-                                <p className="text-xs mt-1 text-[var(--text-subtle)]">
-                                    Add competitors from the Dossiers page to see them here
-                                </p>
-                            </div>
-                        ) : (
-                            competitors.slice(0, 5).map((comp, index) => {
-                                const threatStyles = threatStyleMap[comp.threatLevel];
-
-                                return (
-                                    <div
-                                        key={comp.id}
-                                        className={index > 0 ? 'border-t border-[var(--border-subtle)]' : ''}
-                                    >
-                                        <div className="row-dense flex gap-4 rounded-[var(--radius-control)] transition-colors group hover:bg-[var(--bg-hover)]">
-                                            <div
-                                                className="flex-shrink-0 h-9 w-9 rounded-[var(--radius-control)] flex items-center justify-center"
-                                                style={{ background: threatStyles.bg }}
-                                            >
-                                                <Target size={16} style={{ color: threatStyles.text }} />
-                                            </div>
-                                            <div className="flex-1 min-w-0">
-                                                <div className="flex items-center justify-between gap-2">
-                                                    <span className="text-sm font-medium truncate text-[var(--text-primary)]">
-                                                        {comp.name}
-                                                    </span>
-                                                    <Badge
-                                                        variant={
-                                                            comp.threatLevel === 'High'
-                                                                ? 'danger'
-                                                                : comp.threatLevel === 'Medium'
-                                                                    ? 'warning'
-                                                                    : 'success'
-                                                        }
-                                                        size="sm"
-                                                    >
-                                                        {comp.threatLevel}
-                                                    </Badge>
-                                                </div>
-                                                <p className="text-sm truncate mt-0.5 text-[var(--text-muted)]">
-                                                    {comp.oneLiner || comp.website || 'No description'}
-                                                </p>
-                                            </div>
-                                            <ArrowUpRight
-                                                size={16}
-                                                className="opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0 mt-1 text-[var(--text-subtle)]"
-                                            />
-                                        </div>
+                    {queue.length === 0 ? (
+                        <div className="p-6 border-t border-[var(--border-subtle)]">
+                            <h3 className="text-lg">Start your research workspace</h3>
+                            <p className="text-sm text-[var(--text-muted)] mt-2 mb-4">Add your first competitor or bring in an existing research export.</p>
+                            <Link to="/settings" className="workspace-link">Import research <ArrowRight size={15} /></Link>
+                        </div>
+                    ) : queue.map((comp, index) => {
+                        const savedDate = Date.parse(comp.updatedAt || '');
+                        return (
+                            <Link key={comp.id} to={`/dossier?competitor=${encodeURIComponent(comp.id)}`} className="briefing-row">
+                                <span className="font-mono text-xs text-[var(--text-muted)] pt-1">{String(index + 1).padStart(2, '0')}</span>
+                                <div className="min-w-0">
+                                    <div className="flex flex-wrap items-center gap-2">
+                                        <h3 className="text-base break-words">{comp.name}</h3>
+                                        <Badge variant={comp.threatLevel === 'High' ? 'danger' : comp.threatLevel === 'Medium' ? 'warning' : 'success'} size="sm">{comp.threatLevel} threat</Badge>
                                     </div>
-                                );
-                            })
-                        )}
-                        {competitors.length > 5 && (
-                            <div className="text-center py-3 border-t border-[var(--border-subtle)]">
-                                <span className="text-xs text-[var(--text-muted)]">
-                                    +{competitors.length - 5} more competitors
-                                </span>
-                            </div>
-                        )}
-                    </div>
-                </div>
-
-                <div className="panel overflow-hidden">
-                    <div className="px-5 pt-5 pb-4">
-                        <h3 className="text-base font-semibold text-[var(--text-primary)]">Intelligence Summary</h3>
-                        <p className="text-sm mt-0.5 text-[var(--text-muted)]">Data overview</p>
-                    </div>
-                    <div className="p-5 pt-0 space-y-4">
-                        <div className="space-y-3">
-                            <div className="flex items-center justify-between text-sm">
-                                <span className="text-[var(--text-muted)]">Total Competitors</span>
-                                <span className="font-mono text-[var(--text-secondary)]">{totalCompetitors}</span>
-                            </div>
-                            <div className="flex items-center justify-between text-sm">
-                                <span className="text-[var(--text-muted)]">Features Compared</span>
-                                <span className="font-mono text-[var(--text-secondary)]">{featureCount}</span>
-                            </div>
-                            <div className="flex items-center justify-between text-sm">
-                                <span className="text-[var(--text-muted)]">Weaknesses Found</span>
-                                <span className="font-mono text-[var(--text-secondary)]">{totalWeaknesses}</span>
-                            </div>
-                        </div>
-
-                        <div className="divider" />
-
-                        <div className="space-y-3">
-                            <span className="section-label block">Threat Breakdown</span>
-
-                            <div className="row-dense rounded-[var(--radius-control)] bg-[var(--bg-tertiary)] flex items-center justify-between">
-                                <div className="flex items-center gap-3">
-                                    <span className="w-2 h-2 rounded-full" style={{ background: threatStyleMap.High.dot }} />
-                                    <span className="text-sm text-[var(--text-primary)]">High</span>
+                                    <p className="text-sm text-[var(--text-secondary)] mt-1 break-words">{comp.oneLiner || comp.website || 'Add a research summary to this dossier.'}</p>
+                                    <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-[var(--text-muted)] mt-3">
+                                        <span>{Number.isFinite(savedDate) ? `Saved ${new Date(savedDate).toLocaleDateString()}` : 'No saved date'}</span>
+                                        <span>{comp.sources?.length ? `${comp.sources.length} linked source${comp.sources.length === 1 ? '' : 's'}` : 'No linked sources'}</span>
+                                    </div>
                                 </div>
-                                <span className="text-sm font-mono" style={{ color: threatStyleMap.High.text }}>
-                                    {highThreats}
-                                </span>
-                            </div>
-
-                            <div className="row-dense rounded-[var(--radius-control)] bg-[var(--bg-tertiary)] flex items-center justify-between">
-                                <div className="flex items-center gap-3">
-                                    <span className="w-2 h-2 rounded-full" style={{ background: threatStyleMap.Medium.dot }} />
-                                    <span className="text-sm text-[var(--text-primary)]">Medium</span>
-                                </div>
-                                <span className="text-sm font-mono" style={{ color: threatStyleMap.Medium.text }}>
-                                    {mediumThreats}
-                                </span>
-                            </div>
-
-                            <div className="row-dense rounded-[var(--radius-control)] bg-[var(--bg-tertiary)] flex items-center justify-between">
-                                <div className="flex items-center gap-3">
-                                    <span className="w-2 h-2 rounded-full" style={{ background: threatStyleMap.Low.dot }} />
-                                    <span className="text-sm text-[var(--text-primary)]">Low</span>
-                                </div>
-                                <span className="text-sm font-mono" style={{ color: threatStyleMap.Low.text }}>
-                                    {totalCompetitors - highThreats - mediumThreats}
-                                </span>
-                            </div>
-                        </div>
+                                <ArrowUpRight size={17} className="text-[var(--accent-brand)] mt-1" />
+                            </Link>
+                        );
+                    })}
+                    <div className="p-5 border-t border-[var(--border-default)] flex flex-wrap justify-between items-center gap-3">
+                        <p className="text-xs text-[var(--text-muted)]">Saved dates reflect local edits, not verified research.</p>
+                        <Link to="/dossier" className="text-sm font-medium text-[var(--accent-brand)] flex items-center gap-2">All competitors <ArrowRight size={14} /></Link>
                     </div>
+                </section>
+
+                <div className="space-y-6">
+                    <section className="panel p-5">
+                        <p className="section-label mb-3">From research to response</p>
+                        <h2 className="font-display text-2xl font-normal">Make the next move.</h2>
+                        <p className="text-sm text-[var(--text-muted)] mt-2 mb-5">Turn a recorded weakness into a practical response for {userProfile.name || 'your business'}.</p>
+                        <Link to="/strategy" className="workspace-link w-full justify-between">Open strategy board <ArrowRight size={16} /></Link>
+                        <p className="text-xs text-[var(--text-muted)] mt-3">{activeStrategies} active · {strategies.filter((s) => s.status === 'Planned').length} planned strategies</p>
+                    </section>
+                    <section className="border-t border-[var(--border-muted)] pt-5">
+                        <h2 className="section-label mb-3">Compare & investigate</h2>
+                        {[
+                            { to: '/matrix', title: 'Feature comparison', detail: `${featureCount} features across your landscape` },
+                            { to: '/pricing', title: 'Pricing intelligence', detail: 'Compare recorded plans and packaging' },
+                            { to: '/weaknesses', title: 'Weakness research', detail: `${totalWeaknesses} findings to investigate` },
+                        ].map((action) => (
+                            <Link key={action.to} to={action.to} className="block py-3 border-b border-[var(--border-subtle)] group">
+                                <span className="flex items-center justify-between gap-3 font-medium group-hover:text-[var(--accent-brand)]">{action.title}<ArrowUpRight size={15} /></span>
+                                <span className="block text-xs text-[var(--text-muted)] mt-1">{action.detail}</span>
+                            </Link>
+                        ))}
+                    </section>
+                    <section aria-label="Threat breakdown" className="text-sm">
+                        <h2 className="section-label mb-3">Threat breakdown</h2>
+                        <div className="flex flex-wrap gap-3 text-[var(--text-secondary)]"><span>High {highThreats}</span><span>Medium {mediumThreats}</span><span>Low {competitors.length - highThreats - mediumThreats}</span></div>
+                    </section>
                 </div>
             </div>
         </div>
