@@ -14,7 +14,7 @@ Existing untracked `CLAUDE.md` belongs to the user and must remain untouched/unc
 |---|---|---|
 | 1 Understand | done | `profile.md`; all 14 templates loaded and captured in Chromium desktop/mobile; shared states captured; `before-browser-evidence.json`, `before-states-evidence.json` |
 | 2 Research | done | `references.md`: 13 loaded live design references, 5 clearly outside industry; `features.md`: 9 loaded leaders × 3 public pages. Native Chromium screenshots and JSON evidence saved. Gallery protection, failed rendering and gated-product limits documented. |
-| 3 Decide | not started | Write `plan.md` only after live reference/feature research. |
+| 3 Decide | done | `plan.md`: editorial research workspace; ranked local-only features, all 14 templates, acceptance/verification gates. |
 | 4 Foundation + homepage | not started | Tokens, typography, shared components, homepage; at least 2 screenshot/score/fix rounds. |
 | 5 Every template | not started | All 14 templates still need upgrade and state verification. |
 | 6 Verify | not started | Full pre-submit, Lighthouse on key pages, every main journey. |
@@ -29,7 +29,7 @@ All are **not started**, not complete: dashboard, dossiers, positioning, matrix,
 - Keep app dashboard at `/`; preserve clean and `.html` routes.
 - Treat this as an individual local intelligence workspace, with team-oriented existing copy but no shared backend.
 - Preserve seed content, distinguish samples from verified intelligence.
-- Prioritize actionable dashboard, dossier search/filter, research freshness/evidence, local history-derived movement, useful social research links/workflow, responsive strategy controls, keyboard/touch positioning and keyboard matrix controls. Final feature choices await phase 2.
+- Prioritize actionable dashboard, dossier search/filter, research freshness/evidence, local history-derived movement, useful social research links/workflow, responsive strategy controls, keyboard/touch positioning and keyboard matrix controls. Final feature choices are fixed in `plan.md`.
 - Alerts are empty placeholders, social scans simulated; do not claim real-time monitoring.
 - Contact mailbox ownership and SLA are unknown. Preserve current content; route substantive changes to `needs-approval.md`.
 - CI Node 22; verified local Node 22.23.1, pnpm 10.18.0. Package metadata currently TypeScript 6.0, not the supplied summary's 5.9.
@@ -57,7 +57,7 @@ Research capture runner: `node design-research/research-browser.mjs design-resea
 
 ## Context checkpoint
 
-Phases 1–2 are complete. Stop here because the research session context is long, as the user instructed. Resume in a new session at phase 3; do not treat this as a completed upgrade or final phase-7 report.
+Phases 1–3 are complete. Resumed October 8 at phase 3; implementation now proceeds to phase 4. This remains an incomplete seven-phase upgrade.
 
 ## Resume instructions
 
