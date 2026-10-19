@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/forbiddenlink/competitor-stalker/compare/v1.1.0...v1.1.1) (2026-10-19)
+
+
+### Bug Fixes
+
+* **deps:** clear transitive CVEs with bounded overrides ([#95](https://github.com/forbiddenlink/competitor-stalker/issues/95)) ([3b83f63](https://github.com/forbiddenlink/competitor-stalker/commit/3b83f63702821636fb4a9a1dd6061e88ae3e6cd6))
+
 ## [1.1.0](https://github.com/forbiddenlink/competitor-stalker/compare/v1.0.6...v1.1.0) (2026-10-08)
 
 
