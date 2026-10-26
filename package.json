@@ -77,7 +77,8 @@
       "vite": ">=7.3.2 <9",
       "ws": "^8.21.0",
       "brace-expansion": ">=5.0.12 <6",
-      "source-map-js@1": ">=1.2.2 <2.0.0"
+      "source-map-js@1": ">=1.2.2 <2.0.0",
+      "zod": ">=4.6.6 <5"
     }
   },
   "packageManager": "pnpm@10.34.7"
