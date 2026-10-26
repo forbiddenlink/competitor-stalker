@@ -37,7 +37,7 @@ jobs:
 
       - name: Upload Semgrep SARIF
         if: ${{ always() && hashFiles('semgrep.sarif') != '' }}
-        uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
+        uses: github/codeql-action/upload-sarif@9b3254085494b55a0f7c4c2b3d2d52cc712ce370 # v4.39.1
         with:
           sarif_file: semgrep.sarif
 
@@ -52,7 +52,7 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
       - name: TruffleHog
-        uses: trufflesecurity/trufflehog@048de9ff07098d943136cd5231a0e93fbb3ea443 # main
+        uses: trufflesecurity/trufflehog@291e3f03c3c67e284b62c559b6e9535b1ee6f5e5 # main
         with:
           extra_args: --only-verified
         continue-on-error: true
