@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.2](https://github.com/forbiddenlink/competitor-stalker/compare/v1.1.1...v1.1.2) (2026-10-27)
+
+
+### Bug Fixes
+
+* **deps:** override zod to 4.6.6+ for the memory-exhaustion advisory ([#108](https://github.com/forbiddenlink/competitor-stalker/issues/108)) ([bc326da](https://github.com/forbiddenlink/competitor-stalker/commit/bc326da88001136d08f9ec6612014a2f78d8b4f1))
+* **deps:** raise transitive override floors to patched versions ([#106](https://github.com/forbiddenlink/competitor-stalker/issues/106)) ([01ed7c4](https://github.com/forbiddenlink/competitor-stalker/commit/01ed7c497d3dbb54b3d3f1077f9486967353a773))
+
 ## [1.1.1](https://github.com/forbiddenlink/competitor-stalker/compare/v1.1.0...v1.1.1) (2026-10-19)
 
 
