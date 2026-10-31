@@ -83,8 +83,6 @@ const routeMetadata: Record<string, { title: string; description: string }> = {
 };
 
 const TITLE_SUFFIX = ' | Competitive Intelligence';
-const DESCRIPTION_SUFFIX =
-  ' Trusted by teams for fast, evidence-based decisions.';
 
 const setMetaByName = (name: string, content: string) => {
   const meta = document.querySelector(`meta[name="${name}"]`);
@@ -113,7 +111,7 @@ const RouteMetadata = () => {
 
     const routeUrl = `${window.location.origin}${normalizedPath}`;
     const pageTitle = `${metadata.title}${TITLE_SUFFIX}`;
-    const pageDescription = `${metadata.description}${DESCRIPTION_SUFFIX}`;
+    const pageDescription = metadata.description;
 
     document.title = pageTitle;
     setMetaByName('description', pageDescription);
