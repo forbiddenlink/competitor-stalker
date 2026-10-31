@@ -88,8 +88,6 @@ const routeMetadata = {
 };
 
 const TITLE_SUFFIX = ' | Competitive Intelligence';
-const DESCRIPTION_SUFFIX =
-  ' Trusted by teams for fast, evidence-based decisions.';
 
 const replaceTag = (html, pattern, replacement, label) => {
   if (!pattern.test(html)) {
@@ -102,7 +100,7 @@ const renderRouteHtml = (route, metadata) => {
   const routePath = route === '/' ? '/' : route.replace(/\/$/, '');
   const url = `${baseUrl}${routePath}`;
   const pageTitle = `${metadata.title}${TITLE_SUFFIX}`;
-  const pageDescription = `${metadata.description}${DESCRIPTION_SUFFIX}`;
+  const pageDescription = metadata.description;
 
   let html = baseHtml;
   html = replaceTag(html, /<title>[^<]*<\/title>/, `<title>${pageTitle}</title>`, 'title');
