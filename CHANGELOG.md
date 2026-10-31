@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0](https://github.com/forbiddenlink/competitor-stalker/compare/v1.1.2...v1.2.0) (2026-10-31)
+
+
+### Features
+
+* **history:** word-level diff for notes in snapshot compare ([#110](https://github.com/forbiddenlink/competitor-stalker/issues/110)) ([b2a1288](https://github.com/forbiddenlink/competitor-stalker/commit/b2a1288ce7c9ad567aabec93e2fa92df4577788f))
+
+
+### Bug Fixes
+
+* **seo:** drop unbacked 'Trusted by teams' sentence from meta descriptions ([#112](https://github.com/forbiddenlink/competitor-stalker/issues/112)) ([6ee6d3e](https://github.com/forbiddenlink/competitor-stalker/commit/6ee6d3e213698c045a4a308420f9f46c8ad72791))
+
 ## [1.1.2](https://github.com/forbiddenlink/competitor-stalker/compare/v1.1.1...v1.1.2) (2026-10-27)
 
 
