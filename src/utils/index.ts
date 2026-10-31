@@ -5,3 +5,4 @@
 export * from './validation';
 export * from './format';
 export * from './export';
+export * from './wordDiff';

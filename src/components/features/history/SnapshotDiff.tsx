@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { X, ArrowRight, Clock } from 'lucide-react';
 import type { Snapshot, Competitor } from '../../../types';
+import { diffWords, MAX_WORD_DIFF_WORDS, type WordDiffOp } from '../../../utils/wordDiff';
 
 interface SnapshotDiffProps {
     snapshot1: Snapshot; // Older snapshot (before)
@@ -16,6 +17,8 @@ interface DiffItem {
     oldValue: string;
     newValue: string;
     status: DiffStatus;
+    /** Raw notes, set only for the Notes row (the display values are truncated). */
+    notes?: { old: string; new: string };
 }
 
 /**
@@ -251,6 +254,7 @@ const calculateDiffs = (old: Competitor, newC: Competitor): DiffItem[] => {
             oldValue: formatNotes(old.notes),
             newValue: formatNotes(newC.notes),
             status: getDiffStatus(old.notes, newC.notes),
+            notes: { old: old.notes ?? '', new: newC.notes ?? '' },
         });
     }
 
@@ -279,6 +283,53 @@ const StatusBadge: React.FC<{ status: DiffStatus }> = ({ status }) => {
     );
 };
 
+const NotesWordDiff: React.FC<{ oldNotes: string; newNotes: string }> = ({ oldNotes, newNotes }) => {
+    const ops = useMemo<WordDiffOp[] | null>(() => diffWords(oldNotes, newNotes), [oldNotes, newNotes]);
+
+    if (!ops) {
+        return (
+            <div className="text-xs space-y-2">
+                <p className="text-[var(--text-muted)]">
+                    These notes are too long for a word-level comparison (limit {MAX_WORD_DIFF_WORDS} words each). Showing both in full.
+                </p>
+                <p className="whitespace-pre-wrap break-words text-[var(--text-muted)]">{oldNotes || '(empty)'}</p>
+                <p className="whitespace-pre-wrap break-words text-[var(--text-primary)]">{newNotes || '(empty)'}</p>
+            </div>
+        );
+    }
+
+    return (
+        <p className="text-xs leading-relaxed break-words text-[var(--text-secondary)]" data-testid="notes-word-diff">
+            {ops.map((op, i) => {
+                const sep = i > 0 ? ' ' : '';
+                if (op.type === 'ins') {
+                    return (
+                        <React.Fragment key={i}>
+                            {sep}
+                            <ins className="no-underline rounded-sm px-0.5 font-medium bg-[var(--accent-success-muted)] text-[var(--accent-success)] border-b-2 border-[var(--accent-success)]">
+                                <span className="sr-only">Added: </span>
+                                {op.text}
+                            </ins>
+                        </React.Fragment>
+                    );
+                }
+                if (op.type === 'del') {
+                    return (
+                        <React.Fragment key={i}>
+                            {sep}
+                            <del className="rounded-sm px-0.5 bg-[var(--accent-danger-muted)] text-[var(--accent-danger)] line-through decoration-2">
+                                <span className="sr-only">Removed: </span>
+                                {op.text}
+                            </del>
+                        </React.Fragment>
+                    );
+                }
+                return <React.Fragment key={i}>{sep}{op.text}</React.Fragment>;
+            })}
+        </p>
+    );
+};
+
 const DiffRow: React.FC<{ diff: DiffItem }> = ({ diff }) => {
     const bgStyles: Record<DiffStatus, string> = {
         added: 'border-l-[var(--accent-success)]',
@@ -293,6 +344,11 @@ const DiffRow: React.FC<{ diff: DiffItem }> = ({ diff }) => {
                 <span className="text-sm font-medium text-[var(--text-primary)]">{diff.label}</span>
                 <StatusBadge status={diff.status} />
             </div>
+            {diff.notes ? (
+                <div className="p-2 rounded bg-[var(--bg-tertiary)]">
+                    <NotesWordDiff oldNotes={diff.notes.old} newNotes={diff.notes.new} />
+                </div>
+            ) : (
             <div className="flex items-start gap-2 text-xs">
                 <div className={`flex-1 p-2 rounded ${diff.status === 'removed' ? 'bg-[var(--accent-danger-muted)]/30' : 'bg-[var(--bg-tertiary)]'}`}>
                     <span className="text-[var(--text-muted)]">{diff.oldValue}</span>
@@ -302,6 +358,7 @@ const DiffRow: React.FC<{ diff: DiffItem }> = ({ diff }) => {
                     <span className="text-[var(--text-primary)]">{diff.newValue}</span>
                 </div>
             </div>
+            )}
         </div>
     );
 };
