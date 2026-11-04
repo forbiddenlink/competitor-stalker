@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/forbiddenlink/competitor-stalker/compare/v1.2.0...v1.3.0) (2026-11-04)
+
+
+### Features
+
+* **ui:** graphite and magenta identity with a computed change ledger on the dashboard ([#115](https://github.com/forbiddenlink/competitor-stalker/issues/115)) ([29da397](https://github.com/forbiddenlink/competitor-stalker/commit/29da3971c74fe51bbaa6df323a9e55f958b6db80))
+
 ## [1.2.0](https://github.com/forbiddenlink/competitor-stalker/compare/v1.1.2...v1.2.0) (2026-10-31)
 
 
