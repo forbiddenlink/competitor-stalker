@@ -89,7 +89,7 @@ export const WeaknessSpotter: React.FC = () => {
                             `}
                         >
                             <div className="font-semibold tracking-wide uppercase">{comp.name}</div>
-                            <div className="text-xs mt-1 flex justify-between opacity-70">
+                            <div className="text-xs mt-1 flex justify-between">
                                 <span>{(comp.weaknesses || []).length} {(comp.weaknesses || []).length === 1 ? 'vulnerability' : 'vulnerabilities'}</span>
                             </div>
                         </button>
@@ -151,7 +151,7 @@ export const WeaknessSpotter: React.FC = () => {
                                     const comp = competitors.find((c) => c.id === effectiveSelectedId);
                                     if (!comp || !comp.weaknesses || comp.weaknesses.length === 0) {
                                         return (
-                                            <div className="h-full flex flex-col items-center justify-center text-[var(--text-muted)] opacity-50">
+                                            <div className="h-full flex flex-col items-center justify-center text-[var(--text-muted)]">
                                                 <ShieldAlert size={64} className="mb-4" />
                                                 <p>No vulnerabilities logged</p>
                                             </div>

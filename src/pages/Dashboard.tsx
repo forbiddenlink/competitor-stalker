@@ -3,10 +3,13 @@ import { Link } from 'react-router';
 import { useCompetitors } from '../hooks/useCompetitors';
 import { Badge } from '../components/common/Badge';
 import { Button } from '../components/common/Button';
+import { ChangeLedger } from '../components/features/ledger/ChangeLedger';
+import { ledgerFromSnapshots, SAMPLE_LEDGER } from '../data/sampleChange';
 import { ArrowUpRight, Plus, RefreshCw, ArrowRight } from 'lucide-react';
 
 const Dashboard: React.FC = () => {
-    const { competitors, userProfile } = useCompetitors();
+    const { competitors, userProfile, snapshots } = useCompetitors();
+    const ledger = ledgerFromSnapshots(snapshots) ?? SAMPLE_LEDGER;
     const highThreats = competitors.filter((c) => c.threatLevel === 'High').length;
     const mediumThreats = competitors.filter((c) => c.threatLevel === 'Medium').length;
     const totalWeaknesses = competitors.reduce((sum, c) => sum + (c.weaknesses?.length || 0), 0);
@@ -37,6 +40,8 @@ const Dashboard: React.FC = () => {
                     <Plus size={16} /> Add a competitor
                 </Link>
             </div>
+
+            <ChangeLedger record={ledger} />
 
             <div className="flex flex-wrap items-center justify-between gap-3 border-y border-[var(--border-default)] py-3 text-xs text-[var(--text-muted)]">
                 <p>Browser-local research · Starter records are examples; verify details against sources.</p>

@@ -54,4 +54,14 @@ describe('Dashboard research briefing', () => {
         expect(screen.getByText(/saved dates reflect local edits/i)).toBeInTheDocument();
         expect(screen.queryByText(/invalid date/i)).not.toBeInTheDocument();
     });
+
+    it('renders a computed change ledger from the sample record on example.com', () => {
+        renderDashboard([record('Low')]);
+        const ledger = screen.getByRole('region', { name: /change ledger/i });
+        expect(ledger).toHaveTextContent('pricing.example.com');
+        expect(within(ledger).getAllByText('$24', { exact: false }).length).toBeGreaterThan(0);
+        expect(ledger.querySelectorAll('ins').length).toBeGreaterThan(0);
+        expect(ledger.querySelectorAll('del').length).toBeGreaterThan(0);
+        expect(ledger).toHaveTextContent(/sample record using example\.com/i);
+    });
 });

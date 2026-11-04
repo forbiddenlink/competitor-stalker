@@ -138,7 +138,7 @@ export const MovementAlerts: React.FC = () => {
                             <div className="p-8 text-center text-[var(--text-muted)] text-sm">
                                 <Bell size={32} className="mx-auto mb-3 opacity-30" />
                                 <p>No alerts yet</p>
-                                <p className="text-xs mt-1 opacity-70">No external alert feed is connected. Local edits appear in the change history above.</p>
+                                <p className="text-xs mt-1">No external alert feed is connected. Local edits appear in the change history above.</p>
                             </div>
                         ) : (
                             <div className="divide-y divide-[var(--border-subtle)]">
@@ -237,7 +237,7 @@ export const MovementAlerts: React.FC = () => {
                             <Radio size={48} className="mb-4 opacity-30" />
                             <p className="text-sm">{alerts.length === 0 ? 'No alerts to display' : 'Select an alert to view details'}</p>
                             {alerts.length === 0 && (
-                                <p className="text-xs mt-2 opacity-70 max-w-xs text-center">
+                                <p className="text-xs mt-2 max-w-xs text-center">
                                     Use dossier history to compare saved versions. This workspace does not monitor external activity.
                                 </p>
                             )}
