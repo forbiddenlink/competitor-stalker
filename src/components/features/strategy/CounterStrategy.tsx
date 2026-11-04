@@ -130,7 +130,7 @@ export const CounterStrategy: React.FC = () => {
 
                         <div className="flex-1 bg-[var(--bg-primary)]/40 rounded-[var(--radius-card)] p-2 space-y-3 overflow-y-auto border border-[var(--border-default)]">
                             {getStrategiesByStatus(status).length === 0 && (
-                                <div className="text-center p-4 opacity-50 text-xs font-mono border border-dashed border-[var(--border-default)] rounded-[var(--radius-control)] text-[var(--text-muted)]">
+                                <div className="text-center p-4 text-xs font-mono border border-dashed border-[var(--border-default)] rounded-[var(--radius-control)] text-[var(--text-muted)]">
                                     No strategies yet
                                 </div>
                             )}
