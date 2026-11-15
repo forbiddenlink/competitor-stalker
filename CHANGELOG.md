@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/forbiddenlink/competitor-stalker/compare/v1.3.0...v1.3.1) (2026-11-15)
+
+
+### Bug Fixes
+
+* **seo:** use a real 1200x630 share image instead of the 32px favicon SVG ([#117](https://github.com/forbiddenlink/competitor-stalker/issues/117)) ([194368e](https://github.com/forbiddenlink/competitor-stalker/commit/194368e61caa9383bb34d8f584214e08e134678f))
+
 ## [1.3.0](https://github.com/forbiddenlink/competitor-stalker/compare/v1.2.0...v1.3.0) (2026-11-04)
 
 
