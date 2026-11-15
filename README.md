@@ -1,13 +1,13 @@
 # Competitor Stalker
 
-A competitive intelligence dashboard for tracking and analyzing competitor strategies, pricing, positioning, and market presence. Built with React, TypeScript, and Tailwind CSS.
+A competitive intelligence dashboard for tracking and analyzing competitor strategies, pricing, positioning, and market presence. It is for solo founders and small teams. Built with React, TypeScript, and Tailwind CSS. Data stays in your browser; one serverless function fetches and parses a competitor page on request.
 
-Production: `https://competitor-stalker.vercel.app`
+Live: <https://competitor-stalker.vercel.app>
 
 ## Features
 
 ### Core Intelligence
-- **Dashboard** - Central hub with real-time competitive metrics and threat overview
+- **Dashboard** - Central hub with competitive metrics and a threat overview
 - **Competitor Dossiers** - Detailed profiles including company info, key people, and revenue estimates
 - **Positioning Map** - Interactive 2D map showing market positioning (drag competitors to reposition)
 - **Feature Matrix** - Side-by-side comparison of features across competitors
@@ -19,6 +19,7 @@ Production: `https://competitor-stalker.vercel.app`
 - **Historical Tracking** - Automatic and milestone snapshots per competitor, with a timeline and diff view
 - **Counter Strategy** - Develop and track strategic responses to competitive threats
 - **Social Monitor** - Track competitor social media handles and presence
+- **Movement Alerts** - An alerts page for competitor changes
 
 ### Productivity Features
 - **Global Search** - Quick search across all competitors (`Cmd/Ctrl + K`)
@@ -29,7 +30,7 @@ Production: `https://competitor-stalker.vercel.app`
 
 ## Sample Data
 
-The app comes pre-loaded with real competitive intelligence data for the **developer tools/PaaS market**:
+The app loads sample data for the developer tools and PaaS market. The sample is illustrative; check it before relying on it:
 
 | Company | Threat Level | Notes |
 |---------|--------------|-------|
@@ -42,9 +43,9 @@ The app comes pre-loaded with real competitive intelligence data for the **devel
 | **DigitalOcean** | Low | Budget alternative |
 
 Each competitor includes:
-- Real pricing tiers and feature sets
+- Sample pricing tiers and feature sets
 - Social media handles
-- Documented weaknesses from G2, Reddit, HackerNews
+- Sample weaknesses, each tagged with a source such as Reddit or HackerNews
 - Market positioning coordinates
 - Sample counter-strategies
 
@@ -61,13 +62,14 @@ You can reset to this sample data or clear all data from **Settings**.
 
 ## Tech Stack
 
-- **Framework**: React 19 with TypeScript 5.9
+- **Framework**: React 19 with TypeScript 6.0
 - **Build Tool**: Vite 8
 - **Styling**: Tailwind CSS 4 with PostCSS
 - **Routing**: React Router 8
 - **Icons**: Lucide React
 - **Testing**: Vitest + React Testing Library
-- **Storage**: Browser localStorage (no backend required)
+- **Storage**: Browser localStorage (no database or accounts)
+- **Server code**: One Vercel serverless function, `api/scrape.ts`, which fetches and parses a competitor page with `cheerio`
 - **Monitoring**: Vercel Analytics + Vercel Speed Insights (production only)
 
 ## Getting Started
@@ -84,7 +86,7 @@ pnpm install
 pnpm dev
 ```
 
-Starts the dev server at `http://localhost:5173` with hot module replacement.
+Starts the dev server at `http://localhost:5173` with hot module replacement. The `api/scrape.ts` function runs only on Vercel (or `vercel dev`), not under `pnpm dev`.
 
 ### Build
 
@@ -162,10 +164,14 @@ src/
 ├── context/            # React Context (Competitors, Toast)
 ├── hooks/              # Custom hooks (useCompetitors, useLocalStorage)
 ├── data/               # Seed data for sample competitors
+├── lib/                # Page parsing helpers (cheerio)
+├── monitoring/         # Web Vitals reporting
 ├── types/              # TypeScript definitions
 ├── utils/              # Validation, formatting, import/export
 ├── constants/          # App constants and config
 └── styles/             # Global CSS with design system
+api/scrape.ts           # Serverless function: fetch and parse a competitor page
+scripts/                # SEO asset generation, route prerendering, bundle budgets
 ```
 
 ## Data Management
@@ -182,6 +188,7 @@ All data is stored in browser localStorage:
 - `stalker_competitors` - Competitor data
 - `stalker_profile` - Your company profile
 - `stalker_snapshots` - Historical snapshots for change tracking
+- `stalker_theme` and `stalker_sidebar_collapsed` - Interface preferences
 
 ## Future Enhancements
 
@@ -209,4 +216,4 @@ Potential features for future development:
 
 ## License
 
-MIT
+MIT. See [LICENSE](LICENSE).
