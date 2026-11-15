@@ -137,7 +137,7 @@ const renderRouteHtml = (route, metadata) => {
   html = replaceTag(
     html,
     /<meta\s+property="og:image"\s+content="[^"]*"\s*\/?>/,
-    `<meta property="og:image" content="${baseUrl}/favicon.svg" />`,
+    `<meta property="og:image" content="${baseUrl}/og-image.png" />`,
     'og:image meta',
   );
   html = replaceTag(
@@ -155,7 +155,7 @@ const renderRouteHtml = (route, metadata) => {
   html = replaceTag(
     html,
     /<meta\s+name="twitter:image"\s+content="[^"]*"\s*\/?>/,
-    `<meta name="twitter:image" content="${baseUrl}/favicon.svg" />`,
+    `<meta name="twitter:image" content="${baseUrl}/og-image.png" />`,
     'twitter:image meta',
   );
 
