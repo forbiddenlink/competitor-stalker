@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.2](https://github.com/forbiddenlink/competitor-stalker/compare/v1.3.1...v1.3.2) (2026-11-15)
+
+
+### Bug Fixes
+
+* **seo:** stop prerender from replacing the share image with favicon.svg ([#119](https://github.com/forbiddenlink/competitor-stalker/issues/119)) ([9017061](https://github.com/forbiddenlink/competitor-stalker/commit/90170614999fb075f010b27babceeeef4d340b4a))
+
 ## [1.3.1](https://github.com/forbiddenlink/competitor-stalker/compare/v1.3.0...v1.3.1) (2026-11-15)
 
 
