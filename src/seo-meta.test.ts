@@ -13,3 +13,14 @@ describe('social share image', () => {
     expect(existsSync(resolve(__dirname, '../public', file))).toBe(true);
   });
 });
+
+describe('prerendered route html', () => {
+  const script = readFileSync(resolve(__dirname, '../scripts/prerender-route-html.mjs'), 'utf8');
+
+  it.each(['og:image', 'twitter:image'])('does not overwrite %s with a non-raster file', (name) => {
+    const m = script.match(new RegExp(`(?:property|name)="${name}" content="\\$\\{baseUrl\\}/([^"]+)"`));
+    expect(m).not.toBeNull();
+    expect(m![1]).toMatch(/\.(png|jpe?g)$/);
+    expect(existsSync(resolve(__dirname, '../public', m![1]))).toBe(true);
+  });
+});
