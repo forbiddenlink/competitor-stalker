@@ -25,6 +25,8 @@ const createManualChunks = (id: string) => {
     return undefined
   }
 
+  if (id.includes('/@sentry/')) return 'error-reporting'
+
   if (id.includes('lucide-react')) {
     return 'icons'
   }
