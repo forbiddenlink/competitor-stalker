@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.3](https://github.com/forbiddenlink/competitor-stalker/compare/v1.3.2...v1.3.3) (2026-11-18)
+
+
+### Bug Fixes
+
+* **css:** load tailwind.config.js so duration-fast compiles ([#125](https://github.com/forbiddenlink/competitor-stalker/issues/125)) ([26eb856](https://github.com/forbiddenlink/competitor-stalker/commit/26eb856143c4d64e1fc7077df842ea46e7e08881))
+
 ## [1.3.2](https://github.com/forbiddenlink/competitor-stalker/compare/v1.3.1...v1.3.2) (2026-11-15)
 
 
