@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.4](https://github.com/forbiddenlink/competitor-stalker/compare/v1.3.3...v1.3.4) (2026-11-20)
+
+
+### Bug Fixes
+
+* **deps:** resolve the minimatch advisory ([#127](https://github.com/forbiddenlink/competitor-stalker/issues/127)) ([f0bd5ef](https://github.com/forbiddenlink/competitor-stalker/commit/f0bd5efd23b8743f1f49bb1e940de24142a2c480))
+
 ## [1.3.3](https://github.com/forbiddenlink/competitor-stalker/compare/v1.3.2...v1.3.3) (2026-11-18)
 
 
