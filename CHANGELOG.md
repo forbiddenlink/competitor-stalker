@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.5](https://github.com/forbiddenlink/competitor-stalker/compare/v1.3.4...v1.3.5) (2026-11-28)
+
+
+### Bug Fixes
+
+* **scraper:** allowlist http/https in extractLinks ([#130](https://github.com/forbiddenlink/competitor-stalker/issues/130)) ([1fe9a5c](https://github.com/forbiddenlink/competitor-stalker/commit/1fe9a5ca20eefa9bfc5b2fd8a0dfe4e9bf34eccc))
+
 ## [1.3.4](https://github.com/forbiddenlink/competitor-stalker/compare/v1.3.3...v1.3.4) (2026-11-20)
 
 
