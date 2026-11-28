@@ -266,12 +266,14 @@ export function extractLinks(
 
     $('a[href]').each((_, el) => {
         const href = $(el).attr('href')
-        if (!href || href.startsWith('#') || href.startsWith('javascript:')) {
+        if (!href || href.startsWith('#')) {
             return
         }
 
         try {
             const url = new URL(href, baseUrl)
+            // Allowlist, not denylist: only web links survive (drops javascript:, data:, vbscript:, file:, mailto:, ...)
+            if (url.protocol !== 'http:' && url.protocol !== 'https:') return
             const domain = url.hostname.replace('www.', '')
 
             if (domain === baseDomain) {
